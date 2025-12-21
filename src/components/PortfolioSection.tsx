@@ -1,3 +1,4 @@
+// src/components/PortfolioSection.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -13,7 +14,17 @@ import "swiper/css/pagination";
 
 const AUTOPLAY_DELAY = 5000;
 
-const ProjectCard = ({ project, index, onUserInteract }) => {
+interface Project {
+  title: string;
+  shortDescription: string;
+  fullDescription: string;
+  tech: string;
+  image: string;
+  liveUrl: string;
+  detailUrl: string;
+}
+
+const ProjectCard = ({ project, index, onUserInteract }: { project: Project; index: number; onUserInteract?: () => void }) => {
   const [isActive, setIsActive] = useState(false);
 
   const handleInteraction = () => {
@@ -107,13 +118,13 @@ const ProjectCard = ({ project, index, onUserInteract }) => {
 };
 
 export default function PortfolioSection() {
-  const swiperRef = useRef(null);
+  const swiperRef = useRef<any>(null);
 
   const stopAutoplay = () => {
     swiperRef.current?.autoplay?.stop();
   };
 
-  const projects = [
+  const projects: Project[] = [
     {
       title: "E-Commerce Platform",
       shortDescription:
@@ -262,8 +273,6 @@ export default function PortfolioSection() {
           border-radius: 4px;
         }
       `}</style>
-
-
     </section>
   );
 }
