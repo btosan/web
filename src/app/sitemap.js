@@ -1,82 +1,29 @@
 export default function sitemap() {
   return [
     {
-      url: 'https://evehicles.com.ng',
+      url: 'https://webtech.besttosan.com',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 1,
     },
     {
-      url: 'https://evehicles.com.ng/about',
+      url: 'https://webtech.besttosan.com/about',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: 'https://evehicles.com.ng/contact',
+      url: 'https://webtech.besttosan.com/contact',
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: 'https://evehicles.com.ng/models',
+      url: 'https://webtech.besttosan.com/projects',
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 0.8,
     },
-    {
-      url: 'https://evehicles.com.ng/models/seal',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: 'https://evehicles.com.ng/models/seal-u',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-{
-      url: 'https://evehicles.com.ng/models/sealion',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: 'https://evehicles.com.ng/models/atto-3',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: 'https://evehicles.com.ng/models/atto-2',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: 'https://evehicles.com.ng/models/keke',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: 'https://evehicles.com.ng/models/dolphin',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: 'https://evehicles.com.ng/models/tang',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: 'https://evehicles.com.ng/models/han',
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
+    
   ]
 }

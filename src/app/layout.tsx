@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
 
 export const metadata: Metadata = {
-  title: "Best Tosan | BT WebTech | Custom Web Development & Website Design Nigeria",
+  title: " BT WebTech | Custom Web Development & Website Design Nigeria | Best Tosan ",
   description:
     "Expert custom web development, website design, e-commerce apps, and AI integration in Nigeria. Hand-coded with FastAPI, Django, React & Next.js — fast, scalable, AI-ready solutions delivered in days.",
   keywords:

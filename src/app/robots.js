@@ -5,6 +5,6 @@ export default function robots() {
         allow: '/',
         disallow: '/private/',
       },
-      sitemap: 'https://evehicles.com.ng/sitemap.js',
+      sitemap: 'https://webtech.besttosan.com/sitemap.js',
     }
   }

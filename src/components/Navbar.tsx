@@ -12,8 +12,8 @@ export default function Navbar() {
   const router = useRouter();
 
   const handleExploreNow = () => {
-    setOpen(false); // Close mobile menu 
-    router.push("/?type=test_drive#enquiry");
+    setOpen(false);
+    router.push("/?type=project#enquiry");
   };
 
   const handleCloseMenu = () => {
@@ -23,11 +23,11 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-90 text-gray-100 border-b border-gray-800">
       <div className="mx-auto px-6 md:px-16 py-2 flex items-center justify-between">
-        {/* === LOGO === */}
-        <div className="flex items-center justify-center">
+        {/* === LOGO (Responsive, Sharp, No Height Impact) === */}
+        <div className="flex items-center justify-center ">
           <Link
             href={"/"}
-            className="flex items-center justify-center w-full relative h-10 md:h-12 lg:h-14"
+            className="flex items-center justify-center w-full relative h-10 md:h-12 lg:h-14 "
           >
             <p className="w-full py-2 mx-auto flex items-center justify-center gap-2 font-semibold tracking-wider text-xl md:text-2xl lg:text-3xl leading-tight md:tracking-widest bg-linear-to-l from-blue-100 via-purple-100 to-purple-300 bg-clip-text text-transparent transition-colors duration-300">
               <span className="">BT</span>
@@ -44,8 +44,8 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <Link href="/models" className="hover:text-purple-100 transition tracking-widest">
-              Models
+            <Link href="/projects" className="hover:text-purple-100 transition tracking-widest">
+              Projects
             </Link>
           </li>
           <li>
@@ -118,11 +118,11 @@ export default function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/models"
+                  href="/projects"
                   onClick={handleCloseMenu}
                   className="hover:text-purple-100 transition"
                 >
-                  Models
+                  Projects
                 </Link>
               </li>
               <li>
@@ -131,18 +131,14 @@ export default function Navbar() {
                   onClick={handleCloseMenu}
                   className="hover:text-purple-100 transition"
                 >
-                  FAQ
+                  FAQs
                 </Link>
               </li>
             </ul>
 
             {/* Mobile Buttons */}
             <div className="flex flex-col items-center space-y-6 mt-6 w-3/4 uppercase">
-              <Link
-                href='/contact'
-                onClick={handleCloseMenu}
-                className="w-full px-6 py-3 border border-purple-600/60 text-purple-100 text-center text-base font-semibold rounded-full bg-purple-800/80 hover:bg-linear-to-r hover:from-purple-100 hover:via-purple-100 hover:to-indigo-200 hover:text-black transition"
-              >
+              <Link href='/contact' onClick={handleCloseMenu} className="w-full px-6 py-3 border border-purple-600/60 text-purple-100 text-center text-base font-semibold rounded-full bg-purple-800/80 hover:bg-linear-to-r hover:from-purple-100 hover:via-purple-100 hover:to-indigo-200 hover:text-black transition">
                 Contact
               </Link>
               <button
