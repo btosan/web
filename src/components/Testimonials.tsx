@@ -2,106 +2,192 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination } from "swiper/modules";
 
-const testimonials = [
-  {
-    name: "Chinoye A.",
-    location: "Lagos",
-    image: "/assets/people/igbo-lady.png",
-    quote:
-      "I drive from Lekki to Ikeja daily — my BYD Dolphin saves me over ₦100,000 monthly on fuel. Smooth, silent, and stylish! eVehicles NG made the whole process effortless.",
-  },
-  {
-    name: "Kemi A.",
-    location: "Abuja",
-    image: "/assets/people/yoruba-lady.png",
-    quote:
-      "The Atto 3 is a dream. I charge at home overnight and never worry about queues or petrol prices again. eVehicles NG guided me from test drive to delivery seamlessly.",
-  },
-  {
-    name: "Tunde O.",
-    location: "Port Harcourt",
-    image: "/assets/people/yoruba-man.png",
-    quote:
-      "Maintenance is almost zero — just tires and washing. I’ll never go back to petrol again. eVehicles NG’s after-sales team checks in regularly — that’s real service!",
-  },
-  {
-    name: "Stanley U.",
-    location: "Enugu",
-    image: "/assets/people/igbo-man.png",
-    quote:
-      "My BYD Tang is the best decision I’ve made for my family. Spacious, powerful, and eco-friendly. eVehicles NG handled everything, including home charging setup.",
-  },
-];
+import "swiper/css";
+import "swiper/css/pagination";
 
+// ✅ SHARED AUTOPLAY TIMING (use same value across all sliders)
+const AUTOPLAY_DELAY = 5000;
 
 export default function TestimonialsSection() {
+  const testimonials = [
+    {
+      name: "Chinedu Okeke",
+      role: "CEO, Lagos Fashion Hub",
+      project: "Custom E-Commerce Platform with Paystack",
+      quote:
+        "Our online sales went from zero to over ₦2.5M in the first month. The site is fast, beautiful on mobile, and the Paystack integration works perfectly. Truly hand-coded quality!",
+      rating: 5,
+      avatar: "/assets/byd/song-plus-3qv.jpg",
+    },
+    {
+      name: "Aisha Mohammed",
+      role: "Founder, Abuja Real Estate Pro",
+      project: "Professional Corporate Website",
+      quote:
+        "I finally have a website I'm proud to share. Clients now call directly from the site instead of just WhatsApp. The content writing bonus made everything sound professional from day one.",
+      rating: 5,
+      avatar: "/assets/byd/song-plus-back.jpg",
+    },
+    {
+      name: "Tunde Adebayo",
+      role: "Owner, TechMart Nigeria",
+      project: "Web App with AI Chatbot",
+      quote:
+        "The AI chatbot answers customer questions 24/7 — we've cut support time in half and increased conversions. Delivered faster than promised and better than expected.",
+      rating: 5,
+      avatar: "/assets/byd/song-plus-dashboard.jpg",
+    },
+    {
+      name: "Funmi Ogunleye",
+      role: "Manager, Ibadan Pharmacy Chain",
+      project: "Online Store with Real-Time Inventory",
+      quote:
+        "Customers can now order medicine online and pick up in-store. Stock updates automatically — no more overselling. Professional work that has grown our business significantly.",
+      rating: 5,
+      avatar: "/assets/byd/songplus.jpg",
+    },
+  ];
+
   return (
-    <section className="bg-gray-900 text-gray-100 py-20 px-6 md:px-16 xl:px-12">
-      <div className="max-w-6xl lg:max-w-7xl mx-auto text-center">
-        {/* Heading */}
-        <motion.h2
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
+    <section className="relative bg-black py-20 md:py-28 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 relative">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-5xl font-bold text-gray-300 uppercase"
+          className="text-center mb-12 md:mb-16"
         >
-          Real Owners. Real Stories.
-        </motion.h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-purple-100 uppercase mb-6">
+            What Our Clients Say
+          </h2>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            Real Nigerian businesses sharing real results from custom websites and
+            web apps.
+          </p>
+        </motion.div>
 
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-gray-400 mt-4 text-base md:text-lg"
-        >
-          Trusted by everyday Nigerians who’ve already made the switch to BYD.
-        </motion.p>
-
-        {/* Grid */}
-        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
-          {testimonials.map((t, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="bg-gray-800 border border-gray-700 rounded-3xl p-6 shadow-lg flex flex-col items-center text-center hover:scale-[1.02] transition-transform"
-            >
-              <div className="w-20 h-20 rounded-full overflow-hidden mb-5 border-2 border-yellow-500">
-                <Image
-                  src={t.image}
-                  alt={t.name}
-                  width={80}
-                  height={80}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <p className="text-gray-300 italic mb-6">“{t.quote}”</p>
-              <h4 className="text-yellow-400 font-semibold text-lg">
-                {t.name}
-              </h4>
-              <p className="text-gray-500 text-sm">{t.location}</p>
-            </motion.div>
-          ))}
+        {/* ✅ MOBILE SWIPE HINT */}
+        <div className="flex items-center justify-center gap-3 mb-4 md:hidden text-purple-100/70 text-sm">
+          <ChevronLeft className="w-4 h-4" />
+          <span>Swipe to see more</span>
+          <ChevronRight className="w-4 h-4" />
         </div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-16"
+        {/* Testimonials Slider */}
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          autoplay={{
+            delay: AUTOPLAY_DELAY,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          pagination={{ clickable: true }}
+          loop
+          spaceBetween={24}
+          breakpoints={{
+            0: { slidesPerView: 1 },
+            768: { slidesPerView: 1 },
+            1024: { slidesPerView: 2 },
+          }}
         >
-          <button className="bg-yellow-500 text-black font-semibold text-lg px-10 py-4 rounded-2xl hover:bg-yellow-400 transition-all">
-            Join the BYD Family
-          </button>
+          {testimonials.map((testimonial, index) => (
+            <SwiperSlide key={index}>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="relative h-full rounded-2xl bg-gray-950/60 border border-gray-800 p-8 hover:border-purple-100/40 transition-all duration-500"
+              >
+                {/* Star Rating */}
+                <div className="flex mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-5 h-5 fill-purple-100 text-purple-100"
+                    />
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <p className="text-lg md:text-xl text-gray-200 italic mb-8 leading-relaxed">
+                  "{testimonial.quote}"
+                </p>
+
+                {/* Client Info */}
+                <div className="flex items-center gap-4">
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-purple-100/50">
+                    <Image
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      fill
+                      className="object-cover"
+                      priority={index < 2}
+                    />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-white text-lg">
+                      {testimonial.name}
+                    </h4>
+                    <p className="text-sm text-gray-400">
+                      {testimonial.role}
+                    </p>
+                    <p className="text-xs text-purple-100/80 mt-1">
+                      {testimonial.project}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-center mt-6 md:mt-16"
+        >
+          <a
+            href="https://wa.me/2348038168949"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center md:px-10 px-8 md:py-4 py-3 bg-linear-to-r from-blue-100 via-purple-100 to-purple-200 text-black hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-600 transition-all duration-300 hover:text-white md:text-xl text-lg font-bold rounded-full shadow-2xl"
+          >
+            Be Our Next Success Story
+          </a>
         </motion.div>
       </div>
+
+      {/* Pagination styling */}
+      <style jsx>{`
+        :global(.swiper-pagination) {
+          position: relative;
+          margin-top: 14px;
+          text-align: center;
+        }
+        :global(.swiper-pagination-bullet) {
+          background-color: #9333ea;
+          opacity: 0.4;
+          width: 10px;
+          height: 10px;
+          margin: 0 6px !important;
+          transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        :global(.swiper-pagination-bullet-active) {
+          background-color: #9333ea;
+          opacity: 0.6;
+          transform: scale(1.25);
+        }
+      `}</style>
     </section>
   );
 }

@@ -7,11 +7,11 @@ import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
 
 export const metadata: Metadata = {
-  title: "BYD Electric Vehicles Nigeria | eVehicles",
+  title: "Best Tosan | BT WebTech | Custom Web Development & Website Design Nigeria",
   description:
-    "Explore BYD electric cars in Nigeria — Song Plus, Dolphin, Atto 3, Tang, and Seal. Save on fuel, enjoy cutting-edge EV technology, and drive the future today.",
+    "Expert custom web development, website design, e-commerce apps, and AI integration in Nigeria. Hand-coded with FastAPI, Django, React & Next.js — fast, scalable, AI-ready solutions delivered in days.",
   keywords:
-    "BYD Nigeria, electric vehicles Nigeria, BYD Song Plus, BYD Dolphin, BYD Atto 3, EV Lagos, affordable electric cars Nigeria",
+    "custom web development Nigeria, website design Lagos, e-commerce app Nigeria, AI integration Nigeria, Next.js developer, FastAPI developer, React developer, Django developer, BT WebTech, Best Tosan",
   icons: {
     icon: "/favicon.ico",
   },

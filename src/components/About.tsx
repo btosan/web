@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-
+// gmail
 export default function AboutPage() {
   return (
     <section className="bg-black text-white min-h-screen py-20 px-6 md:px-16">
@@ -15,13 +15,12 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-6xl font-bold uppercase mb-4 tracking-wide">
-            About Exulted Eagles Nigeria Limited
+          <h1 className="text-3xl lg:text-6xl md:text-5xl text-purple-100 font-bold uppercase mb-4 tracking-wide">
+            About BT WebTech
           </h1>
           <p className="text-gray-300 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
-            Pioneering sustainable mobility and renewable energy in Nigeria —
-            driving progress with BYD electric vehicles, solar power, and
-            intelligent energy solutions built for Africa’s future.
+            Pioneering bespoke web development and AI automation in Nigeria —
+            delivering scalable, high-performance digital solutions for businesses and organizations worldwide.
           </p>
         </motion.div>
 
@@ -33,25 +32,21 @@ export default function AboutPage() {
           className="grid md:grid-cols-2 gap-12 items-center mb-24"
         >
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-yellow-400 uppercase">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-purple-100 uppercase">
               Our Mission
             </h2>
             <p className="text-gray-300 text-lg leading-relaxed">
-              To transform Nigeria’s transportation and energy landscape by
-              delivering cutting-edge electric vehicles and renewable energy
-              solutions, fostering a sustainable, prosperous future for all.
+              To empower Nigerian businesses with world-class custom web solutions — from stunning websites to scalable e-commerce apps and AI-driven automation — driving growth in the digital age.
             </p>
             <p className="mt-6 text-gray-400">
-              We are not just selling cars — we are driving a national shift
-              toward cleaner, smarter, and more affordable mobility powered by
-              the world’s most advanced EV technology: <strong>BYD</strong>.
+              We are not just building websites — we are creating high-performance, future-ready digital experiences using the latest tools: <strong>FastAPI</strong>, <strong>Django</strong>, <strong>React</strong>, and <strong>Next.js</strong>.
             </p>
           </div>
 
           <div className="relative w-full h-[350px] md:h-[420px] rounded-3xl overflow-hidden">
             <Image
-              src="/assets/byd/songplus.jpg"
-              alt="BYD Song Plus Nigeria"
+              src="/assets/web/bt-web-tech-group.png"
+              alt="BT WebTech Custom Web App"
               fill
               className="object-cover rounded-3xl opacity-90"
             />
@@ -65,23 +60,14 @@ export default function AboutPage() {
           transition={{ duration: 0.6 }}
           className="space-y-8 mb-24"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-yellow-400 uppercase">
+          <h2 className="text-3xl md:text-4xl font-bold text-purple-100 uppercase">
             Who We Are
           </h2>
           <p className="text-gray-300 text-lg leading-relaxed">
-            <strong>Exulted Eagles Nigeria Limited</strong> is a pioneering
-            technology and mobility company specializing in the sale and
-            distribution of <strong>BYD electric vehicles</strong> in Nigeria.
-            Through our brand <strong>eVehicles NG</strong>, we make electric
-            mobility accessible, reliable, and aspirational for Nigerians.
+            <strong>BT WebTech</strong> is Nigeria's leading custom web development agency, specializing in hand-coded websites, e-commerce platforms, and AI integrations. We build exactly what your business needs — no templates, no shortcuts.
           </p>
           <p className="text-gray-400 text-lg leading-relaxed">
-            Headquartered in <strong>Port Harcourt</strong> with offices in{" "}
-            <strong>Lagos</strong> and <strong>Abuja</strong>, we operate a
-            growing network of service partners, delivery hubs, and solar
-            charging solutions across the nation. Our partnership ecosystem
-            ensures customers enjoy seamless sales, delivery, financing, and
-            maintenance support.
+            Based in Nigeria with a team of expert developers, we deliver lightning-fast, secure, and scalable solutions for startups, SMEs, and enterprises. Every project is tailored to your vision, using the same technologies powering global leaders.
           </p>
         </motion.div>
 
@@ -92,107 +78,83 @@ export default function AboutPage() {
           transition={{ duration: 0.8 }}
           className="bg-[#0a0a0a] rounded-3xl p-10 md:p-16 mb-24 border border-gray-800"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 uppercase text-yellow-400">
-            Why Nigerians Choose eVehicles NG
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-8 uppercase text-purple-100">
+            Why Nigerian Businesses Choose BT WebTech
           </h2>
           <ul className="space-y-6 text-gray-300 text-lg leading-relaxed list-disc pl-6">
             <li>
-              <strong>Official BYD Distributor</strong> — We source directly from
-              BYD’s global supply network, ensuring authentic models, verified
-              warranties, and zero compromise on quality.
+              <strong>100% Custom Development</strong> — Every line of code is hand-written for your exact needs — no drag-and-drop or generic templates.
             </li>
             <li>
-              <strong>Local Support & After-Sales Care</strong> — Certified BYD
-              technicians and spare parts available through authorized Nigerian
-              service partners.
+              <strong>AI Integration Expertise</strong> — Seamless chatbots, automation, and intelligent features to boost your business efficiency.
             </li>
             <li>
-              <strong>Energy Independence</strong> — We integrate EV ownership
-              with home or commercial solar charging, reducing reliance on
-              petrol and grid electricity.
+              <strong>E-Commerce & Web Apps</strong> — Fully functional online stores and dashboards with Paystack, Flutterwave, and real-time capabilities.
             </li>
             <li>
-              <strong>Transparent Pricing</strong> — All prices are in Nigerian
-              Naira with flexible payment and financing options.
+              <strong>Lightning-Fast Delivery</strong> — Professional websites in days, not months — built with Next.js for instant loading.
             </li>
             <li>
-              <strong>Nationwide Delivery</strong> — Whether in Lagos, Abuja,
-              Port Harcourt, or anywhere in Nigeria, we deliver your new BYD
-              directly to your doorstep.
+              <strong>Scalable & Secure</strong> — Future-proof solutions using FastAPI, Django, React, and Next.js — safe for growth.
             </li>
             <li>
-              <strong>Proven Technology</strong> — BYD’s Blade Battery is one of
-              the safest and most durable in the world, delivering superior
-              performance even in Nigeria’s hot climate.
+              <strong>Nigerian-Focused Support</strong> — Local team, fast communication, and ongoing support tailored to your market.
             </li>
           </ul>
         </motion.div>
 
-        {/* === Partners & Dealership Network === */}
+        {/* === Partners & Network === */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="mb-24"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-yellow-400 uppercase mb-8 text-center">
-            Our Partners & Dealership Network
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-purple-100 uppercase mb-8 text-center">
+            Our Network & Commitment
           </h2>
           <p className="text-gray-300 text-lg leading-relaxed max-w-4xl mx-auto text-center mb-10">
-            eVehicles NG operates a trusted network of authorized partners across
-            Nigeria — connecting customers with certified BYD dealerships,
-            service centers, and renewable energy providers to ensure the best
-            ownership experience possible.
+            BT WebTech works with modern frameworks, proven platforms, and local businesses to deliver high-performance web solutions across Nigeria and beyond.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div className="border border-gray-800 rounded-3xl p-8 bg-[#0a0a0a] hover:bg-gray-900 transition">
-              <h3 className="text-xl font-semibold mb-3 text-yellow-400">
-                Authorized Dealership Partners
+              <h3 className="text-xl font-semibold mb-3 text-purple-100">
+                Tools & Technology
               </h3>
               <p className="text-gray-400 text-base leading-relaxed">
-                eVehicles NG operates an expanding network of authorized BYD
-                dealerships in <strong>Lagos</strong>, <strong>Abuja</strong>,
-                and <strong>Port Harcourt</strong>, delivering certified sales
-                and expert consultation to customers nationwide under our
-                official dealership program.
+                We build with a modern, battle-tested stack: Next.js, FastAPI, Django, React, and Tailwind, ensuring every project is fast, secure, scalable, and future-ready.
               </p>
             </div>
 
             <div className="border border-gray-800 rounded-3xl p-8 bg-[#0a0a0a] hover:bg-gray-900 transition">
-              <h3 className="text-xl font-semibold mb-3 text-yellow-400">
-                Service & Maintenance
+              <h3 className="text-xl font-semibold mb-3 text-purple-100">
+                Client Success
               </h3>
               <p className="text-gray-400 text-base leading-relaxed">
-                Our certified BYD service centers across key Nigerian cities
-                provide complete after-sales support — including diagnostics,
-                battery management, software updates, and genuine BYD spare
-                parts — ensuring every vehicle performs at global standards.
+                From startups to enterprises, we design and develop websites and web applications that drive measurable growth, engagement, and real ROI.
               </p>
             </div>
 
             <div className="border border-gray-800 rounded-3xl p-8 bg-[#0a0a0a] hover:bg-gray-900 transition">
-              <h3 className="text-xl font-semibold mb-3 text-yellow-400">
-                Financial & Charging Solutions
+              <h3 className="text-xl font-semibold mb-3 text-purple-100">
+                Ongoing Support
               </h3>
               <p className="text-gray-400 text-base leading-relaxed">
-                Through our partnerships with banks, fintechs, and solar energy
-                providers, customers enjoy flexible financing options and access
-                to home or commercial BYD charging installations across Nigeria.
+                We provide continuous maintenance, performance optimization, updates, and AI enhancements — keeping your digital presence competitive long after launch.
               </p>
             </div>
           </div>
 
           <p className="text-gray-400 text-sm mt-8 text-center max-w-3xl mx-auto">
             <em>
-              Interested in becoming a partner or dealership representative for
-              BYD in Nigeria?{" "}
+              Ready to build your custom web solution?{" "}
             </em>
             <Link
-              href="/#enquiry"
-              className="text-yellow-400 underline hover:text-yellow-300 font-medium"
+              href="/#contact"
+              className="text-purple-100 underline hover:text-purple-300 font-medium"
             >
-              Contact our Business Development team
+              Contact BT WebTech today
             </Link>
             .
           </p>
@@ -205,13 +167,11 @@ export default function AboutPage() {
           transition={{ duration: 0.8 }}
           className="text-center mb-24"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-yellow-400 uppercase mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-purple-100 uppercase mb-6">
             Our Vision
           </h2>
           <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-            To make electric mobility mainstream in Nigeria — where every family
-            and business can drive a cleaner, smarter, and more affordable
-            vehicle powered by renewable energy.
+            To make world-class digital experiences accessible to every Nigerian business — powering growth through custom web development, e-commerce, and AI innovation.
           </p>
         </motion.div>
 
@@ -223,19 +183,19 @@ export default function AboutPage() {
           className="text-center"
         >
           <p className="text-gray-400 text-lg mb-6">
-            Explore our lineup of BYD electric vehicles available in Nigeria.
+            Explore our custom web development and AI solutions.
           </p>
           <Link
-            href="/models/song-plus"
-            className="bg-yellow-500 text-black px-10 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-yellow-400 transition-all inline-block"
+            href="/pricing"
+            className="bg-purple-500/80 text-white px-10 py-4 mb-4 md:mb-0 rounded-full font-bold uppercase tracking-widest hover:bg-purple-500 transition-all inline-block"
           >
-            View BYD Song Plus
+            View Our Packages
           </Link>
           <Link
-            href="/models/seagull"
-            className="ml-4 bg-transparent border-2 border-yellow-500 text-yellow-500 px-10 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-yellow-500 hover:text-black transition-all inline-block"
+            href="/portfolio"
+            className="ml-4 bg-transparent border-2 border-purple-500/80 text-purple-100 px-10 py-4 rounded-full font-bold uppercase tracking-widest hover:bg-purple-500/80 hover:text-white transition-all inline-block"
           >
-            View BYD Seagull
+            See Our Work
           </Link>
         </motion.div>
       </div>
