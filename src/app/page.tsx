@@ -27,15 +27,15 @@ export default function page() {
   return (
     <div className="bg-gray-950">
       <HeroSection />  
-      <BannerSection />                  
-      <WhyWebPresenceSection />          
-      <TestimonialsSection />           
-      <FeaturedPackages />              
-      <PortfolioSection />               
-      <WhyChooseUsSection />             
-      <PricingSection />                
-      <DomainHostingNote />              
-      <FinalCTASection />                
+      <BannerSection />
+      <WhyChooseUsSection /> 
+      <PortfolioSection />
+      <TestimonialsSection />
+      <FeaturedPackages />
+      <PricingSection />
+      <WhyWebPresenceSection /> 
+      {/* <FinalCTASection />  */}
+      {/* <DomainHostingNote />                          */}
       <EnquiryForm />                   
     </div>
   );

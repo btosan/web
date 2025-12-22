@@ -53,7 +53,7 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section className="relative bg-black py-20 md:py-28 overflow-hidden">
+    <section className="relative bg-black py-20 md:py-28 border-t border-gray-700 lg:border-gray-600 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative">
         {/* Header */}
         <motion.div
@@ -63,12 +63,11 @@ export default function TestimonialsSection() {
           viewport={{ once: true }}
           className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-purple-100 uppercase mb-6">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 uppercase mb-6">
             What Our Clients Say
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Real Nigerian businesses sharing real results from custom websites and
-            web apps.
+          <p className="text-xl text-gray-400 max-w-4xl mx-auto">
+            Hear how our clients are growing and succeeding with our custom websites and web apps.
           </p>
         </motion.div>
 

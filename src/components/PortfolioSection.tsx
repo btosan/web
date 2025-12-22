@@ -39,7 +39,7 @@ const ProjectCard = ({ project, index, onUserInteract }: { project: Project; ind
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.6 }}
       viewport={{ once: true }}
-      className="group relative rounded-2xl overflow-hidden bg-gray-950/60 border border-gray-600/90 hover:border-gray-500/70 transition-all duration-500 shadow-lg shadow-gray-600"
+      className="group relative rounded-2xl overflow-hidden bg-gray-950/60 border border-gray-700/90 lg:border-gray-700 hover:border-gray-500/70 transition-all duration-500 shadow-lg shadow-gray-600"
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
       onClick={handleInteraction}
@@ -194,7 +194,7 @@ export default function PortfolioSection() {
   ];
 
   return (
-    <section className="relative bg-black py-20 md:py-28 overflow-hidden">
+    <section className="relative bg-black py-20 md:py-28 border-t border-gray-700 lg:border-gray-600 overflow-hidden">
       <div className="mx-auto px-4 md:px-8 lg:px-12 xl:px-16">
         {/* Header */}
         <motion.div
@@ -249,6 +249,18 @@ export default function PortfolioSection() {
           ))}
         </div>
       </div>
+
+      <div className="w-full mx-auto flex items-center justify-center pt-4">
+        <a
+          href="https://wa.me/2348038168949"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-flex items-center justify-center px-8 py-3 rounded-full text-lg font-medium text-white bg-[linear-gradient(90deg,#dbeafe,#4c1d95,#6b21a8,#a855f7,#c084fc,#4169e1,#4b0082)] bg-size-[300%_300%] animate-gradient-wave transition-all duration-300 hover:scale-[1.03]"
+        >
+          See How We Build Yours →
+        </a>
+      </div>
+
 
       {/* Progress bar styling */}
       <style jsx>{`

@@ -17,10 +17,10 @@ const HeroSection = () => {
       </video>
 
       <div className="container relative z-10 mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
+        <div
+          // initial={{ opacity: 0, y: 50 }}
+          // animate={{ opacity: 1, y: 0 }}
+          // transition={{ duration: 1.2, ease: "easeOut" }}
           className="
             max-w-7xl 
             mx-auto 
@@ -47,7 +47,7 @@ const HeroSection = () => {
             text-white 
             mb-8
             ">
-              <span className="tracking-widest">
+              <span className="tracking-widest text-purple-100">
                  Custom 
               </span>
             
@@ -73,11 +73,11 @@ const HeroSection = () => {
             xl:max-w-3xl
             xl:w-[78%]
           ">
-            Hand-coded, AI-ready websites that load fast, scale effortlessly, and convert.
+            We build professional websites and bespoke web apps that are hand-coded, AI-ready, fast, scalable, and built to convert.
           </p>
 
           {/* Primary CTA Button */}
-          <motion.a
+          <a
             href="https://wa.me/2348038168949" // Updated with your real number
             target="_blank"
             rel="noopener noreferrer"
@@ -112,11 +112,11 @@ const HeroSection = () => {
               mx-auto 
               lg:mx-0
             "
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            // whileHover={{ scale: 1.05 }}
+            // whileTap={{ scale: 0.95 }}
           >
             Let’s Build Your Project
-          </motion.a>
+          </a>
 
           {/* Secondary CTA Text */}
           <p className="
@@ -132,7 +132,7 @@ const HeroSection = () => {
           ">
            <a href="https://wa.me/2348038168949" className="no-underline hover:underline hover:underline-offset-8  text-purple-100/90">Call or WhatsApp</a>
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

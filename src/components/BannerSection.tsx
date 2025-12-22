@@ -3,50 +3,44 @@
 import { motion } from "framer-motion";
 
 export default function BannerSection() {
+  const bullets = [
+    "50+ projects delivered",
+    "Clear communication from start to launch",
+    "Predictable timelines, no surprises",
+    "Delivered in days or weeks, not months",
+    "Reliable, modern tech stack",
+    "Affordable packages for growing businesses",
+    "Built for long-term partnerships",
+    "Ongoing support included",
+  ];
+
   return (
     <section className="relative bg-linear-to-b from-black via-gray-950 to-black py-16 md:py-20 border-b border-t border-gray-700/80">
-      <div className="max-w-7xl mx-auto px-6 md:text-center">
+      <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          {/* Expanded Headline */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-purple-100 mb-6">
-            Modern Websites
+          {/* Headline (still centered for authority) */}
+          <h2 className="text-3xl md:text-4xl lg:text-6xl font-semibold text-purple-100 mb-12 text-center md:text-left">
+            Trusted by growing businesses
           </h2>
 
-          {/* Full Expanded Description */}
-          <p className="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-4xl mx-auto md:w-[90%] xl:w-[60%] ">
-            Built with FastAPI, Django, Node.js, React & Next.js — the exact stack top startups use for speed and scalability.  
-          </p>
-          <p className="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-4xl mx-auto mt-4 md:w-[90%] xl:w-[60%]">  
-            100% custom, no templates. Lightning-fast performance. AI integrations ready. Delivered in days.
-          </p>
-
-          {/* Subtle CTA */}
-      <a
-        href="https://wa.me/2348038168949"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="
-          mt-8 inline-flex items-center justify-center px-8 py-3 rounded-full
-          text-lg font-medium text-white
-          bg-[linear-gradient(90deg,#dbeafe,#4c1d95,#6b21a8,#a855f7,#c084fc,#4169e1,#4b0082)]
-          bg-size-[300%_300%]
-          animate-gradient-wave
-          transition-all duration-300
-          hover:scale-[1.03]
-        "
-      >
-        See How We Build Yours →
-      </a>
-
-
+          {/* Grid layout for bullets */}
+          <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6  mx-auto">
+            {bullets.map((text, idx) => (
+              <li key={idx} className="flex items-start gap-4">
+                <span className="mt-2 h-3 w-3 rounded-full bg-purple-300 shadow-[0_0_10px_rgba(168,85,247,0.6)]" />
+                <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
+                  {text}
+                </p>
+              </li>
+            ))}
+          </ul>
         </motion.div>
       </div>
-      
     </section>
   );
 }

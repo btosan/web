@@ -47,7 +47,7 @@ You can reach me on ${formData.phone}.`;
   return (
     <section
       id="enquiry"
-      className="bg-black text-gray-100 py-20 px-6 md:px-16 lg:px-24"
+      className="bg-black text-gray-100 py-20 px-6 md:px-16 lg:px-24 border-t border-gray-700 lg:border-gray-600"
     >
       <div className="max-w-4xl mx-auto text-center">
         {/* Heading */}
@@ -57,7 +57,7 @@ You can reach me on ${formData.phone}.`;
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-5xl font-bold mb-6 text-purple-100"
         >
-          Start Your Website / Web App
+          Ready to Launch Your Custom Web App?
         </motion.h2>
 
         <motion.p

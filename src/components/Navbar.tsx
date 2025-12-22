@@ -37,15 +37,20 @@ export default function Navbar() {
         </div>
 
         {/* === DESKTOP MENU === */}
-        <ul className="hidden md:flex items-center space-x-10 text-sm font-medium">
+        <ul className="hidden lg:flex items-center xl:space-x-10 lg:space-x-8 text-sm font-medium uppercase">
           <li>
-            <Link href="/about" className="hover:text-purple-100 transition tracking-widest">
-              About Us
+            <Link href="/services" className="hover:text-purple-100 transition tracking-widest">
+              Services
             </Link>
           </li>
           <li>
             <Link href="/projects" className="hover:text-purple-100 transition tracking-widest">
               Projects
+            </Link>
+          </li>
+          <li>
+            <Link href="/about" className="hover:text-purple-100 transition tracking-widest">
+              About Us
             </Link>
           </li>
           <li>
@@ -56,22 +61,24 @@ export default function Navbar() {
         </ul>
 
         {/* === DESKTOP BUTTONS === */}
-        <div className="hidden md:flex items-center lg:space-x-12 space-x-5">
-          <Link href='/contact' className="text-base lg:text-lg px-6 py-2 lg:px-8 border border-purple-100 text-purple-100 font-semibold rounded-2xl hover:cursor-pointer hover:bg-linear-to-r from-purple-200 via-purple-100 to-purple-50 hover:text-black transition-all">
-            Contact
-          </Link>
+        <div className="hidden lg:flex items-center lg:space-x-8 xl:space-x-12 space-x-5">
+
           <button
             onClick={handleExploreNow}
-            className="text-base lg:text-lg px-6 py-2 lg:px-8 bg-linear-to-r from-purple-200 via-purple-100 to-purple-50 text-black font-bold rounded-2xl hover:cursor-pointer hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-500 hover:text-white transition-all"
+            className="text-base lg:text-lg lg:px-6 lg:py-2 xl:px-8 bg-linear-to-r from-purple-200 via-purple-100 to-purple-50 text-black font-bold rounded-2xl hover:cursor-pointer hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-500 hover:text-white transition-all"
           >
-            Explore Now
+            Enquiry
           </button>
+
+            <Link href='/contact' className="text-base lg:text-lg px-6 py-2 lg:px-8 border border-purple-100 text-purple-100 font-semibold rounded-2xl hover:cursor-pointer hover:bg-linear-to-r from-purple-200 via-purple-100 to-purple-50 hover:text-black transition-all">
+            Contact
+          </Link>
         </div>
 
         {/* === MOBILE TOGGLE === */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden text-purple-100 focus:outline-none"
+          className="lg:hidden text-purple-100 focus:outline-none"
         >
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -106,14 +113,14 @@ export default function Navbar() {
             </div>
 
             {/* Links */}
-            <ul className="text-gray-100 text-lg space-y-8 text-center">
+            <ul className="text-gray-100 text-lg space-y-8 text-center uppercase">
               <li>
                 <Link
-                  href="/about"
+                  href="/services"
                   onClick={handleCloseMenu}
                   className="hover:text-purple-100 transition"
                 >
-                  About Us
+                  Services
                 </Link>
               </li>
               <li>
@@ -123,6 +130,15 @@ export default function Navbar() {
                   className="hover:text-purple-100 transition"
                 >
                   Projects
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  onClick={handleCloseMenu}
+                  className="hover:text-purple-100 transition"
+                >
+                  About Us
                 </Link>
               </li>
               <li>
@@ -138,15 +154,17 @@ export default function Navbar() {
 
             {/* Mobile Buttons */}
             <div className="flex flex-col items-center space-y-6 mt-6 w-3/4 uppercase">
-              <Link href='/contact' onClick={handleCloseMenu} className="w-full px-6 py-3 border border-purple-600/60 text-purple-100 text-center text-base font-semibold rounded-full bg-purple-800/80 hover:bg-linear-to-r hover:from-purple-100 hover:via-purple-100 hover:to-indigo-200 hover:text-black transition">
-                Contact
-              </Link>
+
               <button
                 onClick={handleExploreNow}
                 className="w-full uppercase px-6 py-3 bg-linear-to-r from-purple-300 via-purple-200 to-purple-100 text-black text-base font-bold rounded-full hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-500 hover:text-white hover:cursor-pointer transition"
               >
-                Explore Now
+                Enquiry
               </button>
+
+              <Link href='/contact' onClick={handleCloseMenu} className="w-full px-6 py-3 border border-purple-600/60 text-purple-100 text-center text-base font-semibold rounded-full bg-purple-800/80 hover:bg-linear-to-r hover:from-purple-100 hover:via-purple-100 hover:to-indigo-200 hover:text-black transition">
+                Contact
+              </Link>
             </div>
           </motion.div>
         )}

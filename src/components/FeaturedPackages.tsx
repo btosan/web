@@ -52,7 +52,7 @@ export default function FeaturedPackages() {
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-4xl md:text-6xl font-bold text-purple-100 uppercase mb-6"
+          className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 uppercase mb-6"
         >
           Most Popular Packages
         </motion.h2>
