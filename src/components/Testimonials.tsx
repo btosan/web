@@ -102,7 +102,7 @@ export default function TestimonialsSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true }}
-                className="relative h-full rounded-2xl bg-gray-950/60 border border-gray-800 p-8 hover:border-purple-100/40 transition-all duration-500"
+                className="relative md:h-full h-120 flex flex-col justify-center rounded-2xl bg-gray-950/60 border border-gray-800 p-8 hover:border-purple-100/40 transition-all duration-500"
               >
                 {/* Star Rating */}
                 <div className="flex mb-4">
@@ -170,7 +170,8 @@ export default function TestimonialsSection() {
       <style jsx>{`
         :global(.swiper-pagination) {
           position: relative;
-          margin-top: 14px;
+          margin-top: 18px;
+          margin-bottom: 20px;
           text-align: center;
         }
         :global(.swiper-pagination-bullet) {

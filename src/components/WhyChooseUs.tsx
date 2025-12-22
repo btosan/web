@@ -173,7 +173,7 @@ export default function WhyChooseUsSection() {
         :global(.swiper-pagination) {
           position: relative;
           margin-top: 18px;
-          margin-bottom: 18px;
+          margin-bottom: 24px;
           text-align: center;
         }
         :global(.swiper-pagination-bullet) {

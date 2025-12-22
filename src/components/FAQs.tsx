@@ -6,54 +6,54 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    question: "What is eVehicles NG?",
+    question: "What does BT WebTech do?",
     answer:
-      "eVehicles NG is Nigeria’s trusted destination for premium electric vehicles (EVs), specializing in BYD cars such as the Song Plus and Seagull. We provide verified vehicles, nationwide delivery, and full after-sales support — all powered by the latest EV technology."
+      "BT WebTech is a custom web development and software agency. We build professional websites, scalable web applications, and AI-powered systems using modern technologies like React, Next.js, FastAPI, Django, and Node.js — not templates or drag-and-drop tools."
   },
   {
-    question: "Why choose BYD electric vehicles?",
+    question: "Do you use WordPress or website builders?",
     answer:
-      "BYD is the world’s leading electric vehicle manufacturer and the global pioneer of the Blade Battery. BYD cars deliver exceptional range, safety, and value. Every BYD EV sold by eVehicles NG is built for Nigerian roads and supported by local service and warranty."
+      "No. We do not build websites with WordPress, Wix, or drag-and-drop builders. Every project is fully custom-coded, which means better performance, stronger security, easier scaling, and no dependence on plugins or themes that can break over time."
   },
   {
-    question: "Are electric vehicles suitable for Nigeria?",
+    question: "Who is BT WebTech best suited for?",
     answer:
-      "Yes. EVs are ideal for Nigeria’s growing energy and mobility needs. With the rising cost of petrol and improved access to solar and inverter systems, EVs offer far lower running costs. BYD’s advanced Blade Battery ensures excellent reliability even in hot climates."
+      "We work with startups, businesses, and founders who need more than a basic website. If you need speed, scalability, integrations, dashboards, AI automation, or a system that grows with your business, BT WebTech is built for you."
   },
   {
-    question: "How do I charge an electric vehicle?",
+    question: "What technologies do you use?",
     answer:
-      "You can charge your EV using a regular household outlet (slow charge) or a wall-mounted home charger (fast charge). eVehicles NG also partners with EV charging providers to help customers install safe, certified home or office chargers."
+      "Our core stack includes React, Next.js, FastAPI, Django, Node.js, and modern databases. These technologies power high-performance platforms used by top startups and enterprises, allowing us to build fast, secure, and future-proof solutions."
   },
   {
-    question: "What is the driving range of BYD vehicles?",
+    question: "Do you build AI-powered solutions?",
     answer:
-      "The 2026 BYD Song Plus EV delivers up to 605 km (CLTC) per charge, while the BYD Seagull offers up to 405 km. Both cars are efficient, easy to maintain, and ideal for everyday commuting or inter-state travel."
+      "Yes. We design and integrate AI solutions such as chatbots, workflow automation, smart content systems, data analysis tools, and custom AI features that improve efficiency and reduce operational costs."
   },
   {
-    question: "What about maintenance and spare parts?",
+    question: "How secure are your websites and applications?",
     answer:
-      "EVs have far fewer moving parts than petrol vehicles — meaning much lower maintenance costs. eVehicles NG offers authorized service, diagnostics, and access to original BYD parts and accessories across major Nigerian cities."
+      "Security is built in from day one. We avoid risky third-party plugins, follow best security practices, and build clean architectures that reduce vulnerabilities commonly found in CMS-based websites."
   },
   {
-    question: "Can I still drive in areas without charging stations?",
+    question: "Can my website or app scale as my business grows?",
     answer:
-      "Yes. BYD’s long-range batteries are designed for flexibility. Many owners charge at home overnight, while eVehicles NG’s service partners provide mobile and roadside assistance options if needed."
+      "Absolutely. Our solutions are built like real software, not static sites. Whether you’re launching an MVP or expanding into a full platform, your product is designed to scale without needing a rebuild."
   },
   {
-    question: "Do you provide financing or installment plans?",
+    question: "How long does a typical project take?",
     answer:
-      "Yes. We work with select Nigerian banks and financing partners to offer flexible installment options, making it easier for you to own your BYD EV. Contact our sales team to learn more."
+      "Timelines depend on the scope, but most projects are delivered in days or weeks — not months. We provide clear timelines, consistent communication, and predictable delivery from start to launch."
   },
   {
-    question: "How can I place an order or make an enquiry?",
+    question: "Do you offer ongoing support after launch?",
     answer:
-      "You can request a quote directly on our website or contact us via WhatsApp or phone. Visit the model page of the BYD Song Plus or Seagull and click 'Enquire Now' or 'WhatsApp Sales' — we’ll respond instantly."
+      "Yes. We provide long-term support, improvements, and system evolution. BT WebTech works as a technical partner, not a one-time vendor, helping your product grow alongside your business."
   },
   {
-    question: "Where is eVehicles NG located?",
+    question: "How do I get started with BT WebTech?",
     answer:
-      "Our head office and primary delivery center are located in Port Harcourt, Nigeria, with service and logistics partners in Abuja and Lagos. Nationwide delivery and inspection are available."
+      "Simply contact us via WhatsApp or our website. We’ll discuss your goals, recommend the right solution, and outline a clear path to building a high-performance product tailored to your needs."
   }
 ];
 
@@ -94,7 +94,7 @@ export default function FaqSection() {
                 </span>
                 <ChevronDown
                   className={`w-5 h-5 transform transition-transform duration-300 ${
-                    activeIndex === index ? "rotate-180 text-yellow-400" : ""
+                    activeIndex === index ? "rotate-180 text-purple-400" : ""
                   }`}
                 />
               </button>
@@ -118,14 +118,14 @@ export default function FaqSection() {
 
         <div className="text-center mt-16">
           <motion.a
-            href="https://wa.me/2348063887516?text=Hi!%20I%27m%20interested%20in%20a%20BYD%20electric%20vehicle%20from%20eVehicles%20NG"
+            href="https://wa.me/2348038168949"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-block bg-yellow-500 text-black font-bold px-10 py-4 rounded-full text-lg uppercase tracking-widest hover:bg-yellow-400 transition-all"
+            className="inline-block bg-purple-600 text-white font-bold px-10 py-4 rounded-full text-lg uppercase tracking-widest hover:bg-purple-500 transition-all"
           >
-            Chat With Sales
+            Start Your Project
           </motion.a>
         </div>
       </div>
