@@ -54,7 +54,7 @@ You can reach me on ${formData.phone}.`;
         {/* Whatsapp Form */}
         <form
           onSubmit={handleSubmit}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-900 p-4 md:p-6 lg:p-8 rounded-2xl shadow-lg"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-900 p-4 md:p-6 lg:p-8 mb-8 md:mb-0 rounded-2xl shadow-lg"
         >
           <input
             type="text"

@@ -140,7 +140,7 @@ export default function GoogleEnquiryForm({
         Email Enquiry Form
       </h3>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="space-y-6 mb-8 md:mb-0">
         {/* Full Name */}
         <div>
           <label className={labelClasses}>Full Name *</label>
