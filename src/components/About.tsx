@@ -15,10 +15,10 @@ export default function AboutPage() {
           // transition={{ duration: 0.6 }}
           className=" mb-16"
         >
-          <h1 className="text-left md:text-center text-3xl lg:text-6xl md:text-5xl text-purple-100 font-bold uppercase mb-4 tracking-wide">
+          <h1 className="text-start md:text-center text-3xl lg:text-6xl md:text-5xl text-purple-100 font-bold uppercase mb-4 tracking-wide">
             About BT WebTech
           </h1>
-          <p className="text-left md:text-center text-gray-300 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
+          <p className="text-start md:text-center text-gray-300 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
             Pioneering bespoke web development and AI automation in Nigeria, delivering scalable and high-performance digital solutions for businesses and organizations worldwide. Founded by Best Tosan, a full-stack software developer, UI/UX designer, and AI expert with over 10 years of experience.
           </p>
         </div>

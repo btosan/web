@@ -13,7 +13,7 @@ export default function EnquiryForm() {
     type: "start_project", // start_project | request_quote
   });
 
-  // Auto-handle ?type=start_project or ?type=quote start my
+  // Auto-handle ?type=start_project or ?type=quote bg-gray-900 rounded-2xl
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const typeParam = params.get("type");
@@ -45,35 +45,16 @@ You can reach me on ${formData.phone}.`;
   };
 
   return (
-    <section
-      id="enquiry"
-      className="bg-black text-gray-100 py-20 px-6 md:px-16 lg:px-24 border-t border-gray-700 lg:border-gray-600"
-    >
-      <div className="max-w-4xl mx-auto text-center">
-        {/* Heading */}
-        <motion.h2
-          initial={{ y: 20, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-5xl font-bold mb-6 text-purple-100"
-        >
-          Ready to Launch Your Custom Web App?
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="text-gray-400 mb-10 max-w-2xl mx-auto"
-        >
-          Tell us a bit about your business and the package you want.  
-          We’ll reply with next steps, timelines, and deliverables.
-        </motion.p>
-
-        {/* Form */}
+    // <section
+    //   id="enquiry"
+    //   className="w-full   "
+    // >
+      <div className="w-full mx-auto text-center text-gray-100">
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">Whatsapp Contact Form</h2>
+        {/* Whatsapp Form */}
         <form
           onSubmit={handleSubmit}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-900 p-8 rounded-2xl shadow-lg"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-900 p-4 md:p-6 lg:p-8 rounded-2xl shadow-lg"
         >
           <input
             type="text"
@@ -153,7 +134,7 @@ You can reach me on ${formData.phone}.`;
           </div>
 
           {/* Submit */}
-          <div className="md:col-span-2 flex justify-center mt-6">
+          <div className="md:col-span-2 flex justify-center mt-6 w-full ">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.97 }}
@@ -162,7 +143,7 @@ You can reach me on ${formData.phone}.`;
                 bg-linear-to-r
                 from-purple-50 via-purple-100 to-indigo-100
                 text-black md:text-xl text-lg font-semibold md:uppercase
-                rounded-2xl md:px-12 px-6 py-4
+                rounded-2xl md:px-12 px-6 md:py-4 py-4 w-full
                 hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-600
                 hover:text-white transition-all hover:cursor-pointer
               "
@@ -172,6 +153,6 @@ You can reach me on ${formData.phone}.`;
           </div>
         </form>
       </div>
-    </section>
+    // </section>
   );
 }

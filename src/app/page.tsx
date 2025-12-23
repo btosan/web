@@ -9,8 +9,9 @@ import WhyChooseUsSection from "@/components/WhyChooseUs";
 import PricingSection from "@/components/PricingSection";
 import DomainHostingNote from "@/components/DomainHostingNote";
 import FinalCTASection from "@/components/FinalCTA";
-import EnquiryForm from "@/components/Enquiry";
+// import EnquiryForm from "@/components/Enquiry";
 import BannerSection from "@/components/BannerSection";
+import EnquirySection from "@/components/EnquirySection";
 
 export const metadata: Metadata = {
   title: " BT WebTech | Custom Web Development & Website Design Nigeria | Best Tosan ",
@@ -36,7 +37,7 @@ export default function page() {
       <WhyWebPresenceSection /> 
       {/* <FinalCTASection />  */}
       {/* <DomainHostingNote />                          */}
-      <EnquiryForm />                   
+      <EnquirySection />                   
     </div>
   );
 }

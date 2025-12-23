@@ -11,6 +11,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import CTA from "./CTA";
 
 const AUTOPLAY_DELAY = 5000;
 
@@ -194,7 +195,7 @@ export default function PortfolioSection() {
   ];
 
   return (
-    <section className="relative bg-black py-20 md:py-28 border-t border-gray-700 lg:border-gray-600 overflow-hidden">
+    <section className="relative bg-black py-16 md:py-20 lg:py-24 xl:py-28 overflow-hidden">
       <div className="mx-auto px-4 md:px-8 lg:px-12 xl:px-16">
         {/* Header */}
         <motion.div
@@ -251,14 +252,15 @@ export default function PortfolioSection() {
       </div>
 
       <div className="w-full mx-auto flex items-center justify-center pt-4">
-        <a
+        {/* <a
           href="https://wa.me/2348038168949"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-8 inline-flex items-center justify-center px-8 py-3 rounded-full text-lg font-medium text-white bg-[linear-gradient(90deg,#dbeafe,#4c1d95,#6b21a8,#a855f7,#c084fc,#4169e1,#4b0082)] bg-size-[300%_300%] animate-gradient-wave transition-all duration-300 hover:scale-[1.03]"
         >
           See How We Build Yours →
-        </a>
+        </a> */}
+        <CTA />
       </div>
 
 
