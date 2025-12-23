@@ -6,17 +6,21 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiSend, FiCheck } from "react-icons/fi";
 import TiptapEditor from "./editor/TiptapEditor";
 
+/* ================= GOOGLE FORM CONFIG ================= */
+
 const FORM_ID = "1FAIpQLSfpLGcdv-l_zhRkgZUf5Ye9ghl_dzVtQjGAG4sPOFRIreqqNA";
 const GOOGLE_FORM_URL = `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`;
 
-// Exact entry IDs (including your new honeypot)
-const ENTRY_NAME     = "entry.637622503";    // Full Name
-const ENTRY_EMAIL    = "entry.754221519";    // Email Address
-const ENTRY_PHONE    = "entry.129574009";    // Phone Number
-const ENTRY_SUBJECT  = "entry.1469936530";   // Subject
-const ENTRY_PROJECT  = "entry.41709357";     // Project Type
-const ENTRY_DETAILS  = "entry.805790689";    // Project Details
-const ENTRY_HONEYPOT = "entry.884448233";    // Honeypot (always empty!)
+// ENTRY IDs (must match Google Form exactly)
+const ENTRY_NAME     = "entry.637622503";
+const ENTRY_EMAIL    = "entry.754221519";
+const ENTRY_PHONE    = "entry.129574009";
+const ENTRY_SUBJECT  = "entry.1469936530";
+const ENTRY_PROJECT  = "entry.41709357";
+const ENTRY_DETAILS  = "entry.805790689";
+const ENTRY_HONEYPOT = "entry.884448233"; // honeypot field (hidden in form)
+
+/* ===================================================== */
 
 interface FormData {
   fullname: string;
@@ -46,24 +50,23 @@ export default function GoogleEnquiryForm({
   const [isSuccess, setIsSuccess] = useState(false);
   const [errors, setErrors] = useState<{ details?: string }>({});
 
-  // Auto-prefill subject from URL ?type=...
+  /* ===== Auto-prefill subject from URL ===== */
   useEffect(() => {
     const type = searchParams.get("type");
 
     const map: Record<string, string> = {
       start_project: "New Project Enquiry",
-      web_app: "Web App Development",
+      web_app: "Web Application Development",
       website: "Website Development",
-      automation: "Automation / Internal Tool",
+      automation: "AI Automation / Integration",
     };
 
     if (type && map[type]) {
-      setFormData((prev) => ({
-        ...prev,
-        subject: map[type],
-      }));
+      setFormData((prev) => ({ ...prev, subject: map[type] }));
     }
   }, [searchParams]);
+
+  /* ===== Handlers ===== */
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -72,7 +75,7 @@ export default function GoogleEnquiryForm({
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrors({});
 
@@ -81,63 +84,47 @@ export default function GoogleEnquiryForm({
       return;
     }
 
-    if (
-      !formData.fullname.trim() ||
-      !formData.email.trim() ||
-      !formData.phone.trim() ||
-      !formData.subject.trim() ||
-      !formData.projectType.trim()
-    ) {
-      return;
-    }
-
     setIsSubmitting(true);
 
-    // Native hidden form submission – reliable forever
-    const hiddenForm = document.createElement("form");
-    hiddenForm.method = "POST";
-    hiddenForm.action = GOOGLE_FORM_URL;
-    hiddenForm.style.display = "none";
-    hiddenForm.target = "google_form_iframe";
+    /* ===== IMPORTANT PART (THIS TRIGGERS Apps Script) ===== */
+    const payload = new URLSearchParams();
+    payload.append(ENTRY_NAME, formData.fullname.trim());
+    payload.append(ENTRY_EMAIL, formData.email.trim());
+    payload.append(ENTRY_PHONE, formData.phone.trim());
+    payload.append(ENTRY_SUBJECT, formData.subject.trim());
+    payload.append(ENTRY_PROJECT, formData.projectType.trim());
+    payload.append(ENTRY_DETAILS, details.trim());
+    payload.append(ENTRY_HONEYPOT, ""); // MUST be empty
 
-    const addHiddenInput = (name: string, value: string) => {
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = name;
-      input.value = value.trim();
-      hiddenForm.appendChild(input);
-    };
+    try {
+      await fetch(GOOGLE_FORM_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: payload,
+      });
 
-    addHiddenInput(ENTRY_NAME, formData.fullname);
-    addHiddenInput(ENTRY_EMAIL, formData.email);
-    addHiddenInput(ENTRY_PHONE, formData.phone);
-    addHiddenInput(ENTRY_SUBJECT, formData.subject);
-    addHiddenInput(ENTRY_PROJECT, formData.projectType);
-    addHiddenInput(ENTRY_DETAILS, details);
-    addHiddenInput(ENTRY_HONEYPOT, ""); // ← Honeypot: always empty!
+      setIsSuccess(true);
+      setFormData({
+        fullname: "",
+        email: "",
+        phone: "",
+        subject: formData.subject, // keep subject if coming from CTA
+        projectType: "",
+      });
+      setDetails("");
 
-    document.body.appendChild(hiddenForm);
-    hiddenForm.submit();
-    document.body.removeChild(hiddenForm);
-
-    // Success UI
-    setIsSuccess(true);
-    setFormData({
-      fullname: "",
-      email: "",
-      phone: "",
-      subject: formData.subject,
-      projectType: "",
-    });
-    setDetails("");
-
-    setTimeout(() => {
-      setIsSuccess(false);
-      onSuccess?.();
-    }, 4000);
-
-    setIsSubmitting(false);
+      setTimeout(() => {
+        setIsSuccess(false);
+        onSuccess?.();
+      }, 4000);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
+  /* ===== Styles ===== */
 
   const inputClasses =
     "w-full px-4 py-3 bg-gray-900 border border-gray-700 text-gray-100 placeholder-gray-400 rounded-xl focus:outline-none focus:border-purple-100 transition";
@@ -145,14 +132,10 @@ export default function GoogleEnquiryForm({
   const labelClasses =
     "block text-sm font-medium text-purple-100 mb-2 uppercase";
 
+  /* ===== Render ===== */
+
   return (
     <div className="w-full max-w-2xl mx-auto">
-      <iframe
-        name="google_form_iframe"
-        style={{ display: "none" }}
-        title="Google Form Submission"
-      />
-
       <h3 className="text-2xl md:text-3xl font-bold text-purple-100 mb-8 text-center">
         Email Enquiry Form
       </h3>
@@ -165,7 +148,6 @@ export default function GoogleEnquiryForm({
             whileFocus={{ scale: 1.01 }}
             name="fullname"
             required
-            type="text"
             value={formData.fullname}
             onChange={handleChange}
             placeholder="John Doe"
@@ -210,10 +192,9 @@ export default function GoogleEnquiryForm({
             whileFocus={{ scale: 1.01 }}
             name="subject"
             required
-            type="text"
             value={formData.subject}
             onChange={handleChange}
-            placeholder="e.g. Web App Development"
+            placeholder="Web App Development"
             className={inputClasses}
           />
         </div>
@@ -233,12 +214,14 @@ export default function GoogleEnquiryForm({
             <option value="Custom Website">Custom Website</option>
             <option value="Web Application">Web Application</option>
             <option value="E-commerce Platform">E-commerce Platform</option>
-            <option value="AI Automation / Integration">AI Automation / Integration</option>
+            <option value="AI Automation / Integration">
+              AI Automation / Integration
+            </option>
             <option value="Not sure yet">Not sure yet</option>
           </motion.select>
         </div>
 
-        {/* Project Details */}
+        {/* Details */}
         <div>
           <label className={labelClasses}>Project Details *</label>
           <TiptapEditor
@@ -251,6 +234,7 @@ export default function GoogleEnquiryForm({
           )}
         </div>
 
+        {/* Submit / Success */}
         <AnimatePresence mode="wait">
           {isSuccess ? (
             <motion.div
@@ -264,7 +248,7 @@ export default function GoogleEnquiryForm({
                 Enquiry Sent Successfully!
               </p>
               <p className="text-sm text-gray-400 text-center">
-                Thank you – check your Google responses, it's there!
+                Check your email — we’ve already replied 🚀
               </p>
             </motion.div>
           ) : (
