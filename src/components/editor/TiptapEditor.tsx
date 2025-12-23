@@ -1,4 +1,4 @@
-// next/web/src/components/editor/TiptapEditor.tsx
+// next/web/src/components/editor/TiptapEditor.tsx copytoclipboard
 import './editor.css'
 import { useState, useEffect } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
@@ -35,7 +35,7 @@ import 'prismjs/components/prism-css'
 import 'prismjs/components/prism-json'
 import 'prismjs/components/prism-yaml'
 import 'prismjs/components/prism-markdown'
-
+// copy
 interface TiptapEditorProps {
   content: string
   onChange: (content: string) => void
