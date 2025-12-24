@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Code2, Bot, Zap, Shield, Palette, Rocket } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,10 +9,21 @@ import { Autoplay, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
-// h-96
+
 const AUTOPLAY_DELAY = 4500;
 
 export default function WhyChooseUsSection() {
+  const [open, setOpen] = useState(false);
+
+  const handleWhatsApp = () => {
+    window.open(
+      "https://wa.me/2348038168949?text=Hi%21%20I%27m%20interested%20in%20building%20a%20custom%20website%20or%20web%20application%20and%20would%20like%20to%20discuss%20my%20project.",
+      "_blank",
+      "noopener,noreferrer"
+    );
+    setOpen(false);
+  };
+
   const reasons = [
     {
       icon: <Code2 className="w-8 h-8 md:w-10 md:h-10 text-purple-50 shrink-0" />,
@@ -80,7 +92,7 @@ export default function WhyChooseUsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 uppercase">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 ">
             Why Choose Us
           </h2>
           <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto">
@@ -113,13 +125,13 @@ export default function WhyChooseUsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="flex flex-col items-center justify-center text-center p-6 rounded-2xl bg-gray-950/50 border border-gray-800 h-96 md:h-full"
+                  className="flex flex-col items-center justify-center p-6 rounded-2xl bg-gray-950/50 border border-gray-800 h-96 md:h-full"
                 >
                   <div className="mb-4">{reason.icon}</div>
-                  <h3 className="text-xl font-semibold text-gray-100 mb-3">
+                  <h3 className="text-xl text-center font-semibold text-gray-100 mb-3">
                     {reason.title}
                   </h3>
-                  <p className="text-gray-400 leading-relaxed">
+                  <p className="text-gray-400 text-start leading-relaxed">
                     {reason.description}
                   </p>
                 </motion.div>
@@ -158,16 +170,71 @@ export default function WhyChooseUsSection() {
           viewport={{ once: true }}
           className="text-center"
         >
-          <a
-            href="https://wa.me/2348038168949"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center lg:px-12 md:px-10 px-8 lg:py-5 md:py-4 py-3 bg-linear-to-r from-blue-100 via-purple-100 to-purple-200 text-black hover:bg-linear-to-r hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-600 transition-all duration-300 hover:text-white lg:text-2xl md:text-xl text-lg font-bold rounded-full shadow-2xl"
+          <button
+            onClick={() => setOpen(true)}
+            className="inline-flex items-center justify-center lg:px-12 md:px-10 px-8 lg:py-5 md:py-4 py-3 bg-linear-to-r from-blue-100 via-purple-100 to-purple-200 text-black hover:bg-linear-to-r hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-600 transition-all duration-300 hover:text-white lg:text-2xl md:text-xl text-lg font-bold rounded-full shadow-2xl cursor-pointer"
           >
             Start Your Project Today
-          </a>
+          </button>
         </motion.div>
       </div>
+
+      {/* Modal - Exact same as HeroSection */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
+            onClick={() => setOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="bg-gray-900 rounded-2xl p-6 w-full max-w-2xl border border-gray-700 max-h-[90vh] overflow-y-auto relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+              >
+                ✕
+              </button>
+
+              <h3 className="text-2xl font-bold text-purple-100 mb-6">
+                How would you like to continue?
+              </h3>
+
+              <div className="flex flex-col gap-4">
+                <button
+                  onClick={handleWhatsApp}
+                  className="bg-green-500 hover:bg-green-400 text-black font-semibold py-4 rounded-xl transition-all hover:cursor-pointer"
+                >
+                  Continue on WhatsApp
+                </button>
+
+                <a
+                  href="/contact-form"
+                  onClick={() => setOpen(false)}
+                  className="border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold py-4 rounded-xl transition-all text-center block"
+                >
+                  Use Email Form
+                </a>
+
+                <button
+                  onClick={() => setOpen(false)}
+                  className="text-gray-400 text-sm mt-2 hover:text-gray-200"
+                >
+                  Cancel
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <style jsx>{`
         :global(.swiper-pagination) {

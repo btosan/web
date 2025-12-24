@@ -205,7 +205,7 @@ export default function PortfolioSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 uppercase mb-6">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 mb-6">
             Selected Projects
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">

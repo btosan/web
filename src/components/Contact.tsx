@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Phone, PhoneCallIcon, Mail, MapPin, MessageCircle } from "lucide-react";
+import GoogleEnquiryForm from "./GoogleEnquiryForm";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -104,7 +105,7 @@ Email: ${formData.email || "Not provided"}`;
               </div>
             </div>
 
-                        <div className="flex items-start gap-4">
+            <div className="flex items-start gap-4">
               <PhoneCallIcon className="w-6 h-6 text-purple-100 mt-1 shrink-0" />
               <div>
                 <h3 className="font-semibold text-xl mb-2">Call Us</h3>
@@ -136,7 +137,7 @@ Email: ${formData.email || "Not provided"}`;
             {/* WhatsApp */}
             <button
               onClick={openWhatsApp}
-              className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-5 px-8 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg"
+              className="w-fit bg-green-600 hover:bg-green-700 text-white font-bold py-5 px-8 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg"
             >
               <MessageCircle className="w-7 h-7" />
               Chat on WhatsApp
@@ -144,105 +145,113 @@ Email: ${formData.email || "Not provided"}`;
           </div>
         </div>
 
-        {/* Right: Form */}
-        <div className="bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-800">
-          <h3 className="text-3xl font-bold text-center mb-8 text-purple-100">
-            Request a Quote or Consultation
-          </h3>
+        {/* Right: Both Forms — WhatsApp form on top, Google form below */}
+        <div className="space-y-12">
+          {/* Original WhatsApp Quick Form */}
+          <div className="bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-800">
+            <h3 className="text-3xl font-bold text-center mb-8 text-purple-100">
+              Request a Quote or Consultation
+            </h3>
 
-          <form
-            onSubmit={handleSubmit}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-          >
-            <input
-              type="text"
-              name="name"
-              placeholder="Full Name *"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 placeholder-gray-500 focus:border-purple-100 outline-none"
-            />
-
-            <input
-              type="tel"
-              name="phone"
-              placeholder="Phone Number *"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-              className="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 placeholder-gray-500 focus:border-purple-100 outline-none"
-            />
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Email Address"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 placeholder-gray-500 focus:border-purple-100 outline-none"
-            />
-
-            <input
-              type="text"
-              name="city"
-              placeholder="City *"
-              value={formData.city}
-              onChange={handleChange}
-              required
-              className="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 placeholder-gray-500 focus:border-purple-100 outline-none"
-            />
-
-            <select
-              name="service"
-              value={formData.service}
-              onChange={handleChange}
-              required
-              className="md:col-span-2 w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 focus:border-purple-100 outline-none"
+            <form
+              onSubmit={handleSubmit}
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
             >
-              <option value="">Select Service *</option>
-              <option value="Professional Website">Professional Website</option>
-              <option value="Custom Web App">Custom Web Application</option>
-              <option value="AI Automation">AI Automation & Integration</option>
-              <option value="E-commerce Platform">E-commerce Platform</option>
-              <option value="Other">Other / Not Sure</option>
-            </select>
+              <input
+                type="text"
+                name="name"
+                placeholder="Full Name *"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 placeholder-gray-500 focus:border-purple-100 outline-none"
+              />
 
-            <div className="md:col-span-2 flex justify-center gap-10 my-4">
-              <label className="flex items-center gap-3 cursor-pointer">
-                <input
-                  type="radio"
-                  name="type"
-                  value="consultation"
-                  checked={formData.type === "consultation"}
-                  onChange={handleRadioChange}
-                  className="w-5 h-5 text-purple-100 focus:ring-purple-100"
-                />
-                <span className="text-lg">Book Consultation</span>
-              </label>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone Number *"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                className="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 placeholder-gray-500 focus:border-purple-100 outline-none"
+              />
 
-              <label className="flex items-center gap-3 cursor-pointer">
-                <input
-                  type="radio"
-                  name="type"
-                  value="quote"
-                  checked={formData.type === "quote"}
-                  onChange={handleRadioChange}
-                  className="w-5 h-5 text-purple-100 focus:ring-purple-100"
-                />
-                <span className="text-lg">Request Quote</span>
-              </label>
-            </div>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 placeholder-gray-500 focus:border-purple-100 outline-none"
+              />
 
-            <div className="md:col-span-2 text-center">
-              <button
-                type="submit"
-                className="bg-purple-100 hover:bg-purple-50 text-black font-bold md:text-xl text-lg uppercase rounded-2xl lg:px-12 md:px-10 px-6 lg:py-5 md:py-4 py-3 transition-all shadow-lg"
+              <input
+                type="text"
+                name="city"
+                placeholder="City *"
+                value={formData.city}
+                onChange={handleChange}
+                required
+                className="w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 placeholder-gray-500 focus:border-purple-100 outline-none"
+              />
+
+              <select
+                name="service"
+                value={formData.service}
+                onChange={handleChange}
+                required
+                className="md:col-span-2 w-full p-4 rounded-xl bg-gray-800 border border-gray-700 text-gray-100 focus:border-purple-100 outline-none"
               >
-                Send via WhatsApp
-              </button>
-            </div>
-          </form>
+                <option value="">Select Service *</option>
+                <option value="Professional Website">Professional Website</option>
+                <option value="Custom Web App">Custom Web Application</option>
+                <option value="AI Automation">AI Automation & Integration</option>
+                <option value="E-commerce Platform">E-commerce Platform</option>
+                <option value="Other">Other / Not Sure</option>
+              </select>
+
+              <div className="md:col-span-2 flex justify-center gap-10 my-4">
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="type"
+                    value="consultation"
+                    checked={formData.type === "consultation"}
+                    onChange={handleRadioChange}
+                    className="w-5 h-5 text-purple-100 focus:ring-purple-100"
+                  />
+                  <span className="text-lg">Book Consultation</span>
+                </label>
+
+                <label className="flex items-center gap-3 cursor-pointer">
+                  <input
+                    type="radio"
+                    name="type"
+                    value="quote"
+                    checked={formData.type === "quote"}
+                    onChange={handleRadioChange}
+                    className="w-5 h-5 text-purple-100 focus:ring-purple-100"
+                  />
+                  <span className="text-lg">Request Quote</span>
+                </label>
+              </div>
+
+              <div className="md:col-span-2 text-center">
+                <button
+                  type="submit"
+                  className="bg-purple-100 hover:bg-purple-50 text-black font-bold md:text-xl text-lg uppercase rounded-2xl lg:px-12 md:px-10 px-6 lg:py-5 md:py-4 py-3 transition-all shadow-lg"
+                >
+                  Send via WhatsApp
+                </button>
+              </div>
+            </form>
+          </div>
+
+          {/* Google Enquiry Form — Added below */}
+          <div className="bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-800">
+            <GoogleEnquiryForm />
+          </div>
         </div>
       </div>
     </section>

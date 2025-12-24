@@ -1,11 +1,12 @@
 "use client";
-import React from "react";
+
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Globe,
   ShieldCheck,
@@ -35,6 +36,17 @@ const benefits = [
 ];
 
 export default function WhyWebPresenceSection() {
+  const [open, setOpen] = useState(false);
+
+  const handleWhatsApp = () => {
+    window.open(
+      "https://wa.me/2348038168949?text=Hi%21%20I%27m%20interested%20in%20building%20a%20custom%20website%20or%20web%20application%20and%20would%20like%20to%20discuss%20my%20project.",
+      "_blank",
+      "noopener,noreferrer"
+    );
+    setOpen(false);
+  };
+
   return (
     <section className="relative w-full bg-black text-gray-100 py-20 overflow-hidden">
 
@@ -112,16 +124,14 @@ export default function WhyWebPresenceSection() {
                   </p>
                 </div>
 
-                {/* CTA */}
-                <motion.a
-                  href="https://wa.me/2348038168949"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                {/* CTA — now opens the modal instead of direct WhatsApp */}
+                <motion.button
+                  onClick={() => setOpen(true)}
                   whileHover={{ scale: 1.03 }}
                   className="
                     mt-8 inline-flex items-center justify-center
                     px-8 md:px-8 py-3 rounded-full font-semibold text-sm md:text-base
-                    text-purple-50 hover:text-white
+                    text-purple-50 hover:text-white hover:cursor-pointer
                     bg-linear-to-r
                     border border-purple-100/80
                     hover:from-purple-900 hover:via-purple-600 hover:to-indigo-700 hover:border-0
@@ -129,12 +139,84 @@ export default function WhyWebPresenceSection() {
                   "
                 >
                   {benefit.cta}
-                </motion.a>
+                </motion.button>
               </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
+
+      {/* Shared Modal — same as used in other sections */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
+            onClick={() => setOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="bg-gray-900 rounded-2xl p-6 w-full max-w-2xl border border-gray-700 max-h-[90vh] overflow-y-auto relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+              >
+                ✕
+              </button>
+
+              <h3 className="text-2xl font-bold text-purple-100 mb-6">
+                How would you like to continue?
+              </h3>
+
+              <div className="flex flex-col gap-4">
+                <button
+                  onClick={handleWhatsApp}
+                  className="bg-green-500 hover:bg-green-400 text-black font-semibold py-4 rounded-xl transition-all"
+                >
+                  Continue on WhatsApp
+                </button>
+
+                <a
+                  href="/contact-form"
+                  onClick={() => setOpen(false)}
+                  className="border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold py-4 rounded-xl transition-all text-center block"
+                >
+                  Use Email Form
+                </a>
+
+                <a
+                  href="tel:+2348038168949"
+                  className="relative border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold py-8 rounded-xl transition-all text-center block overflow-hidden group"
+                >
+                  {/* Default: "Call Us" */}
+                  <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-full">
+                    Call Us
+                  </span>
+
+                  {/* Hover: Phone number slides up */}
+                  <span className="absolute inset-0 flex items-center justify-center translate-y-full transition-transform duration-300 group-hover:translate-y-0">
+                    +234 803 816 8949
+                  </span>
+                </a>
+
+                <button
+                  onClick={() => setOpen(false)}
+                  className="text-gray-400 text-sm mt-2 hover:text-gray-200"
+                >
+                  Cancel
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <style jsx>{`
         :global(.swiper-pagination) {

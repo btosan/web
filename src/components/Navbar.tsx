@@ -29,7 +29,7 @@ export default function Navbar() {
             href={"/"}
             className="flex items-center justify-center w-full relative h-10 md:h-12 lg:h-14 "
           >
-            <p className="w-full py-2 mx-auto flex items-center justify-center gap-2 font-semibold tracking-wider text-xl md:text-2xl lg:text-3xl leading-tight md:tracking-widest bg-linear-to-l from-blue-100 via-purple-100 to-purple-300 bg-clip-text text-transparent transition-colors duration-300">
+            <p className="w-full py-2 mx-auto flex items-center justify-center gap-2 font-semibold tracking-wider text-xl md:text-2xl lg:text-3xl leading-tight md:tracking-widest bg-linear-to-l from-blue-100 via-purple-200 to-purple-400 bg-clip-text text-transparent transition-colors duration-300">
               <span className="">BT</span>
               <span className="uppercase">WebTech</span>
             </p>
@@ -63,14 +63,14 @@ export default function Navbar() {
         {/* === DESKTOP BUTTONS === */}
         <div className="hidden lg:flex items-center lg:space-x-8 xl:space-x-12 space-x-5">
 
-          <button
+          {/* <button
             onClick={handleExploreNow}
             className="text-base lg:text-lg lg:px-6 lg:py-2 xl:px-8 bg-linear-to-r from-purple-200 via-purple-100 to-purple-50 text-black font-bold rounded-2xl hover:cursor-pointer hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-500 hover:text-white transition-all"
           >
             Enquiry
-          </button>
+          </button> */}
 
-            <Link href='/contact' className="text-base lg:text-lg px-6 py-2 lg:px-8 border border-purple-100 text-purple-100 font-semibold rounded-2xl hover:cursor-pointer hover:bg-linear-to-r from-purple-200 via-purple-100 to-purple-50 hover:text-black transition-all">
+            <Link href='/contact' className="text-base lg:text-lg lg:px-10 lg:py-2 xl:px-12 bg-linear-to-r from-purple-200 via-purple-100 to-purple-50 text-black font-bold rounded-2xl hover:cursor-pointer hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-500 hover:text-white transition-all">
             Contact
           </Link>
         </div>
@@ -98,7 +98,7 @@ export default function Navbar() {
             <div className="w-full flex items-center justify-between px-6 pt-2">
               <div className="flex justify-center w-full">
                 <div className="relative w-48 h-32">
-                  <p className="w-full mt-6 mx-auto flex items-center justify-center gap-2 font-semibold tracking-wider text-xl md:text-2xl lg:text-3xl leading-tight md:tracking-widest bg-linear-to-l from-blue-100 via-purple-100 to-purple-300 bg-clip-text text-transparent transition-colors duration-300">
+                  <p className="w-full mt-6 mx-auto flex items-center justify-center gap-2 font-semibold tracking-wider text-xl md:text-2xl lg:text-3xl leading-tight md:tracking-widest bg-linear-to-l from-blue-100 via-purple-200 to-purple-400 bg-clip-text text-transparent transition-colors duration-300">
                     <span className="">BT</span>
                     <span className="uppercase">WebTech</span>
                   </p>
@@ -155,14 +155,16 @@ export default function Navbar() {
             {/* Mobile Buttons */}
             <div className="flex flex-col items-center space-y-6 mt-6 w-3/4 uppercase">
 
-              <button
+              {/* <button
                 onClick={handleExploreNow}
                 className="w-full uppercase px-6 py-3 bg-linear-to-r from-purple-300 via-purple-200 to-purple-100 text-black text-base font-bold rounded-full hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-500 hover:text-white hover:cursor-pointer transition"
               >
                 Enquiry
-              </button>
+              </button> */}
 
-              <Link href='/contact' onClick={handleCloseMenu} className="w-full px-6 py-3 border border-purple-600/60 text-purple-100 text-center text-base font-semibold rounded-full bg-purple-800/80 hover:bg-linear-to-r hover:from-purple-100 hover:via-purple-100 hover:to-indigo-200 hover:text-black transition">
+              <Link href='/contact' onClick={handleCloseMenu} 
+                className="w-full uppercase px-6 py-3 bg-linear-to-r from-purple-300 via-purple-200 to-purple-100 text-black text-base font-bold rounded-full text-center hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-500 hover:text-white hover:cursor-pointer transition"
+              >
                 Contact
               </Link>
             </div>

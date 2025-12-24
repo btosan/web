@@ -1,9 +1,21 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 export default function FeaturedPackages() {
+  const [open, setOpen] = useState(false);
+
+  const handleWhatsApp = () => {
+    window.open(
+      "https://wa.me/2348038168949?text=Hi%21%20I%27m%20interested%20in%20building%20a%20custom%20website%20or%20web%20application%20and%20would%20like%20to%20discuss%20my%20project.",
+      "_blank",
+      "noopener,noreferrer"
+    );
+    setOpen(false);
+  };
+
   const packages = [
     {
       name: "Starter Package",
@@ -19,7 +31,7 @@ export default function FeaturedPackages() {
         "5 custom business email templates",
       ],
       cta: "Get Started Now",
-      image: "/assets/web/starter-package.jpg", // Use one of the Starter images above
+      image: "/assets/web/starter-package.jpg",
     },
     {
       name: "Growth Package",
@@ -35,13 +47,9 @@ export default function FeaturedPackages() {
         "Free content writing + emails",
       ],
       cta: "Get Started Now",
-      image: "/assets/web/growth-package.jpg", // Use one of the Growth dashboard images above
+      image: "/assets/web/growth-package.jpg",
     },
   ];
-
-  const handleGetStarted = () => {
-    window.open("https://wa.me/2348038168949", "_blank");
-  };
 
   return (
     <section className="relative bg-black text-gray-100 py-20 md:py-28 px-6 md:px-16 overflow-hidden">
@@ -52,7 +60,7 @@ export default function FeaturedPackages() {
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 uppercase mb-6"
+          className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 mb-6"
         >
           Most Popular Packages
         </motion.h2>
@@ -118,7 +126,7 @@ export default function FeaturedPackages() {
               </ul>
 
               <button
-                onClick={handleGetStarted}
+                onClick={() => setOpen(true)}
                 className={`w-full py-4 rounded-full font-bold text-lg transition-all duration-300 hover:cursor-pointer ${
                   pkg.focus === "main"
                     ? "bg-linear-to-r from-blue-100 via-purple-100 to-purple-200 text-black hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-600 hover:text-white"
@@ -136,11 +144,68 @@ export default function FeaturedPackages() {
       <div className="text-center mt-12">
         <a
           href="#pricing"
-          className="text-purple-50 no-underline hover:underline underline-offset-8 decoration-purple-50 hover:text-purple-50 transition-all text-lg"
+          className="text-purple-50 no-underline hover:underline underline-offset-8 decoration-purple-50 hover:text-purple-50 transition-all text-lg lg:text-xl hover:cursor-pointer"
         >
           View All Packages →
         </a>
       </div>
+
+      {/* Exact same modal from previous sections */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
+            onClick={() => setOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="bg-gray-900 rounded-2xl p-6 w-full max-w-2xl border border-gray-700 max-h-[90vh] overflow-y-auto relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+              >
+                ✕
+              </button>
+
+              <h3 className="text-2xl font-bold text-purple-100 mb-6">
+                How would you like to continue?
+              </h3>
+
+              <div className="flex flex-col gap-4">
+                <button
+                  onClick={handleWhatsApp}
+                  className="bg-green-500 hover:bg-green-400 text-black font-semibold py-4 rounded-xl transition-all hover:cursor-pointer"
+                >
+                  Continue on WhatsApp
+                </button>
+
+                <a
+                  href="/contact-form"
+                  onClick={() => setOpen(false)}
+                  className="border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold hover:cursor-pointer py-4 rounded-xl transition-all text-center block"
+                >
+                  Use Email Form
+                </a>
+
+                <button
+                  onClick={() => setOpen(false)}
+                  className="text-gray-400 text-sm mt-2 hover:text-gray-200"
+                >
+                  Cancel
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

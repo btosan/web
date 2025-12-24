@@ -7,10 +7,10 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-10">
         {/* === CONTACT === */}
         <div>
-          <h3 className="text-purple-100 font-semibold mb-3">Contact</h3>
-          <p>
-            Serving businesses across Lagos, Port Harcourt, Abuja, and Nigeria
-          </p>
+          <Link href='/contact' className="text-purple-100 font-semibold mb-3">Contact</Link> 
+          <p className="mt-3">
+            Serving businesses in Lagos, Abuja, Port Harcourt, and throughout Nigeria, with remote services available to clients around the world.
+          </p> <br />
           <p>
             <a
               href="tel:+2348038168949"
@@ -44,7 +44,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/pricing" className="hover:text-purple-50 transition-all">
+              <Link href="/#pricing" className="hover:text-purple-50 transition-all">
                 Pricing
               </Link>
             </li>

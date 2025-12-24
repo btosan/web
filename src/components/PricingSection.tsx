@@ -1,17 +1,28 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Check, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Check, ChevronLeft, ChevronRight, Phone, Mail, MessageCircle, X } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
-
-// ✅ shared autoplay timing (same as testimonials)
+// get started
 const AUTOPLAY_DELAY = 5000;
 
 export default function PricingSection() {
+  const [open, setOpen] = useState(false);
+
+  const handleWhatsApp = () => {
+    window.open(
+      "https://wa.me/2348038168949?text=Hi%21%20I%27m%20interested%20in%20building%20a%20custom%20website%20or%20web%20application%20and%20would%20like%20to%20discuss%20my%20project.",
+      "_blank",
+      "noopener,noreferrer"
+    );
+    setOpen(false);
+  };
+
   const plans = [
     {
       name: "Starter",
@@ -105,12 +116,11 @@ export default function PricingSection() {
         ))}
       </ul>
 
-      <a
-        href="https://wa.me/2348038168949"
-        target="_blank"
-        rel="noopener noreferrer"
+      {/* Original button style preserved exactly, now opens the modal */}
+      <button
+        onClick={() => setOpen(true)}
         className={`
-          block text-center py-4 rounded-full font-semibold transition-all duration-300
+          block text-center py-4 rounded-full font-semibold transition-all duration-300 w-full hover:cursor-pointer
           ${
             plan.highlighted
               ? "bg-linear-to-r from-blue-100 via-purple-100 to-purple-200 text-black hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-600 hover:text-white"
@@ -119,7 +129,7 @@ export default function PricingSection() {
         `}
       >
         {plan.price === "Quote-based" ? "Get Quote" : "Get Started"}
-      </a>
+      </button>
     </motion.div>
   );
 
@@ -154,14 +164,14 @@ export default function PricingSection() {
           </p>
         </motion.div>
 
-        {/* ✅ MOBILE SWIPE HINT */}
+        {/* MOBILE SWIPE HINT */}
         <div className="flex items-center justify-center gap-3 mb-4 md:hidden text-purple-100/70 text-sm">
           <ChevronLeft className="w-4 h-4" />
           <span>Swipe to compare plans</span>
           <ChevronRight className="w-4 h-4" />
         </div>
 
-        {/* ✅ MOBILE SLIDER */}
+        {/* MOBILE SLIDER */}
         <div className="md:hidden">
           <Swiper
             modules={[Autoplay, Pagination]}
@@ -183,12 +193,84 @@ export default function PricingSection() {
           </Swiper>
         </div>
 
-        {/* ✅ DESKTOP / TABLET GRID (UNCHANGED) */}
+        {/* DESKTOP / TABLET GRID */}
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-8">
           {plans.map((plan, index) => (
             <PricingCard key={index} plan={plan} index={index} />
           ))}
         </div>
+
+        {/* Modal — same as in Hero, WhyChooseUs, etc. */}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
+              onClick={() => setOpen(false)}
+            >
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="bg-gray-900 rounded-2xl p-6 w-full max-w-2xl border border-gray-700 max-h-[90vh] overflow-y-auto relative"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button
+                  onClick={() => setOpen(false)}
+                  className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+                >
+                  ✕
+                </button>
+
+                <h3 className="text-2xl font-bold text-purple-100 mb-6">
+                  How would you like to continue?
+                </h3>
+
+                <div className="flex flex-col gap-4">
+                  <button
+                    onClick={handleWhatsApp}
+                    className="bg-green-500 hover:bg-green-400 text-black font-semibold py-4 rounded-xl transition-all"
+                  >
+                    Continue on WhatsApp
+                  </button>
+
+                  <a
+                    href="/contact-form"
+                    onClick={() => setOpen(false)}
+                    className="border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold py-4 rounded-xl transition-all text-center block"
+                  >
+                    Use Email Form
+                  </a>
+
+                <a
+                  href="tel:+2348038168949"
+                  className="relative border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold py-8 rounded-xl transition-all text-center block overflow-hidden group"
+                >
+                  {/* Default text: "Call Us" */}
+                  <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-full">
+                    Call Us
+                  </span>
+
+                  {/* Phone number: slides up on hover */}
+                  <span className="absolute inset-0 flex items-center justify-center translate-y-full transition-transform duration-300 group-hover:translate-y-0 py-8">
+                    +234 803 816 8949
+                  </span>
+                </a>
+
+                  <button
+                    onClick={() => setOpen(false)}
+                    className="text-gray-400 text-sm mt-2 hover:text-gray-200"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

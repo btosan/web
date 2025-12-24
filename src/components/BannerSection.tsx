@@ -32,8 +32,8 @@ export default function BannerSection() {
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-6  mx-auto">
             {bullets.map((text, idx) => (
               <li key={idx} className="flex items-start gap-4">
-                <span className="mt-2 h-3 w-3 rounded-full bg-purple-300 shadow-[0_0_10px_rgba(168,85,247,0.6)]" />
-                <p className="text-lg md:text-xl text-gray-200 leading-relaxed">
+                <span className="mt-2 md:h-3 md:w-3 h-2 w-2 rounded-full bg-purple-300 shadow-[0_0_10px_rgba(168,85,247,0.6)]" />
+                <p className="text-sm md:text-xl text-gray-200 leading-relaxed">
                   {text}
                 </p>
               </li>
