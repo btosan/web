@@ -1,13 +1,14 @@
 import GoogleEnquiryForm from '@/components/GoogleEnquiryForm'
-import React from 'react'
+import React, { Suspense } from 'react'
 
-
-function page() {
+function ContactFormPage() {
   return (
     <div className='pb-16 pt-8 px-5 md:px-0 bg-gray-800'>
+      <Suspense fallback={<div className="text-center py-10 text-gray-400">Loading form...</div>}>
         <GoogleEnquiryForm />
+      </Suspense>
     </div>
   )
 }
 
-export default page
+export default ContactFormPage
