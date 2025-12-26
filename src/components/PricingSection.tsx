@@ -16,7 +16,7 @@ export default function PricingSection() {
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/2348038168949?text=Hi%21%20I%27m%20interested%20in%20building%20a%20custom%20website%20or%20web%20application%20and%20would%20like%20to%20discuss%20my%20project.",
+      "https://wa.me/2348080548263?text=Hi%21%20I%27m%20interested%20in%20building%20a%20custom%20website%20or%20web%20application%20and%20would%20like%20to%20discuss%20my%20project.",
       "_blank",
       "noopener,noreferrer"
     );
@@ -246,7 +246,7 @@ export default function PricingSection() {
                   </a>
 
                 <a
-                  href="tel:+2348038168949"
+                  href="tel:+2349123631219"
                   className="relative border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold py-8 rounded-xl transition-all text-center block overflow-hidden group"
                 >
                   {/* Default text: "Call Us" */}
@@ -256,7 +256,7 @@ export default function PricingSection() {
 
                   {/* Phone number: slides up on hover */}
                   <span className="absolute inset-0 flex items-center justify-center translate-y-full transition-transform duration-300 group-hover:translate-y-0 py-8">
-                    +234 803 816 8949
+                    +234 912 363 1219
                   </span>
                 </a>
 

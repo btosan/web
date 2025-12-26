@@ -1,9 +1,21 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Code, Globe, ShoppingCart, Bot, Zap, Smartphone, Lock, Rocket } from "lucide-react";
 
 export default function ServicesSection() {
+  const [open, setOpen] = useState(false);
+
+  const handleWhatsApp = () => {
+    window.open(
+      "https://wa.me/2348080548263?text=Hi%21%20I%27m%20interested%20in%20building%20a%20custom%20website%20or%20web%20application%20and%20would%20like%20to%20discuss%20my%20project.",
+      "_blank",
+      "noopener,noreferrer"
+    );
+    setOpen(false);
+  };
+
   const services = [
     {
       icon: <Code className="w-12 h-12 text-purple-100" />,
@@ -96,13 +108,13 @@ export default function ServicesSection() {
                   {service.icon}
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 text-center">{service.title}</h3>
+              <h3 className="lg:text-2xl md:text-xl text-lg font-bold text-white mb-4 text-center">{service.title}</h3>
               <p className="text-gray-400 text-left leading-relaxed">{service.description}</p>
             </motion.div>
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA — now opens the modal */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -110,16 +122,84 @@ export default function ServicesSection() {
           viewport={{ once: true }}
           className="text-center mt-20"
         >
-          <a
-            href="https://wa.me/2348038168949"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => setOpen(true)}
             className="inline-flex items-center justify-center lg:px-12 md:px-10 px-8 lg:py-5 md:py-4 py-3 bg-linear-to-r from-purple-200 via-purple-100 to-purple-50 text-black hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-600 transition-all duration-300 hover:text-white lg:text-2xl md:text-xl text-lg font-bold rounded-full shadow-2xl"
           >
             Start Your Project Today
-          </a>
+          </button>
         </motion.div>
       </div>
+
+      {/* Modal — identical to previous implementations */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
+            onClick={() => setOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="bg-gray-900 rounded-2xl p-6 w-full max-w-2xl border border-gray-700 max-h-[90vh] overflow-y-auto relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+              >
+                ✕
+              </button>
+
+              <h3 className="text-2xl font-bold text-purple-100 mb-6">
+                How would you like to continue?
+              </h3>
+
+              <div className="flex flex-col gap-4">
+                <button
+                  onClick={handleWhatsApp}
+                  className="bg-green-500 hover:bg-green-400 text-black font-semibold py-4 rounded-xl transition-all"
+                >
+                  Continue on WhatsApp
+                </button>
+
+                <a
+                  href="/contact-form"
+                  onClick={() => setOpen(false)}
+                  className="border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold py-4 rounded-xl transition-all text-center block"
+                >
+                  Use Email Form
+                </a>
+
+                <a
+                  href="tel:+2349123631219"
+                  className="relative border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold py-4 rounded-xl transition-all text-center block overflow-hidden group"
+                >
+                  <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-full">
+                    Call Us
+                  </span>
+
+                  <span className="absolute inset-0 flex items-center justify-center translate-y-full transition-transform duration-300 group-hover:translate-y-0">
+                    +234 912 363 1219
+                  </span>
+                </a>
+
+                <button
+                  onClick={() => setOpen(false)}
+                  className="text-gray-400 text-sm mt-2 hover:text-gray-200"
+                >
+                  Cancel
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

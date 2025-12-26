@@ -98,10 +98,10 @@ Email: ${formData.email || "Not provided"}`;
                 <h3 className="font-semibold text-xl mb-2">Call Us</h3>
                 <p className="text-gray-300">
                   <a
-                    href="tel:+2348038168949"
+                    href="tel:+2349123631219"
                     className="text-purple-50 hover:underline"
                   >
-                    +234 803 816 8949
+                    +234 912 363 1219
                   </a>
                 </p>
               </div>
@@ -229,7 +229,7 @@ Email: ${formData.email || "Not provided"}`;
                 </a>
 
                 <a
-                  href="tel:+2348038168949"
+                  href="tel:+2349123631219"
                   className="relative border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold py-4 rounded-xl transition-all text-center block overflow-hidden group"
                 >
                   <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-full">
@@ -237,7 +237,7 @@ Email: ${formData.email || "Not provided"}`;
                   </span>
 
                   <span className="absolute inset-0 flex items-center justify-center translate-y-full transition-transform duration-300 group-hover:translate-y-0">
-                    +234 803 816 8949
+                    +234 912 363 1219
                   </span>
                 </a>
 

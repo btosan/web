@@ -40,7 +40,7 @@ I'm interested in the ${formData.package} package and would like to ${
     }.
 You can reach me on ${formData.phone}.`;
 
-    const url = `https://wa.me/2348038168949?text=${encodeURIComponent(msg)}`;
+    const url = `https://wa.me/2348080548263?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
   };
 

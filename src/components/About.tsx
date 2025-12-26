@@ -151,7 +151,7 @@ export default function AboutPage() {
               Ready to build your custom web solution?{" "}
             </em>
             <Link
-              href="/#contact"
+              href="/contact"
               className="text-purple-100 underline hover:text-purple-300 font-medium"
             >
               Contact BT WebTech today

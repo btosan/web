@@ -19,51 +19,51 @@ export default function TestimonialsSection() {
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/2348038168949?text=Hi%21%20I%27m%20interested%20in%20building%20a%20custom%20website%20or%20web%20application%20and%20would%20like%20to%20discuss%20my%20project.",
+      "https://wa.me/2348080548263?text=Hi%21%20I%27m%20interested%20in%20building%20a%20custom%20website%20or%20web%20application%20and%20would%20like%20to%20discuss%20my%20project.",
       "_blank",
       "noopener,noreferrer"
     );
     setOpen(false);
   };
 
-  const testimonials = [
-    {
-      name: "Chinedu Okeke",
-      role: "CEO, Lagos Fashion Hub",
-      project: "Custom E-Commerce Platform with Paystack",
-      quote:
-        "Our online sales went from zero to over ₦2.5M in the first month. The site is fast, beautiful on mobile, and the Paystack integration works perfectly. Truly hand-coded quality!",
-      rating: 5,
-      avatar: "/assets/byd/song-plus-3qv.jpg",
-    },
-    {
-      name: "Aisha Mohammed",
-      role: "Founder, Abuja Real Estate Pro",
-      project: "Professional Corporate Website",
-      quote:
-        "I finally have a website I'm proud to share. Clients now call directly from the site instead of just WhatsApp. The content writing bonus made everything sound professional from day one.",
-      rating: 5,
-      avatar: "/assets/byd/song-plus-back.jpg",
-    },
-    {
-      name: "Tunde Adebayo",
-      role: "Owner, TechMart Nigeria",
-      project: "Web App with AI Chatbot",
-      quote:
-        "The AI chatbot answers customer questions 24/7 — we've cut support time in half and increased conversions. Delivered faster than promised and better than expected.",
-      rating: 5,
-      avatar: "/assets/byd/song-plus-dashboard.jpg",
-    },
-    {
-      name: "Funmi Ogunleye",
-      role: "Manager, Ibadan Pharmacy Chain",
-      project: "Online Store with Real-Time Inventory",
-      quote:
-        "Customers can now order medicine online and pick up in-store. Stock updates automatically — no more overselling. Professional work that has grown our business significantly.",
-      rating: 5,
-      avatar: "/assets/byd/songplus.jpg",
-    },
-  ];
+const testimonials = [
+  {
+    name: "Kingsley Emi",
+    role: "CEO, eVehicles NG",
+    project: "Custom Web App & EVs Landing Page",
+    quote:
+      "Our landing page showcases BYD electric vehicles beautifully, attracting customers nationwide and driving inquiries and showroom visits. BT WebTech delivered a fast, professional platform that builds trust in Nigeria's EV market. Highly recommend their expertise!",
+    rating: 5,
+    avatar: "/assets/people/emi.png",
+  },
+  {
+    name: "Oyereri Adelagun",
+    role: "Founder, Gideon Youth Foundation",
+    project: "Professional NGO Website",
+    quote:
+      "Now I have a professional NGO website I'm proud to share. It attracts more support and helps reach students effectively. The content writing was a great bonus. BT WebTech was helpful and professional—I highly recommend them!",
+    rating: 5,
+    avatar: "/assets/people/adelagun.png",
+  },
+  {
+    name: "Fatade Lekan",
+    role: "Owner, Olaf Contractors",
+    project: "Real Estate Web App with AI Chatbot",
+    quote:
+      "The AI chatbot handles inquiries 24/7, cutting support time in half and boosting leads. Delivered fast with outstanding quality. BT WebTech's professional approach made the difference—strongly recommend them!",
+    rating: 5,
+    avatar: "/assets/people/fatade.png",
+  },
+  {
+    name: "Emmanuel Edem",
+    role: "CEO, CoinPlacid",
+    project: "Crypto Investment and Lending Platform",
+    quote:
+      "Our secure, user-friendly crypto platform boosts engagement and business growth. BT WebTech delivered top-notch hand-coded quality with great professionalism. Can't recommend them enough!",
+    rating: 5,
+    avatar: "/assets/people/kess.png",
+  },
+];
 
   return (
     <section className="relative bg-black py-20 md:py-28 border-t border-gray-700 lg:border-gray-600 overflow-hidden">

@@ -118,7 +118,7 @@ export default function FaqSection() {
 
         <div className="text-center mt-16">
           <motion.a
-            href="https://wa.me/2348038168949"
+            href="https://wa.me/2348080548263"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
