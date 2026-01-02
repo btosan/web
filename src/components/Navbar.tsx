@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
 
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -27,11 +28,19 @@ export default function Navbar() {
         <div className="flex items-center justify-center ">
           <Link
             href={"/"}
-            className="flex items-center justify-center w-full relative h-10 md:h-12 lg:h-14 "
+            className="flex items-center justify-center gap-2 md:gap-4 w-full relative h-9 md:h-12 lg:h-14 "
           >
-            <p className="w-full py-2 mx-auto flex items-center justify-center gap-2 font-semibold tracking-wider text-xl md:text-2xl lg:text-3xl leading-tight md:tracking-widest bg-linear-to-l from-blue-100 via-purple-200 to-purple-400 bg-clip-text text-transparent transition-colors duration-300">
-              <span className="">BT</span>
-              <span className="uppercase">WebTech</span>
+            
+            <Image 
+              src="/icons/ttsystems-icon.png" 
+              alt=""
+              width={100}
+              height={100}
+              className="h-8 md:h-10 lg:h-12 w-auto" 
+            />
+            <p className="w-full py-2 mx-auto flex items-center justify-center gap-0.5 md:gap-1 font-normal md:tracking-wide tracking-widest text-xl md:text-2xl lg:text-3xl bg-linear-to-r from-white via-purple-200 to-purple-300 bg-clip-text text-transparent transition-colors duration-300">
+              <span className="">titi</span>
+              <span className="">systems</span>
             </p>
           </Link>
         </div>
