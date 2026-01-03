@@ -1,0 +1,78 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+
+export default function AboutSection() {
+  return (
+    <section className="bg-black py-20 md:py-28">
+      <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
+          {/* Image - appears SECOND on mobile, FIRST on lg+ */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="w-full order-2 lg:order-1" 
+          >
+            <div className="relative w-full h-[360px] md:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden border border-purple-100/10">
+              <Image
+                src="/assets/timeline.png"
+                alt="About Ofashi"
+                fill
+                className="object-contain object-center" 
+                priority
+              />
+            </div>
+          </motion.div>
+
+          {/* Content - appears FIRST on mobile, SECOND on lg+ */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="text-left order-1 lg:order-2" 
+          >
+            <p className="text-sm uppercase tracking-widest text-purple-200 mb-3">
+              Our Story
+            </p>
+
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight mb-6">
+              10+ Years of Web Development.
+              <br />
+              <span className="text-purple-100 font-bold">Now Leading with AI.</span>
+            </h2>
+
+            <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-6">
+              Ofashi has been at the forefront of web development and digital
+              innovation for over a decade. We started with custom website and
+              web application development, mastered exceptional UI/UX design,
+              and now we’re pioneering AI-powered solutions that transform how
+              businesses operate online.
+            </p>
+
+            <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-8">
+              Today, we bring together the best of AI, automation, and design to
+              help startups and growing businesses build scalable web
+              applications, streamline workflows, and deliver engaging digital
+              experiences that drive real business impact.
+            </p>
+
+            <Link
+              href="/about"
+              className="inline-flex items-center py-4 px-8 uppercase bg-purple-700 hover:bg-purple-800 text-purple-100 font-medium hover:text-purple-50 transition-colors"
+            >
+              Learn more about us
+              <span className="ml-2">→</span>
+            </Link>
+          </motion.div>
+
+        </div>
+      </div>
+    </section>
+  );
+}

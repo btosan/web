@@ -16,7 +16,7 @@ export default function AboutPage() {
           className=" mb-16"
         >
           <h1 className="text-start md:text-center text-3xl lg:text-6xl md:text-5xl text-purple-100 font-bold uppercase mb-4 tracking-wide">
-            About BT WebTech
+            About Ofashi
           </h1>
           <p className="text-start md:text-center text-gray-300 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
             Pioneering bespoke web development and AI automation in Nigeria, delivering scalable and high-performance digital solutions for businesses and organizations worldwide. Founded by Best Tosan, a full-stack software developer, UI/UX designer, and AI expert with over 10 years of experience.
@@ -46,7 +46,7 @@ export default function AboutPage() {
           <div className="relative w-full h-[350px] md:h-[420px] rounded-3xl overflow-hidden">
             <Image
               src="/assets/web/bt-web-tech-group.png"
-              alt="BT WebTech Custom Web App"
+              alt="Ofashi Custom Web App"
               fill
               className="object-cover rounded-3xl opacity-90"
             />
@@ -64,7 +64,7 @@ export default function AboutPage() {
             Who We Are
           </h2>
           <p className="text-gray-300 text-lg leading-relaxed">
-            <strong>BT WebTech</strong> is Nigeria's leading custom web development agency specializing in hand-coded websites, e-commerce platforms, and AI integrations. Founded by Best Tosan, our agency combines deep technical expertise with creative design to build exactly what your business needs, with no templates and no shortcuts.
+            <strong>Ofashi</strong> is Nigeria's leading custom web development agency specializing in hand-coded websites, e-commerce platforms, and AI integrations. Founded by Best Tosan, our agency combines deep technical expertise with creative design to build exactly what your business needs, with no templates and no shortcuts.
           </p>
           <p className="text-gray-400 text-lg leading-relaxed">
             Based in Nigeria and supported by a team of expert developers, we deliver lightning-fast, secure, and scalable solutions for startups, SMEs, and enterprises. Every project is tailored to your vision and uses the same technologies that power global leaders.
@@ -79,7 +79,7 @@ export default function AboutPage() {
           className="bg-[#0a0a0a] rounded-3xl p-10 md:p-16 mb-24 border border-gray-800 lg:border-gray-700"
         >
           <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-8 uppercase text-purple-100">
-            Why Nigerian Businesses Choose BT WebTech
+            Why Nigerian Businesses Choose Ofashi
           </h2>
           <ul className="space-y-6 text-gray-300 text-lg leading-relaxed list-disc pl-6">
             <li>
@@ -114,7 +114,7 @@ export default function AboutPage() {
             Our Network & Commitment
           </h2>
           <p className="text-gray-300 text-lg leading-relaxed max-w-4xl mx-auto text-center mb-10">
-            BT WebTech works with modern frameworks, proven platforms, and local businesses to deliver high-performance web solutions across Nigeria and beyond.
+            Ofashi works with modern frameworks, proven platforms, and local businesses to deliver high-performance web solutions across Nigeria and beyond.
           </p>
 
           <div className="grid md:grid-cols-3 gap-8 text-center">
@@ -154,7 +154,7 @@ export default function AboutPage() {
               href="/contact"
               className="text-purple-100 underline hover:text-purple-300 font-medium"
             >
-              Contact BT WebTech today
+              Contact Ofashi today
             </Link>
             .
           </p>

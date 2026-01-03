@@ -34,7 +34,7 @@ export default function HeroSection() {
           className="
             max-w-7xl 
             mx-auto 
-            text-center 
+            text-start 
             md:text-center 
             lg:text-left 
             lg:max-w-4xl 
@@ -48,22 +48,22 @@ export default function HeroSection() {
         >
           {/* Headline */}
           <h1 className="
-            text-5xl 
-            md:text-7xl 
-            lg:text-8xl 
-            xl:text-9xl 
+            text-4xl 
+            md:text-6xl 
+            lg:text-7xl 
+            xl:text-8xl 
             font-semibold
             
             text-white 
             mb-8
             ">
-              <span className="tracking-widest text-purple-100">
-                 Custom 
+              <span className="tracking-widest text-purple-100 font-bold">
+                 AI-Powered
               </span>
             
             <br />
             <span className="tracking-normal inline-block  ">
-            Web Apps
+            Web Applications
             </span>
         </h1>
 
@@ -81,9 +81,9 @@ export default function HeroSection() {
 
             lg:max-w-2xl
             xl:max-w-3xl
-            xl:w-[78%]
+            xl:w-[90%]
           ">
-            We build professional websites and bespoke web apps that are hand-coded, AI-ready, fast, scalable, and built to convert.
+            We design and build high-performance websites and custom web apps with exceptional UI/UX, AI integration, and automation for measurable business impact.
           </p>
 
           {/* Primary CTA Button — Now opens the modal */}
@@ -98,11 +98,11 @@ export default function HeroSection() {
               lg:px-10 
               lg:py-5
               xl:py-6 
-              border
+              border-2
               border-[#e0f4fa]/70 
-              border-r-purple-500/50
+              border-r-purple-500/40
               border-r-8
-              border-l-indigo-500/50
+              border-l-indigo-500/40
               border-l-8
               text-white 
               hover:text-[#e0f4fa]
@@ -111,21 +111,20 @@ export default function HeroSection() {
               lg:text-2xl 
               xl:text-3xl 
               font-semibold 
-              rounded-full 
               hover:bg-linear-to-r
             hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-500
               hover:border-0
               transition 
               shadow-2xl
               mx-auto 
-              lg:mx-0
+              lg:mx-0 uppercase hover:cursor-pointer
             "
           >
-            Let’s Build Your Project
+            Let’s Work Together
           </button>
 
           {/* Secondary CTA Text */}
-          <p className="
+          {/* <p className="
             md:mt-8 
             mt-4
             text-xs
@@ -137,7 +136,7 @@ export default function HeroSection() {
             lg:mx-0
           ">
            <a href="https://wa.me/2348080548263" className="no-underline hover:underline hover:underline-offset-8  text-purple-100/90">Call or WhatsApp</a>
-          </p>
+          </p> */}
         </div>
       </div>
 
