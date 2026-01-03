@@ -7,11 +7,11 @@ import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
 
 export const metadata: Metadata = {
-  title: " BT WebTech | Custom Web Development & Website Design Nigeria | Best Tosan ",
+  title: "Ofashi | Custom Web Development & Website Design Nigeria | AI Automation | AI Integrations ",
   description:
     "Expert custom web development, website design, e-commerce apps, and AI integration in Nigeria. Hand-coded with FastAPI, Django, React & Next.js — fast, scalable, AI-ready solutions delivered in days.",
   keywords:
-    "custom web development Nigeria, website design Lagos, e-commerce app Nigeria, AI integration Nigeria, Next.js developer, FastAPI developer, React developer, Django developer, BT WebTech, Best Tosan",
+    "custom web development Nigeria, website design Lagos, e-commerce app Nigeria, AI integration Nigeria, Next.js developer, FastAPI developer, React developer, Django developer, Ofashi, Ofashi design",
   icons: {
     icon: "/favicon.ico",
   },

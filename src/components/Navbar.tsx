@@ -6,6 +6,15 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { Urbanist } from 'next/font/google';
+
+const urbanist = Urbanist({
+  subsets: ['latin'],         // Add more if needed (e.g., 'latin-ext')
+  weight: ['500', '700'],     // Medium and Bold
+  // Optional: Use a CSS variable for Tailwind integration
+  // variable: '--font-urbanist',
+  display: 'swap',            // Better fallback during loading
+});
 
 
 export default function Navbar() {
@@ -28,19 +37,19 @@ export default function Navbar() {
         <div className="flex items-center justify-center ">
           <Link
             href={"/"}
-            className="flex items-center justify-center gap-2 md:gap-4 w-full relative h-9 md:h-12 lg:h-14 "
+            className="flex items-center justify-center gap-4 md:gap-5 lg:gap-6 w-full relative h-9 md:h-12 lg:h-14 "
           >
             
             <Image 
-              src="/icons/ttsystems-icon.png" 
+              src="/logo/ofashi-icon.png" 
               alt=""
               width={100}
               height={100}
-              className="h-8 md:h-10 lg:h-12 w-auto" 
+              className="h-7 md:h-8 lg:h-9 xl:h-10 w-auto" 
             />
-            <p className="w-full py-2 mx-auto flex items-center justify-center gap-0.5 md:gap-1 font-normal md:tracking-wide tracking-widest text-xl md:text-2xl lg:text-3xl bg-linear-to-r from-white via-purple-200 to-purple-300 bg-clip-text text-transparent transition-colors duration-300">
-              <span className="">titi</span>
-              <span className="">systems</span>
+            <p className = {` ${urbanist.className} scale-x-125 w-full py-2 mx-auto flex items-center justify-center gap-0.5 md:gap-1 font-medium md:tracking-wide tracking-widest text-2xl md:text-3xl xl:text-4xl bg-linear-to-r from-white via-purple-100 to-purple-200 bg-clip-text text-transparent transition-colors duration-300`} >
+              Ofashi
+              {/* ${urbanist.className} */}
             </p>
           </Link>
         </div>
@@ -105,14 +114,22 @@ export default function Navbar() {
           >
             {/* Logo + Close */}
             <div className="w-full flex items-center justify-between px-6 pt-2">
+              <Image 
+                src="/logo/ofashi-icon.png" 
+                alt=""
+                width={100}
+                height={100}
+                className="h-6 md:h-8 lg:h-10 w-auto absolute top-6 left-6"
+                />
+
               <div className="flex justify-center w-full">
                 <div className="relative w-48 h-32">
-                  <p className="w-full mt-6 mx-auto flex items-center justify-center gap-2 font-semibold tracking-wider text-xl md:text-2xl lg:text-3xl leading-tight md:tracking-widest bg-linear-to-l from-blue-100 via-purple-200 to-purple-400 bg-clip-text text-transparent transition-colors duration-300">
-                    <span className="">BT</span>
-                    <span className="uppercase">WebTech</span>
+                  <p className={`${urbanist.className} w-full mt-6 mx-auto flex items-center justify-center gap-2 font-medium tracking-wider text-xl md:text-2xl lg:text-3xl leading-tight md:tracking-widest bg-linear-to-l from-blue-100 via-purple-200 to-purple-400 bg-clip-text text-transparent transition-colors duration-300`}>
+                    Ofashi
                   </p>
                 </div>
               </div>
+
               <button
                 onClick={() => setOpen(false)}
                 className="absolute top-6 right-6 text-purple-100"
