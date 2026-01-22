@@ -29,16 +29,18 @@ export default function HeroSection() {
         <source src="/assets/web/besttosan_video_from_singularity.mp4" type="video/mp4" />
       </video>
 
-      <div className="container relative z-10 mx-auto px-6">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className="
-            max-w-7xl 
+            w-full
+            max-w-5xl
+            lg:max-w-4xl
+            xl:max-w-5xl
+            2xl:max-w-6xl
             mx-auto 
             text-start 
             md:text-center 
             lg:text-start 
-            lg:max-w-4xl 
-            lg:mx-0 
             lg:ml-0 
             lg:mr-auto
             mt-8
