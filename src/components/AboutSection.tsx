@@ -18,7 +18,7 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="w-full order-2 lg:order-1" 
           >
-            <div className="relative w-full h-[360px] md:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden border border-purple-100/10">
+            <div className="relative w-full h-[380px] md:h-[600px] lg:h-[500px] rounded-2xl overflow-hidden border border-purple-100/10">
               <Image
                 src="/assets/timeline.png"
                 alt="About Ofashi"
@@ -37,18 +37,18 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="text-left order-1 lg:order-2" 
           >
-            <p className="text-sm uppercase tracking-widest text-purple-200 mb-3">
+            <p className="text-sm uppercase tracking-widest text-purple-300 mb-3">
               Our Story
             </p>
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight mb-6">
-              10+ Years of Web Development.
+              10+ Years of App Development.
               <br />
               <span className="text-purple-100 font-bold">Now Leading with AI.</span>
             </h2>
 
             <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-6">
-              Ofashi has been at the forefront of web development and digital
+              Ofashi has been at the forefront of app development and digital
               innovation for over a decade. We started with custom website and
               web application development, mastered exceptional UI/UX design,
               and now we’re pioneering AI-powered solutions that transform how
@@ -64,7 +64,7 @@ export default function AboutSection() {
 
             <Link
               href="/about"
-              className="inline-flex items-center py-4 px-8 uppercase bg-purple-700 hover:bg-purple-800 text-purple-100 font-medium hover:text-purple-50 transition-colors"
+              className="inline-flex items-center py-4 px-8 uppercase bg-linear-to-tr hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700 via-purple-800 to-purple-500 text-white  transition-colors"
             >
               Learn more about us
               <span className="ml-2">→</span>

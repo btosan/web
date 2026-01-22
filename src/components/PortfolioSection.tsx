@@ -4,7 +4,8 @@
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 import Image from "next/image";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { ExternalLink, ArrowRight, ChevronDown } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
@@ -40,7 +41,8 @@ const ProjectCard = ({ project, index, onUserInteract }: { project: Project; ind
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.6 }}
       viewport={{ once: true }}
-      className="group relative rounded-2xl overflow-hidden bg-gray-950/60 border border-gray-700/90 lg:border-gray-700 hover:border-gray-500/70 transition-all duration-500 shadow-lg shadow-gray-600"
+      className="group relative rounded-2xl overflow-hidden lg:hover:bg-purple-950/5 hover:bg-purple-950/10 border lg:border-2 hover:border-purple-300/30 lg:border-white/5 hover:cursor-pointer lg:bg-purple-950/80 bg-purple-950/10
+                  border-purple-900/5 shadow-xs shadow-purple-600/30 transition-all duration-500 px-2"
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
       onClick={handleInteraction}
@@ -58,7 +60,7 @@ const ProjectCard = ({ project, index, onUserInteract }: { project: Project; ind
       </div>
 
       {/* Content */}
-      <div className="p-6 md:p-8 relative">
+      <div className="px-0 py-6 md:px-4 md:py-8 relative">
         <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
           {project.title}
         </h3>
@@ -66,9 +68,11 @@ const ProjectCard = ({ project, index, onUserInteract }: { project: Project; ind
         <p className="text-gray-300 mb-4 line-clamp-2">
           {project.shortDescription}
         </p>
-
+          <span className={`flex items-center justify-end ${
+            isActive ? "opacity-0 -mt-5" : "opacity-100 "
+          } md:hidden animate-bounce text-purple-500 `}><ChevronDown className="w-4 h-4" /></span>
         <p
-          className={`absolute left-6 md:left-8 right-6 md:right-8 text-gray-400 text-sm md:text-base leading-relaxed transition-opacity duration-500 ${
+          className={`absolute left-0 md:left-4 right-0 md:right-4 text-gray-400 text-sm md:text-base leading-relaxed transition-opacity duration-500 ${
             isActive ? "opacity-100" : "opacity-0"
           } pointer-events-none`}
         >
@@ -84,21 +88,25 @@ const ProjectCard = ({ project, index, onUserInteract }: { project: Project; ind
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
+
           <a
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-purple-100/20 text-purple-50 border border-purple-50/40 rounded-full hover:bg-purple-50/30 hover:border-purple-50 transition font-medium"
+            className="inline-flex items-center justify-center gap-2 px-5 py-3 hover:text-purple-50 text-white hover:cursor-pointer
+                    bg-linear-to-bl hover:from-transparent hover:via-transparent hover:to-transparent
+                    hover:border hover:border-purple-100/80
+                    from-purple-900 via-purple-600 to-indigo-700 border-0
+                    transition-all duration-300 font-medium"
           >
             <ExternalLink size={18} />
             View Live Site
           </a>
-
           <a
             href={project.detailUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 text-white/90 hover:text-white border border-gray-700 rounded-full hover:border-purple-50/60 transition font-medium group/link"
+            className="inline-flex items-center justify-center gap-2 px-5 py-3 text-white/90 hover:text-white border border-gray-700 rounded-xs hover:border-purple-50/60 transition font-medium group/link"
           >
             Project Details
             <ArrowRight
@@ -206,7 +214,7 @@ export default function PortfolioSection() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 mb-6">
-            Selected Projects
+            Featured Projects
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Real custom solutions built for clients — hand-coded and scalable.
@@ -251,7 +259,7 @@ export default function PortfolioSection() {
         </div>
       </div>
 
-      <div className="w-full mx-auto flex items-center justify-center pt-4">
+      <div className="w-full mx-auto flex items-center justify-center pt-8 md:pt-10">
         {/* <a
           href="https://wa.me/2348038168949"
           target="_blank"
@@ -260,7 +268,8 @@ export default function PortfolioSection() {
         >
           See How We Build Yours →
         </a> */}
-        <CTA />
+        
+        <Link href='/projects' className="hover:underline hover:underline-offset-8 hover:text-purple-300">See all projects</Link>
       </div>
 
 

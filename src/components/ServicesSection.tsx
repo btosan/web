@@ -1,8 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Code, Globe, ShoppingCart, Bot, Zap, Smartphone, Lock, Rocket } from "lucide-react";
+import {
+  Globe,
+  ShieldCheck,
+  TrendingUp,
+  Smartphone,
+  Sparkles,
+  Cpu,
+  BarChart2,
+  Clock,
+  MapPin,
+  Settings,
+  Rocket,
+} from "lucide-react";
+
+const benefits = [
+  { icon: Globe, name: "Reach More Customers", title: "24/7 Online Visibility", description: "Be found on Google when people search for your products or services — 24/7 visibility.", cta: "Get Started" },
+  { icon: ShieldCheck, name: "Build Trust & Credibility", title: "Professional & Reliable", description: "A professional website makes your business look established and reliable — no more Facebook-only doubts.", cta: "Get Started" },
+  { icon: TrendingUp, name: "Grow Sales & Leads", title: "Convert Visitors", description: "Turn visitors into paying customers with clear calls-to-action, forms, and WhatsApp integration.", cta: "Get Started" },
+  { icon: Smartphone, name: "Mobile-Friendly & Fast", title: "Perfect on Phones", description: "Look perfect on phones and load instantly — most Nigerians browse on mobile.", cta: "Get Started" },
+  { icon: Sparkles, name: "Stand Out from Competitors", title: "Custom Design", description: "Custom design, not templates — impress clients and win more business.", cta: "Get Started" },
+  { icon: Cpu, name: "Secure & AI-Ready", title: "Future-Proof", description: "Built with modern tools like Next.js and FastAPI — secure, scalable, and AI-ready.", cta: "Get Started" },
+];
 
 export default function ServicesSection() {
   const [open, setOpen] = useState(false);
@@ -16,122 +38,74 @@ export default function ServicesSection() {
     setOpen(false);
   };
 
-  const services = [
-    {
-      icon: <Code className="w-12 h-12 text-purple-100" />,
-      title: "Custom Web Development",
-      description:
-        "Custom web applications built from scratch using modern technologies, delivering scalable, reliable, and fast solutions for your business.",
-    },
-    {
-      icon: <Globe className="w-12 h-12 text-purple-100" />,
-      title: "Professional Website Design",
-      description:
-        "Responsive, branded websites designed to impress and convert, optimized for desktop and mobile.",
-    },
-
-    // E-Commerce & AI
-    {
-      icon: <ShoppingCart className="w-12 h-12 text-purple-100" />,
-      title: "E-Commerce Solutions",
-      description:
-        "High-performance online stores with smooth checkout, inventory management, and integrated payment solutions.",
-    },
-    {
-      icon: <Bot className="w-12 h-12 text-purple-100" />,
-      title: "AI Automation & Integration",
-      description:
-        "Intelligent features such as chatbots, predictive analytics, content generators, and custom AI workflows.",
-    },
-
-    // Performance & Security
-    {
-      icon: <Zap className="w-12 h-12 text-purple-100" />,
-      title: "Lightning-Fast Performance",
-      description:
-        "Optimized backends and server-side rendering for instant load times and superior user experience.",
-    },
-    {
-      icon: <Lock className="w-12 h-12 text-purple-100" />,
-      title: "Secure & Scalable Architecture",
-      description:
-        "Built with best practices in security, authentication, and cloud-ready infrastructure to scale with your business.",
-    },
-
-    // Delivery & Support
-    {
-      icon: <Smartphone className="w-12 h-12 text-purple-100" />,
-      title: "Mobile-First & PWA",
-      description:
-        "Fully responsive designs that feel native on any device, including offline-capable Progressive Web Apps.",
-    },
-    {
-      icon: <Rocket className="w-12 h-12 text-purple-100" />,
-      title: "Fast Delivery & Ongoing Support",
-      description:
-        "Projects delivered in days or weeks with continuous support, updates, and long-term partnership.",
-    },
-  ];
-
   return (
-    <section className="relative bg-black py-20 md:py-28 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 uppercase mb-6 tracking-wide">
-            Our Services & Solutions
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            From stunning websites to AI-powered web apps, we deliver the tools and solutions your business needs to grow and succeed online.
-          </p>
-        </motion.div>
+    <section className="relative w-full bg-black text-gray-100 py-20 overflow-hidden">
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="relative p-8 rounded-2xl bg-gray-800/70 border border-gray-700/80 lg:border-gray-700 hover:border-purple-100/50 transition-all duration-500 shadow-xl shadow-purple-500/20 hover:shadow-purple-500/40 group"
-            >
-              <div className="mb-6 flex justify-center">
-                <div className="p-4 bg-gray-900/80 rounded-2xl group-hover:bg-purple-100/10 transition">
-                  {service.icon}
-                </div>
-              </div>
-              <h3 className="lg:text-2xl md:text-xl text-lg font-bold text-white mb-4 text-center">{service.title}</h3>
-              <p className="text-gray-400 text-left leading-relaxed">{service.description}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* CTA — now opens the modal */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mt-20"
-        >
-          <button
-            onClick={() => setOpen(true)}
-            className="inline-flex items-center justify-center lg:px-12 md:px-10 px-8 lg:py-5 md:py-4 py-3 bg-linear-to-r from-purple-200 via-purple-100 to-purple-50 text-black hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-600 transition-all duration-300 hover:text-white lg:text-2xl md:text-xl text-lg font-bold rounded-full shadow-2xl"
-          >
-            Start Your Project Today
-          </button>
-        </motion.div>
+      {/* HEADER */}
+      <div className="text-center mb-14 px-6">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-100 mb-4">
+          Services & Solutions
+        </h2>
+        <p className="text-gray-400 max-w-3xl mx-auto text-base md:text-lg">
+          We help businesses create inspiring AI & digital solutions.
+        </p>
       </div>
 
-      {/* Modal — identical to previous implementations */}
+      {/* CARDS SLIDER */}
+      <div className="px-0 md:px-12 lg:px-16 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-12 lg:gap-8 xl:gap-12 gap-12">
+          {benefits.map((benefit, index) => (
+            <div key={index}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="
+                  relative h-full lg:hover:bg-purple-950/5 hover:bg-purple-950/10 border lg:border-2 hover:border-purple-300/30 lg:border-white/5
+                  rounded-xs p-8 flex flex-col justify-between hover:cursor-pointer lg:bg-purple-950/80 bg-purple-950/10
+                  border-purple-900/5 transition-all duration-300 shadow-xs shadow-purple-600/30
+                "
+              >
+                {/* ICON */}
+                <div className="absolute top-0 lg:top-4 left-6 lg:w-16 lg:h-16 w-12 h-12 md:w-14 md:h-14 bg-purple-950/80 flex items-center justify-center shadow-xl border border-white/10 rounded-full">
+                  {React.createElement(benefit.icon, { className: "lg:w-12 lg:h-12 md:w-10 md:h-10 w-9 h-9 text-purple-100" })}
+                </div>
+
+                {/* CONTENT */}
+                <div className="pt-10">
+                  <span className="text-purple-50/90 uppercase text-xs tracking-widest font-medium">
+                    {benefit.name}
+                  </span>
+                  <h3 className="text-xl lg:text-2xl font-semibold text-purple-100 mt-3 mb-4">
+                    {benefit.title}
+                  </h3>
+                  <p className="text-gray-200 text-sm md:text-base leading-relaxed">
+                    {benefit.description}
+                  </p>
+                </div>
+
+                {/* CTA — now opens the modal instead of direct WhatsApp */}
+                <motion.button
+                  onClick={() => setOpen(true)}
+                  whileHover={{ scale: 1.03 }}
+                  className="
+                    mt-8 inline-flex items-center justify-center
+                    px-8 md:px-8 py-3 rounded-xs font-semibold text-sm md:text-base
+                    hover:text-purple-50 text-white hover:cursor-pointer
+                    bg-linear-to-bl hover:from-transparent hover:via-transparent hover:to-transparent
+                    hover:border hover:border-purple-100/80
+                    from-purple-900 via-purple-600 to-indigo-700 border-0
+                    transition-all duration-300 w-fit
+                  "
+                >
+                  {benefit.cta}
+                </motion.button>
+              </motion.div>
+            </div>
+          ))}
+      </div>
+
+      {/* Shared Modal — same as used in other sections */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -177,15 +151,17 @@ export default function ServicesSection() {
                 </a>
 
                 <a
-                  href="tel:+2349123631219"
-                  className="relative border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold py-4 rounded-xl transition-all text-center block overflow-hidden group"
+                  href="tel:+2348038168949"
+                  className="relative border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold py-8 rounded-xl transition-all text-center block overflow-hidden group"
                 >
+                  {/* Default: "Call Us" */}
                   <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-full">
                     Call Us
                   </span>
 
+                  {/* Hover: Phone number slides up */}
                   <span className="absolute inset-0 flex items-center justify-center translate-y-full transition-transform duration-300 group-hover:translate-y-0">
-                    +234 912 363 1219
+                    +234 803 816 8949
                   </span>
                 </a>
 
@@ -200,6 +176,27 @@ export default function ServicesSection() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style jsx>{`
+        :global(.swiper-pagination) {
+          position: relative;
+          margin-top: 14px;
+          text-align: center;
+        }
+        :global(.swiper-pagination-bullet) {
+          background-color: #9333ea;
+          opacity: 0.4;
+          width: 10px;
+          height: 10px;
+          margin: 0 6px !important;
+          transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        :global(.swiper-pagination-bullet-active) {
+          background-color: #9333ea;
+          opacity: 0.6;
+          transform: scale(1.25);
+        }
+      `}</style>
     </section>
   );
 }

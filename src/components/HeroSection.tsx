@@ -17,7 +17,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section className="relative lg:min-h-screen h-full flex items-center justify-center overflow-hidden bg-black">
       {/* Full-screen Video Background */}
       <video
         autoPlay
@@ -36,13 +36,19 @@ export default function HeroSection() {
             mx-auto 
             text-start 
             md:text-center 
-            lg:text-left 
+            lg:text-start 
             lg:max-w-4xl 
             lg:mx-0 
             lg:ml-0 
             lg:mr-auto
-            -mt-32
-            md:-mt-4
+            mt-8
+            py-12
+            md:py-16
+            lg:py-0
+            md:mt-24
+            md:mb-16
+            lg:mb-0
+            mb-12
             lg:mt-0
           "
         >
@@ -62,16 +68,17 @@ export default function HeroSection() {
               </span>
             
             <br />
-            <span className="tracking-normal inline-block  ">
-            Web Applications
+            <span className="tracking-normal inline-block font-bold  ">
+            Digital Solutions
             </span>
         </h1>
 
           {/* Subtext */}
           <p className="
-            text-lg 
-            md:text-xl
-            lg:text-2xl 
+            text-base 
+            md:text-lg
+            lg:text-xl
+            xl:text-2xl 
             text-white/90
             hover:text-[#F0F8FF] 
             mx-auto 
@@ -81,9 +88,10 @@ export default function HeroSection() {
 
             lg:max-w-2xl
             xl:max-w-3xl
-            xl:w-[90%]
+            xl:w-[80%]
           ">
-            We design and build high-performance websites and custom web apps with exceptional UI/UX, AI integration, and automation for measurable business impact.
+            We build high-performance websites and custom apps with exceptional UI/UX, AI integration, and automation for measurable business impact.
+          
           </p>
 
           {/* Primary CTA Button — Now opens the modal */}
@@ -93,17 +101,19 @@ export default function HeroSection() {
               inline-flex 
               items-center 
               justify-center 
-              px-8 
-              py-4 
-              lg:px-10 
+              px-12 
+              py-5 
+              lg:px-12 
+              xl:px-14
               lg:py-5
               xl:py-6 
               border-2
-              border-[#e0f4fa]/70 
+              lg:border-4
+              border-white/80 
+              border-l-purple-500/40
+              border-r-6
               border-r-purple-500/40
-              border-r-8
-              border-l-indigo-500/40
-              border-l-8
+              border-l-6
               text-white 
               hover:text-[#e0f4fa]
               text-lg 
@@ -111,8 +121,9 @@ export default function HeroSection() {
               lg:text-2xl 
               xl:text-3xl 
               font-semibold 
-              hover:bg-linear-to-r
-            hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-500
+
+              md:bg-linear-to-r bg-linear-to-br
+            hover:from-indigo-700/85 hover:via-purple-800/85 hover:to-purple-500/85
               hover:border-0
               transition 
               shadow-2xl

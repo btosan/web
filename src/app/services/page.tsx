@@ -1,10 +1,10 @@
-import ServicesSection from '@/components/ServicesSection'
+import ServicesPage from '@/components/ServicesPage'
 import React from 'react'
 
 function page() {
   return (
     <div>
-        <ServicesSection />
+        <ServicesPage />
     </div>
   )
 }

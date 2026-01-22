@@ -26,55 +26,55 @@ export default function WhyChooseUsSection() {
 
   const reasons = [
     {
-      icon: <Code2 className="w-8 h-8 md:w-10 md:h-10 text-purple-50 shrink-0" />,
+      icon: <Code2 className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
       title: "100% Custom-Built Solutions",
       description:
         "Every project is hand-coded from the ground up. We do not use WordPress, page builders, or drag-and-drop tools, giving you full control, better performance, and no limitations as your business grows.",
     },
     {
-      icon: <Rocket className="w-8 h-8 md:w-10 md:h-10 text-purple-50 shrink-0" />,
+      icon: <Rocket className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
       title: "Designed to Scale With Your Business",
       description:
         "Our websites and web apps are built like real software, not brochure sites. From MVPs to complex systems, your product is designed to grow without needing a rebuild.",
     },
     {
-      icon: <Bot className="w-8 h-8 md:w-10 md:h-10 text-purple-50 shrink-0" />,
+      icon: <Bot className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
       title: "AI Automation That Solves Real Problems",
       description:
         "We integrate AI where it actually adds value, including chatbots, workflow automation, smart content systems, and custom AI tools that save time and reduce costs.",
     },
     {
-      icon: <Zap className="w-8 h-8 md:w-10 md:h-10 text-purple-50 shrink-0" />,
+      icon: <Zap className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
       title: "Modern Technology & Tools",
       description:
         "We use FastAPI, Django, React, and Next.js because they are faster, more secure, and more scalable than CMS platforms like WordPress. No fragile plugins, no constant theme updates, and no sites breaking when plugins stop working.",
     },
     {
-      icon: <Shield className="w-8 h-8 md:w-10 md:h-10 text-purple-50 shrink-0" />,
+      icon: <Shield className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
       title: "Fast, Secure, and Production-Ready",
       description:
         "Security and performance are built in from day one. No bloated plugins, no patchwork fixes, and no hidden vulnerabilities caused by third-party extensions.",
     },
     {
-      icon: <Palette className="w-8 h-8 md:w-10 md:h-10 text-purple-50 shrink-0" />,
+      icon: <Palette className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
       title: "Design That Supports Business Goals",
       description:
         "Our designs are not just visually appealing. Every layout and interaction is crafted to improve clarity, usability, conversions, and customer trust.",
     },
     {
-      icon: <Code2 className="w-8 h-8 md:w-10 md:h-10 text-purple-50 shrink-0" />,
+      icon: <Code2 className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
       title: "Clean Architecture, Not Quick Fixes",
       description:
         "We write clean, maintainable code that is easy to extend and improve over time, avoiding the technical debt common with template-based solutions.",
     },
     {
-      icon: <Zap className="w-8 h-8 md:w-10 md:h-10 text-purple-50 shrink-0" />,
+      icon: <Zap className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
       title: "Clear Process and Predictable Delivery",
       description:
         "You work directly with engineers, not middlemen. Clear communication, realistic timelines, and professional delivery from start to launch.",
     },
     {
-      icon: <Rocket className="w-8 h-8 md:w-10 md:h-10 text-purple-50 shrink-0" />,
+      icon: <Rocket className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
       title: "Long-Term Technical Partnership",
       description:
         "We do not disappear after launch. We support, improve, and evolve your product as your business grows, acting as a long-term technical partner.",
@@ -125,10 +125,10 @@ export default function WhyChooseUsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="flex flex-col items-center justify-center p-6 rounded-2xl bg-gray-950/50 border border-gray-800 h-96 md:h-full"
+                  className="relative flex flex-col items-center justify-center p-6 rounded-2xl bg-gray-950/50 border border-gray-800 h-96 md:h-full"
                 >
-                  <div className="mb-4">{reason.icon}</div>
-                  <h3 className="text-xl text-center font-semibold text-gray-100 mb-3">
+                  <div className="mb-4 absolute left-4 top-4 ">{reason.icon}</div>
+                  <h3 className="text-xl text-start font-semibold text-gray-100 mb-3">
                     {reason.title}
                   </h3>
                   <p className="text-gray-400 text-start leading-relaxed">

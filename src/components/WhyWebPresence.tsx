@@ -61,8 +61,8 @@ export default function WhyWebPresenceSection() {
             className="object-cover"
           />
           <div className="absolute bottom-6 left-0 right-0">
-            <span className="text-purple-300/70 flex items-center justify-center uppercase tracking-widest text-xs md:text-sm font-medium">
-              Websites • Web Apps • Growth
+            <span className="text-purple-100/70 flex items-center justify-center uppercase tracking-wide text-xs md:text-sm">
+              Websites • Apps • AI • Growth
             </span>
           </div>
         </div>
@@ -107,7 +107,7 @@ export default function WhyWebPresenceSection() {
                 "
               >
                 {/* ICON */}
-                <div className="absolute top-0 left-6 w-14 h-14 bg-black/10 flex items-center justify-center shadow-xl border border-white/10 rounded-xl">
+                <div className="absolute top-6 right-6 w-14 h-14 bg-black/10 flex items-center justify-center shadow-xl border border-white/10 rounded-xl">
                   {React.createElement(benefit.icon, { className: "w-7 h-7 text-purple-100" })}
                 </div>
 
@@ -130,7 +130,7 @@ export default function WhyWebPresenceSection() {
                   whileHover={{ scale: 1.03 }}
                   className="
                     mt-8 inline-flex items-center justify-center
-                    px-8 md:px-8 py-3 rounded-full font-semibold text-sm md:text-base
+                    px-8 md:px-8 py-3 rounded-xs font-semibold text-sm md:text-base
                     text-purple-50 hover:text-white hover:cursor-pointer
                     bg-linear-to-r
                     border border-purple-100/80

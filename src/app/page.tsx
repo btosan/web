@@ -13,6 +13,7 @@ import FinalCTASection from "@/components/FinalCTA";
 import BannerSection from "@/components/BannerSection";
 import EnquirySection from "@/components/EnquirySection";
 import AboutSection from "@/components/AboutSection";
+import ServicesSection from "@/components/ServicesSection";
 
 export const metadata: Metadata = {
   title: " Ofashi | Custom Web Development & Website Design Nigeria | AI Automation | AI Integrations ",
@@ -30,12 +31,13 @@ export default function page() {
     <div className="bg-gray-950">
       <HeroSection />  
       <BannerSection />
+      <ServicesSection />
+      <PortfolioSection />
       <AboutSection />
       <WhyChooseUsSection /> 
-      <PortfolioSection />
       <TestimonialsSection />
-      <FeaturedPackages />
-      <PricingSection />
+      {/* <FeaturedPackages />
+      <PricingSection /> */}
       <WhyWebPresenceSection /> 
       {/* <FinalCTASection />  */}
       {/* <DomainHostingNote />                          */}

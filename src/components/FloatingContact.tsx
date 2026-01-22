@@ -56,7 +56,7 @@ export default function FloatingContact() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleOpenWindow}
-          className="w-14 h-14 bg-linear-to-r from-blue-100 via-indigo-100 to-purple-100 text-black rounded-full border border-gray-500/50 shadow-sm lg:shadow-lg shadow-gray-500/50 flex items-center justify-center hover:bg-purple-50 hover:cursor-pointer transition-all"
+          className="w-14 h-14 bg-linear-to-tr from-purple-200 via-purple-300 to-purple-400 text-black rounded-full border border-purple-200/50 shadow-sm lg:shadow-lg shadow-gray-500/50 flex items-center justify-center hover:bg-purple-50 hover:cursor-pointer transition-all"
           aria-label="Contact Us"
         >
           <MessageCircle size={28} />
@@ -106,12 +106,12 @@ export default function FloatingContact() {
             className="fixed bottom-24 md:right-6 right-2 z-50 bg-white text-gray-900 border border-purple-50 md:p-4 p-5 rounded-xl shadow-2xl max-w-sm w-full"
           >
             <div className="flex justify-between items-center mb-4">
-              <h3 className="font-bold text-lg">Contact BT WebTech</h3>
+              <h3 className="font-bold text-lg">Contact Us</h3>
               <button onClick={handleCloseWindow} className="text-gray-500 hover:text-gray-700">
                 <X size={20} />
               </button>
             </div>
-            <p className="text-sm mb-6">Choose how you'd like to get in touch for your custom web project.</p>
+            <p className="text-sm mb-6">Choose how you'd like to get in touch for your project.</p>
 
             <div className="space-y-4">
               {/* Phone */}

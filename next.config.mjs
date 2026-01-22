@@ -1,22 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    eslint:{
-        ignoreDuringBuilds:true,
-      },
+    // eslint:{
+    //     ignoreDuringBuilds:true,
+    //   },
       optimizeFonts: true,
       experimental: {
-        optimizeCss: true, // Optional: enables CSS optimization
+        optimizeCss: true,
       },
 
-      // webpack: (config) => {
-      //   config.module.rules.push({
-      //     test: /\.(woff|woff2|eot|ttf|otf)$/i,
-      //     type: 'asset/resource',
-      //   })
-      //   return config
-      // },
-      // output: 'export',
-      // trailingSlash: true,
       reactStrictMode: true,
     
       images: {
