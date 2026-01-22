@@ -44,7 +44,7 @@ export default function Navbar() {
               alt=""
               width={100}
               height={100}
-              className="h-8 md:h-10 lg:h-12 xl:h-12 w-auto shadow-2xl shadow-white" 
+              className="h-8 md:h-9 lg:h-10 w-auto shadow-2xl shadow-white" 
             />
             <p className = {` ${urbanist.className} scale-x-115 w-full py-2 mx-auto flex items-center justify-center gap-0.5 md:gap-1 font-medium md:tracking-wide tracking-wider text-2xl md:text-3xl xl:text-4xl bg-linear-to-r from-white via-purple-100 to-purple-200 bg-clip-text text-transparent transition-colors duration-300`} >
               Ofashi
@@ -91,7 +91,7 @@ export default function Navbar() {
             Enquiry
           </button> */}
 
-            <Link href='/contact' className="uppercase xl:text-lg lg:text-base text-lg lg:px-6 lg:py-2 xl:py-3 xl:px-10 bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700 via-purple-800 to-purple-500 text-white transition-all">
+            <Link href='/contact' className="tracking-wider uppercase md:text-lg lg:text-base text-lg lg:px-6 lg:py-2 xl:py-3 xl:px-10 bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700 via-purple-800 to-purple-500 text-white transition-all">
             Contact
           </Link>
         </div>

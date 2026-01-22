@@ -55,9 +55,9 @@ export default function HeroSection() {
           {/* Headline */}
           <h1 className="
             text-4xl 
-            md:text-6xl 
-            lg:text-7xl 
-            xl:text-8xl 
+            md:text-5xl 
+            lg:text-6xl 
+            xl:text-7xl 
             font-semibold
             
             text-white 
@@ -119,7 +119,7 @@ export default function HeroSection() {
               text-lg 
               md:text-xl 
               lg:text-2xl 
-              xl:text-3xl 
+              xl:text-2xl 
               font-semibold 
 
               md:bg-linear-to-r bg-linear-to-br
