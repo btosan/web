@@ -5,6 +5,6 @@ export default function robots() {
         allow: '/',
         disallow: '/private/',
       },
-      sitemap: 'https://webtech.besttosan.com/sitemap.js',
+      sitemap: 'https://ofashi.com/sitemap.js',
     }
   }

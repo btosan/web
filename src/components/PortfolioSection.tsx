@@ -12,7 +12,6 @@ import { Autoplay, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import CTA from "./CTA";
 
 const AUTOPLAY_DELAY = 5000;
 
@@ -41,97 +40,72 @@ const ProjectCard = ({ project, index, onUserInteract }: { project: Project; ind
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.6 }}
       viewport={{ once: true }}
-      className="group relative rounded-2xl overflow-hidden lg:hover:bg-purple-950/5 hover:bg-purple-950/10 border lg:border-2 hover:border-purple-300/30 lg:border-white/5 hover:cursor-pointer lg:bg-purple-950/80 bg-purple-950/10
-                  border-purple-900/5 shadow-xs shadow-purple-600/30 transition-all duration-500 px-2"
+      className="group relative rounded-2xl overflow-hidden border lg:border-2 border-purple-900/5 shadow-xs shadow-purple-600/30 transition-all duration-500 px-2 bg-purple-950/10 lg:bg-purple-950/80 hover:border-purple-300/30"
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
       onClick={handleInteraction}
     >
-      {/* Image */}
       <div className="aspect-video relative overflow-hidden">
         <Image
           src={project.image}
           alt={`${project.title} preview`}
           fill
-          className={`object-cover transition-transform duration-700 ${
-            isActive ? "scale-110" : "scale-100"
-          }`}
+          className={`object-cover transition-transform duration-700 ${isActive ? "scale-110" : "scale-100"}`}
         />
       </div>
 
-      {/* Content */}
       <div className="px-0 py-6 md:px-4 md:py-8 relative">
-        <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+        <h3 className="text-xl md:text-2xl lg:text-2xl xl:text-[1.7rem] font-bold text-white mb-3 leading-tight">
           {project.title}
         </h3>
 
-        <p className="text-gray-300 mb-4 line-clamp-2">
+        <p className="text-gray-300 mb-4 line-clamp-2 text-sm md:text-base">
           {project.shortDescription}
         </p>
-          <span className={`flex items-center justify-end ${
-            isActive ? "opacity-0 -mt-5" : "opacity-100 "
-          } md:hidden animate-bounce text-purple-500 `}><ChevronDown className="w-4 h-4" /></span>
+
+        <span className={`flex items-center justify-end ${isActive ? "opacity-0 -mt-5" : "opacity-100"} md:hidden animate-bounce text-purple-500`}>
+          <ChevronDown className="w-4 h-4" />
+        </span>
+
         <p
-          className={`absolute left-0 md:left-4 right-0 md:right-4 text-gray-400 text-sm md:text-base leading-relaxed transition-opacity duration-500 ${
-            isActive ? "opacity-100" : "opacity-0"
-          } pointer-events-none`}
+          className={`absolute left-0 md:left-4 right-0 md:right-4 text-gray-400 text-sm md:text-base leading-relaxed transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"} pointer-events-none`}
         >
           {project.fullDescription}
         </p>
 
-        <p
-          className={`text-sm text-blue-100 mb-8 ${
-            isActive ? "mt-32 pt-4" : "mt-0"
-          }`}
-        >
+        <p className={`text-xs md:text-sm text-blue-100 mb-8 ${isActive ? "mt-32 pt-4" : "mt-0"}`}>
           {project.tech}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4">
-
           <a
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 hover:text-purple-50 text-white hover:cursor-pointer
-                    bg-linear-to-bl hover:from-transparent hover:via-transparent hover:to-transparent
-                    hover:border hover:border-purple-100/80
-                    from-purple-900 via-purple-600 to-indigo-700 border-0
-                    transition-all duration-300 font-medium"
+            className="inline-flex items-center justify-center gap-2 px-4 md:px-5 py-2.5 md:py-3 text-sm md:text-base text-white bg-linear-to-bl from-purple-900 via-purple-600 to-indigo-700 hover:border hover:border-purple-100/80 transition-all duration-300 font-medium"
           >
             <ExternalLink size={18} />
             View Live Site
           </a>
+
           <a
             href={project.detailUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 text-white/90 hover:text-white border border-gray-700 rounded-xs hover:border-purple-50/60 transition font-medium group/link"
+            className="inline-flex items-center justify-center gap-2 px-4 md:px-5 py-2.5 md:py-3 text-sm md:text-base text-white/90 border border-gray-700 hover:border-purple-50/60 transition font-medium group/link"
           >
             Project Details
-            <ArrowRight
-              size={18}
-              className="transition-transform group-hover/link:translate-x-1"
-            />
+            <ArrowRight size={18} className="transition-transform group-hover/link:translate-x-1" />
           </a>
         </div>
       </div>
-
-      <div
-        className={`absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent transition-opacity duration-500 pointer-events-none ${
-          isActive ? "opacity-100" : "opacity-0"
-        }`}
-      />
     </motion.div>
   );
 };
 
 export default function PortfolioSection() {
   const swiperRef = useRef<any>(null);
-
-  const stopAutoplay = () => {
-    swiperRef.current?.autoplay?.stop();
-  };
+  const stopAutoplay = () => swiperRef.current?.autoplay?.stop();
 
   const projects: Project[] = [
     {
@@ -204,36 +178,31 @@ export default function PortfolioSection() {
 
   return (
     <section className="relative bg-black py-16 md:py-20 lg:py-24 xl:py-28 overflow-hidden">
-      <div className="mx-auto px-4 md:px-8 lg:px-12 xl:px-16">
+      <div className="mx-auto px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20">
+        
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-16 max-w-3xl mx-auto"
         >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 mb-6">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 mb-6 leading-tight">
             Featured Projects
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
             Real custom solutions built for clients — hand-coded and scalable.
           </p>
         </motion.div>
 
         {/* MOBILE SLIDER */}
         <div className="md:hidden">
-          <div className="text-center text-purple-300/70 text-sm mb-4">
-            Swipe to explore →
-          </div>
-
+          <div className="text-center text-purple-300/70 text-sm mb-4">Swipe to explore →</div>
           <Swiper
             modules={[Autoplay, Pagination]}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
-            autoplay={{
-              delay: AUTOPLAY_DELAY,
-              disableOnInteraction: false,
-            }}
+            autoplay={{ delay: AUTOPLAY_DELAY, disableOnInteraction: false }}
             pagination={{ type: "progressbar" }}
             spaceBetween={16}
             slidesPerView={1.05}
@@ -241,11 +210,7 @@ export default function PortfolioSection() {
           >
             {projects.map((project, index) => (
               <SwiperSlide key={index}>
-                <ProjectCard
-                  project={project}
-                  index={index}
-                  onUserInteract={stopAutoplay}
-                />
+                <ProjectCard project={project} index={index} onUserInteract={stopAutoplay} />
               </SwiperSlide>
             ))}
           </Swiper>
@@ -260,42 +225,10 @@ export default function PortfolioSection() {
       </div>
 
       <div className="w-full mx-auto flex items-center justify-center pt-8 md:pt-10">
-        {/* <a
-          href="https://wa.me/2348038168949"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-8 inline-flex items-center justify-center px-8 py-3 rounded-full text-lg font-medium text-white bg-[linear-gradient(90deg,#dbeafe,#4c1d95,#6b21a8,#a855f7,#c084fc,#4169e1,#4b0082)] bg-size-[300%_300%] animate-gradient-wave transition-all duration-300 hover:scale-[1.03]"
-        >
-          See How We Build Yours →
-        </a> */}
-        
-        <Link href='/projects' className="hover:underline hover:underline-offset-8 hover:text-purple-300">See all projects</Link>
+        <Link href='/projects' className="hover:underline hover:underline-offset-8 hover:text-purple-300">
+          See all projects
+        </Link>
       </div>
-
-
-      {/* Progress bar styling */}
-      <style jsx>{`
-        :global(.swiper-pagination-progressbar) {
-          background: rgba(255, 255, 255, 0.1);
-          height: 4px;
-          border-radius: 4px;
-        }
-        :global(.swiper-pagination-progressbar-fill) {
-          background: #a855f7; /* purple-500 */
-        }
-      `}</style>
-
-      <style jsx global>{`
-        .swiper {
-          --swiper-theme-color: rgba(216, 180, 254, 0.7); /* purple-300/70 */
-        }
-
-        .swiper-pagination-progressbar {
-          background: rgba(255, 255, 255, 0.12);
-          height: 4px;
-          border-radius: 4px;
-        }
-      `}</style>
     </section>
   );
 }

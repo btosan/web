@@ -18,9 +18,9 @@ import ServicesSection from "@/components/ServicesSection";
 export const metadata: Metadata = {
   title: " Ofashi | Custom Web Development & Website Design Nigeria | AI Automation | AI Integrations ",
   description:
-    "Expert custom web development, website design, e-commerce apps, and AI integration in Nigeria. Hand-coded with FastAPI, Django, React & Next.js — fast, scalable, AI-ready solutions delivered in days.",
+    "Expert custom web development, website design, e-commerce apps,AI Automation, and AI integration in Nigeria. Hand-coded with FastAPI, Django, React & Next.js — fast, scalable, AI-ready solutions delivered in days.",
   keywords:
-    "custom web development Nigeria, website design Lagos, e-commerce app Nigeria, AI integration Nigeria, Next.js developer, FastAPI developer, React developer, Django developer, Ofashi, Ofashi design",
+    "custom web development Nigeria, website design Lagos, e-commerce app Nigeria, AI Automation, AI integration Nigeria, Next.js developer, FastAPI developer, React developer, Django developer, Ofashi, Ofashi design",
   icons: {
     icon: "/favicon.ico",
   },
