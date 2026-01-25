@@ -1,11 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // eslint:{
-    //     ignoreDuringBuilds:true,
-    //   },
       optimizeFonts: true,
       experimental: {
-        optimizeCss: true,
+        optimizeCss: false,
       },
 
       reactStrictMode: true,

@@ -59,7 +59,7 @@ export default function HeroSection() {
             text-4xl 
             md:text-6xl 
             lg:text-7xl 
-            xl:text-8xl  
+            xl:text-8xl 
             font-semibold
             text-white 
             mb-8
@@ -119,7 +119,6 @@ export default function HeroSection() {
               hover:text-[#e0f4fa]
               text-lg 
               md:text-xl 
-              lg:text-2xl 
               xl:text-2xl 
               font-semibold 
 
