@@ -52,7 +52,7 @@ export default function ServicesSection() {
       </div>
 
       {/* CARDS SLIDER */}
-      <div className="px-0 md:px-12 lg:px-16 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-12 lg:gap-8 xl:gap-12 gap-12">
+      <div className="px-0 md:px-12 lg:px-16 2xl:px-20 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-12 lg:gap-8 xl:gap-12 gap-12">
           {benefits.map((benefit, index) => (
             <div key={index}>
               <motion.div

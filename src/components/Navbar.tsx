@@ -32,7 +32,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-90 text-gray-100 border-b lg:border-gray-800 border-gray-800/5">
-      <div className="mx-auto px-6 md:px-16 lg:px-12 xl:px-16 py-3 lg:py-5 flex items-center justify-between">
+      <div className="mx-auto px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20 py-3 lg:py-5 flex items-center justify-between">
         {/* === LOGO (Responsive, Sharp, No Height Impact) === */}
         <div className="flex items-center justify-center ">
           <Link
@@ -46,7 +46,7 @@ export default function Navbar() {
               height={100}
               className="h-8 md:h-9 lg:h-10 w-auto shadow-2xl shadow-white" 
             />
-            <p className = {` ${urbanist.className} scale-x-115 w-full py-2 mx-auto flex items-center justify-center gap-0.5 md:gap-1 font-medium md:tracking-wide tracking-wider text-2xl md:text-3xl xl:text-4xl bg-linear-to-r from-white via-purple-100 to-purple-200 bg-clip-text text-transparent transition-colors duration-300`} >
+            <p className={`${urbanist.className} scale-x-110 py-2 flex items-center gap-0.5 md:gap-1 font-medium md:tracking-wide tracking-wider text-2xl md:text-3xl lg:text-3xl bg-linear-to-r from-white via-purple-100 to-purple-200 bg-clip-text text-transparent transition-colors duration-300`} >
               Ofashi
             </p>
           </Link>

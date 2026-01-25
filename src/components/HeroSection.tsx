@@ -29,19 +29,16 @@ export default function HeroSection() {
         <source src="/assets/web/besttosan_video_from_singularity.mp4" type="video/mp4" />
       </video>
 
-      <div className="container relative z-10 mx-auto px-6">
-        <div
+      <div className="relative z-10 w-full">
+        <div className="mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20">
+
+         <div
           className="
             w-full
-            max-w-5xl
-            lg:max-w-4xl
-            xl:max-w-5xl
-            2xl:max-w-6xl
-            mx-auto 
-            text-start 
-            md:text-center 
-            lg:text-start 
-            lg:ml-0 
+            text-start
+            md:text-center
+            lg:text-start
+            lg:ml-0
             lg:mr-auto
             mt-8
             py-12
@@ -148,6 +145,7 @@ export default function HeroSection() {
           ">
            <a href="https://wa.me/2348080548263" className="no-underline hover:underline hover:underline-offset-8  text-purple-100/90">Call or WhatsApp</a>
           </p> */}
+        </div>
         </div>
       </div>
 
