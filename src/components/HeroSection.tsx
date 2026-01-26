@@ -101,7 +101,6 @@ export default function HeroSection() {
               lg:px-12 
               xl:px-14
               lg:py-5
-              xl:py-6 
               border-2
               lg:border-4
               border-white/80 
@@ -114,7 +113,6 @@ export default function HeroSection() {
               text-lg 
               md:text-xl  
               font-semibold 
-
               md:bg-linear-to-r bg-linear-to-br
             hover:from-indigo-700/85 hover:via-purple-800/85 hover:to-purple-500/85
               hover:border-0

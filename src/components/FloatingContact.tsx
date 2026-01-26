@@ -10,11 +10,11 @@ export default function FloatingContact() {
   const [showWindow, setShowWindow] = useState(false);
 
   // Replace with your actual contact info
-  const phoneNumber = "+2349123631219";
-  const whatsappNumber = "+2348080548263";
+  const phoneNumber = "+2348038168949";
+  const whatsappNumber = "+2349123631219";
   const whatsappMessage = "Hello! I'd like to know more about your custom web development services.";
-  const emailAddress = "webtech.bt@gmail.com";
-  const emailSubject = "Inquiry about BT WebTech Services";
+  const emailAddress = "ofashi.com@gmail.com";
+  const emailSubject = "Inquiry about Ofashi Services";
   const emailBody = "Hi,\n\nI'd like to know more about your custom websites, e-commerce apps, and AI integrations.\n\nThank you!";
 
   useEffect(() => {

@@ -21,10 +21,10 @@ export default function Footer() {
           </p>
           <p>
             <a
-              href="mailto:webtech.bt@gmail.com"
+              href="mailto:ofashi.com@gmail.com"
               className="hover:text-purple-50 transition-all"
             >
-              webtech.bt@gmail.com
+              ofashi.com@gmail.com
             </a>
           </p>
         </div>
@@ -115,7 +115,7 @@ export default function Footer() {
 
       {/* === COPYRIGHT === */}
       <div className="text-center text-xs text-gray-500 mt-10">
-        © {new Date().getFullYear()} BT WebTech — Web Development, Automation & AI Integration.
+        © {new Date().getFullYear()} Ofashi — Web Development, Automation & AI Integration.
       </div>
     </footer>
   );

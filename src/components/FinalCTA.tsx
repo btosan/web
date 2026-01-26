@@ -26,7 +26,7 @@ export default function FinalCTASection() {
 
 
           <a
-            href="https://wa.me/2348080548263"
+            href="https://wa.me/2349123631219"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center lg:px-12 px-6 md:px-10 lg:py-5 md:py-5 py-4 bg-linear-to-r from-blue-100 via-purple-100 to-purple-200 text-black hover:bg-linear-to-r hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-600 transition-all duration-300 hover:text-white md:text-2xl text-xl lg:text-3xl font-bold rounded-full shadow-2xl"
@@ -36,8 +36,8 @@ export default function FinalCTASection() {
           </a>
 
           <p className="mt-10 text-lg text-indigo-100/70">
-            <a href="https://wa.me/2349123631219" className="underline hover:no-underline">
-              Call or WhatsApp: +234 912 363 1219
+            <a href="https://wa.me/2348038168949" className="underline hover:no-underline">
+              Call or WhatsApp: +234 803 816 8949
             </a>
           </p>
         </motion.div>

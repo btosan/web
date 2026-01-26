@@ -10,7 +10,7 @@ export default function ContactSection() {
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/2348080548263?text=Hi%21%20I%27m%20interested%20in%20building%20a%20custom%20website%20or%20web%20application%20and%20would%20like%20to%20discuss%20my%20project.",
+      "https://wa.me/2349123631219?text=Hi%21%20I%27m%20interested%20in%20building%20a%20custom%20website%20or%20web%20application%20and%20would%20like%20to%20discuss%20my%20project.",
       "_blank",
       "noopener,noreferrer"
     );
@@ -49,14 +49,14 @@ I'm interested in ${formData.service} and would like to ${actionText}.
 Phone: ${formData.phone}
 Email: ${formData.email || "Not provided"}`;
 
-    const whatsappUrl = `https://wa.me/2348080548263?text=${encodeURIComponent(
+    const whatsappUrl = `https://wa.me/2349123631219?text=${encodeURIComponent(
       message
     )}`;
     window.open(whatsappUrl, "_blank");
   };
 
   const openWhatsApp = () => {
-    window.open("https://wa.me/2348080548263", "_blank");
+    window.open("https://wa.me/2349123631219", "_blank");
   };
 
   return (
