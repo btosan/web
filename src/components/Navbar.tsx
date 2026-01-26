@@ -62,7 +62,7 @@ const solutions = [
   {
     icon: TrendingUp,
     name: "Visibility, Positioning & Growth",
-    title: "Digital Branding & Marketing",
+    title: "Digital Branding",
     description: "Strategic branding, digital presence, and performance-driven marketing systems that attract the right audience and drive measurable business growth.",
     href: "/services/digital-branding-marketing",
   },
@@ -97,16 +97,16 @@ export default function Navbar() {
               alt=""
               width={100}
               height={100}
-              className="h-8 md:h-9 lg:h-10 w-auto shadow-2xl shadow-white" 
+              className="h-7 md:h-8 lg:h-9 w-auto shadow-2xl shadow-white" 
             />
-            <p className={`${urbanist.className} scale-x-110 py-2 flex items-center gap-0.5 md:gap-1 font-medium md:tracking-wide tracking-wider text-2xl md:text-3xl lg:text-3xl bg-linear-to-r from-white via-purple-100 to-purple-200 bg-clip-text text-transparent transition-colors duration-300`} >
+            <p className={`${urbanist.className} scale-x-110 py-2 flex items-center gap-0.5 md:gap-1 font-medium md:tracking-wide tracking-wider text-2xl bg-linear-to-r from-white via-purple-100 to-purple-200 bg-clip-text text-transparent transition-colors duration-300`} >
               Ofashi
             </p>
           </Link>
         </div>
 
         {/* === DESKTOP MENU === */}
-        <ul className="hidden lg:flex items-center xl:space-x-10 lg:space-x-8 xl:text-lg lg:text-base text-lg font-medium ">
+        <ul className="hidden lg:flex items-center xl:space-x-10 lg:space-x-8 lg:text-base text-lg font-medium ">
           <li className="relative"
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
@@ -180,7 +180,7 @@ export default function Navbar() {
 
         {/* === DESKTOP BUTTONS (unchanged) === */}
         <div className="hidden lg:flex items-center lg:space-x-8 xl:space-x-12 space-x-5">
-          <Link href='/contact' className=" tracking-wider uppercase md:text-lg lg:text-base text-lg lg:px-6 lg:py-2 xl:py-3 xl:px-10 bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700 via-purple-800 to-purple-500 text-white transition-all">
+          <Link href='/contact' className=" tracking-wider uppercase lg:text-base text-lg lg:px-6 lg:py-2 xl:py-3 xl:px-10 bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700 via-purple-800 to-purple-500 text-white transition-all">
             Contact
           </Link>
         </div>
@@ -211,12 +211,12 @@ export default function Navbar() {
                 alt=""
                 width={100}
                 height={100}
-                className="h-8 md:h-10 lg:h-12 w-auto absolute top-6 left-6"
+                className="h-7 md:h-8 lg:h-9 w-auto absolute top-6 left-6"
               />
 
               <div className="flex justify-center w-full">
                 <div className="relative w-48 h-32">
-                  <p className={`${urbanist.className} w-full mt-6 mx-auto flex items-center justify-center gap-2 font-semibold tracking-wider text-xl md:text-2xl lg:text-3xl leading-tight md:tracking-wider bg-linear-to-l from-white via-purple-50 to-purple-100 bg-clip-text text-transparent transition-colors duration-300`}>
+                  <p className={`${urbanist.className} w-full mt-6 mx-auto flex items-center justify-center gap-2 font-semibold tracking-wider text-xl md:text-2xl leading-tight md:tracking-wider bg-linear-to-l from-white via-purple-50 to-purple-100 bg-clip-text text-transparent transition-colors duration-300`}>
                     Ofashi
                   </p>
                 </div>
