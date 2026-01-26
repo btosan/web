@@ -12,8 +12,17 @@ import {
   Cpu,
 } from "lucide-react";
 
+
+type Solution = {
+  icon: LucideIcon;
+  name: string;
+  title: string;
+  description: string;
+  cta: string;
+};
+
 /* ---------------- SOLUTIONS ---------------- */
-const solutions = [
+const solutions: Solution[] = [
   { icon: Globe, name: "High-Performance & Search-Optimized", title: "Professional Websites", description: "Custom-built websites designed for speed, SEO visibility, and seamless user experience — turning your online presence into a powerful business asset.", cta: "Get Started" },
   { icon: Smartphone, name: "Scalable Platforms & Dashboards", title: "Full-Stack Apps", description: "Robust web and mobile applications built with modern technologies — from customer portals to complete business systems.", cta: "Get Started" },
   { icon: Cpu, name: "Smart Features & Intelligence", title: "AI Integration", description: "We embed AI into your products and platforms — chatbots, recommendation systems, data insights, and intelligent user experiences.", cta: "Get Started" },
@@ -163,7 +172,13 @@ export default function ServicesSection() {
 }
 
 /* ---------------- CARD UI UNCHANGED ---------------- */
-function Card({ solution, setOpen }) {
+function Card({
+    solution,
+    setOpen,
+  }: {
+    solution: Solution;
+    setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  }) {
   return (
     <div className="relative h-full lg:hover:bg-purple-950/5 hover:bg-purple-950/10 border lg:border-2 hover:border-purple-300/30 lg:border-white/5 rounded-xs p-8 flex flex-col justify-between hover:cursor-pointer lg:bg-purple-950/80 bg-purple-950/10 border-purple-900/5 transition-all duration-300 shadow-xs shadow-purple-600/30">
       <div className="absolute top-0 lg:top-4 left-6 lg:w-16 lg:h-16 w-12 h-12 md:w-14 md:h-14 bg-purple-950/80 flex items-center justify-center shadow-xl border border-white/10 rounded-full">
