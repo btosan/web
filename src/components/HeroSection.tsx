@@ -56,17 +56,17 @@ export default function HeroSection() {
             text-4xl 
             md:text-6xl 
             lg:text-7xl 
-            xl:text-8xl 
-            font-semibold
+            font-bold
             text-white 
             mb-8
+            
             ">
-              <span className="tracking-widest text-purple-100 font-bold">
+              <span className="tracking-widest text-purple-100 ">
                  AI-Powered
               </span>
             
             <br />
-            <span className="tracking-normal inline-block font-bold  ">
+            <span className="tracking-normal inline-block">
             Digital Solutions
             </span>
         </h1>
