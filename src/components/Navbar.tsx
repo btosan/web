@@ -124,11 +124,11 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.25 }}
-                  className="absolute left-1/2 -translate-x-1/2 top-full mt-6 w-screen max-w-none"
+                  className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-screen max-w-none"
                 >
                   <div className="bg-purple-950/90 border-t border-purple-800/40 backdrop-blur-lg shadow-2xl ">
-                    <div className="max-w-7xl mx-auto py-16 px-8 lg:px-12">
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pl-24">
+                    <div className="max-w-7xl mx-auto py-12 px-8 lg:px-12">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pl-32">
                         {solutions.map((solution, idx) => (
                           <Link
                             key={idx}
@@ -136,10 +136,10 @@ export default function Navbar() {
                             className="group flex flex-col px-8 py-6 rounded-xl border border-purple-900/30 bg-purple-950/30 hover:bg-purple-950/50 hover:border-purple-500/40 transition-all duration-300"
                           >
                             <div className="flex items-center gap-4 mb-4">
-                              <div className="w-12 h-12 rounded-lg bg-purple-900/60 flex items-center justify-center text-purple-200 group-hover:text-purple-100 transition-colors">
+                              <div className="w-9 h-9 rounded-lg bg-purple-900/60 flex items-center justify-center text-purple-200 group-hover:text-purple-100 transition-colors">
                                 {React.createElement(solution.icon, { size: 24 })}
                               </div>
-                              <h3 className="text-xl font-semibold text-white group-hover:text-purple-200 transition-colors">
+                              <h3 className="text-lg font-semibold text-white group-hover:text-purple-200 transition-colors">
                                 {solution.title}
                               </h3>
                             </div>
