@@ -82,7 +82,7 @@ const ProjectCard = ({ project, index, onUserInteract }: { project: Project; ind
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1 px-5 py-2.5 md:py-3 text-base text-white bg-linear-to-bl from-purple-900 via-purple-600 to-indigo-700 hover:border-0 transition-all duration-300"
+            className="inline-flex items-center justify-center gap-1 px-5 py-2.5 md:py-3 text-sm text-white bg-linear-to-bl from-purple-900 via-purple-600 to-indigo-700 hover:border-0 transition-all duration-300"
           >
             <ExternalLink size={18} />
             View Site
@@ -92,7 +92,7 @@ const ProjectCard = ({ project, index, onUserInteract }: { project: Project; ind
             href={project.detailUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-1 px-5 py-2.5 md:py-3 text-base text-white/90 border border-gray-700 hover:border-purple-50/60 transition group/link"
+            className="inline-flex items-center justify-center gap-1 px-4 py-2.5 md:py-3 text-sm text-white/90 border border-gray-700 hover:border-purple-50/60 transition group/link"
           >
             Project Details
             <ArrowRight size={18} className="transition-transform group-hover/link:translate-x-1" />

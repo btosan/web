@@ -11,7 +11,7 @@ export default function BannerSection() {
   ];
 
   return (
-    <section className="relative bg-linear-to-b from-black via-gray-950 to-black py-16 md:py-20 lg:border-t-2 lg:border-b-4 border-b border-gray-700/80">
+    <section className="relative bg-linear-to-b from-black via-gray-950 to-black py-16 md:py-20 lg:py-24 lg:border-t-2 lg:border-b-4 border-b border-gray-700/80">
       <div className="mx-auto max-w-7xl px-4 md:px-10 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
