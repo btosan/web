@@ -76,19 +76,16 @@ export default function HeroSection() {
             text-base 
             md:text-lg
             lg:text-xl
-            xl:text-2xl 
             text-white/90
             hover:text-[#F0F8FF] 
             mx-auto 
             mb-12 
             leading-relaxed 
             lg:mx-0 
-
             lg:max-w-2xl
-            xl:max-w-3xl
             xl:w-[80%]
           ">
-            We build high-performance websites and custom apps with exceptional UI/UX, AI integration, and automation for measurable business impact.
+            We design high-performance websites and custom applications powered by AI, automation, and exceptional UI/UX — built to drive measurable growth.
           
           </p>
 
@@ -115,8 +112,7 @@ export default function HeroSection() {
               text-white 
               hover:text-[#e0f4fa]
               text-lg 
-              md:text-xl 
-              xl:text-2xl 
+              md:text-xl  
               font-semibold 
 
               md:bg-linear-to-r bg-linear-to-br
