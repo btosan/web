@@ -127,7 +127,7 @@ export default function Navbar() {
                   className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-screen max-w-none"
                 >
                   <div className="bg-purple-950/90 border-t border-purple-800/40 backdrop-blur-lg shadow-2xl ">
-                    <div className="max-w-7xl mx-auto py-12 px-8 lg:px-12">
+                    <div className="max-w-6xl mx-auto py-12 px-8 lg:px-12">
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pl-32">
                         {solutions.map((solution, idx) => (
                           <Link
