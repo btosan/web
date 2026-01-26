@@ -27,9 +27,9 @@ const solutions = [
   {
     icon: Globe,
     name: "High-Performance & Search-Optimized",
-    title: "Professional Websites",
+    title: "Custom Websites",
     description: "Custom-built websites designed for speed, SEO visibility, and seamless user experience — turning your online presence into a powerful business asset.",
-    href: "/services/professional-websites",
+    href: "/services/websites",
   },
   {
     icon: Smartphone,
@@ -69,8 +69,8 @@ const solutions = [
 ];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);                // mobile menu
-  const [servicesOpen, setServicesOpen] = useState(false); // desktop hover + mobile accordion
+  const [open, setOpen] = useState(false);                
+  const [servicesOpen, setServicesOpen] = useState(false); 
   const router = useRouter();
 
   const handleExploreNow = () => {
@@ -111,7 +111,7 @@ export default function Navbar() {
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
           >
-            <div className="flex items-center justify-center  gap-1 hover:text-purple-200 transition tracking-wider hover:underline hover:underline-offset-12 decoration-2 decoration-purple-300 cursor-pointer">
+            <div className="flex items-center justify-center gap-1 hover:text-purple-200 transition tracking-wider hover:underline hover:underline-offset-12 decoration-2 decoration-purple-300 cursor-pointer">
               SERVICES
               <ChevronDown className={`w-6 h-6 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
             </div>
@@ -124,11 +124,11 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.25 }}
-                  className="absolute left-32 -translate-x-1/2 top-full mt-6 w-screen max-w-none"
+                  className="absolute left-1/2 -translate-x-1/2 top-full mt-6 w-screen max-w-none"
                 >
-                  <div className="bg-purple-950/90 border-t border-purple-800/40 backdrop-blur-lg shadow-2xl">
+                  <div className="bg-purple-950/90 border-t border-purple-800/40 backdrop-blur-lg shadow-2xl ">
                     <div className="max-w-7xl mx-auto py-16 px-8 lg:px-12">
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 xl:gap-12">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pl-24">
                         {solutions.map((solution, idx) => (
                           <Link
                             key={idx}
