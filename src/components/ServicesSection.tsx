@@ -112,7 +112,7 @@ export default function ServicesSection() {
             style={{ opacity: imageOpacity }}
             className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6"
           >
-            <h2 className="text-5xl lg:text-8xl font-bold text-purple-100 mb-4">Services & Solutions</h2>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-purple-100 mb-4">Services & Solutions</h2>
             <p className="text-gray-300 max-w-3xl text-lg lg:text-3xl">
               We help businesses create inspiring AI & digital solutions.
             </p>
