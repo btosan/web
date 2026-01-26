@@ -10,6 +10,7 @@ import {
   Smartphone,
   Sparkles,
   Cpu,
+  LucideIcon
 } from "lucide-react";
 
 
