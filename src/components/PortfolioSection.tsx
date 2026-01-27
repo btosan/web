@@ -94,7 +94,7 @@ const ProjectCard = ({ project, index, onUserInteract }: { project: Project; ind
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-1 px-4 py-2.5 md:py-3 text-sm text-white/90 border border-gray-700 hover:border-purple-50/60 transition group/link"
           >
-            Project Details
+            Details
             <ArrowRight size={18} className="transition-transform group-hover/link:translate-x-1" />
           </a>
         </div>

@@ -62,7 +62,7 @@ const solutions = [
   {
     icon: TrendingUp,
     name: "Visibility, Positioning & Growth",
-    title: "Digital Branding",
+    title: "Digital Strategy",
     description: "Strategic branding, digital presence, and performance-driven marketing systems that attract the right audience and drive measurable business growth.",
     href: "/services/digital-branding-marketing",
   },

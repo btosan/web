@@ -29,7 +29,7 @@ const solutions: Solution[] = [
   { icon: Cpu, name: "Smart Features & Intelligence", title: "AI Integration", description: "We embed AI into your products and platforms — chatbots, recommendation systems, data insights, and intelligent user experiences.", cta: "Get Started" },
   { icon: Sparkles, name: "Systems That Work Automatically", title: "AI Automation", description: "Automate lead management, customer communication, data processing, and internal workflows with intelligent, time-saving systems.", cta: "Get Started" },
   { icon: ShieldCheck, name: "Intuitive, Conversion-Focused Experiences", title: "UI/UX Design", description: "Exceptional interface and user experience design that improves usability, builds trust, and turns visitors into engaged customers.", cta: "Get Started" },
-  { icon: TrendingUp, name: "Visibility, Positioning & Growth", title: "Digital Branding & Marketing", description: "Strategic branding, digital presence, and performance-driven marketing systems that attract the right audience and drive measurable business growth.", cta: "Get Started" },
+  { icon: TrendingUp, name: "Visibility, Positioning & Growth", title: "Digital Strategy", description: "Strategic branding, digital presence, and performance-driven marketing systems that attract the right audience and drive measurable business growth.", cta: "Get Started" },
 ];
 
 export default function ServicesSection() {
@@ -179,7 +179,7 @@ function Card({
       </div>
 
       <div className="pt-16">
-        <span className="text-purple-50/90 uppercase text-xs tracking-widest font-medium">{solution.name}</span>
+        <span className="text-purple-50/90 text-xs uppercase">{solution.name}</span>
         <h3 className="text-xl lg:text-2xl font-semibold text-purple-100 mt-3 mb-4">{solution.title}</h3>
         <p className="text-gray-200 text-sm md:text-base leading-relaxed w-[80%] md:w-full">{solution.description}</p>
       </div>
