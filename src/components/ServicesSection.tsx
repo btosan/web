@@ -173,15 +173,15 @@ function Card({
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   }) {
   return (
-    <div className="relative h-full pb-10 md:hover:bg-purple-950/10 hover:bg-purple-950 border hover:border-purple-300/30 md:border-purple-900 rounded-xs p-8 flex flex-col justify-between hover:cursor-pointer md:bg-purple-950 bg-purple-950/50 border-purple-900/50 transition-all duration-300 shadow-lg shadow-purple-900">
+    <div className="relative h-full pb-10 md:hover:bg-purple-950/10 hover:bg-purple-950 border hover:border-purple-300/30 md:border-purple-900 rounded-xs p-8 flex flex-col justify-between hover:cursor-pointer md:bg-purple-950 bg-purple-950/50 border-purple-900/50 transition-all duration-300 lg:shadow-lg shadow-sm shadow-purple-900">
       <div className="absolute top-6 lg:top-8 left-6 lg:w-16 lg:h-16 w-12 h-12 md:w-14 md:h-14 bg-purple-950/80 flex items-center justify-center shadow-xl border border-white/10 rounded-full">
         {React.createElement(solution.icon, { className: "lg:w-12 lg:h-12 md:w-10 md:h-10 w-9 h-9 text-purple-100" })}
       </div>
 
       <div className="pt-16">
         <span className="text-purple-50/90 text-xs uppercase">{solution.name}</span>
-        <h3 className="text-xl lg:text-2xl font-semibold text-purple-100 mt-3 mb-4">{solution.title}</h3>
-        <p className="text-gray-200 text-sm md:text-base leading-relaxed w-[80%] md:w-full">{solution.description}</p>
+        <h3 className="text-xl lg:text-2xl font-semibold text-purple-100 mt-3 mb-4 uppercase">{solution.title}</h3>
+        <p className="text-gray-200 text-sm md:text-base leading-relaxed w-[90%] md:w-full">{solution.description}</p>
       </div>
 
       <button

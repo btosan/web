@@ -251,7 +251,7 @@ export default function WhyChooseUsSection() {
       <style jsx>{`
         :global(.swiper-pagination) {
           position: relative;
-          margin-top: 18px;
+          margin-top: 28px;
           margin-bottom: 24px;
           text-align: center;
         }

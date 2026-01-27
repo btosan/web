@@ -63,9 +63,10 @@ const ProjectCard = ({ project, index, onUserInteract }: { project: Project; ind
           {project.shortDescription}
         </p>
 
-        <span className={`flex items-center justify-end ${isActive ? "opacity-0 -mt-5" : "opacity-100"} md:hidden animate-bounce text-purple-500`}>
+        <hr className={`${isActive ? "opacity-0 -mt-5" : "opacity-100"} animate-bounce text-purple-500 border-t border-purple-300/50 md:hidden pb-4`}/>
+        {/* <span className={`flex items-center justify-center ${isActive ? "opacity-0 -mt-5" : "opacity-100"} md:hidden animate-bounce text-purple-500`}>
           <ChevronDown className="w-4 h-4" />
-        </span>
+        </span> */}
 
         <p
           className={`absolute left-0 md:left-4 right-0 md:right-4 text-gray-400 text-sm lg:text-sm leading-relaxed transition-opacity duration-500 ${isActive ? "opacity-100" : "opacity-0"} pointer-events-none`}
@@ -225,8 +226,8 @@ export default function PortfolioSection() {
         </div>
       </div>
 
-      <div className="w-full mx-auto flex items-center justify-center pt-8 md:pt-10">
-        <Link href='/projects' className="hover:underline hover:underline-offset-8 hover:text-purple-300">
+      <div className="w-full mx-auto flex items-center justify-center pt-4 md:pt-8">
+        <Link href='/projects' className="uppercase hover:underline hover:underline-offset-8 hover:text-purple-300">
           See all projects
         </Link>
       </div>
