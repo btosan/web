@@ -249,14 +249,14 @@ export default function Navbar() {
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="overflow-hidden mt-4 space-y-5 text-center text-base text-purple-100 "
+                      className="overflow-hidden mt-4 space-y-2  text-center text-base text-purple-100 "
                     >
                       {solutions.map((solution, idx) => (
-                        <li key={idx}>
+                        <li key={idx} className="py-2">
                           <Link
                             href={solution.href}
                             onClick={handleCloseMenu}
-                            className="hover:text-purple-200 transition block "
+                            className="hover:text-purple-200 divide-y divide-purple-300 underline underline-offset-8 decoration-purple-300  transition  "
                           >
                             {solution.title}
                           </Link>
