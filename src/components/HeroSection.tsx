@@ -85,7 +85,7 @@ export default function HeroSection() {
             lg:max-w-2xl
             xl:w-[80%]
           ">
-            We design high-performance websites and custom applications powered by AI, automation, and exceptional UI/UX — built to drive measurable growth.
+            We design high-performance websites and custom applications that integrate AI and intelligent automation with exceptional UI/UX, engineered to drive measurable growth.
           
           </p>
 
