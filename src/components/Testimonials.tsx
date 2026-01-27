@@ -166,11 +166,11 @@ const testimonials = [
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-center mt-6 md:mt-16"
+          className="text-center mt-6 md:mt-0"
         >
           <button
             onClick={() => setOpen(true)}
-            className="inline-flex items-center justify-center md:px-10 px-8 md:py-4 py-3 bg-linear-to-r from-blue-100 via-purple-100 to-purple-200 text-black hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-600 transition-all duration-300 hover:cursor-pointer hover:text-white md:text-xl text-lg font-bold rounded-full shadow-2xl"
+            className="inline-flex items-center justify-center md:px-10 px-8 md:py-4 py-3 bg-linear-to-r hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black from-indigo-800 via-purple-900 to-purple-600 transition-all duration-300 hover:cursor-pointer text-white md:text-xl text-lg font-bold rounded-xs shadow-2xl"
           >
             Be Our Next Success Story
           </button>

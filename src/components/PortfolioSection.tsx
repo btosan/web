@@ -73,11 +73,11 @@ const ProjectCard = ({ project, index, onUserInteract }: { project: Project; ind
           {project.fullDescription}
         </p>
 
-        <p className={`text-xs md:text-sm text-blue-100 mb-8 ${isActive ? "mt-32 pt-4" : "mt-0"}`}>
+        <p className={`text-xs md:text-sm text-blue-100 tracking-wider font-medium mb-8 ${isActive ? "mt-24 pt-4" : "mt-0"}`}>
           {project.tech}
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex flex-row items-center justify-between md:gap-4 gap-2">
           <a
             href={project.liveUrl}
             target="_blank"
@@ -188,7 +188,7 @@ export default function PortfolioSection() {
           viewport={{ once: true }}
           className="text-center mb-16 max-w-3xl mx-auto"
         >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-purple-100 mb-6 leading-tight">
             Featured Projects
           </h2>
           <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
@@ -218,7 +218,7 @@ export default function PortfolioSection() {
         </div>
 
         {/* DESKTOP GRID */}
-        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16">
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16 xl:gap-20">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
           ))}

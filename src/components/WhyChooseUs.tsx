@@ -125,10 +125,16 @@ export default function WhyChooseUsSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
-                  className="relative flex flex-col items-center justify-center p-6 rounded-2xl bg-gray-950/50 border border-gray-800 h-96 md:h-full"
+                  className="group relative flex flex-col justify-center p-8 rounded-3xl 
+                    bg-linear-to-b from-purple-200/30 to-purple-200/10 
+                    backdrop-blur-xl border border-purple-100/10
+                    shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_20px_60px_-20px_rgba(168,85,247,0.35)]
+                    hover:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_30px_80px_-20px_rgba(168,85,247,0.55)]
+                    transition-all duration-500 h-96 md:h-full overflow-hidden"
+
                 >
-                  <div className="mb-4 absolute left-4 top-4 ">{reason.icon}</div>
-                  <h3 className="text-xl text-start font-semibold text-gray-100 mb-3">
+                  <div className=" absolute left-6 top-6 ">{reason.icon}</div>
+                  <h3 className="text-lg text-start font-semibold text-gray-100 mb-3">
                     {reason.title}
                   </h3>
                   <p className="text-gray-400 text-start leading-relaxed">
@@ -149,10 +155,16 @@ export default function WhyChooseUsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              className="flex flex-col items-center text-center p-6 rounded-2xl bg-gray-950/50 border border-gray-800 hover:border-purple-50/30 transition"
+              className="group relative flex flex-col items-center text-center p-8 rounded-sm 
+              bg-linear-to-b from-purple-200/30 to-purple-200/10
+              backdrop-blur-xl border border-purple-100/10
+              shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_20px_60px_-20px_rgba(168,85,247,0.35)]
+              hover:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_30px_80px_-20px_rgba(168,85,247,0.55)]
+              hover:-translate-y-1 transition-all duration-500"
+
             >
               <div className="mb-4">{reason.icon}</div>
-              <h3 className="text-xl md:text-2xl font-semibold text-gray-100 mb-3">
+              <h3 className="text-xl font-semibold text-gray-100 mb-3">
                 {reason.title}
               </h3>
               <p className="text-gray-400 leading-relaxed">
@@ -172,7 +184,7 @@ export default function WhyChooseUsSection() {
         >
           <button
             onClick={() => setOpen(true)}
-            className="inline-flex items-center justify-center lg:px-12 md:px-10 px-8 lg:py-5 md:py-4 py-3 bg-linear-to-r from-blue-100 via-purple-100 to-purple-200 text-black hover:bg-linear-to-r hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-600 transition-all duration-300 hover:text-white lg:text-2xl md:text-xl text-lg font-bold rounded-full shadow-2xl cursor-pointer"
+            className="inline-flex items-center justify-center lg:px-12 md:px-10 px-8 lg:py-5 md:py-4 py-3 bg-linear-to-r hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black hover:bg-linear-to-r from-indigo-800 via-purple-800 to-purple-600 transition-all duration-300 text-white lg:text-2xl md:text-xl text-lg font-bold rounded-xs shadow-2xl cursor-pointer"
           >
             Start Your Project Today
           </button>

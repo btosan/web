@@ -135,35 +135,27 @@ export default function ServicesSection() {
           </div>
         )}
 
-        {/* ROW 1 */}
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-12 lg:gap-8 xl:gap-12 gap-12">
-          {solutions.slice(0, 3).map((s, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <Card solution={s} setOpen={setOpen} />
-            </motion.div>
-          ))}
-        </div>
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-12 lg:gap-8 xl:gap-16 gap-12">
+        {solutions.map((s, i) => {
+          const isSecondRow = i >= 3; // cards 4–6
 
-        {/* ROW 2 */}
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-12 lg:gap-8 xl:gap-12 gap-12">
-          {solutions.slice(3).map((s, i) => (
+          return (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
+              transition={{
+                delay: isSecondRow ? 0.2 + (i - 3) * 0.1 : i * 0.1,
+                duration: 0.6,
+              }}
               viewport={{ once: true }}
             >
               <Card solution={s} setOpen={setOpen} />
             </motion.div>
-          ))}
-        </div>
+          );
+        })}
+      </div>
+
       </div>
 
       {/* Modal placeholder */}
@@ -181,15 +173,15 @@ function Card({
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   }) {
   return (
-    <div className="relative h-full md:hover:bg-purple-950/5 hover:bg-purple-950/10 border md:border-2 hover:border-purple-300/30 md:border-white/5 rounded-xs p-8 flex flex-col justify-between hover:cursor-pointer md:bg-purple-950/80 bg-purple-950/10 border-purple-900/5 transition-all duration-300 shadow-xs shadow-purple-600/30">
-      <div className="absolute top-0 lg:top-4 left-6 lg:w-16 lg:h-16 w-12 h-12 md:w-14 md:h-14 bg-purple-950/80 flex items-center justify-center shadow-xl border border-white/10 rounded-full">
+    <div className="relative h-full pb-10 md:hover:bg-purple-950/10 hover:bg-purple-950 border hover:border-purple-300/30 md:border-purple-900 rounded-xs p-8 flex flex-col justify-between hover:cursor-pointer md:bg-purple-950 bg-purple-950/50 border-purple-900/50 transition-all duration-300 shadow-lg shadow-purple-900">
+      <div className="absolute top-6 lg:top-8 left-6 lg:w-16 lg:h-16 w-12 h-12 md:w-14 md:h-14 bg-purple-950/80 flex items-center justify-center shadow-xl border border-white/10 rounded-full">
         {React.createElement(solution.icon, { className: "lg:w-12 lg:h-12 md:w-10 md:h-10 w-9 h-9 text-purple-100" })}
       </div>
 
-      <div className="pt-10">
+      <div className="pt-16">
         <span className="text-purple-50/90 uppercase text-xs tracking-widest font-medium">{solution.name}</span>
         <h3 className="text-xl lg:text-2xl font-semibold text-purple-100 mt-3 mb-4">{solution.title}</h3>
-        <p className="text-gray-200 text-sm md:text-base leading-relaxed">{solution.description}</p>
+        <p className="text-gray-200 text-sm md:text-base leading-relaxed w-[80%] md:w-full">{solution.description}</p>
       </div>
 
       <button

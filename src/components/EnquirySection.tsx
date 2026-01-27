@@ -29,7 +29,7 @@ export default function EnquirySection() {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-5xl font-bold mb-6 text-purple-100"
         >
-          Ready to Launch Your Custom Web App?
+          Ready to Launch Your Custom App?
         </motion.h2>
 
         <motion.p
@@ -49,11 +49,11 @@ export default function EnquirySection() {
             onClick={() => setOpen(true)}
             className="
               bg-linear-to-r
-              from-purple-50 via-purple-100 to-indigo-100
-              text-black text-lg md:text-xl font-semibold uppercase
-              rounded-2xl px-10 py-4
-              hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-600
-              hover:text-white transition-all hover:cursor-pointer
+              hover:from-purple-50 hover:via-purple-100 hover:to-indigo-100
+              hover:text-black text-lg md:text-xl font-semibold uppercase
+              rounded-xs px-10 py-4
+              from-indigo-900 via-indigo-700 to-purple-600
+              text-white transition-all hover:cursor-pointer
             "
           >
             Start Your Project

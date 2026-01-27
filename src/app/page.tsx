@@ -1,14 +1,14 @@
 // app/page.tsx
 import type { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
-import WhyWebPresenceSection from "@/components/WhyWebPresence";
+// import WhyWebPresenceSection from "@/components/WhyWebPresence";
 import TestimonialsSection from "@/components/Testimonials";
-import FeaturedPackages from "@/components/FeaturedPackages";
+// import FeaturedPackages from "@/components/FeaturedPackages";
 import PortfolioSection from "@/components/PortfolioSection";
 import WhyChooseUsSection from "@/components/WhyChooseUs";
-import PricingSection from "@/components/PricingSection";
-import DomainHostingNote from "@/components/DomainHostingNote";
-import FinalCTASection from "@/components/FinalCTA";
+// import PricingSection from "@/components/PricingSection";
+// import DomainHostingNote from "@/components/DomainHostingNote";
+// import FinalCTASection from "@/components/FinalCTA";
 // import EnquiryForm from "@/components/Enquiry";
 import BannerSection from "@/components/BannerSection";
 import EnquirySection from "@/components/EnquirySection";
@@ -43,7 +43,7 @@ export default function page() {
       <TestimonialsSection />
       {/* <FeaturedPackages />
       <PricingSection /> */}
-      <WhyWebPresenceSection /> 
+      {/* <WhyWebPresenceSection />  */}
       {/* <FinalCTASection />  */}
       {/* <DomainHostingNote />                          */}
       <EnquirySection />                   

@@ -12,9 +12,9 @@ export default function FinalCTASection() {
           transition={{ duration: 1 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl xl:text-6xl font-semibold text-purple-50 mb-8">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-50 mb-8">
             Ready to Launch Your<br />
-            <span className="text-purple-100">Custom Web App?</span>
+            <span className="text-purple-100">Custom App?</span>
           </h2>
 
           <p className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto">
