@@ -83,9 +83,9 @@ export default function HeroSection() {
             lg:mx-0 
             lg:max-w-2xl
             xl:w-[65%]
-            2xl:w-[55%]
+
           ">
-           We design high-performance websites and custom apps that integrate AI and intelligent automation with great UI/UX to drive measurable growth.
+           We design high-performance websites and custom applications that integrate AI and intelligent automation with great UI/UX to drive measurable growth.
           </p>
 
           {/* Primary CTA Button — Now opens the modal */}
