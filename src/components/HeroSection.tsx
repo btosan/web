@@ -78,11 +78,11 @@ export default function HeroSection() {
             text-white/90
             hover:text-[#F0F8FF] 
             mx-auto 
-            mb-12 
+            mb-10
             leading-relaxed 
             lg:mx-0 
             lg:max-w-2xl
-            xl:w-[80%]
+            xl:w-[85%]
           ">
             We design high-performance websites and custom applications that integrate AI and intelligent automation with exceptional UI/UX, engineered to drive measurable growth.
           
@@ -99,7 +99,7 @@ export default function HeroSection() {
               py-5 
               lg:px-12 
               xl:px-14
-              lg:py-5
+              lg:py-4
               border-2
               lg:border-4
               border-white/80 
