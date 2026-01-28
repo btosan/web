@@ -75,7 +75,6 @@ export default function HeroSection() {
           <p className="
             text-base 
             md:text-lg
-            lg:text-xl
             text-white/90
             hover:text-[#F0F8FF] 
             mx-auto 
