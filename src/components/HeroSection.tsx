@@ -82,7 +82,7 @@ export default function HeroSection() {
             leading-relaxed 
             lg:mx-0 
             lg:max-w-2xl
-            xl:w-[75%]
+            xl:w-[70%]
           ">
            We design high-performance websites and custom apps that integrate AI and intelligent automation with great UI/UX to drive measurable growth.
           </p>
