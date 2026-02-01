@@ -69,7 +69,7 @@ Email: ${formData.email || "Not provided"}`;
         <div className="space-y-10">
           <div className="text-center lg:text-left">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-purple-100">
-              Contact BT WebTech
+              Contact Ofashi
             </h2>
             <p className="text-gray-400 text-lg">
               Talk to us about custom websites, web apps, and AI automation.
@@ -82,12 +82,32 @@ Email: ${formData.email || "Not provided"}`;
             <div className="flex items-start gap-4">
               <MapPin className="w-6 h-6 text-purple-100 mt-1 shrink-0" />
               <div>
-                <h3 className="font-semibold text-xl mb-2">Our Office</h3>
-                <p className="text-gray-300 leading-relaxed">
-                  1, Oyeolorun Street,<br /> Elesekan Bus Stop, <br /> Bogije, Ibeju-Lekki,<br />
-                  Lagos, Nigeria<br /> <br />
-                  Serving clients nationwide & remotely
+                <h3 className="font-semibold text-xl mb-2">Our Offices</h3>
+                <p className="text-gray-300 leading-relaxed space-y-6">
+                  <span className="block">
+                    1, Oyeolorun Street,<br />
+                    Elesekan Bus Stop,<br />
+                    Bogije, Ibeju-Lekki,<br />
+                    Lagos, Nigeria
+                  </span>
+
+                  <span className="block">
+                    1, Animashaun Street,<br />
+                    Cele Bus Stop,<br />
+                    Epe, Lagos, Nigeria
+                  </span>
+
+                  <span className="block">
+                    Shop 18 & 19, Uwaka Plaza,<br />
+                    Near Umuseti Townhall,<br />
+                    Kwale, Delta State, Nigeria
+                  </span>
+
+                  <span className="block pt-2">
+                    Serving clients nationwide & remotely
+                  </span>
                 </p>
+
               </div>
             </div>
 
@@ -98,10 +118,10 @@ Email: ${formData.email || "Not provided"}`;
                 <h3 className="font-semibold text-xl mb-2">Call Us</h3>
                 <p className="text-gray-300">
                   <a
-                    href="tel:+2349123631219"
+                    href="tel:+2348038168949"
                     className="text-purple-50 hover:underline"
                   >
-                    +234 912 363 1219
+                    +234 803 816 8949
                   </a>
                 </p>
               </div>
@@ -128,10 +148,10 @@ Email: ${formData.email || "Not provided"}`;
               <div>
                 <h3 className="font-semibold text-xl mb-2">Email Us</h3>
                 <a
-                  href="mailto:webtech.bt@gmail.com"
+                  href="mailto:ofashi.com@gmail.com"
                   className="text-purple-50 hover:underline text-lg"
                 >
-                  webtech.bt@gmail.com
+                  ofashi.com@gmail.com
                 </a>
               </div>
             </div>
@@ -150,7 +170,7 @@ Email: ${formData.email || "Not provided"}`;
         {/* Right: Both Forms */}
         <div className="space-y-12">
           {/* WhatsApp Quick Form */}
-          <div className="bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-800">
+          <div className="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700">
             <h3 className="text-3xl font-bold text-center mb-8 text-purple-100">
               Request a Quote or Consultation
             </h3>

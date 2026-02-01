@@ -241,7 +241,7 @@ export default function Navbar() {
                   SERVICES
                   <ChevronDown className={`w-5 h-5 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
                 </button>
-
+{/* font */}
                 <AnimatePresence>
                   {servicesOpen && (
                     <motion.ul

@@ -4,7 +4,7 @@ import HeroSection from "@/components/HeroSection";
 // import WhyWebPresenceSection from "@/components/WhyWebPresence";
 import TestimonialsSection from "@/components/Testimonials";
 // import FeaturedPackages from "@/components/FeaturedPackages";
-import PortfolioSection from "@/components/PortfolioSection";
+// import PortfolioSection from "@/components/PortfolioSection";
 import WhyChooseUsSection from "@/components/WhyChooseUs";
 // import PricingSection from "@/components/PricingSection";
 // import DomainHostingNote from "@/components/DomainHostingNote";
@@ -14,6 +14,7 @@ import BannerSection from "@/components/BannerSection";
 import EnquirySection from "@/components/EnquirySection";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
+import ProjectsSection from "@/components/projects/ProjectsSection";
 
 export const metadata: Metadata = {
   title:
@@ -37,7 +38,8 @@ export default function page() {
       <HeroSection />  
       <BannerSection />
       <ServicesSection />
-      <PortfolioSection />
+      <ProjectsSection />
+      {/* <PortfolioSection /> */}
       <AboutSection />
       <WhyChooseUsSection /> 
       <TestimonialsSection />

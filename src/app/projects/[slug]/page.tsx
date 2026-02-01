@@ -205,10 +205,10 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center py-10 md:py-20 px-4 md:px-10 gap-12 md:gap-16">
           {/* Image */}
           <div className="flex-1 flex flex-col items-center justify-center lg:-mt-12">
-            <h1 className="text-2xl md:text-3xl lg:text-4xl uppercase font-bold text-black mb-6 text-center">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl uppercase font-bold text-black mb-6 pt-6 text-center">
               {project.name}
             </h1>
-            <div className="relative w-[340px] h-[200px] md:w-[480px] md:h-[300px] lg:w-[560px] lg:h-[360px] rounded-2xl overflow-hidden shadow-xl bg-white border border-gray-200">
+            <div className="relative w-85 h-50 md:w-120 md:h-75 lg:w-140 lg:h-90 rounded-2xl overflow-hidden shadow-xl bg-white border border-gray-200">
               <Image
                 src={project.image}
                 alt={project.name}
@@ -301,7 +301,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                   key={i}
                   className="flex items-start gap-3 bg-gray-50 rounded-lg border border-gray-200 p-4"
                 >
-                  <span className="inline-block mt-1 h-3 w-3 rounded-full bg-purple-600 flex-shrink-0"></span>
+                  <span className="inline-block mt-1 h-3 w-3 rounded-full bg-purple-600 shrink-0"></span>
                   <span className="text-gray-800 text-base">{feat}</span>
                 </li>
               ))}

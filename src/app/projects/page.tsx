@@ -1,10 +1,6 @@
-// app/projects/page.tsx
-import React from 'react'
-import PortfolioSection from '@/components/PortfolioSection'
-import Image from 'next/image'
-import Link from 'next/link'
+import React from "react";
+import PortfolioSection from "@/components/PortfolioSection";
 
-// Demo project data – replace with real DB/data fetch
 const projects = [
   {
     id: '1',
@@ -52,45 +48,131 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <div className="">
+    <div>
+      {/* 1️⃣ Showcase (visual proof) */}
       <PortfolioSection />
-      {/* Projects Grid Section */}
-      <section className="py-16 bg-gray-50">
+
+      {/* 2️⃣ Agency Process + Capabilities */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-center text-gray-900 mb-12 pt-4 lg:pt-8">
-            Explore Our Projects
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project) => (
+
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6">
+              How We Build High-Impact Digital Products
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              Every project follows a proven framework that blends strategy,
+              design, and engineering to deliver scalable digital solutions.
+            </p>
+          </div>
+
+          {/* 2️⃣ OUR PROCESS */}
+          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-8 mb-24 text-center">
+            {[
+              {
+                step: "01",
+                title: "Strategy",
+                desc: "Research, planning and product direction aligned with business goals.",
+              },
+              {
+                step: "02",
+                title: "Design",
+                desc: "UI/UX crafted for clarity, usability, and high conversion.",
+              },
+              {
+                step: "03",
+                title: "Development",
+                desc: "Modern, scalable code built for speed and performance.",
+              },
+              {
+                step: "04",
+                title: "Launch & Scale",
+                desc: "Deployment, optimization and long-term growth support.",
+              },
+            ].map((item) => (
               <div
-                key={project.id}
-                className="group relative bg-white rounded-xl shadow-xl border border-gray-200/60 overflow-hidden hover:shadow-2xl transition-shadow duration-300"
+                key={item.step}
+                className="p-6 bg-white rounded-xl shadow-sm border border-gray-200/60"
               >
-                <div className="relative w-full aspect-[16/9]">
-                  <Image
-                    src={project.image}
-                    alt={project.name}
-                    fill
-                    className="object-contain group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    priority={project.id === '1' || project.id === '2' || project.id === '3'}
-                  />
+                <div className="text-4xl font-bold text-purple-600 mb-2">
+                  {item.step}
                 </div>
-                <div className="p-6 text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{project.name}</h3>
-                  <p className="text-gray-700 text-base mb-4">{project.description}</p>
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="inline-block px-6 py-3 font-semibold hover:text-white text-black bg-transparent border-2 border-gray-800/70 hover:bg-black hover:border-black transition-all text-lg uppercase tracking-wide"
-                  >
-                    Learn More
-                  </Link>
-                </div>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 text-lg">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* 3️⃣ WHAT WE BUILD */}
+          <div className="text-center mb-14">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              What We Specialize In
+            </h3>
+            <p className="text-gray-600 max-w-xl mx-auto">
+              We design and build digital systems that solve real business
+              problems and scale with growth.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Web Applications",
+                desc: "Dashboards, SaaS platforms, business tools and internal systems.",
+              },
+              {
+                title: "AI Integrations",
+                desc: "Automation, smart features, and AI-powered user experiences.",
+              },
+              {
+                title: "E-Commerce Systems",
+                desc: "Conversion-focused online stores with secure payment flows.",
+              },
+              {
+                title: "Corporate Websites",
+                desc: "High-performance marketing websites built for trust and SEO.",
+              },
+              {
+                title: "Automation Systems",
+                desc: "Workflow automation that saves time and reduces manual tasks.",
+              },
+              {
+                title: "Product Design",
+                desc: "User-centered UI/UX systems built for engagement and clarity.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="p-8 bg-white rounded-xl shadow-sm border border-gray-200/60 text-center hover:shadow-md transition"
+              >
+                <h3 className="text-xl font-bold text-gray-900 mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* 4️⃣ CTA */}
+      <section className="py-20 bg-black text-white text-center">
+        <h3 className="text-3xl md:text-4xl font-bold mb-6">
+          Have an idea you want to build?
+        </h3>
+        <p className="text-gray-400 mb-8 max-w-xl mx-auto">
+          Let’s turn your concept into a powerful digital product.
+        </p>
+        <a
+          href="/contact"
+          className="inline-block px-8 py-4 bg-purple-600 hover:bg-purple-700 rounded-lg font-semibold transition"
+        >
+          Start a Project
+        </a>
+      </section>
     </div>
-  )
+  );
 }

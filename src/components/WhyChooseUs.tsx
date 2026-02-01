@@ -158,8 +158,8 @@ export default function WhyChooseUsSection() {
               className="group relative flex flex-col items-center text-center p-8 rounded-sm 
               bg-linear-to-b from-purple-200/30 to-purple-200/10
               backdrop-blur-xl border border-purple-100/10
-              shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_20px_60px_-20px_rgba(168,85,247,0.35)]
-              hover:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_30px_80px_-20px_rgba(168,85,247,0.55)]
+              shadow-purple-500/20 shadow-sm hover:border-purple-100/30
+              hover:shadow-purple-300/50 hover:shadow-sm
               hover:-translate-y-1 transition-all duration-500"
 
             >
