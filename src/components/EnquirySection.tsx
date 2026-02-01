@@ -48,11 +48,11 @@ export default function EnquirySection() {
             whileTap={{ scale: 0.97 }}
             onClick={() => setOpen(true)}
             className="
-              bg-linear-to-r
+              bg-linear-to-bl
               hover:from-purple-50 hover:via-purple-100 hover:to-indigo-100
               hover:text-black text-lg md:text-xl font-semibold uppercase
               rounded-xs px-10 py-4
-              from-indigo-900 via-indigo-700 to-purple-600
+              from-indigo-900/50 via-indigo-700/50 to-purple-600/50
               text-white transition-all hover:cursor-pointer
             "
           >

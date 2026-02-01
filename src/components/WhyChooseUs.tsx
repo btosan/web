@@ -156,10 +156,10 @@ export default function WhyChooseUsSection() {
               transition={{ delay: index * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
               className="group relative flex flex-col items-center text-center p-8 rounded-sm 
-              bg-linear-to-b from-purple-200/30 to-purple-200/10
-              backdrop-blur-xl border border-purple-100/10
-              shadow-purple-500/20 shadow-sm hover:border-purple-100/30
-              hover:shadow-purple-300/50 hover:shadow-sm
+              bg-linear-to-t from-purple-500/30 via-purple-500/20 to-purple-500/10
+              backdrop-blur-xl border border-purple-100/20
+              shadow-purple-400/60 shadow-sm hover:border-purple-100/30
+              hover:shadow-purple-300/60 hover:shadow-sm
               hover:-translate-y-1 transition-all duration-500"
 
             >
@@ -184,7 +184,7 @@ export default function WhyChooseUsSection() {
         >
           <button
             onClick={() => setOpen(true)}
-            className="inline-flex items-center justify-center lg:px-12 md:px-10 px-8 lg:py-5 md:py-4 py-3 bg-linear-to-r hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black hover:bg-linear-to-r from-indigo-800 via-purple-800 to-purple-600 transition-all duration-300 text-white lg:text-2xl md:text-xl text-lg font-bold rounded-xs shadow-2xl cursor-pointer"
+            className="inline-flex items-center justify-center lg:px-12 md:px-10 px-8 lg:py-5 md:py-4 py-3 bg-linear-to-bl hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black hover:bg-linear-to-r from-indigo-800/50 via-purple-800/50 to-purple-600/50 transition-all duration-300 text-white lg:text-2xl md:text-xl text-lg font-bold rounded-xs shadow-2xl cursor-pointer"
           >
             Start Your Project Today
           </button>

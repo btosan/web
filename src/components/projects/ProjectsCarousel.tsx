@@ -96,22 +96,30 @@ export default function ProjectsCarousel({ projects }: Props) {
     try { outer.setPointerCapture(e.pointerId); } catch {}
   }, [isDraggingRef, setVelocity]);
 
-  const onPointerMove = useCallback((e: React.PointerEvent) => {
-    if (!isDraggingRef.current || activePointerId.current !== e.pointerId) return;
+const onPointerMove = useCallback((e: React.PointerEvent) => {
+  if (!isDraggingRef.current || activePointerId.current !== e.pointerId) return;
 
-    const dx = e.clientX - lastX.current;
-    lastX.current = e.clientX;
+  const dx = e.clientX - lastX.current;
+  lastX.current = e.clientX;
 
-    if (!moved.current && Math.abs(e.clientX - downX.current) > DRAG_THRESHOLD) {
-      moved.current = true;
-    }
+  // Determine if the movement counts as a drag
+  if (!moved.current && Math.abs(e.clientX - downX.current) > DRAG_THRESHOLD) {
+    moved.current = true;
+  }
 
-    let off = getOffset() + dx;
-    if (off <= -baseWidth) off += baseWidth;
-    if (off >= 0) off -= baseWidth;
-    setOffset(off);
-    addVelocity(dx * 20);
-  }, [getOffset, setOffset, addVelocity, baseWidth]);
+  let off = getOffset() + dx;
+  if (off <= -baseWidth) off += baseWidth;
+  if (off >= 0) off -= baseWidth;
+  setOffset(off);
+
+  // Only add velocity if it's a true drag
+  if (moved.current) {
+    // Reduce multiplier on mobile to feel natural
+    const velocityFactor = e.pointerType === "touch" ? 6 : 20;
+    addVelocity(dx * velocityFactor);
+  }
+}, [getOffset, setOffset, addVelocity, baseWidth]);
+
 
   const onPointerUp = useCallback((e: React.PointerEvent) => {
     if (activePointerId.current !== e.pointerId) return;
