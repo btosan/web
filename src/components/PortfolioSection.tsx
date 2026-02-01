@@ -82,7 +82,7 @@ const ProjectCard = ({
 
         <p
           className={`text-xs md:text-sm text-blue-100 tracking-wider font-medium mb-8 ${
-            isActive ? "mt-24 pt-4" : "mt-0"
+            isActive ? "mt-12 pt-3" : "mt-0"
           }`}
         >
           {project.tech}
