@@ -64,7 +64,7 @@ export default function AboutSection() {
 
             <Link
               href="/about"
-              className="inline-flex items-center py-4 px-8 uppercase bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700/50 via-purple-800/50 to-purple-500/50 text-white  transition-colors"
+              className="inline-flex items-center py-4 px-8 uppercase bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700/30 via-purple-800/30 to-purple-500/30 text-white  transition-colors"
             >
               Learn more about us
               <span className="ml-2">→</span>

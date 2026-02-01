@@ -66,7 +66,7 @@ const testimonials = [
 ];
 
   return (
-    <section className="relative bg-black py-20 md:py-28 border-t border-gray-700 lg:border-gray-600 overflow-hidden">
+    <section className="relative bg-black py-20 md:py-28 border-t border-gray-700/40 lg:border-gray-600/40 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative">
         {/* Header */}
         <motion.div
@@ -134,7 +134,7 @@ const testimonials = [
 
                 {/* Client Info */}
                 <div className="flex items-center gap-4">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-purple-100/50">
+                  <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-purple-100/30">
                     <Image
                       src={testimonial.avatar}
                       alt={testimonial.name}
@@ -170,7 +170,7 @@ const testimonials = [
         >
           <button
             onClick={() => setOpen(true)}
-            className="inline-flex items-center justify-center md:px-10 px-8 md:py-4 py-3 bg-linear-to-bl hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black from-indigo-800/50 via-purple-900/50 to-purple-600/50 transition-all duration-300 hover:cursor-pointer text-white md:text-xl text-lg font-bold rounded-xs shadow-2xl"
+            className="inline-flex items-center justify-center md:px-10 px-8 md:py-4 py-3 bg-linear-to-bl hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black from-indigo-800/30 via-purple-900/30 to-purple-600/30 transition-all duration-300 hover:cursor-pointer text-white md:text-xl text-lg font-bold rounded-xs shadow-2xl"
           >
             Be Our Next Success Story
           </button>
