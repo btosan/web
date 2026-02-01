@@ -20,7 +20,7 @@ export default function EnquirySection() {
   return (
     <section
       id="enquiry"
-      className="bg-black text-gray-100 py-20 px-6 md:px-16 lg:px-24 border-t border-gray-700"
+      className="bg-black text-gray-100 py-20 px-6 md:px-16 lg:px-24 border-t border-gray-700/20"
     >
       <div className="max-w-4xl mx-auto text-center">
         <motion.h2
@@ -52,7 +52,7 @@ export default function EnquirySection() {
               hover:from-purple-50 hover:via-purple-100 hover:to-indigo-100
               hover:text-black text-lg md:text-xl font-semibold uppercase
               rounded-xs px-10 py-4
-              from-indigo-900/30 via-indigo-700/30 to-purple-600/30
+              from-indigo-900/20 via-indigo-700/20 to-purple-600/20
               text-white transition-all hover:cursor-pointer
             "
           >
