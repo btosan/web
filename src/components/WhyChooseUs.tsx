@@ -126,8 +126,8 @@ export default function WhyChooseUsSection() {
                   transition={{ duration: 0.6 }}
                   viewport={{ once: true }}
                   className="group relative flex flex-col justify-center p-8 rounded-3xl 
-                    bg-linear-to-b from-purple-200/30 to-purple-200/10 
-                    backdrop-blur-xl border border-purple-100/10
+                    bg-linear-to-b from-gray-800/20 via-gray-800/15 to-gray-800/10 
+                    backdrop-blur-xl border border-gray-700/10
                     shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_20px_60px_-20px_rgba(168,85,247,0.35)]
                     hover:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_30px_80px_-20px_rgba(168,85,247,0.55)]
                     transition-all duration-500 h-96 md:h-full overflow-hidden"
@@ -156,7 +156,7 @@ export default function WhyChooseUsSection() {
               transition={{ delay: index * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
               className="group relative flex flex-col items-center text-center p-8 rounded-sm 
-              bg-linear-to-t from-purple-900/10 via-purple-700/10 to-purple-500/5
+              bg-linear-to-t from-gray-800/50 via-gray-800/40 to-gray-800/30
               backdrop-blur-xl border border-purple-100/20
               shadow-purple-400/60 shadow-sm hover:border-purple-100/30
               hover:shadow-purple-300/60 hover:shadow-sm
