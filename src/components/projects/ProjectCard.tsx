@@ -18,7 +18,7 @@ const typeColors: Record<Project["type"], string> = {
 
 export default function ProjectCard({ project }: Props) {
   return (
-    <div className="group h-full flex flex-col rounded-lg overflow-hidden bg-white dark:bg-[#16181d] shadow-sm ring-1 ring-black/5 dark:ring-white/10 transition hover:-translate-y-1 hover:shadow-lg">
+    <div className="group h-full flex flex-col rounded-lg overflow-hidden bg-black shadow-sm ring-1 ring-white/30 transition hover:-translate-y-1 hover:shadow-lg">
 
       {/* Image */}
       <div className="relative h-44 w-full overflow-hidden">
@@ -45,11 +45,11 @@ export default function ProjectCard({ project }: Props) {
       {/* Body */}
       <div className="p-5 flex flex-col gap-3 flex-1">
 
-        <h3 className="text-lg font-semibold text-purple-900 dark:text-slate-100">
+        <h3 className="text-lg font-semibold text-gray-100">
           {project.title}
         </h3>
 
-        <p className="text-sm text-gray-600 dark:text-slate-400 line-clamp-3 flex-1">
+        <p className="text-sm text-slate-100 line-clamp-3 flex-1">
           {project.excerpt}
         </p>
 
@@ -58,7 +58,7 @@ export default function ProjectCard({ project }: Props) {
           <a
             href={project.liveUrl || "#"}
             target="_blank"
-            className="flex-1 text-center text-sm font-medium py-2 rounded-xs bg-gradient-to-br from-indigo-800 via-purple-800 to-purple-600 text-white transition hover:bg-gradient-to-tl"
+            className="flex-1 text-center text-sm font-medium py-2 rounded-xs bg-linear-to-br from-indigo-800 via-purple-800 to-purple-600 text-white transition hover:bg-gradient-to-tl"
             onPointerDown={(e) => e.stopPropagation()} // <<< allow clicks on links
           >
             Live Demo
@@ -66,7 +66,7 @@ export default function ProjectCard({ project }: Props) {
 
           <Link
             href={`/projects/${project.slug}`}
-            className="flex-1 text-center text-sm text-black font-medium py-2 rounded-xs border border-purple-300 dark:border-white/20 hover:bg-purple-100 dark:hover:bg-white/5 transition"
+            className="flex-1 text-center text-sm text-gray-100 font-medium py-2 rounded-xs border border-purple-300/30 hover:border-white/5 hover:bg-purple-100 dark:hover:bg-white/5 hover:text-black transition"
             onPointerDown={(e) => e.stopPropagation()} // <<< allow clicks on links
           >
             Details
