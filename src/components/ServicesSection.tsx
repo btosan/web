@@ -77,7 +77,7 @@ export default function ServicesSection() {
   };
 
   return (
-    <section ref={sectionRef} className="relative bg-purple-950/40 text-gray-100">
+    <section ref={sectionRef} className="relative bg-black text-gray-100">
 
       {/* ================= DESKTOP HERO (STICKY) ================= */}
       {isDesktop && (
