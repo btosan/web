@@ -52,7 +52,7 @@ export default function EnquirySection() {
               hover:from-purple-50 hover:via-purple-100 hover:to-indigo-100
               hover:text-black text-lg md:text-xl font-semibold uppercase
               rounded-xs px-10 py-4
-              from-indigo-900/20 via-indigo-700/20 to-purple-600/20
+              from-indigo-900/10 via-indigo-700/10 to-purple-600/10
               text-white transition-all hover:cursor-pointer
             "
           >

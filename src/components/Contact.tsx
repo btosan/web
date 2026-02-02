@@ -77,7 +77,7 @@ Email: ${formData.email || "Not provided"}`;
             </p>
           </div>
 
-          <div className="space-y-8 bg-gray-900 p-8 rounded-2xl border border-gray-800">
+          <div className="space-y-8 bg-gray-900 p-8 rounded-2xl border border-gray-900">
             {/* Address */}
             <div className="flex items-start gap-4">
               <MapPin className="w-6 h-6 text-purple-100 mt-1 shrink-0" />
@@ -159,7 +159,7 @@ Email: ${formData.email || "Not provided"}`;
             {/* WhatsApp */}
             <button
               onClick={openWhatsApp}
-              className="w-fit bg-green-600 hover:bg-green-700 text-white font-bold py-5 px-8 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg"
+              className="w-fit bg-green-600/50 hover:bg-green-700 text-white font-bold py-5 px-8 rounded-2xl flex items-center justify-center gap-3 transition-all shadow-lg"
             >
               <MessageCircle className="w-7 h-7" />
               Chat on WhatsApp
@@ -170,8 +170,8 @@ Email: ${formData.email || "Not provided"}`;
         {/* Right: Both Forms */}
         <div className="space-y-12">
           {/* WhatsApp Quick Form */}
-          <div className="bg-gray-800 p-8 rounded-2xl shadow-xl border border-gray-700">
-            <h3 className="text-3xl font-bold text-center mb-8 text-purple-100">
+          <div className="bg-purple-950/50 p-8 rounded-2xl shadow-xl border border-purple-900/50">
+            <h3 className="md:text-3xl text-2xl font-bold text-center md:mb-8 mb-6 text-purple-100">
               Request a Quote or Consultation
             </h3>
 
@@ -197,7 +197,7 @@ Email: ${formData.email || "Not provided"}`;
           </div>
 
           {/* Google Enquiry Form */}
-          <div className="bg-gray-900 p-8 rounded-2xl shadow-xl border border-gray-800">
+          <div className="bg-gray-950 p-8 rounded-2xl shadow-xl border border-gray-800">
             <GoogleEnquiryForm />
           </div>
         </div>
