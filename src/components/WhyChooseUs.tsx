@@ -127,7 +127,7 @@ export default function WhyChooseUsSection() {
                   viewport={{ once: true }}
                   className="group relative flex flex-col justify-center p-8 rounded-3xl 
                     bg-linear-to-b from-gray-800/20 via-gray-800/15 to-gray-800/10 
-                    backdrop-blur-xl border border-gray-700/10
+                    backdrop-blur-xl border border-gray-700/30
                     shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_20px_60px_-20px_rgba(168,85,247,0.35)]
                     hover:shadow-[0_0_0_1px_rgba(255,255,255,0.08),0_30px_80px_-20px_rgba(168,85,247,0.55)]
                     transition-all duration-500 h-96 md:h-full overflow-hidden"

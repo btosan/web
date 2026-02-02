@@ -205,7 +205,7 @@ export default function CustomWebsitesSection() {
 
 
       {/* ================= SERVICES GRID ================= */}
-      <div className="bg-gray-700 text-purple-50 py-24 px-6">
+      <div className="bg-gray-900 text-purple-50 py-24 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold ">
             Our Custom Website Development Services
@@ -219,7 +219,7 @@ export default function CustomWebsitesSection() {
             {services.map((service) => (
                         <div
             key={service.title}
-            className="group relative bg-linear-to-tl from-purple-900/50 via-purple-950/50 to-indigo-950/50 p-8 md:p-10 rounded-2xl border border-purple-500/40 hover:border-purple-500 transition-all duration-300 overflow-hidden"
+            className="group relative bg-linear-to-tl from-purple-900/20 via-purple-950/15 to-indigo-950/10 p-8 md:p-10 rounded-2xl border border-purple-500/30 hover:border-purple-600/50 transition-all duration-300 overflow-hidden"
             >
             {/* glow effect */}
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-700/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition" />

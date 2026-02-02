@@ -29,7 +29,7 @@ const solutions = [
     name: "High-Performance & Search-Optimized",
     title: "Custom Websites",
     description: "Custom-built websites designed for speed, SEO visibility, and seamless user experience — turning your online presence into a powerful business asset.",
-    href: "/services/websites",
+    href: "/custom-websites",
   },
   {
     icon: Smartphone,
