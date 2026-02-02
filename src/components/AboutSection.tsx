@@ -64,10 +64,10 @@ export default function AboutSection() {
 
             <Link
               href="/about"
-              className="inline-flex items-center py-4 px-8 uppercase bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700/10 via-purple-800/10 to-purple-500/10 text-white  transition-colors"
+              className="w-full mx-auto py-4 px-0 hover:px-8 uppercase bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700/5 via-purple-800/5 to-purple-500/5 text-purple-200  transition-colors"
             >
               Learn more about us
-              <span className="ml-2">→</span>
+              <span className="ml-2 text-2xl ">→</span>
             </Link>
           </motion.div>
 

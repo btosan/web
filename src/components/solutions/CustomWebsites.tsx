@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 // import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   ArrowRight,
+  ArrowBigLeftDash,
   ChevronLeft,
   ChevronRight,
   Briefcase,
@@ -12,8 +14,11 @@ import {
   Home,
   Rocket,
   User,
+  ArrowLeft,
 } from "lucide-react";
 
+import OurProcess from "../OurProcess";
+import TechStack from "../TechStack";
 
 type ServiceCard = {
   title: string;
@@ -80,52 +85,75 @@ const carouselData: CarouselCard[] = [
   {
     title: "Websites Built to Generate Consistent Leads",
     content:
-      "Strategically structured websites designed to guide visitors toward action with clear conversion paths, compelling calls-to-action, built-in trust elements like testimonials and case studies, lead capture forms, and thoughtful user experience flows that turn casual visitors into qualified leads month after month.",
+      "Conversion-focused websites structured to guide visitors toward action using clear paths, persuasive CTAs, trust signals, and lead capture systems.",
     image: "/assets/web/website1.jpg",
   },
   {
     title: "Online Stores That Sell at Scale",
     content:
-      "Fast, intuitive shopping experiences featuring optimized product pages, high-quality visuals, streamlined checkout processes, mobile-first responsive design, reliable payment integrations, abandoned cart recovery strategies, and scalable infrastructure that supports thousands of daily transactions without performance issues.",
+      "High-performance online stores with optimized products, stunning visuals, frictionless checkout, mobile-first design, secure payments, and scalable infrastructure for growth.",
     image: "/assets/web/ecommerce1.jpg",
   },
   {
     title: "Websites That Clearly Communicate Your Value",
     content:
-      "Service-focused websites that powerfully position your expertise, clearly articulate your unique value proposition, showcase results-driven case studies, highlight client success stories, simplify the decision-making process, and make it effortless and confident for ideal clients to choose and work with you.",
+      "Authority-building service websites that clarify your value, showcase proof, highlight success stories, and make choosing you simple and confident.",
     image: "/assets/web/website4.jpg",
   },
   {
     title: "Structured Websites for Growing Organizations",
     content:
-      "Scalable, well-organized websites built for companies with complex services, multiple departments, diverse audiences, or growing teams — featuring intuitive navigation, modular content architecture, internal linking strategies, team & service directories, and flexible CMS setups that evolve with your organization.",
+      "Scalable, well-structured websites for complex organizations, featuring intuitive navigation, modular architecture, directories, and flexible CMS systems supporting long-term growth.",
     image: "/assets/web/website3.jpg",
   },
   {
     title: "Digital Presence for Professionals & Creators",
     content:
-      "Visually refined, personality-driven websites that elegantly highlight your best work, professional achievements, creative portfolio pieces, personal story, client list or collaborations, testimonials, speaking engagements, media features, and everything that helps establish credibility and attract high-quality opportunities.",
+      "Polished personal websites showcasing your work, achievements, story, credibility, and media presence to attract premium opportunities and partnerships.",
     image: "/assets/web/website5.jpg",
   },
   {
     title: "Focused Pages Built for Conversions",
     content:
-      "Standalone, high-conversion landing experiences meticulously optimized for specific campaigns, product launches, webinar registrations, free challenges, lead magnets, seasonal promotions, or paid advertising — removing distractions, sharpening messaging, strengthening social proof, and maximizing desired actions from targeted traffic.",
+      "High-conversion landing pages built for campaigns, launches, and ads, removing distractions, sharpening messaging, strengthening proof, and maximizing actions.",
     image: "/assets/web/software3.jpg",
   },
 ];
 
+
 export default function CustomWebsitesSection() {
   const [index, setIndex] = useState(0);
+
+  // ✅ TOUCH STATE
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const minSwipeDistance = 50;
 
   const prev = () =>
     setIndex((i) => (i === 0 ? carouselData.length - 1 : i - 1));
   const next = () =>
     setIndex((i) => (i === carouselData.length - 1 ? 0 : i + 1));
 
+  // ✅ SWIPE HANDLERS
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+
+    if (distance > minSwipeDistance) next();
+    if (distance < -minSwipeDistance) prev();
+  };
+
   return (
     <section className="relative overflow-hidden bg-black text-white">
-      {/* ================= HERO ================= */}
         
     {/* ================= HERO ================= */}
 <div className="relative isolate">
@@ -139,7 +167,7 @@ export default function CustomWebsitesSection() {
   />
 
   {/* Dark Overlay */}
-  <div className="absolute inset-0 lg:bg-black/50 bg-black/70 -z-10" />
+  <div className="absolute inset-0 lg:bg-black/50 bg-black/80 -z-10" />
 
   {/* Content */}
   <div className="relative z-10 mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20 py-24 grid md:grid-cols-2 gap-16 items-center">
@@ -232,12 +260,12 @@ export default function CustomWebsitesSection() {
                 {service.description}
             </p>
 
-            <a
+            <Link
                 href={service.href}
                 className="inline-flex items-center gap-2 mt-6 text-purple-300 group-hover:text-purple-200 transition"
             >
                 Get started <ArrowRight size={18} />
-            </a>
+            </Link>
             </div>
 
             ))}
@@ -246,20 +274,20 @@ export default function CustomWebsitesSection() {
       </div>
 
       {/* ================= CAROUSEL ================= */}
-      <div className="py-24 px-6">
+      <div className="py-20 px-4 md:px-6 bg-gray-800">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold">
+          <h2 className="text-3xl md:text-4xl uppercase lg:tracking-wider font-bold">
             Types of Websites We Build
           </h2>
-          <p className="mt-4 text-gray-300">
+          <p className="mt-4 text-gray-200">
             From growth-focused business sites to advanced digital platforms.
           </p>
 
           <div className="relative mt-16">
-            <div className="flex justify-center items-center gap-16 mt-12 mb-8">
+            <div className="hidden lg:flex justify-center items-center gap-16 mt-16 mb-4">
                 <button
                     onClick={prev}
-                    className="flex items-center gap-3 text-gray-300 hover:text-white transition"
+                    className="flex items-center gap-3 hover:text-gray-300 hover:cursor-pointer text-purple-100 transition"
                 >
                     <ChevronLeft size={40} strokeWidth={1.5} />
                     <span className="text-lg tracking-wide">Previous</span>
@@ -267,46 +295,64 @@ export default function CustomWebsitesSection() {
 
                 <button
                     onClick={next}
-                    className="flex items-center gap-3 text-gray-300 hover:text-white transition"
+                    className="flex items-center gap-3 text-purple-200 hover:text-white hover:cursor-pointer transition"
                 >
                     <span className="text-lg tracking-wide">Next</span>
                     <ChevronRight size={40} strokeWidth={1.5} />
                 </button>
-                </div>
+              </div>
 
-            <div className="grid md:grid-cols-2 gap-10 items-center bg-gray-900 rounded-2xl p-8">
+            <div 
+              className="grid md:grid-cols-2 gap-10 items-center bg-gray-900 rounded-2xl md:p-8 p-0"
+              onTouchStart={onTouchStart}
+              onTouchMove={onTouchMove}
+              onTouchEnd={onTouchEnd}
+            >
               <Image
                 src={carouselData[index].image}
-                alt=""
-                className="rounded-xl object-cover w-full h-96"
-                width={500}
-                height={500}
+                alt="websites"
+                className="rounded-t-xl object-cover w-full h-56 md:h-96"
+                width={100}
+                height={100}
               />
-              <div className="text-left">
-                <h3 className="text-2xl font-bold">
+              <div className="text-left px-6 md:px-0">
+                <h3 className="md:text-2xl lg:text-3xl text-xl font-semibold">
                   {carouselData[index].title}
                 </h3>
-                <p className="text-gray-300 mt-4">
+                <p className="text-gray-300 text-base md:text-lg lg:text-xl mt-4 ">
                   {carouselData[index].content}
                 </p>
+                <div className="py-4 md:mb-0 my-4">
+                  <Link href='/contact' className="flex items-center gap-1 uppercase hover:text-purple-200 ">
+                  <span>Get Started </span>
+                    <ArrowRight className="h-5 w-5"/>
+                  </Link>
+                </div>
               </div>
             </div>
 
-            {/* <button
-              onClick={prev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-800 p-3 rounded-full"
-            >
-              <ChevronLeft />
-            </button>
-            <button
-              onClick={next}
-              className="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-800 p-3 rounded-full"
-            >
-              <ChevronRight />
-            </button> */}
+            <div className="lg:hidden flex justify-center items-center gap-4 my-4">
+                <button
+                    onClick={prev}
+                    className="flex items-center gap-3 text-gray-300 hover:cursor-pointer hover:text-purple-300 transition"
+                >
+                    <ChevronLeft className="w-6 h-6"/>
+                    <span className="text-lg tracking-wide"></span>
+                </button>
+                <span className="text-xs">swipe</span>
+                <button
+                    onClick={next}
+                    className="flex items-center gap-3 text-purple-300 hover:text-white hover:cursor-pointer transition"
+                >
+                    <span className="text-lg tracking-wide"></span>
+                    <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
           </div>
         </div>
       </div>
+      <OurProcess />
+      <TechStack />
     </section>
   );
 }
