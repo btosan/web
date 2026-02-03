@@ -55,7 +55,7 @@ export default function RootLayout({
         {/* ← END GOOGLE ANALYTICS */}
       </head>
 
-      <body className="max-w-7xl mx-auto px-6 bg-black text-gray-100 font-sans antialiased overflow-x-hidden">
+      <body className=" bg-black text-gray-100 font-sans antialiased overflow-x-hidden">
         <Navbar />
         <main className="pt-20 ">
           {children}
