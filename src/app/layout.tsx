@@ -1,7 +1,7 @@
 // app/layout.tsx
 import "./globals.css";
 import type { Metadata } from "next";
-import Script from "next/script"; // ← Add this import
+import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
@@ -19,12 +19,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
   },
-};
 
-export const metadata = {
   themeColor: "#000000",
 };
-
 
 export default function RootLayout({
   children,
@@ -34,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* ← GOOGLE ANALYTICS / GTAG − START */}
+        {/* GOOGLE ANALYTICS / GTAG */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-LR0RNH5DR9"
           strategy="afterInteractive"
@@ -49,12 +46,11 @@ export default function RootLayout({
             });
           `}
         </Script>
-        {/* ← END GOOGLE ANALYTICS */}
       </head>
 
       <body className="bg-black text-gray-100 font-sans antialiased overflow-x-hidden">
         <Navbar />
-        <main className="pt-20 ">
+        <main className="pt-20">
           {children}
           <FloatingContact />
         </main>
