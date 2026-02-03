@@ -59,7 +59,7 @@ export default function ProjectCard({ project }: Props) {
             href={project.liveUrl || "#"}
             target="_blank"
             className="flex-1 text-center text-sm font-medium py-2 rounded-xs bg-linear-to-br from-indigo-800 via-purple-800 to-purple-600 text-white transition hover:bg-gradient-to-tl"
-            onPointerDown={(e) => e.stopPropagation()} // <<< allow clicks on links
+            onPointerDown={(e) => e.stopPropagation()} 
           >
             Live Demo
           </a>
@@ -67,7 +67,7 @@ export default function ProjectCard({ project }: Props) {
           <Link
             href={`/projects/${project.slug}`}
             className="flex-1 text-center text-sm text-gray-100 font-medium py-2 rounded-xs border border-purple-300/30 hover:border-white/5 hover:bg-purple-100 dark:hover:bg-white/5 hover:text-black transition"
-            onPointerDown={(e) => e.stopPropagation()} // <<< allow clicks on links
+            onPointerDown={(e) => e.stopPropagation()} 
           >
             Details
           </Link>
