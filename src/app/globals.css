@@ -19,6 +19,20 @@
   }
 }
 
+:root {
+  /* Force the browser to treat 1rem as exactly 16px, 
+     regardless of system-level high-DPI scaling overrides */
+  font-size: 16px; 
+}
+
+@media (min-width: 1920px) {
+  :root {
+    /* If it's still too big on large screens, 
+       you can actually downscale the entire app here */
+    font-size: 15px; 
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -237,4 +251,5 @@
 .tiptap-light .ProseMirror p.is-editor-empty:first-child::before {
   color: #6b7280 !important;
 }
+
 

@@ -57,7 +57,7 @@ export default function RootLayout({
 
       <body className="bg-black text-gray-100 font-sans antialiased overflow-x-hidden">
         <Navbar />
-        <main className="pt-20">
+        <main className="pt-20 ">
           {children}
           <FloatingContact />
         </main>
