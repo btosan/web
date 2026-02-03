@@ -1,4 +1,4 @@
-// next/web/src/components/editor/TiptapEditor.tsx copytoclipboard
+// next/web/src/components/editor/TiptapEditor.tsx show toolbox
 import './editor.css'
 import { useState, useEffect } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
@@ -336,7 +336,7 @@ handleKeyDown: (view, event) => {
 
   if (!editor) {
     return (
-      <div className="min-h-[150px] flex items-center justify-center bg-gray-900 border border-gray-700 rounded-md text-gray-400">
+      <div className="min-h-37.5 flex items-center justify-center bg-gray-900 border border-gray-700 rounded-md text-gray-400">
         Loading editor...
       </div>
     )
@@ -441,13 +441,13 @@ handleKeyDown: (view, event) => {
   }
 
   return (
-    <div className="tiptap-editor-container border border-gray-700 rounded-md bg-gray-900">
+    <div className="tiptap-editor-container border border-gray-800 rounded-md bg-gray-900">
       {editable && (
         <>
           <button
             type="button"
             onClick={() => setIsToolboxVisible(!isToolboxVisible)}
-            className="p-2 bg-gradient-to-l from-gray-800 via-purple-900 to-gray-800 hover:bg-gradient-to-r mb-2 text-xs text-gray-200 hover:text-white hover:cursor-pointer w-full rounded-t-md"
+            className="p-2 bg-linear-to-l from-gray-800 via-purple-900 to-gray-800 hover:bg-linear-to-r mb-2 text-xs text-gray-200 hover:text-white hover:cursor-pointer w-full rounded-t-md"
           >
             {isToolboxVisible ? 'Hide Toolbox' : 'Show Toolbox'}
           </button>

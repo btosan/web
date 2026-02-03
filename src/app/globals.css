@@ -175,3 +175,55 @@
     font-size: clamp(4rem, 6vw + 1rem, 5rem);
   }
 }
+
+/* Remove border from the ProseMirror itself */
+.tiptap-light .ProseMirror {
+  background: white !important;
+  color: #111 !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove border from the editor wrapper */
+.tiptap-light .ProseMirror:focus {
+  outline: none !important;
+}
+
+/* In case your TiptapEditor has a wrapper div */
+.tiptap-light > div {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Nuclear option if Tailwind ring is being used */
+.tiptap-light * {
+  --tw-ring-shadow: 0 0 #0000 !important;
+}
+
+
+/* ===== LIGHT VERSION OVERRIDES ===== */
+
+.tiptap-light .tiptap-editor-container {
+  background: white !important;
+  border: 1px solid #e5e7eb !important; /* soft gray */
+  box-shadow: none !important;
+}
+
+.tiptap-light .editor-content-container {
+  background: white !important;
+}
+
+.tiptap-light .editor-toolbar {
+  background: #111 !important;
+  border-bottom: 1px solid #e5e7eb !important;
+}
+
+.tiptap-light .ProseMirror {
+  color: #111 !important;
+}
+
+.tiptap-light .ProseMirror p.is-editor-empty:first-child::before {
+  color: #6b7280 !important;
+}
+

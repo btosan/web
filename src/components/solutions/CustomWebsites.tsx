@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 // import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
@@ -19,6 +19,7 @@ import {
 
 import OurProcess from "../OurProcess";
 import TechStack from "../TechStack";
+import GoogleEnquiryLight from "../GoogleEnquiryLight";
 
 type ServiceCard = {
   title: string;
@@ -122,6 +123,9 @@ const carouselData: CarouselCard[] = [
 
 
 export default function CustomWebsitesSection() {
+
+  const [showForm, setShowForm] = useState(false);
+
   const [index, setIndex] = useState(0);
 
   // ✅ TOUCH STATE
@@ -170,7 +174,7 @@ export default function CustomWebsitesSection() {
   <div className="absolute inset-0 lg:bg-black/50 bg-black/80 -z-10" />
 
   {/* Content */}
-  <div className="relative z-10 mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20 py-24 grid md:grid-cols-2 gap-16 items-center">
+  <div className="relative z-10 mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20 py-24 grid md:grid-cols-2 gap-16 items-center-safe ">
     <div>
       <h1 className="text-4xl md:text-5xl font-bold leading-tight">
         Fast-Loading Custom Websites That Drive Real Business Results
@@ -182,12 +186,12 @@ export default function CustomWebsitesSection() {
       </p>
     </div>
 
-    <form className="bg-purple-50 p-8 text-black rounded-2xl space-y-4 shadow-2xl">
+    {/* <form className="bg-purple-50 p-8 text-black rounded-2xl space-y-4 shadow-2xl">
       <div>
-        <h2 className="text-2xl md:text-3xl lg:text-4xl">
+        <h2 className="text-xl md:text-2xl lg:text-3xl">
           Request a Free Estimate
         </h2>
-        <p className="text-sm md:text-base lg:text-lg my-2 md:my-3">
+        <p className="text-sm md:text-base my-2 md:my-3">
           Fill out the form below to schedule a call.
         </p>
       </div>
@@ -227,9 +231,48 @@ export default function CustomWebsitesSection() {
       <p className="text-sm text-gray-500">
         Tell us about your project — we’ll get back within 24 hours.
       </p>
-    </form>
+    </form> */}
+
+      {!showForm ? (
+      <div
+        onClick={() => setShowForm(true)}
+        className="
+          bg-linear-to-tl from-gray-800/40 via-gray-900/40 to-gray-950/40
+          p-12 md:p-16 rounded-3xl shadow-2xl border-2 border-gray-400/90
+          cursor-pointer transition-all duration-300 dhadow-sm shadow-gray-400
+          hover:scale-[1.02] hover:shadow-purple-500/20
+          text-center text-white flex flex-col justify-center
+          min-h-105
+        "
+      >
+        <h2 className="text-3xl md:text-4xl font-bold">
+          Start Your Project
+        </h2>
+
+        <p className="mt-4 text-purple-100 text-lg max-w-md mx-auto">
+          Tell us about your idea and get a professional estimate within 24 hours.
+        </p>
+
+        <div className="mt-8 inline-flex items-center gap-3 bg-white text-purple-900 px-6 py-3 rounded-xl font-semibold mx-auto">
+          Let’s Build Your Project <ArrowRight size={20} />
+        </div>
+      </div>
+    ) : (
+      <div className="relative animate-fadeIn">
+        {/* Close button */}
+        <button
+          onClick={() => setShowForm(false)}
+          className="absolute -top-4 -right-4 bg-white text-red-500 font-bold hover:cursor-pointer w-9 h-9 rounded-full shadow-md flex items-center justify-center hover:scale-110 transition"
+        >
+          ✕
+        </button>
+
+        <GoogleEnquiryLight />
+      </div>
+    )}
+
+    </div>
   </div>
-</div>
 
 
       {/* ================= SERVICES GRID ================= */}
@@ -247,7 +290,7 @@ export default function CustomWebsitesSection() {
             {services.map((service) => (
                         <div
             key={service.title}
-            className="group relative bg-linear-to-tl from-purple-900/20 via-purple-950/15 to-indigo-950/10 p-8 md:p-10 rounded-2xl border border-purple-500/30 hover:border-purple-600/50 transition-all duration-300 overflow-hidden"
+           className="group relative bg-linear-to-tl from-gray-900/10 via-gray-950 to-black p-8 md:p-10 rounded-2xl border border-gray-600 hover:border-gray-500 transition-all duration-300 shadow-sm shadow-gray-400/90 overflow-hidden"
             >
             {/* glow effect */}
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-700/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition" />
@@ -262,7 +305,7 @@ export default function CustomWebsitesSection() {
 
             <Link
                 href={service.href}
-                className="inline-flex items-center gap-2 mt-6 text-purple-300 group-hover:text-purple-200 transition"
+                className="inline-flex items-center gap-2 mt-6 uppercase text-gray-300 group-hover:text-purple-200 transition"
             >
                 Get started <ArrowRight size={18} />
             </Link>

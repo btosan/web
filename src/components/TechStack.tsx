@@ -103,7 +103,7 @@ const stack = {
             <button
               key={category}
               onClick={() => setActiveTab(category)}
-              className={`px-6 py-3 rounded-full text-sm md:text-base lg:text-lg font-semibold hover:cursor-pointer whitespace-nowrap transition
+              className={`px-6 py-2 rounded-full text-sm md:text-base font-semibold hover:cursor-pointer whitespace-nowrap transition
                 ${
                   activeTab === category
                     ? "bg-purple-600 text-white shadow-lg"
@@ -121,9 +121,9 @@ const stack = {
             {stack[activeTab as keyof typeof stack].map((tech) => (
               <div
                 key={tech.name}
-                className="w-40 md:w-48 lg:w-56 xl:w-64 flex flex-col items-center justify-center bg-gray-900 border border-gray-700 lg:border-gray-500 rounded-xl p-6 hover:border-purple-600/60 transition"
+                className="w-40 md:w-48 lg:w-56 xl:w-64 flex flex-col items-center justify-center bg-gray-900 border border-gray-700 lg:border-gray-500 rounded-xl p-6 hover:border-purple-200/60 transition"
               >
-                <div className="text-2xl md:text-3xl lg:text-4xl mb-4 text-purple-500">{tech.icon}</div>
+                <div className="text-2xl md:text-3xl lg:text-4xl mb-4 text-purple-200">{tech.icon}</div>
                 <p className="text-gray-300 text-sm md:text-base lg:text-lg xl:text-xl font-normal text-center">
                   {tech.name}
                 </p>

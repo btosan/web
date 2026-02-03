@@ -36,35 +36,35 @@ const solutions = [
     name: "Scalable Platforms & Dashboards",
     title: "Full-Stack Apps",
     description: "Robust web and mobile applications built with modern technologies — from customer portals to complete business systems.",
-    href: "/services/full-stack-apps",
+    href: "/full-stack-apps",
   },
   {
     icon: Cpu,
     name: "Smart Features & Intelligence",
     title: "AI Integration",
     description: "We embed AI into your products and platforms — chatbots, recommendation systems, data insights, and intelligent user experiences.",
-    href: "/services/ai-integration",
+    href: "/ai-integration",
   },
   {
     icon: Sparkles,
     name: "Systems That Work Automatically",
     title: "AI Automation",
     description: "Automate lead management, customer communication, data processing, and internal workflows with intelligent, time-saving systems.",
-    href: "/services/ai-automation",
+    href: "/ai-automation",
   },
   {
     icon: ShieldCheck,
     name: "Intuitive, Conversion-Focused Experiences",
     title: "UI/UX Design",
     description: "Exceptional interface and user experience design that improves usability, builds trust, and turns visitors into engaged customers.",
-    href: "/services/ui-ux-design",
+    href: "/ui-ux-design",
   },
   {
     icon: TrendingUp,
     name: "Visibility, Positioning & Growth",
     title: "Digital Strategy",
     description: "Strategic branding, digital presence, and performance-driven marketing systems that attract the right audience and drive measurable business growth.",
-    href: "/services/digital-branding-marketing",
+    href: "/digital-branding-marketing",
   },
 ];
 
@@ -126,14 +126,15 @@ export default function Navbar() {
                   transition={{ duration: 0.25 }}
                   className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-screen max-w-none"
                 >
-                  <div className="bg-purple-950/90 border-t border-purple-800/40 backdrop-blur-lg shadow-2xl ">
+                  <div className="bg-gray-800 border-b-2 border-t-2 border-gray-600/80 shadow-xl shadow-gray-600 ">
                     <div className="max-w-6xl mx-auto py-12 px-8 lg:px-12">
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pl-32">
                         {solutions.map((solution, idx) => (
                           <Link
                             key={idx}
                             href={solution.href}
-                            className="group flex flex-col px-8 py-6 rounded-xl border border-purple-900/30 bg-purple-950/30 hover:bg-purple-950/50 hover:border-purple-500/40 transition-all duration-300"
+                            onClick={handleCloseMenu}
+                            className="group flex flex-col px-8 py-6 rounded-xl border border-purple-900/30 bg-purple-900/50 hover:bg-purple-950/50 hover:border-purple-500/40 transition-all duration-300"
                           >
                             <div className="flex items-center gap-4 mb-4">
                               <div className="w-9 h-9 rounded-lg bg-purple-900/60 flex items-center justify-center text-purple-200 group-hover:text-purple-100 transition-colors">

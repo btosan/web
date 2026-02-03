@@ -127,10 +127,10 @@ export default function GoogleEnquiryForm({
   /* ===== Styles ===== */
 
   const inputClasses =
-    "w-full px-4 py-3 bg-purple-950/40 border border-gray-800 text-gray-100 placeholder-gray-400 rounded-xl focus:outline-none focus:border-purple-100 transition";
+    "w-full px-4 py-3 bg-black border border-gray-600 text-gray-100 placeholder-gray-400 rounded-xl focus:outline-none focus:border-gray-400 transition";
 
   const labelClasses =
-    "block text-sm font-medium text-purple-100 mb-2 uppercase";
+    "block text-sm font-medium text-purple-50 mb-2 uppercase";
 
   /* ===== Render ===== */
 
