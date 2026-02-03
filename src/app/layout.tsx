@@ -21,13 +21,10 @@ export const metadata: Metadata = {
   },
 };
 
-export const viewport = {
+export const metadata = {
   themeColor: "#000000",
-  width: "device-width",
-  initialScale: 1,
-  maximumScale: 1, // Add this
-  colorScheme: "dark",
 };
+
 
 export default function RootLayout({
   children,
