@@ -18,9 +18,9 @@ export default function AboutSection() {
             viewport={{ once: true }}
             className="w-full order-2 lg:order-1" 
           >
-            <div className="relative w-full h-[380px] md:h-[600px] lg:h-[500px] rounded-2xl overflow-hidden border border-purple-100/10">
+            <div className="relative w-full h-95 md:h-150 lg:h-125 rounded-2xl overflow-hidden border border-purple-100/10">
               <Image
-                src="/assets/timeline.png"
+                src="/assets/people/about-home.jpg"
                 alt="About Ofashi"
                 fill
                 className="object-contain object-center" 

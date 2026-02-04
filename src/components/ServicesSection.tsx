@@ -103,7 +103,7 @@ export default function ServicesSection() {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-purple-950/50" />
+            <div className="absolute inset-0 bg-black/50" />
           </motion.div>
 
 
@@ -135,7 +135,7 @@ export default function ServicesSection() {
           </div>
         )}
 
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-12 lg:gap-8 xl:gap-16 gap-12">
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 md:gap-12 lg:gap-8 xl:gap-16 gap-12 bg-black">
         {solutions.map((s, i) => {
           const isSecondRow = i >= 3; // cards 4–6
 
@@ -173,7 +173,7 @@ function Card({
     setOpen: React.Dispatch<React.SetStateAction<boolean>>;
   }) {
   return (
-    <div className="relative h-full pb-10 md:hover:bg-purple-950/10 hover:bg-purple-950 border hover:border-purple-300/30 md:border-purple-900 rounded-xs p-8 flex flex-col justify-between hover:cursor-pointer md:bg-purple-950 bg-purple-950/5 border-purple-900/5 transition-all duration-300 lg:shadow-lg shadow-sm shadow-purple-900/80">
+    <div className="relative h-full pb-10 md:hover:bg-purple-950/50 hover:bg-purple-950 border hover:border-purple-300/30 md:border-gray-800 rounded-xs p-8 flex flex-col justify-between hover:cursor-pointer md:bg-gray-950 md:ring-1 md:ring-white/20 bg-purple-950/5 border-purple-900/5 md:border-0 transition-all duration-300 lg:shadow-lg shadow-sm md:shadow-gray-800/50 shadow-purple-900/80">
       <div className="absolute top-6 lg:top-8 left-6 lg:w-16 lg:h-16 w-12 h-12 md:w-14 md:h-14 bg-purple-950/40 flex items-center justify-center shadow-xl border border-white/10 rounded-full">
         {React.createElement(solution.icon, { className: "lg:w-12 lg:h-12 md:w-10 md:h-10 w-9 h-9 text-purple-100" })}
       </div>

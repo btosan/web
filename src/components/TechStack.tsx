@@ -121,7 +121,7 @@ const stack = {
             {stack[activeTab as keyof typeof stack].map((tech) => (
               <div
                 key={tech.name}
-                className="w-40 md:w-48 lg:w-56 xl:w-64 flex flex-col items-center justify-center bg-gray-900 border border-gray-700 lg:border-gray-500 rounded-xl p-6 hover:border-purple-200/60 transition"
+                className="w-40 md:w-48 lg:w-56 xl:w-64 flex flex-col items-center justify-center bg-gray-950 border border-gray-700 lg:border-gray-700 rounded-xl p-6 hover:border-purple-200/60 transition"
               >
                 <div className="text-2xl md:text-3xl lg:text-4xl mb-4 text-purple-200">{tech.icon}</div>
                 <p className="text-gray-300 text-sm md:text-base lg:text-lg xl:text-xl font-normal text-center">

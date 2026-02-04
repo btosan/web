@@ -18,7 +18,7 @@ const typeColors: Record<Project["type"], string> = {
 
 export default function ProjectCard({ project }: Props) {
   return (
-    <div className="group h-full flex flex-col rounded-lg overflow-hidden bg-black shadow-sm ring-1 ring-white/30 transition hover:-translate-y-1 hover:shadow-lg">
+    <div className="group h-full flex flex-col rounded-lg overflow-hidden bg-gray-950 shadow-sm ring-1 ring-white/30 transition hover:-translate-y-1 hover:shadow-lg">
 
       {/* Image */}
       <div className="relative h-44 w-full overflow-hidden">

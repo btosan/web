@@ -6,9 +6,9 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
-    question: "What does BT WebTech do?",
+    question: "What does Ofashi do?",
     answer:
-      "BT WebTech is a custom web development and software agency. We build professional websites, scalable web applications, and AI-powered systems using modern technologies like React, Next.js, FastAPI, Django, and Node.js — not templates or drag-and-drop tools."
+      "Ofashi is a custom web development and software agency. We build professional websites, scalable web applications, and AI-powered systems using modern technologies like React, Next.js, FastAPI, Django, and Node.js — not templates or drag-and-drop tools."
   },
   {
     question: "Do you use WordPress or website builders?",
@@ -16,9 +16,9 @@ const faqs = [
       "No. We do not build websites with WordPress, Wix, or drag-and-drop builders. Every project is fully custom-coded, which means better performance, stronger security, easier scaling, and no dependence on plugins or themes that can break over time."
   },
   {
-    question: "Who is BT WebTech best suited for?",
+    question: "Who is Ofashi best suited for?",
     answer:
-      "We work with startups, businesses, and founders who need more than a basic website. If you need speed, scalability, integrations, dashboards, AI automation, or a system that grows with your business, BT WebTech is built for you."
+      "We work with startups, businesses, and founders who need more than a basic website. If you need speed, scalability, integrations, dashboards, AI automation, or a system that grows with your business, Ofashi is built for you."
   },
   {
     question: "What technologies do you use?",
@@ -48,10 +48,10 @@ const faqs = [
   {
     question: "Do you offer ongoing support after launch?",
     answer:
-      "Yes. We provide long-term support, improvements, and system evolution. BT WebTech works as a technical partner, not a one-time vendor, helping your product grow alongside your business."
+      "Yes. We provide long-term support, improvements, and system evolution. Ofashi works as a technical partner, not a one-time vendor, helping your product grow alongside your business."
   },
   {
-    question: "How do I get started with BT WebTech?",
+    question: "How do I get started with Ofashi?",
     answer:
       "Simply contact us via WhatsApp or our website. We’ll discuss your goals, recommend the right solution, and outline a clear path to building a high-performance product tailored to your needs."
   }
@@ -71,7 +71,7 @@ export default function FaqSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-5xl lg:text-6xl font-semibold mb-12 lg:text-start text-center uppercase tracking-wide"
+          className="text-3xl md:text-4xl lg:text-5xl font-semibold mb-12 lg:text-start text-center uppercase tracking-wide"
         >
           Frequently Asked Questions
         </motion.h2>

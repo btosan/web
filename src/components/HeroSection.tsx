@@ -56,7 +56,7 @@ export default function HeroSection() {
             text-4xl 
             md:text-6xl 
             lg:text-7xl 
-            xl:text-8xl
+            2xl:text-8xl
             font-bold
             text-white 
             mb-8

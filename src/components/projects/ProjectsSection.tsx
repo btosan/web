@@ -4,7 +4,7 @@ import { PROJECTS } from "./projects";
 
 export default function ProjectsSection() {
   return (
-    <section className="py-12 px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20">
+    <section className="py-12 px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20 bg-black">
       <h2 className="flex items-center justify-center text-4xl md:text-5xl lg:text-6xl font-semibold text-purple-100 mb-9 lg:mb-12 leading-tight">
           Featured Projects
       </h2>

@@ -32,7 +32,7 @@ const testimonials = [
     role: "CEO, eVehicles NG",
     project: "Custom Web App & EVs Landing Page",
     quote:
-      "Our landing page showcases BYD electric vehicles beautifully, attracting customers nationwide and driving inquiries and showroom visits. BT WebTech delivered a fast, professional platform that builds trust in Nigeria's EV market. Highly recommend their expertise!",
+      "Our landing page showcases BYD electric vehicles beautifully, attracting customers nationwide and driving inquiries and showroom visits. Ofashi delivered a fast, professional platform that builds trust in Nigeria's EV market. Highly recommend their expertise!",
     rating: 5,
     avatar: "/assets/people/emi.png",
   },
@@ -41,7 +41,7 @@ const testimonials = [
     role: "Founder, Gideon Youth Foundation",
     project: "Professional NGO Website",
     quote:
-      "Now I have a professional NGO website I'm proud to share. It attracts more support and helps reach students effectively. The content writing was a great bonus. BT WebTech was helpful and professional—I highly recommend them!",
+      "Now I have a professional NGO website I'm proud to share. It attracts more support and helps reach students effectively. The content writing was a great bonus. Ofashi was helpful and professional—I highly recommend them!",
     rating: 5,
     avatar: "/assets/people/adelagun.png",
   },
@@ -50,7 +50,7 @@ const testimonials = [
     role: "Owner, Olaf Contractors",
     project: "Real Estate Web App with AI Chatbot",
     quote:
-      "The AI chatbot handles inquiries 24/7, cutting support time in half and boosting leads. Delivered fast with outstanding quality. BT WebTech's professional approach made the difference—strongly recommend them!",
+      "The AI chatbot handles inquiries 24/7, cutting support time in half and boosting leads. Delivered fast with outstanding quality. Ofashi's professional approach made the difference—strongly recommend them!",
     rating: 5,
     avatar: "/assets/people/fatade.png",
   },
@@ -59,7 +59,7 @@ const testimonials = [
     role: "CEO, CoinPlacid",
     project: "Crypto Investment and Lending Platform",
     quote:
-      "Our secure, user-friendly crypto platform boosts engagement and business growth. BT WebTech delivered top-notch hand-coded quality with great professionalism. Can't recommend them enough!",
+      "Our secure, user-friendly crypto platform boosts engagement and business growth. Ofashi delivered top-notch hand-coded quality with great professionalism. Can't recommend them enough!",
     rating: 5,
     avatar: "/assets/people/kess.png",
   },
@@ -170,7 +170,7 @@ const testimonials = [
         >
           <button
             onClick={() => setOpen(true)}
-            className="inline-flex items-center justify-center md:px-10 px-8 md:py-4 py-3 bg-linear-to-bl hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black from-indigo-800/10 via-purple-900/10 to-purple-600/10 transition-all duration-300 hover:cursor-pointer text-purple-200 md:text-xl text-lg font-bold rounded-xs shadow-2xl"
+            className="inline-flex items-center justify-center md:px-10 px-8 md:py-4 py-3 bg-linear-to-bl hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black from-indigo-800/5 via-purple-900/5 to-purple-600/5 transition-all duration-300 hover:cursor-pointer text-purple-200 md:text-xl text-lg font-bold rounded-xs shadow-2xl"
           >
             Be Our Next Success Story
           </button>

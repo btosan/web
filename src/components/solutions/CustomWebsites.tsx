@@ -171,76 +171,28 @@ export default function CustomWebsitesSection() {
   />
 
   {/* Dark Overlay */}
-  <div className="absolute inset-0 lg:bg-black/50 bg-black/80 -z-10" />
+  <div className="absolute inset-0 lg:bg-black/90 bg-black/90 -z-10" />
 
   {/* Content */}
   <div className="relative z-10 mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20 py-24 grid md:grid-cols-2 gap-16 items-center-safe ">
     <div>
-      <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
         Fast-Loading Custom Websites That Drive Real Business Results
       </h1>
-      <p className="mt-6 text-gray-200 text-lg">
+      <p className="mt-6 text-gray-200 text-lg xl:text-xl">
         We design and develop high-performance custom websites built for
         speed, visibility, and conversion — transforming your site into a
         powerful growth engine.
       </p>
     </div>
-
-    {/* <form className="bg-purple-50 p-8 text-black rounded-2xl space-y-4 shadow-2xl">
-      <div>
-        <h2 className="text-xl md:text-2xl lg:text-3xl">
-          Request a Free Estimate
-        </h2>
-        <p className="text-sm md:text-base my-2 md:my-3">
-          Fill out the form below to schedule a call.
-        </p>
-      </div>
-
-      <label className="lg:text-xl md:text-lg text-base font-medium">
-        Your Name*
-      </label>
-      <input
-        type="text"
-        placeholder="Full Name"
-        required
-        className="w-full mt-2 md:mt-3 p-3 rounded-lg bg-white text-gray-700 outline-none"
-      />
-
-      <label className="lg:text-xl md:text-lg text-base font-medium">
-        Work Email*
-      </label>
-      <input
-        type="email"
-        placeholder="youremail@example.com"
-        className="w-full mt-2 md:mt-3 p-3 rounded-lg bg-white text-gray-700 outline-none"
-      />
-
-      <label className="lg:text-xl md:text-lg text-base font-medium">
-        How can we help?
-      </label>
-      <textarea
-        placeholder="Leave us a message*"
-        rows={4}
-        className="w-full mt-2 md:mt-3 p-3 rounded-lg bg-white text-gray-700 outline-none"
-      />
-
-      <button className="w-full bg-purple-900 text-white hover:bg-purple-800 transition p-3 rounded-lg font-semibold">
-        Get Started
-      </button>
-
-      <p className="text-sm text-gray-500">
-        Tell us about your project — we’ll get back within 24 hours.
-      </p>
-    </form> */}
-
       {!showForm ? (
       <div
         onClick={() => setShowForm(true)}
         className="
           bg-linear-to-tl from-gray-800/40 via-gray-900/40 to-gray-950/40
-          p-12 md:p-16 rounded-3xl shadow-2xl border-2 border-gray-400/90
-          cursor-pointer transition-all duration-300 dhadow-sm shadow-gray-400
-          hover:scale-[1.02] hover:shadow-purple-500/20
+          p-8 md:p-9 lg:p-10 rounded-3xl md:shadow-lg md:border-2 border border-gray-600/90
+          cursor-pointer transition-all duration-300 shadow-sm shadow-gray-700/50
+          hover:scale-[1.02] hover:shadow-gray-500/50
           text-center text-white flex flex-col justify-center
           min-h-105
         "
@@ -253,8 +205,8 @@ export default function CustomWebsitesSection() {
           Tell us about your idea and get a professional estimate within 24 hours.
         </p>
 
-        <div className="mt-8 inline-flex items-center gap-3 bg-white text-purple-900 px-6 py-3 rounded-xl font-semibold mx-auto">
-          Let’s Build Your Project <ArrowRight size={20} />
+        <div className="mt-8 inline-flex items-center gap-3 text-sm md:text-base bg-white text-purple-900 px-4 md:px-6 py-3 rounded-xl font-semibold mx-auto">
+          Let’s Build Your Project <ChevronRight size={20} />
         </div>
       </div>
     ) : (
@@ -276,7 +228,7 @@ export default function CustomWebsitesSection() {
 
 
       {/* ================= SERVICES GRID ================= */}
-      <div className="bg-gray-900 text-purple-50 py-24 px-6">
+      <div className="bg-black text-purple-50 py-24 px-6">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold ">
             Our Custom Website Development Services
@@ -317,9 +269,9 @@ export default function CustomWebsitesSection() {
       </div>
 
       {/* ================= CAROUSEL ================= */}
-      <div className="py-20 px-4 md:px-6 bg-gray-800">
+      <div className="py-20 px-4 md:px-6 bg-gray-950">
         <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl uppercase lg:tracking-wider font-bold">
+          <h2 className="text-3xl md:text-4xl lg:tracking-wider font-bold">
             Types of Websites We Build
           </h2>
           <p className="mt-4 text-gray-200">
@@ -327,26 +279,26 @@ export default function CustomWebsitesSection() {
           </p>
 
           <div className="relative mt-16">
-            <div className="hidden lg:flex justify-center items-center gap-16 mt-16 mb-4">
+            <div className="hidden lg:flex justify-center items-center gap-16 lg:gap-20 xl:gap-24 mt-16 mb-4">
                 <button
                     onClick={prev}
                     className="flex items-center gap-3 hover:text-gray-300 hover:cursor-pointer text-purple-100 transition"
                 >
-                    <ChevronLeft size={40} strokeWidth={1.5} />
-                    <span className="text-lg tracking-wide">Previous</span>
+                    <ArrowLeft size={40} strokeWidth={1.5} />
+                    <span className="text-lg tracking-wide"></span>
                 </button>
 
                 <button
                     onClick={next}
                     className="flex items-center gap-3 text-purple-200 hover:text-white hover:cursor-pointer transition"
                 >
-                    <span className="text-lg tracking-wide">Next</span>
-                    <ChevronRight size={40} strokeWidth={1.5} />
+                    <span className="text-lg tracking-wide"></span>
+                    <ArrowRight size={40} strokeWidth={1.5} />
                 </button>
               </div>
 
             <div 
-              className="grid md:grid-cols-2 gap-10 items-center bg-gray-900 rounded-2xl md:p-8 p-0"
+              className="grid md:grid-cols-2 gap-10 items-center shadow-sm shadow-gray-500 bg-linear-to-br from-gray-950 via-indigo-950 to-purple-950 rounded-sm md:p-8 p-0"
               onTouchStart={onTouchStart}
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEnd}

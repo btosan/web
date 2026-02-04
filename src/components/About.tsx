@@ -43,9 +43,9 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="relative w-full h-[350px] md:h-[420px] rounded-3xl overflow-hidden">
+          <div className="relative w-full h-87.5 md:h-120 rounded-3xl overflow-hidden">
             <Image
-              src="/assets/web/bt-web-tech-group.png"
+              src="/assets/people/ofashi-about.jpg"
               alt="Ofashi Custom Web App"
               fill
               className="object-cover rounded-3xl opacity-90"

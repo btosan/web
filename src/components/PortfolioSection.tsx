@@ -47,7 +47,7 @@ const ProjectCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.6 }}
       viewport={{ once: true }}
-      className="group relative rounded-2xl overflow-hidden border lg:border-2 border-purple-900/5 shadow-xs shadow-purple-600/30 transition-all duration-500 px-2 bg-purple-950/10 lg:bg-purple-950/80 hover:border-purple-300/30"
+      className="group relative rounded-2xl overflow-hidden border lg:border-2 border-purple-900/5 shadow-sm shadow-purple-900 transition-all duration-500 px-2 bg-purple-950/10 lg:bg-purple-950/20 hover:border-purple-300/30"
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
       onClick={handleInteraction}

@@ -126,7 +126,7 @@ export default function Navbar() {
                   transition={{ duration: 0.25 }}
                   className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-screen max-w-none"
                 >
-                  <div className="bg-gray-800 border-b-2 border-t-2 border-gray-600/80 shadow-xl shadow-gray-600 ">
+                  <div className="bg-gray-950 border-b-2 border-t-2 border-gray-700/80 shadow-xl shadow-gray-800 ">
                     <div className="max-w-6xl mx-auto py-12 px-8 lg:px-12">
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pl-32">
                         {solutions.map((solution, idx) => (
@@ -134,7 +134,7 @@ export default function Navbar() {
                             key={idx}
                             href={solution.href}
                             onClick={handleCloseMenu}
-                            className="group flex flex-col px-8 py-6 rounded-xl border border-purple-900/30 bg-purple-900/50 hover:bg-purple-950/50 hover:border-purple-500/40 transition-all duration-300"
+                            className="group flex flex-col px-8 py-6 rounded-xl border border-purple-900/50 bg-purple-900/5 hover:bg-purple-950/50 hover:border-purple-500/40 transition-all duration-300"
                           >
                             <div className="flex items-center gap-4 mb-4">
                               <div className="w-9 h-9 rounded-lg bg-purple-900/60 flex items-center justify-center text-purple-200 group-hover:text-purple-100 transition-colors">
