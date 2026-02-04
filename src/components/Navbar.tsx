@@ -99,14 +99,14 @@ export default function Navbar() {
               height={100}
               className="h-7 md:h-8 lg:h-9 w-auto shadow-2xl shadow-white" 
             />
-            <p className={`${urbanist.className} scale-x-110 py-2 flex items-center gap-0.5 md:gap-1 font-medium md:tracking-wide tracking-wider text-2xl bg-linear-to-r from-white via-purple-100 to-purple-200 bg-clip-text text-transparent transition-colors duration-300`} >
+            <p className={`${urbanist.className} scale-x-110 py-2 flex items-center gap-0.5 md:gap-1 font-medium md:tracking-wide tracking-wider text-2xl lg:text-3xl bg-linear-to-r from-white via-purple-100 to-purple-200 bg-clip-text text-transparent transition-colors duration-300`} >
               Ofashi
             </p>
           </Link>
         </div>
 
         {/* === DESKTOP MENU === */}
-        <ul className="hidden lg:flex items-center xl:space-x-10 lg:space-x-8 lg:text-base text-lg font-medium ">
+        <ul className="hidden lg:flex items-center xl:space-x-10 lg:space-x-8 text-lg lg:text-xl font-medium ">
           <li className="relative"
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
@@ -140,11 +140,11 @@ export default function Navbar() {
                               <div className="w-9 h-9 rounded-lg bg-purple-900/60 flex items-center justify-center text-purple-200 group-hover:text-purple-100 transition-colors">
                                 {React.createElement(solution.icon, { size: 24 })}
                               </div>
-                              <h3 className="text-lg font-semibold text-white group-hover:text-purple-200 transition-colors">
+                              <h3 className="text-lg md:text-xl font-semibold text-white group-hover:text-purple-200 transition-colors">
                                 {solution.title}
                               </h3>
                             </div>
-                            <p className="text-gray-300 text-sm leading-relaxed line-clamp-3 ">
+                            <p className="text-gray-300 text-sm lg:text-base leading-relaxed line-clamp-3 ">
                               {solution.description}
                             </p>
                           </Link>
@@ -181,7 +181,7 @@ export default function Navbar() {
 
         {/* === DESKTOP BUTTONS (unchanged) === */}
         <div className="hidden lg:flex items-center lg:space-x-8 xl:space-x-12 space-x-5">
-          <Link href='/contact' className=" tracking-wider uppercase lg:text-base text-lg lg:px-6 lg:py-2 xl:py-3 xl:px-10 bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700 via-purple-800 to-purple-500 text-white transition-all">
+          <Link href='/contact' className=" tracking-wider uppercase lg:text-xl text-lg lg:px-6 lg:py-2 xl:py-3 xl:px-10 bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700 via-purple-800 to-purple-500 text-white transition-all">
             Contact
           </Link>
         </div>
@@ -250,14 +250,14 @@ export default function Navbar() {
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
-                      className="overflow-hidden mt-4 space-y-2  text-center text-base text-purple-100 "
+                      className="overflow-hidden mt-4 space-y-2  text-center text-lg text-purple-100 "
                     >
                       {solutions.map((solution, idx) => (
                         <li key={idx} className="py-2">
                           <Link
                             href={solution.href}
                             onClick={handleCloseMenu}
-                            className="hover:text-purple-200 divide-y divide-purple-300 underline underline-offset-8 decoration-purple-300  transition  "
+                            className="lg:text-xl hover:text-purple-200 divide-y divide-purple-300 underline underline-offset-8 decoration-purple-300  transition  "
                           >
                             {solution.title}
                           </Link>

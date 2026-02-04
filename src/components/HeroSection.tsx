@@ -9,7 +9,7 @@ export default function HeroSection() {
 
   const handleWhatsApp = () => {
     window.open(
-      "https://wa.me/2348080548263?text=Hi%21%20I%27m%20interested%20in%20building%20a%20custom%20website%20or%20web%20application%20and%20would%20like%20to%20discuss%20my%20project.",
+      "https://wa.me/2349123631219?text=Hi%21%20I%27m%20interested%20in%20building%20a%20custom%20website%20or%20web%20application%20and%20would%20like%20to%20discuss%20my%20project.",
       "_blank",
       "noopener,noreferrer"
     );
@@ -56,6 +56,7 @@ export default function HeroSection() {
             text-4xl 
             md:text-6xl 
             lg:text-7xl 
+            xl:text-8xl
             font-bold
             text-white 
             mb-8
@@ -75,6 +76,8 @@ export default function HeroSection() {
           <p className="
             text-base 
             md:text-lg
+            lg:text-xl
+            xl:text-xl
             text-white/90
             hover:text-[#F0F8FF] 
             mx-auto 
@@ -82,7 +85,8 @@ export default function HeroSection() {
             leading-relaxed 
             lg:mx-0 
             lg:max-w-2xl
-            xl:w-[65%]
+            xl:max-w-3xl
+            xl:w-[90%]
 
           ">
            We design high-performance websites and custom applications that integrate AI and intelligent automation with great UI/UX to drive measurable growth.
@@ -100,6 +104,7 @@ export default function HeroSection() {
               lg:px-12 
               xl:px-14
               lg:py-4
+              xl:py-5
               border-2
               lg:border-4
               border-white/80 
@@ -110,7 +115,8 @@ export default function HeroSection() {
               text-white 
               hover:text-[#e0f4fa]
               text-lg 
-              md:text-xl  
+              md:text-xl 
+              lg:text-2xl 
               font-semibold 
               md:bg-linear-to-r bg-linear-to-br
             hover:from-indigo-700/85 hover:via-purple-800/85 hover:to-purple-500/85
@@ -136,7 +142,7 @@ export default function HeroSection() {
             mx-auto 
             lg:mx-0
           ">
-           <a href="https://wa.me/2348080548263" className="no-underline hover:underline hover:underline-offset-8  text-purple-100/90">Call or WhatsApp</a>
+           <a href="https://wa.me/2349123631219" className="no-underline hover:underline hover:underline-offset-8  text-purple-100/90">Call or WhatsApp</a>
           </p> */}
         </div>
         </div>
