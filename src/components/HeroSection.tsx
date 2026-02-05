@@ -34,7 +34,7 @@ function LazyVideo({
           observer.disconnect();
         }
       },
-      { rootMargin: "150px 0px" } // start loading slightly before visible
+      { rootMargin: "150px 0px" }
     );
 
     observer.observe(videoRef.current);
@@ -42,8 +42,6 @@ function LazyVideo({
     return () => observer.disconnect();
   }, []);
 
-  // Choose correct source based on current viewport width
-  // (This runs client-side only – safe inside useEffect or after mount)
   const src =
     typeof window !== "undefined" && window.innerWidth <= 768
       ? srcMobile
@@ -83,21 +81,18 @@ export default function HeroSection() {
 
   return (
     <section className="relative lg:min-h-screen h-full flex items-center justify-center overflow-hidden bg-black">
-      {/* Background video – lazy loaded */}
-      <LazyVideo
-        srcMobile="/assets/web/ofashi-mobile.mp4"
-        srcDesktop="/assets/web/ofashi-desktop.mp4"
-        poster="/assets/web/hero-poster.jpg" // ← Add this file! (extract a good frame)
-      />
-
-      {/* Optional: fallback poster layer – shows instantly before video starts */}
-      {/* Uncomment if you want extra-smooth perceived loading */}
-      {/* 
+      {/* Instant fallback poster – paints immediately, helps LCP & perceived speed */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url(/assets/web/hero-poster.jpg)" }}
       />
-      */}
+
+      {/* Background video – lazy loaded */}
+      <LazyVideo
+        srcMobile="/assets/web/ofashi-mobile.mp4"
+        srcDesktop="/assets/web/ofashi-desktop.mp4"
+        poster="/assets/web/hero-poster.jpg"
+      />
 
       <div className="relative z-10 w-full">
         <div className="mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20">
@@ -122,7 +117,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Modal */}
       <AnimatePresence>
         {open && (
           <motion.div
