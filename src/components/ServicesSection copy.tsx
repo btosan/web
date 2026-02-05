@@ -22,7 +22,6 @@ type Solution = {
   cta: string;
 };
 
-/* ---------------- SOLUTIONS ---------------- */
 const solutions: Solution[] = [
   { icon: Globe, name: "High-Performance & Search-Optimized", title: "Professional Websites", description: "Custom-built websites designed for speed, SEO visibility, and seamless user experience — turning your online presence into a powerful business asset.", cta: "Get Started" },
   { icon: Smartphone, name: "Scalable Platforms & Dashboards", title: "Full-Stack Apps", description: "Robust web and mobile applications built with modern technologies — from customer portals to complete business systems.", cta: "Get Started" },
