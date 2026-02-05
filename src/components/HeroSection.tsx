@@ -5,7 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
-// LazyVideo Component
+// ────────────────────────────────────────────────
+// LazyVideo Component – defers loading until visible
+// ────────────────────────────────────────────────
 interface LazyVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
   srcMobile: string;
   srcDesktop: string;
@@ -25,8 +27,9 @@ function LazyVideo({
   useEffect(() => {
     if (!videoRef.current) return;
 
+    // Respect reduced motion preference (common on mobile)
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
+      return; // skip video loading → fallback to poster only
     }
 
     const observer = new IntersectionObserver(
@@ -36,10 +39,11 @@ function LazyVideo({
           observer.disconnect();
         }
       },
-      { rootMargin: "300px 0px" }
+      { rootMargin: "300px 0px" } // trigger a bit earlier for smoother experience
     );
 
     observer.observe(videoRef.current);
+
     return () => observer.disconnect();
   }, []);
 
@@ -58,7 +62,6 @@ function LazyVideo({
       preload={shouldLoad ? "auto" : "none"}
       poster={poster}
       src={shouldLoad ? src : undefined}
-      loading="lazy"
       className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${className}`}
       aria-hidden="true"
       {...props}
@@ -66,7 +69,9 @@ function LazyVideo({
   );
 }
 
+// ────────────────────────────────────────────────
 // Main Hero Section
+// ────────────────────────────────────────────────
 export default function HeroSection() {
   const [open, setOpen] = useState(false);
 
@@ -101,7 +106,6 @@ export default function HeroSection() {
         poster="/assets/web/hero-poster.jpg"
       />
 
-      {/* Rest of your content unchanged */}
       <div className="relative z-10 w-full">
         <div className="mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20">
           <div className="w-full text-start md:text-center lg:text-start lg:ml-0 lg:mr-auto mt-8 py-12 md:py-16 lg:py-0 md:mt-24 md:mb-16 lg:mb-0 mb-12 lg:mt-0">
