@@ -18,7 +18,6 @@ export default function HeroSection() {
 
   return (
     <section className="relative lg:min-h-screen h-full flex items-center justify-center overflow-hidden bg-black">
-      {/* Full-screen Video Background */}
       <video
         autoPlay
         muted
