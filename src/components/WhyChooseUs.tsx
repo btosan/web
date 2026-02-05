@@ -97,7 +97,7 @@ export default function WhyChooseUsSection() {
           </h2>
           <p className="mt-6 text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto">
             If your business needs more than a basic website, Ofashi builds
-            custom web and mobile solutions designed for performance, scalability, and real growth.
+            custom digital solutions designed for performance, scalability, and real growth.
           </p>
         </motion.div>
 

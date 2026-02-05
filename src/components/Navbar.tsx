@@ -242,7 +242,7 @@ export default function Navbar() {
                   SERVICES
                   <ChevronDown className={`w-5 h-5 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
                 </button>
-{/* font */}
+
                 <AnimatePresence>
                   {servicesOpen && (
                     <motion.ul
@@ -257,7 +257,7 @@ export default function Navbar() {
                           <Link
                             href={solution.href}
                             onClick={handleCloseMenu}
-                            className="lg:text-xl hover:text-purple-200 divide-y divide-purple-300 underline underline-offset-8 decoration-purple-300  transition  "
+                            className="lg:text-xl hover:text-purple-200 divide-y divide-purple-100/40 underline underline-offset-12 decoration-purple-100/40 transition  "
                           >
                             {solution.title}
                           </Link>
