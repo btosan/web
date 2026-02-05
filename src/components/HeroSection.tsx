@@ -5,9 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
-// ────────────────────────────────────────────────
-// LazyVideo Component – defers loading until visible
-// ────────────────────────────────────────────────
+// LazyVideo Component
 interface LazyVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
   srcMobile: string;
   srcDesktop: string;
@@ -27,6 +25,10 @@ function LazyVideo({
   useEffect(() => {
     if (!videoRef.current) return;
 
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -34,11 +36,10 @@ function LazyVideo({
           observer.disconnect();
         }
       },
-      { rootMargin: "150px 0px" }
+      { rootMargin: "300px 0px" }
     );
 
     observer.observe(videoRef.current);
-
     return () => observer.disconnect();
   }, []);
 
@@ -57,6 +58,7 @@ function LazyVideo({
       preload={shouldLoad ? "auto" : "none"}
       poster={poster}
       src={shouldLoad ? src : undefined}
+      loading="lazy"
       className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${className}`}
       aria-hidden="true"
       {...props}
@@ -64,9 +66,7 @@ function LazyVideo({
   );
 }
 
-// ────────────────────────────────────────────────
 // Main Hero Section
-// ────────────────────────────────────────────────
 export default function HeroSection() {
   const [open, setOpen] = useState(false);
 
@@ -81,11 +81,18 @@ export default function HeroSection() {
 
   return (
     <section className="relative lg:min-h-screen h-full flex items-center justify-center overflow-hidden bg-black">
-      {/* Instant fallback poster – paints immediately, helps LCP & perceived speed */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url(/assets/web/hero-poster.jpg)" }}
-      />
+      {/* Instant optimized poster fallback – critical for mobile LCP */}
+      <div className="absolute inset-0">
+        <Image
+          src="/assets/web/hero-poster.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          priority
+          quality={85}
+          sizes="100vw"
+        />
+      </div>
 
       {/* Background video – lazy loaded */}
       <LazyVideo
@@ -94,6 +101,7 @@ export default function HeroSection() {
         poster="/assets/web/hero-poster.jpg"
       />
 
+      {/* Rest of your content unchanged */}
       <div className="relative z-10 w-full">
         <div className="mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20">
           <div className="w-full text-start md:text-center lg:text-start lg:ml-0 lg:mr-auto mt-8 py-12 md:py-16 lg:py-0 md:mt-24 md:mb-16 lg:mb-0 mb-12 lg:mt-0">
