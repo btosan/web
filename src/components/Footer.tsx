@@ -114,7 +114,7 @@ export default function Footer() {
       </div>
 
       {/* === COPYRIGHT === */}
-      <div className="text-center text-xs text-gray-500 mt-10">
+      <div className="text-center text-xs text-white/40 mt-10">
         © {new Date().getFullYear()} Ofashi — Web Development, Automation & AI Integration.
       </div>
     </footer>

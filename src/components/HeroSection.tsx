@@ -24,6 +24,8 @@ export default function HeroSection() {
         muted
         loop
         playsInline
+        preload="metadata"
+        poster="/assets/web/hero-picture.jpg"
         className="absolute inset-0 w-full h-full object-cover opacity-100"
       >
         <source src="/assets/web/besttosan_video_from_singularity.mp4" type="video/mp4" />

@@ -17,8 +17,9 @@ export default function BannerSection() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          viewport={{ once: true }}  
         >
+          <h2 className="sr-only">Why Our Clients Choose Us</h2>
           {/* {backend}.test */}
           <ul className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 md:gap-x-12 gap-y-6 md:gap-y-10 place-items-center-safe">
             {bullets.map((item, idx) => (

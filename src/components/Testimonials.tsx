@@ -144,9 +144,9 @@ const testimonials = [
                     />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white text-lg">
+                    <p className="font-semibold text-white text-lg">
                       {testimonial.name}
-                    </h4>
+                    </p>
                     <p className="text-sm text-gray-400">
                       {testimonial.role}
                     </p>
