@@ -18,22 +18,38 @@ export default function HeroSection() {
 
   return (
     <section className="relative lg:min-h-screen h-full flex items-center justify-center overflow-hidden bg-black">
-      
-      {/* Performance-optimized background video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="none"
-        aria-hidden="true"
-        poster="/assets/web/hero-poster.jpg"           // ← add this line
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-      >
-        <source src="/assets/web/ofashi-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
-        <source src="/assets/web/ofashi-desktop.mp4" type="video/mp4" media="(min-width: 769px)" />
-      </video>
 
+      {/* Desktop-only video – hidden on mobile */}
+      <div className="hidden md:block absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        >
+          <source src="/assets/web/ofashi-desktop.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Mobile-only video – hidden on desktop */}
+      <div className="md:hidden absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        >
+          <source src="/assets/web/ofashi-mobile.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Everything below this line is 100% unchanged */}
       <div className="relative z-10 w-full">
         <div className="mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20">
           <div className="w-full text-start md:text-center lg:text-start lg:ml-0 lg:mr-auto mt-8 py-12 md:py-16 lg:py-0 md:mt-24 md:mb-16 lg:mb-0 mb-12 lg:mt-0">
