@@ -1,77 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 
-// ────────────────────────────────────────────────
-// LazyVideo Component – defers loading until visible
-// ────────────────────────────────────────────────
-interface LazyVideoProps extends React.VideoHTMLAttributes<HTMLVideoElement> {
-  srcMobile: string;
-  srcDesktop: string;
-  poster?: string;
-}
-
-function LazyVideo({
-  srcMobile,
-  srcDesktop,
-  poster,
-  className = "",
-  ...props
-}: LazyVideoProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
-
-  useEffect(() => {
-    if (!videoRef.current) return;
-
-    // Respect reduced motion preference (common on mobile)
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return; // skip video loading → fallback to poster only
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setShouldLoad(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "300px 0px" } // trigger a bit earlier for smoother experience
-    );
-
-    observer.observe(videoRef.current);
-
-    return () => observer.disconnect();
-  }, []);
-
-  const src =
-    typeof window !== "undefined" && window.innerWidth <= 768
-      ? srcMobile
-      : srcDesktop;
-
-  return (
-    <video
-      ref={videoRef}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload={shouldLoad ? "auto" : "none"}
-      poster={poster}
-      src={shouldLoad ? src : undefined}
-      className={`absolute inset-0 w-full h-full object-cover pointer-events-none ${className}`}
-      aria-hidden="true"
-      {...props}
-    />
-  );
-}
-
-// ────────────────────────────────────────────────
-// Main Hero Section
-// ────────────────────────────────────────────────
 export default function HeroSection() {
   const [open, setOpen] = useState(false);
 
@@ -86,29 +18,26 @@ export default function HeroSection() {
 
   return (
     <section className="relative lg:min-h-screen h-full flex items-center justify-center overflow-hidden bg-black">
-      {/* Instant optimized poster fallback – critical for mobile LCP */}
-      <div className="absolute inset-0">
-        <Image
-          src="/assets/web/hero-poster.jpg"
-          alt=""
-          fill
-          className="object-cover"
-          priority
-          quality={85}
-          sizes="100vw"
-        />
-      </div>
-
-      {/* Background video – lazy loaded */}
-      <LazyVideo
-        srcMobile="/assets/web/ofashi-mobile.mp4"
-        srcDesktop="/assets/web/ofashi-desktop.mp4"
-        poster="/assets/web/hero-poster.jpg"
-      />
+      
+      {/* Performance-optimized background video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="none"
+        aria-hidden="true"
+        // poster="/assets/web/hero-picture.jpg"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+      >
+        <source src="/assets/web/ofashi-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
+        <source src="/assets/web/ofashi-desktop.mp4" type="video/mp4" media="(min-width: 769px)" />
+      </video>
 
       <div className="relative z-10 w-full">
         <div className="mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20">
           <div className="w-full text-start md:text-center lg:text-start lg:ml-0 lg:mr-auto mt-8 py-12 md:py-16 lg:py-0 md:mt-24 md:mb-16 lg:mb-0 mb-12 lg:mt-0">
+
             <h1 className="text-4xl md:text-6xl lg:text-7xl 2xl:text-8xl font-bold text-white mb-8">
               <span className="tracking-widest text-purple-100">AI-Powered</span>
               <br />
@@ -125,6 +54,7 @@ export default function HeroSection() {
             >
               Let’s Work Together
             </button>
+
           </div>
         </div>
       </div>
