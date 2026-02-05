@@ -27,7 +27,7 @@ export default function HeroSection() {
         playsInline
         preload="none"
         aria-hidden="true"
-        // poster="/assets/web/hero-picture.jpg"
+        poster="/assets/web/hero-poster.jpg"           // ← add this line
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
       >
         <source src="/assets/web/ofashi-mobile.mp4" type="video/mp4" media="(max-width: 768px)" />
