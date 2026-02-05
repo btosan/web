@@ -171,7 +171,7 @@ export default function CustomWebsitesSection() {
   />
 
   {/* Dark Overlay */}
-  <div className="absolute inset-0 lg:bg-black/90 bg-black/90 -z-10" />
+  <div className="absolute inset-0 lg:bg-black/80 bg-black/80 -z-10" />
 
   {/* Content */}
   <div className="relative z-10 mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20 py-24 grid md:grid-cols-2 gap-16 items-center-safe ">

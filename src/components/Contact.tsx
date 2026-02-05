@@ -69,7 +69,7 @@ Email: ${formData.email || "Not provided"}`;
         <div className="space-y-10">
           <div className="text-center lg:text-left">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-purple-100">
-              Contact Ofashi
+              Contact Us
             </h2>
             <p className="text-gray-400 text-lg">
               Talk to us about custom websites, web apps, and AI automation.
@@ -77,7 +77,7 @@ Email: ${formData.email || "Not provided"}`;
             </p>
           </div>
 
-          <div className="space-y-8 bg-gray-900 p-8 rounded-2xl border border-gray-900">
+          <div className="space-y-8 bg-gray-950/70 p-8 rounded-2xl border border-gray-800">
             {/* Address */}
             <div className="flex items-start gap-4">
               <MapPin className="w-6 h-6 text-purple-100 mt-1 shrink-0" />
@@ -170,7 +170,7 @@ Email: ${formData.email || "Not provided"}`;
         {/* Right: Both Forms */}
         <div className="space-y-12">
           {/* WhatsApp Quick Form */}
-          <div className="bg-gray-700/90 p-8 rounded-2xl shadow-xl border border-gray-500/50">
+          <div className="bg-gray-950/90 p-8 rounded-2xl shadow-xl border border-gray-500/50">
             <h3 className="md:text-2xl text-xl font-medium text-center md:mb-8 mb-4 text-purple-100">
               Request a Quote or Consultation
             </h3>
@@ -267,7 +267,7 @@ Email: ${formData.email || "Not provided"}`;
           </div>
 
           {/* Google Enquiry Form */}
-          <div className="bg-gray-600/70 p-8 rounded-2xl shadow-xl border border-gray-600">
+          <div className="bg-gray-950/70 p-8 rounded-2xl shadow-xl border border-gray-700">
             <GoogleEnquiryForm />
           </div>
         </div>

@@ -25,61 +25,61 @@ export default function WhyChooseUsSection() {
   };
 
   const reasons = [
-    {
-      icon: <Code2 className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
-      title: "100% Custom-Built Solutions",
-      description:
-        "Every project is hand-coded from the ground up. We do not use WordPress, page builders, or drag-and-drop tools, giving you full control, better performance, and no limitations as your business grows.",
-    },
-    {
-      icon: <Rocket className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
-      title: "Designed to Scale With Your Business",
-      description:
-        "Our websites and web apps are built like real software, not brochure sites. From MVPs to complex systems, your product is designed to grow without needing a rebuild.",
-    },
-    {
-      icon: <Bot className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
-      title: "AI Automation That Solves Real Problems",
-      description:
-        "We integrate AI where it actually adds value, including chatbots, workflow automation, smart content systems, and custom AI tools that save time and reduce costs.",
-    },
-    {
-      icon: <Zap className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
-      title: "Modern Technology & Tools",
-      description:
-        "We use FastAPI, Django, React, and Next.js because they are faster, more secure, and more scalable than CMS platforms like WordPress. No fragile plugins, no constant theme updates, and no sites breaking when plugins stop working.",
-    },
-    {
-      icon: <Shield className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
-      title: "Fast, Secure, and Production-Ready",
-      description:
-        "Security and performance are built in from day one. No bloated plugins, no patchwork fixes, and no hidden vulnerabilities caused by third-party extensions.",
-    },
-    {
-      icon: <Palette className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
-      title: "Design That Supports Business Goals",
-      description:
-        "Our designs are not just visually appealing. Every layout and interaction is crafted to improve clarity, usability, conversions, and customer trust.",
-    },
-    {
-      icon: <Code2 className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
-      title: "Clean Architecture, Not Quick Fixes",
-      description:
-        "We write clean, maintainable code that is easy to extend and improve over time, avoiding the technical debt common with template-based solutions.",
-    },
-    {
-      icon: <Zap className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
-      title: "Clear Process and Predictable Delivery",
-      description:
-        "You work directly with engineers, not middlemen. Clear communication, realistic timelines, and professional delivery from start to launch.",
-    },
-    {
-      icon: <Rocket className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
-      title: "Long-Term Technical Partnership",
-      description:
-        "We do not disappear after launch. We support, improve, and evolve your product as your business grows, acting as a long-term technical partner.",
-    },
-  ];
+  {
+    icon: <Code2 className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
+    title: "Truly Custom-Built Solutions",
+    description:
+      "Every project is hand-coded from scratch—no templates, no drag-and-drop builders. You get full control, superior performance, and a system that evolves with your business.",
+  },
+  {
+    icon: <Rocket className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
+    title: "Built to Scale",
+    description:
+      "From MVPs to complex web apps, we design products like software, not static websites. Your solution grows with you, avoiding costly rebuilds down the line.",
+  },
+  {
+    icon: <Bot className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
+    title: "AI That Works for You",
+    description:
+      "We integrate AI and automation only where it adds real value—chatbots, workflow automation, smart content, and custom tools that save time and cut costs.",
+  },
+  {
+    icon: <Zap className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
+    title: "Modern, Reliable Tech Stack",
+    description:
+      "We build with FastAPI, Django, React, and Next.js for speed, security, and scalability. No fragile plugins or constant theme updates—just stable, future-proof technology.",
+  },
+  {
+    icon: <Shield className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
+    title: "Performance & Security from Day One",
+    description:
+      "Fast, secure, and production-ready. We avoid bloated third-party tools and patchwork fixes, keeping your product safe, smooth, and reliable.",
+  },
+  {
+    icon: <Palette className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
+    title: "Design That Drives Results",
+    description:
+      "Our UI/UX is not just beautiful—it’s built to guide users, boost conversions, and earn customer trust. Every interaction supports your business goals.",
+  },
+  {
+    icon: <Code2 className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
+    title: "Clean Architecture, No Shortcuts",
+    description:
+      "We write maintainable, extensible code that avoids the technical debt common in template-based solutions. Your system remains agile and upgradeable.",
+  },
+  {
+    icon: <Zap className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
+    title: "Transparent Process & Predictable Delivery",
+    description:
+      "You work directly with our engineers, not middlemen. Expect clear communication, realistic timelines, and professional delivery from start to finish.",
+  },
+  {
+    icon: <Rocket className="w-8 h-8 md:w-10 md:h-10 text-purple-300 shrink-0" />,
+    title: "Long-Term Growth Partnership",
+    description:
+      "We don’t disappear after launch. We continue to support, improve, and evolve your product as your business grows—your technical partner for the long run.",
+  },
+];
 
   return (
     <section className="relative bg-black text-gray-100 py-20 md:py-28 overflow-hidden">
@@ -96,7 +96,7 @@ export default function WhyChooseUsSection() {
             Why Choose Us
           </h2>
           <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto">
-            If your business needs more than a basic website, BT WebTech builds
+            If your business needs more than a basic website, Ofashi builds
             custom web solutions designed for performance, scalability, and real growth.
           </p>
         </motion.div>

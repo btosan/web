@@ -103,7 +103,7 @@ export default function ServicesSection() {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/50" />
+            <div className="absolute inset-0 bg-black/70" />
           </motion.div>
 
 

@@ -106,7 +106,7 @@ const stack = {
               className={`px-6 py-2 rounded-full text-sm md:text-base font-semibold hover:cursor-pointer whitespace-nowrap transition
                 ${
                   activeTab === category
-                    ? "bg-purple-600 text-white shadow-lg"
+                    ? "bg-purple-800 text-white shadow-lg"
                     : "bg-gray-900 text-gray-300 border border-gray-700 lg:border-gray-500 hover:bg-gray-800"
                 }`}
             >

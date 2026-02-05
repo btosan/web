@@ -178,3 +178,14 @@
 }
 .tiptap-light .ProseMirror { color: #111 !important; }
 .tiptap-light .ProseMirror p.is-editor-empty:first-child::before { color: #6b7280 !important; }
+
+
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari, Opera */
+}
