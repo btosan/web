@@ -95,7 +95,7 @@ export default function ServicesSection() {
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden"
           >
             <Image
-              src="/assets/web/software4.png"
+              src="/assets/people/services-hero.jpg"
               alt="Ofashi"
               fill
               className="object-cover"
@@ -103,7 +103,7 @@ export default function ServicesSection() {
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/70" />
+            <div className="absolute inset-0 bg-black/60" />
           </motion.div>
 
 
