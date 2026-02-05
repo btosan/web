@@ -192,7 +192,7 @@ export default function Navbar() {
           className="lg:hidden text-purple-100 focus:outline-none"
         >
           {open ? <X className="h-8 md:h-10 w-auto text-purple-300" /> : <Menu className="h-8 md:h-10 w-auto" />}
-          <span className="hidden sr-only">open or close</span>
+          <span className=" sr-only">open or close</span>
         </button>
       </div>
 
