@@ -45,7 +45,7 @@ export default function HeroSection() {
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         >
-          <source src="/assets/web/ofashi-mobile.mp4" type="video/mp4" />
+          <source src="/assets/web/ofashi-desktop.mp4" type="video/mp4" />
         </video>
       </div>
 
