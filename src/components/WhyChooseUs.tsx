@@ -10,7 +10,7 @@ import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-const AUTOPLAY_DELAY = 4500;
+const AUTOPLAY_DELAY = 150000;
 
 export default function WhyChooseUsSection() {
   const [open, setOpen] = useState(false);
@@ -95,9 +95,9 @@ export default function WhyChooseUsSection() {
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 ">
             Why Choose Us
           </h2>
-          <p className="mt-6 text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="mt-6 text-lg lg:text-xl text-gray-300 max-w-3xl mx-auto">
             If your business needs more than a basic website, Ofashi builds
-            custom web solutions designed for performance, scalability, and real growth.
+            custom web and mobile solutions designed for performance, scalability, and real growth.
           </p>
         </motion.div>
 
@@ -107,17 +107,14 @@ export default function WhyChooseUsSection() {
             Swipe to explore →
           </div>
 
-          <Swiper
-            modules={[Autoplay, Pagination]}
-            autoplay={{
-              delay: AUTOPLAY_DELAY,
-              disableOnInteraction: false,
-            }}
-            pagination={{ clickable: true }}
-            spaceBetween={16}
-            slidesPerView={1.05}
-            loop
-          >
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              autoplay={false} // disables autoplay
+              pagination={{ clickable: true }}
+              spaceBetween={16}
+              slidesPerView={1.05}
+              loop
+            >
             {reasons.map((reason, index) => (
               <SwiperSlide key={index}>
                 <motion.div
