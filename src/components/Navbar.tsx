@@ -14,6 +14,10 @@ import {
   Smartphone,
   Sparkles,
   Cpu,
+  BookOpen,
+  HelpCircle,
+  FileText,
+  Lightbulb,
 } from "lucide-react";
 // lg:hidden text-purple-100 focus:outline-none
 const urbanist = Urbanist({
@@ -29,48 +33,80 @@ const solutions = [
     name: "High-Performance & Search-Optimized",
     title: "Custom Websites",
     description: "Custom-built websites designed for speed, SEO visibility, and seamless user experience — turning your online presence into a powerful business asset.",
-    href: "/custom-websites",
+    href: "/services/custom-websites",
   },
   {
     icon: Smartphone,
     name: "Scalable Platforms & Dashboards",
     title: "Full-Stack Apps",
     description: "Robust web and mobile applications built with modern technologies — from customer portals to complete business systems.",
-    href: "/full-stack-apps",
+    href: "/services/full-stack-apps",
   },
   {
     icon: Cpu,
     name: "Smart Features & Intelligence",
     title: "AI Integration",
     description: "We embed AI into your products and platforms — chatbots, recommendation systems, data insights, and intelligent user experiences.",
-    href: "/ai-integration",
+    href: "/services/ai-integration",
   },
   {
     icon: Sparkles,
     name: "Systems That Work Automatically",
     title: "AI Automation",
     description: "Automate lead management, customer communication, data processing, and internal workflows with intelligent, time-saving systems.",
-    href: "/ai-automation",
+    href: "/services/ai-automation",
   },
   {
     icon: ShieldCheck,
     name: "Intuitive, Conversion-Focused Experiences",
     title: "UI/UX Design",
     description: "Exceptional interface and user experience design that improves usability, builds trust, and turns visitors into engaged customers.",
-    href: "/ui-ux-design",
+    href: "/services/ui-ux-design",
   },
   {
     icon: TrendingUp,
     name: "Visibility, Positioning & Growth",
     title: "Digital Strategy",
     description: "Strategic branding, digital presence, and performance-driven marketing systems that attract the right audience and drive measurable business growth.",
-    href: "/digital-branding-marketing",
+    href: "/services/digital-branding-marketing",
   },
 ];
+
+const insightsItems = [
+  {
+    icon: BookOpen,
+    name: "Latest Articles & Trends",
+    title: "Blog",
+    description: "In-depth articles, industry trends, tech insights, and practical tips to help you grow your business in the digital age.",
+    href: "/learn/blog",
+  },
+  {
+    icon: HelpCircle,
+    name: "Quick Answers to Common Questions",
+    title: "FAQs",
+    description: "Clear, concise answers to the most frequently asked questions about our services, process, pricing, and timelines.",
+    href: "/learn/faqs",
+  },
+  {
+    icon: FileText,
+    name: "Real Results & Success Stories",
+    title: "Case Studies",
+    description: "Detailed breakdowns of projects we’ve delivered — challenges, solutions, technologies used, and measurable outcomes.",
+    href: "/learn/case-studies",
+  },
+  {
+    icon: Lightbulb,
+    name: "Practical Tools & In-depth Guides",
+    title: "Guides & Resources",
+    description: "Step-by-step guides, checklists, templates, and free resources to help you make better decisions and move faster.",
+    href: "/learn/guides",
+  },
+]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);                
   const [servicesOpen, setServicesOpen] = useState(false); 
+  const [insightsOpen, setInsightsOpen] = useState(false);
   const router = useRouter();
 
   const handleExploreNow = () => {
@@ -90,7 +126,7 @@ export default function Navbar() {
         <div className="flex items-center justify-center ">
           <Link
             href={"/"}
-            className="flex items-center justify-center gap-3 md:gap-4 xl:gap-6 lg:gap-4 w-full relative h-9 md:h-12 lg:h-14 "
+            className="flex items-center justify-center gap-3 md:gap-4 2xl:gap-6 lg:gap-4 w-full relative h-9 md:h-12 lg:h-14 "
           > 
             <Image 
               src="/logo/ofashi-icon.png" 
@@ -99,14 +135,14 @@ export default function Navbar() {
               height={100}
               className="h-7 md:h-8 lg:h-9 w-auto shadow-2xl shadow-white" 
             />
-            <p className={`${urbanist.className} scale-x-110 py-2 flex items-center gap-0.5 md:gap-1 font-medium md:tracking-wide tracking-wider text-2xl lg:text-3xl bg-linear-to-r from-white via-purple-100 to-purple-200 bg-clip-text text-transparent transition-colors duration-300`} >
+            <p className={`${urbanist.className} scale-x-110 py-2 flex items-center gap-0.5 md:gap-1 font-medium md:tracking-wide tracking-wider text-xl lg:text-2xl 2xl:text-3xl bg-linear-to-r from-white via-purple-100 to-purple-200 bg-clip-text text-transparent transition-colors duration-300`} >
               Ofashi
             </p>
           </Link>
         </div>
 
         {/* === DESKTOP MENU === */}
-        <ul className="hidden lg:flex items-center xl:space-x-10 lg:space-x-8 text-lg lg:text-xl font-medium ">
+        <ul className="hidden lg:flex items-center xl:space-x-10 lg:space-x-8 text-lg lg:text-base 2xl:text-xl font-medium ">
           <li className="relative"
               onMouseEnter={() => setServicesOpen(true)}
               onMouseLeave={() => setServicesOpen(false)}
@@ -127,7 +163,7 @@ export default function Navbar() {
                   className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-screen max-w-none"
                 >
                   <div className="bg-gray-950 border-b-2 border-t-2 border-gray-700/80 shadow-xl shadow-gray-800 ">
-                    <div className="max-w-6xl mx-auto py-12 px-8 lg:px-12">
+                    <div className="max-w-6xl mx-auto py-12 px-8 xl:px-12 md:pl-32">
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pl-32">
                         {solutions.map((solution, idx) => (
                           <Link
@@ -172,16 +208,60 @@ export default function Navbar() {
               Pricing
             </Link>
           </li>
-          <li>
-            <Link href="/faqs" className="uppercase hover:text-purple-200 transition tracking-wider hover:underline hover:underline-offset-12 decoration-2 decoration-purple-300">
-              FAQs
-            </Link>
+          <li className="relative"
+              onMouseEnter={() => setInsightsOpen(true)}
+              onMouseLeave={() => setInsightsOpen(false)}
+          >
+            <div className="flex items-center justify-center gap-1 hover:text-purple-200 transition tracking-wider hover:underline hover:underline-offset-12 decoration-2 decoration-purple-300 cursor-pointer uppercase">
+              LEARN
+              <ChevronDown className={`w-6 h-6 transition-transform ${insightsOpen ? 'rotate-180' : ''}`} />
+            </div>
+
+            {/* Mega / dropdown for Insights — similar structure to Services but simpler grid */}
+            <AnimatePresence>
+              {insightsOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ duration: 0.25 }}
+                  className="absolute left-0 right-0 -translate-x-1/2 top-full mt-4 w-screen "
+                >
+                  <div className="bg-gray-950 border-b-2 border-t-2 border-gray-700/80 shadow-xl shadow-gray-800">
+                    <div className="2xl:max-w-6xl md:max-w-7xl mx-auto py-12 px-8 2xl:px-32 md:pr-56">
+                      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-8 place-items-center">
+                        {insightsItems.map((item, idx) => (
+                          <Link
+                            key={idx}
+                            href={item.href}
+                            onClick={handleCloseMenu}
+                            className="group flex flex-col px-8 py-6 rounded-xl border border-purple-900/50 bg-purple-900/5 hover:bg-purple-950/50 hover:border-purple-500/40 transition-all duration-300"
+                          >
+                            <div className="flex items-center gap-4 mb-4">
+                              <div className="w-9 h-9 rounded-lg bg-purple-900/60 flex items-center justify-center text-purple-200 group-hover:text-purple-100 transition-colors">
+                                {React.createElement(item.icon, { size: 24 })}
+                              </div>
+                              <h3 className="text-lg md:text-xl font-semibold text-white group-hover:text-purple-200 transition-colors">
+                                {item.title}
+                              </h3>
+                            </div>
+                            <p className="text-gray-300 text-sm lg:text-base leading-relaxed line-clamp-3">
+                              {item.description}
+                            </p>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </li>
         </ul>
 
         {/* === DESKTOP BUTTONS (unchanged) === */}
-        <div className="hidden lg:flex items-center lg:space-x-8 xl:space-x-12 space-x-5">
-          <Link href='/contact' className=" tracking-wider uppercase lg:text-xl text-lg lg:px-6 lg:py-2 xl:py-3 xl:px-10 bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700 via-purple-800 to-purple-500 text-white transition-all">
+        <div className="hidden lg:flex items-center lg:space-x-8 2xl:space-x-12 space-x-5">
+          <Link href='/contact' className=" tracking-wider uppercase text-lg lg:text-base 2xl:text-xl lg:px-6 lg:py-2 xl:py-3 xl:px-10 bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700 via-purple-800 to-purple-500 text-white transition-all">
             Contact
           </Link>
         </div>
@@ -298,13 +378,37 @@ export default function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/faqs"
-                  onClick={handleCloseMenu}
-                  className="hover:text-purple-100 transition uppercase"
+                <button
+                  className="w-full mx-auto flex items-center justify-center gap-1 hover:text-purple-100 transition uppercase"
+                  onClick={() => setInsightsOpen(!insightsOpen)}
                 >
-                  FAQs
-                </Link>
+                  LEARN
+                  <ChevronDown className={`w-5 h-5 transition-transform ${insightsOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                <AnimatePresence>
+                  {insightsOpen && (
+                    <motion.ul
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden mt-4 space-y-2 text-center text-lg text-purple-100 "
+                    >
+                      {insightsItems.map((item, idx) => (
+                        <li key={idx} className="py-2">
+                          <Link
+                            href={item.href}
+                            onClick={handleCloseMenu}
+                            className="lg:text-xl hover:text-purple-200 underline underline-offset-12 decoration-purple-100/40 transition"
+                          >
+                            {item.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
               </li>
             </ul>
 
