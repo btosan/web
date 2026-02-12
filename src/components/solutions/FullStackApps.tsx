@@ -160,7 +160,7 @@ export default function FullStackAppsSection() {
               High-Performance Full-Stack Applications That Scale
             </h1>
             <p className="mt-6 text-gray-200 text-lg xl:text-xl">
-              We build full-stack applications with optimized frontends,
+              We build full-stack (web & mobile) applications with optimized frontends,
               robust backends, and seamless integrations — turning your
               ideas into powerful digital solutions.
             </p>
