@@ -157,7 +157,7 @@ export default function FullStackAppsSection() {
         <div className="relative z-10 mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20 py-24 grid md:grid-cols-2 gap-16 items-center-safe ">
           <div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-              High-Performance Full-Stack Applications That Scale
+              High-Performance Full-Stack Apps That Scale
             </h1>
             <p className="mt-6 text-gray-200 text-lg xl:text-xl">
               We build full-stack (web & mobile) applications with optimized frontends,
