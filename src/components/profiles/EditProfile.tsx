@@ -288,8 +288,7 @@ export default function EditProfile() {
                     <FormControl>
                       <Textarea
                         placeholder="Tell us a bit about yourself (max 500 characters)"
-                        className="min-h-30"
-                        {...field} className='text-white focus:bg-gray-950 border border-gray-600 focus:border-0 focus:outline-0'
+                        {...field} className='min-h-30 text-white focus:bg-gray-950 border border-gray-600 focus:border-0 focus:outline-0'
                       />
                     </FormControl>
                     <FormDescription>
