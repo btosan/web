@@ -55,7 +55,7 @@ export const PROJECTS: Project[] = [
     excerpt: "Custom AI system for automation and intelligent content generation.",
     image: "/assets/backend.png",
     type: "ai",
-    liveUrl: "#",
+    liveUrl: "/",
   },
   {
     slug: "mobile-first-site",
@@ -63,6 +63,6 @@ export const PROJECTS: Project[] = [
     excerpt: "Progressive web app optimized for speed, offline use, and mobile.",
     image: "/assets/web/ecommerce1.jpg",
     type: "automation",
-    liveUrl: "#",
+    liveUrl: "/",
   },
 ];
