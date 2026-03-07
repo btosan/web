@@ -264,6 +264,7 @@ enum ProjectType {
   BACKEND
   FRONTEND
   FULLSTACK
+  MOBILE
   AI
   AUTOMATION
   WEB3

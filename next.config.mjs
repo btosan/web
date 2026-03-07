@@ -1,55 +1,54 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-      optimizeFonts: true,
-      experimental: {
-        optimizeCss: false,
-        turbo: false,
+  experimental: {
+    optimizeCss: false,
+  },
+  turbopack: {
+    resolveAlias: {},   // keep your aliases here if you add any later
+  },
+
+  reactStrictMode: true,
+
+  images: {
+    qualities: [75, 100],
+    formats: ['image/avif', 'image/webp'],
+
+    remotePatterns: [
+      // Cloudinary – FIXED version
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/drrwbt2tc/**',   // ← change to this (or '/**' if you have multiple clouds)
       },
 
-      reactStrictMode: true,
-    
-      images: {
-        unoptimized: true,
-        formats: [
-          'image/avif',
-          'image/webp'
-        ],
-    
-        remotePatterns: [
-          {
-            protocol: 'https',
-            hostname: 'res.cloudinary.com',
-            pathname: '**/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
-          },
-          {
-            protocol: 'https',
-            hostname: 'images.pexels.com',
-            pathname: '**/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
-          },
-          {
-            protocol: 'https',
-            hostname: 'images.unsplash.com',
-            pathname: '**/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
-          },
-          {
-            protocol: 'https',
-            hostname: 'avatars.githubusercontent.com',
-            pathname: '**/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
-          },
-          {
-            protocol: 'https',
-            hostname: 'lh3.googleusercontent.com',
-            pathname: '**/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
-          },
-          {
-            protocol: 'https',
-            hostname: 'cdn.example.com',
-            pathname: '**/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
-          },
-        ],
+      // Keep the others if you're actually using them
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+        pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.example.com',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
-
-

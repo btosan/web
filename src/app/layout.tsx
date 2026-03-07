@@ -1,10 +1,20 @@
 // app/layout.tsx
 import "./globals.css";
+import { DM_Sans, Barlow } from "next/font/google"
+import { TooltipProvider } from "@/components/ui/tooltip"
 import type { Metadata } from "next";
 import Script from "next/script"; // ← Add this import
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import NextAuthProviders from './NextAuthProviders';
+import HolyLoader from "holy-loader";
 import FloatingContact from "@/components/FloatingContact";
+
+const barlow = Barlow({
+  variable: "--font-barlow",
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+})
 
 export const metadata: Metadata = {
   title:
@@ -35,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* ← GOOGLE ANALYTICS / GTAG − START */}
         <Script
@@ -56,12 +66,17 @@ export default function RootLayout({
       </head>
 
       <body className=" bg-black text-gray-100 font-sans antialiased overflow-x-hidden">
-        <Navbar />
-        <main className="pt-20 ">
-          {children}
-          <FloatingContact />
-        </main>
-        <Footer />
+        <HolyLoader color="#7F00FF" />
+        <NextAuthProviders>
+          <TooltipProvider>
+            <Navbar />
+            <main className="pt-20 ">
+              {children}
+              <FloatingContact />
+            </main>
+            <Footer />
+          </TooltipProvider>
+        </NextAuthProviders>
       </body>
     </html>
   );

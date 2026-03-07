@@ -49,7 +49,6 @@ export default function HeroSection() {
         </video>
       </div>
 
-      {/* Everything below this line is 100% unchanged */}
       <div className="relative z-10 w-full">
         <div className="mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20">
           <div className="w-full text-start md:text-center lg:text-start lg:ml-0 lg:mr-auto mt-8 py-12 md:py-16 lg:py-0 md:mt-24 md:mb-16 lg:mb-0 mb-12 lg:mt-0">

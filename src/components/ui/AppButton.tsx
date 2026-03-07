@@ -3,24 +3,24 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/utils";
 
 const buttonVariants = cva(
-  "relative inline-flex items-center justify-center rounded-lg text-sm font-medium transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden",
+  "relative inline-flex items-center justify-center rounded-lg text-sm xl:text-lg font-medium transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden",
   {
     variants: {
       variant: {
-        default: "dark:bg-lightblue bg-primary5 dark:text-black text-white dark:hover:bg-lightblue2 hover:bg-primary6 shadow-lg hover:shadow-xl active:scale-[0.98]",
+        default: "bg-purple-950 text-white hover:bg-purple-900 shadow-lg hover:shadow-xl active:scale-[0.98]",
         destructive: "bg-gradient-to-r from-red-500 to-rose-600 text-white hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl",
-        outline: "border-2 dark:border-lightblue border-primary5 bg-transparent dark:hover:bg-lightblue/10 hover:bg-primary5/10 text-black dark:text-white",
-        secondary: "dark:bg-secondary2 bg-primary7 dark:text-black text-white dark:hover:bg-secondary3 hover:bg-primary6 shadow-lg hover:shadow-xl active:scale-[0.98]",
-        ghost: "bg-transparent hover:bg-lightblue/10 dark:hover:bg-primary5/10 text-black dark:text-white",
-        link: "bg-transparent underline-offset-4 hover:underline text-black dark:text-white p-0",
-        glow: "dark:bg-lightblue bg-primary5 dark:text-black text-white dark:hover:bg-lightblue2 hover:bg-primary6 shadow-lg hover:shadow-xl animate-glow active:scale-[0.98]",
+        outline: "border-2 border-purple-950 bg-transparent hover:bg-purple-950/10 text-black",
+        secondary: "bg-purple-950 text-white hover:bg-purple-900 shadow-lg hover:shadow-xl active:scale-[0.98]",
+        ghost: "bg-transparent hover:bg-accent/10 text-black",
+        link: "bg-transparent underline-offset-4 hover:underline text-black p-0",
+        glow: "bg-purple-950 text-white hover:bg-purple-900 shadow-lg hover:shadow-xl animate-glow active:scale-[0.98]",
       },
       size: {
-        default: "h-11 px-6 py-2",
-        sm: "h-9 px-4 py-2 text-xs",
-        lg: "h-12 px-8 py-3 text-base",
+        default: "h-11 px-6 md:py-4 py-2",
+        sm: "h-9 px-4 md:py-4 py-2 text-xs",
+        lg: "h-12 px-8 md:py-4 py-3 text-base",
         icon: "h-11 w-11 p-2",
-        full: "h-11 w-full px-6 py-2",
+        full: "h-11 w-full px-6 md:py-4 py-2",
       },
     },
     defaultVariants: {
@@ -46,7 +46,7 @@ const AppButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {isLoading && (
-          <div className="absolute inset-0 flex items-center justify-center bg-inherit">
+          <div className="absolute inset-0 flex items-center justify-center bg-inherit ">
             <svg
               className="animate-spin h-5 w-5"
               xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ const AppButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
             </svg>
           </div>
         )}
-        <span className={isLoading ? "opacity-0" : ""}>{children}</span>
+        <span className={isLoading ? "opacity-0" : " hover:cursor-pointer"}>{children}</span>
       </button>
     );
   }
