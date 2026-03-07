@@ -160,7 +160,7 @@ export default function EditProfile() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               {/* Avatar / Image */}
               <div className="space-y-4">
-                <FormLabel className='text-gray-300' className='text-gray-500'>Profile Picture</FormLabel>
+                <FormLabel className='text-gray-500'>Profile Picture</FormLabel>
                 <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
                   <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-border shadow-md">
                     {previewImage ? (
