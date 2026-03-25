@@ -13,7 +13,7 @@ async function requireAuthor() {
     redirect("/api/auth/signin?callbackUrl=/author");
   }
 
-  if (![Role.AUTHOR, Role.ADMIN].includes(session.user.role)) {
+  if (session.user.role !== Role.AUTHOR && session.user.role !== Role.ADMIN) {
     redirect("/");
   }
 
