@@ -466,7 +466,11 @@ export async function getProjects() {
       imageCredit: true,
       description: true,  
       projectUrl: true,
-      // Add any other fields your CaseStudyForm dropdown or display needs
+      featured: true,
+      catName: true,
+      imageUrls: true,
+      imageCreditUrls: true,
+      shortDescription: true,
     },
   });
 }
