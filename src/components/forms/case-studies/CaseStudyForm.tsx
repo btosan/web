@@ -34,7 +34,7 @@ import {
   CaseStudyFormValues,
 } from "@/lib/validators/caseStudy";
 
-// function parseKeyMetrics(value: string) {
+// payload
 interface CaseStudyWithRelations extends CaseStudy {
   category?: CaseStudyCategory | null;
   tags?: CaseStudyTag[];
@@ -184,30 +184,29 @@ const defaultValues = useMemo<CaseStudyFormValues>(
     setIsLoading(true);
 
     try {
-      const payload = {
-        ...values,
-        slug: values.slug?.trim() || undefined,
-        excerpt: values.excerpt?.trim() || undefined,
-        content: values.content?.trim() || undefined,
-        challenge: values.challenge?.trim() || undefined,
-        solution: values.solution?.trim() || undefined,
-        results: values.results?.trim() || undefined,
-        clientName: values.clientName?.trim() || undefined,
-        industry: values.industry?.trim() || undefined,
-        projectTimeline: values.projectTimeline?.trim() || undefined,
-        teamSize:
-          values.teamSize?.trim() && !Number.isNaN(Number(values.teamSize.trim()))
-            ? Number(values.teamSize.trim())
-            : undefined,
-        testimonial: values.testimonial?.trim() || undefined,
-        testimonialAuthor: values.testimonialAuthor?.trim() || undefined,
-        imageUrl: values.imageUrl?.trim() || undefined,
-        imageCredit: values.imageCredit?.trim() || undefined,
-        categoryName: values.categoryName?.trim() || undefined,
-        projectId: values.projectId?.trim() || undefined,
-        tagNames: parseTags(tagsInput),
-        keyMetrics: parseKeyMetrics(keyMetricsInput),
-      };
+const payload = {
+  title: values.title.trim(),
+  slug: values.slug?.trim() || undefined,
+  excerpt: values.excerpt?.trim() || undefined,
+  content: values.content.trim(), // required string
+  challenge: values.challenge?.trim() || undefined,
+  solution: values.solution?.trim() || undefined,
+  results: values.results?.trim() || undefined,
+  clientName: values.clientName?.trim() || undefined,
+  industry: values.industry?.trim() || undefined,
+  projectTimeline: values.projectTimeline?.trim() || undefined,
+  teamSize: values.teamSize ? Number(values.teamSize) : undefined, 
+  testimonial: values.testimonial?.trim() || undefined,
+  testimonialAuthor: values.testimonialAuthor?.trim() || undefined,
+  imageUrl: values.imageUrl?.trim() || undefined,
+  imageCredit: values.imageCredit?.trim() || undefined,
+  published: values.published,
+  featured: values.featured,
+  categoryName: values.categoryName?.trim() || undefined,
+  tagNames: values.tagNames ?? [],
+  projectId: values.projectId?.trim() || undefined,
+  keyMetrics: values.keyMetrics,
+};
 
       if (isEdit && caseStudy) {
         await updateCaseStudy(caseStudy.id, payload);
