@@ -163,54 +163,64 @@ export async function createCaseStudy(data: {
     }
   }
 
-  const caseStudy = await db.caseStudy.create({
-    data: {
-      title: data.title.trim(),
-      slug,
-      clientName: cleanString(data.clientName),
-      industry: cleanString(data.industry),
-      projectTimeline: cleanString(data.projectTimeline),
-      teamSize: data.teamSize ?? null,
-      challenge: cleanString(data.challenge),
-      solution: cleanString(data.solution),
-      results: cleanString(data.results),
-      keyMetrics: data.keyMetrics ?? Prisma.JsonNull,
-      testimonial: cleanString(data.testimonial),
-      testimonialAuthor: cleanString(data.testimonialAuthor),
-      imageUrl: cleanString(data.imageUrl),
-      imageCredit: cleanString(data.imageCredit),
-      publicId: cleanString(data.publicId),
-      content: data.content.trim(),
-      excerpt: cleanString(data.excerpt),
-      published: data.published ?? false,
-      featured: data.featured ?? false,
-      authorEmail,
-      projectId: cleanString(data.projectId),
-      category: categoryName
-        ? {
-            connectOrCreate: {
-              where: { catName: categoryName },
-              create: { catName: categoryName },
-            },
-          }
-        : undefined,
-      tags: tagNames.length
-        ? {
-            connectOrCreate: tagNames.map((tagName) => ({
-              where: { tagName },
-              create: { tagName },
-            })),
-          }
-        : undefined,
+const caseStudy = await db.caseStudy.create({
+  data: {
+    title: data.title.trim(),
+    slug,
+    clientName: cleanString(data.clientName),
+    industry: cleanString(data.industry),
+    projectTimeline: cleanString(data.projectTimeline),
+    teamSize: data.teamSize ?? null,
+    challenge: cleanString(data.challenge),
+    solution: cleanString(data.solution),
+    results: cleanString(data.results),
+    keyMetrics: data.keyMetrics ?? Prisma.JsonNull,
+    testimonial: cleanString(data.testimonial),
+    testimonialAuthor: cleanString(data.testimonialAuthor),
+    imageUrl: cleanString(data.imageUrl),
+    imageCredit: cleanString(data.imageCredit),
+    publicId: cleanString(data.publicId),
+    content: data.content.trim(),
+    excerpt: cleanString(data.excerpt),
+    published: data.published ?? false,
+    featured: data.featured ?? false,
+
+    author: {
+      connect: { email: authorEmail },
     },
-    include: {
-      author: true,
-      category: true,
-      tags: true,
-      gallery: true,
-      project: true,
-    },
-  });
+
+    project: data.projectId
+      ? {
+          connect: { id: data.projectId },
+        }
+      : undefined,
+
+    category: categoryName
+      ? {
+          connectOrCreate: {
+            where: { catName: categoryName },
+            create: { catName: categoryName },
+          },
+        }
+      : undefined,
+
+    tags: tagNames.length
+      ? {
+          connectOrCreate: tagNames.map((tagName) => ({
+            where: { tagName },
+            create: { tagName },
+          })),
+        }
+      : undefined,
+  },
+  include: {
+    author: true,
+    category: true,
+    tags: true,
+    gallery: true,
+    project: true,
+  },
+});
 
   revalidatePath("/admin/case-studies");
   revalidatePath("/case-studies");
