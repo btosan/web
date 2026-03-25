@@ -124,7 +124,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 w-full z-50 bg-black bg-opacity-90 text-gray-100 border-b lg:border-gray-800 border-gray-800/5">
       <div className="mx-auto px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20 py-3 lg:py-5 flex items-center justify-between">
 
-        {/* Logo */}
+        {/* Logo py-1.5*/}
         <div className="flex items-center justify-center">
           <Link
             href="/"
@@ -321,32 +321,44 @@ export default function Navbar() {
                   )}
                 </div>
 
-                <div className="py-1.5 divide-y divide-purple-800/30">
+              <div className="py-1.5 divide-y divide-purple-800/30">
+                <Link
+                  href="/profile"
+                  className="block px-5 py-2.5 text-sm text-purple-200 hover:bg-purple-950/70 hover:text-purple-100 transition-colors"
+                  onClick={handleCloseMenu}
+                >
+                  Profile
+                </Link>
+
+                {user.role === "AUTHOR" && (
                   <Link
-                    href="/profile"
+                    href="/author"
                     className="block px-5 py-2.5 text-sm text-purple-200 hover:bg-purple-950/70 hover:text-purple-100 transition-colors"
                     onClick={handleCloseMenu}
                   >
-                    Profile
+                    Author
                   </Link>
+                )}
 
+                {user.role === "ADMIN" && (
                   <Link
-                    href="/dashboard"
+                    href="/admin"
                     className="block px-5 py-2.5 text-sm text-purple-200 hover:bg-purple-950/70 hover:text-purple-100 transition-colors"
                     onClick={handleCloseMenu}
                   >
-                    Dashboard
+                    Admin
                   </Link>
+                )}
 
-                  <button
-                    onClick={() => signOut({ callbackUrl: "/signin" })}
-                    className="w-full text-left px-5 py-2.5 text-sm text-red-400 hover:bg-red-950/50 hover:text-red-300 transition-colors"
-                  >
-                    Sign Out
-                  </button>
-                </div>
+                <button
+                  onClick={() => signOut({ callbackUrl: "/signin" })}
+                  className="w-full text-left px-5 py-2.5 text-sm text-red-400 hover:bg-red-950/50 hover:text-red-300 transition-colors"
+                >
+                  Sign Out
+                </button>
+              </div>
 
-                {/* Arrow */}
+                {/* Arrow py-2 divide-y */}
                 <div className="absolute right-5 -top-1.5 w-3 h-3 bg-gray-950 border-l border-t border-purple-800/60 rotate-45" />
               </div>
             </div>
@@ -579,53 +591,56 @@ export default function Navbar() {
                           </p>
                         </div>
 
-                        <div className="py-2 divide-y divide-purple-800/30 text-sm">
-                          <Link
-                            href={user.role === "ADMIN" ? "/admin/profile" : "/profile"}
-                            className="block px-5 py-3.5 text-purple-200 hover:bg-purple-950/60 hover:text-purple-100 transition-colors"
-                            onClick={() => {
-                              setShowProfilePanel(false);
-                              handleCloseMenu();
-                            }}
-                          >
-                            Profile
-                          </Link>
 
-                          <Link
-                            href={user.role === "ADMIN" ? "/admin/monitoring" : "/dashboard"}
-                            className="block px-5 py-3.5 text-purple-200 hover:bg-purple-950/60 hover:text-purple-100 transition-colors"
-                            onClick={() => {
-                              setShowProfilePanel(false);
-                              handleCloseMenu();
-                            }}
-                          >
-                            Dashboard / Monitoring
-                          </Link>
+                    <div className="py-2 divide-y divide-purple-800/30 text-sm">
+                      <Link
+                        href="/profile"
+                        className="block px-5 py-3.5 text-purple-200 hover:bg-purple-950/60 hover:text-purple-100 transition-colors"
+                        onClick={() => {
+                          setShowProfilePanel(false);
+                          handleCloseMenu();
+                        }}
+                      >
+                        Profile
+                      </Link>
 
-                          {user.role === "ADMIN" && (
-                            <Link
-                              href="/admin"
-                              className="block px-5 py-3.5 text-purple-200 hover:bg-purple-950/60 hover:text-purple-100 transition-colors"
-                              onClick={() => {
-                                setShowProfilePanel(false);
-                                handleCloseMenu();
-                              }}
-                            >
-                              Admin Panel
-                            </Link>
-                          )}
+                      {user.role === "AUTHOR" && (
+                        <Link
+                          href="/author"
+                          className="block px-5 py-3.5 text-purple-200 hover:bg-purple-950/60 hover:text-purple-100 transition-colors"
+                          onClick={() => {
+                            setShowProfilePanel(false);
+                            handleCloseMenu();
+                          }}
+                        >
+                          Author
+                        </Link>
+                      )}
 
-                          <button
-                            onClick={() => {
-                              signOut({ callbackUrl: "/signin" });
-                              setShowProfilePanel(false);
-                              handleCloseMenu();
-                            }}
-                            className="w-full text-left px-5 py-3.5 text-red-400 hover:bg-red-950/50 hover:text-red-300 transition-colors"
-                          >
-                            Sign Out
-                          </button>
-                        </div>
+                      {user.role === "ADMIN" && (
+                        <Link
+                          href="/admin"
+                          className="block px-5 py-3.5 text-purple-200 hover:bg-purple-950/60 hover:text-purple-100 transition-colors"
+                          onClick={() => {
+                            setShowProfilePanel(false);
+                            handleCloseMenu();
+                          }}
+                        >
+                          Admin
+                        </Link>
+                      )}
+
+                      <button
+                        onClick={() => {
+                          signOut({ callbackUrl: "/signin" });
+                          setShowProfilePanel(false);
+                          handleCloseMenu();
+                        }}
+                        className="w-full text-left px-5 py-3.5 text-red-400 hover:bg-red-950/50 hover:text-red-300 transition-colors"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
 
                         {/* Tiny arrow pointing up to avatar area */}
                         <div className="absolute left-10 -top-2 w-4 h-4 bg-gray-950 border-l border-t border-purple-800/50 rotate-45" />

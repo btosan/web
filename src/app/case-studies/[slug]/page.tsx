@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { getPublicCaseStudyBySlug } from "@/lib/actions/caseStudies";
-import RichTextDisplay from "@/components/RichTextDisplay";
+import RichTextDisplay from "@/components/editorOld/RichTextDisplay";
 
 export default async function CaseStudyDetailPage({
   params,

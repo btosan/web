@@ -1,13 +1,14 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { toast } from 'react-hot-toast';
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { toast } from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 import {
   Form,
@@ -16,17 +17,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from '@/components/ui/form';
+} from "@/components/ui/form";
 
-import { Input } from '@/components/ui/input';
-import { AppButton } from '@/components/ui/AppButton';
-import { PasswordInput } from '@/components/ui/PasswordInput';
-import GoogleSignInButton from '@/components/Buttons/GoogleSignInButton';
-
-
-// ────────────────────────────────────────────────
-// Schema
-// ────────────────────────────────────────────────
+import { Input } from "@/components/ui/input";
+import { AppButton } from "@/components/ui/AppButton";
+import { PasswordInput } from "@/components/ui/PasswordInput";
+import GoogleSignInButton from "@/components/Buttons/GoogleSignInButton";
 
 const formSchema = z
   .object({
@@ -35,40 +31,38 @@ const formSchema = z
 
     email: z
       .string()
-      .min(1, 'Email is required')
-      .email('Please enter a valid email'),
+      .min(1, "Email is required")
+      .email("Please enter a valid email"),
 
     password: z
       .string()
-      .min(1, 'Password is required')
-      .min(8, 'Password must be at least 8 characters'),
+      .min(1, "Password is required")
+      .min(8, "Password must be at least 8 characters"),
 
-    confirmPassword: z.string().min(1, 'Please confirm your password'),
+    confirmPassword: z.string().min(1, "Please confirm your password"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
-    path: ['confirmPassword'],
+    path: ["confirmPassword"],
   });
 
 type FormValues = z.infer<typeof formSchema>;
 
-
-// ────────────────────────────────────────────────
-// Component
-// ────────────────────────────────────────────────
-
 const SignUpForm = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
+
+  const callbackUrl = searchParams.get("callbackUrl") || "/auth/redirect";
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     },
   });
 
@@ -76,14 +70,13 @@ const SignUpForm = () => {
     setIsLoading(true);
 
     try {
-
       const name =
-        `${values.firstName ?? ''} ${values.lastName ?? ''}`.trim() || undefined;
+        `${values.firstName ?? ""} ${values.lastName ?? ""}`.trim() || undefined;
 
-      const response = await fetch('/api/register', {
-        method: 'POST',
+      const response = await fetch("/api/register", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: values.email,
@@ -97,17 +90,30 @@ const SignUpForm = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || 'Registration failed');
+        throw new Error(data.message || "Registration failed");
       }
 
-      toast.success('Account created successfully!');
-      router.push('/signin');
+      // Auto sign-in after successful registration
+      const loginResult = await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+        redirect: false,
+        callbackUrl,
+      });
 
+      if (loginResult?.error) {
+        throw new Error(loginResult.error);
+      }
+
+      toast.success("Account created successfully!");
+
+      router.push(loginResult?.url || callbackUrl);
+      router.refresh();
     } catch (error) {
       toast.error(
         error instanceof Error
           ? error.message
-          : 'Something went wrong. Please try again.'
+          : "Something went wrong. Please try again."
       );
     } finally {
       setIsLoading(false);
@@ -128,7 +134,6 @@ const SignUpForm = () => {
       backdrop-blur
       space-y-8"
     >
-
       <div className="text-center space-y-2">
         <h1 className="text-2xl xl:text-3xl font-bold tracking-tight text-purple-100">
           Create an account
@@ -139,13 +144,9 @@ const SignUpForm = () => {
         </p>
       </div>
 
-
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-            {/* First Name */}
             <FormField
               control={form.control}
               name="firstName"
@@ -170,7 +171,6 @@ const SignUpForm = () => {
               )}
             />
 
-            {/* Last Name */}
             <FormField
               control={form.control}
               name="lastName"
@@ -194,11 +194,8 @@ const SignUpForm = () => {
                 </FormItem>
               )}
             />
-
           </div>
 
-
-          {/* Email */}
           <FormField
             control={form.control}
             name="email"
@@ -224,8 +221,6 @@ const SignUpForm = () => {
             )}
           />
 
-
-          {/* Password */}
           <FormField
             control={form.control}
             name="password"
@@ -250,8 +245,6 @@ const SignUpForm = () => {
             )}
           />
 
-
-          {/* Confirm Password */}
           <FormField
             control={form.control}
             name="confirmPassword"
@@ -276,7 +269,6 @@ const SignUpForm = () => {
             )}
           />
 
-
           <AppButton
             type="submit"
             size="full"
@@ -287,7 +279,6 @@ const SignUpForm = () => {
           >
             Create account
           </AppButton>
-
 
           <div className="relative py-2">
             <div className="absolute inset-0 flex items-center">
@@ -301,22 +292,17 @@ const SignUpForm = () => {
             </div>
           </div>
 
-
-          <GoogleSignInButton>
-            Sign up with Google
-          </GoogleSignInButton>
-
+          <GoogleSignInButton>Sign up with Google</GoogleSignInButton>
 
           <p className="text-center text-sm xl:text-lg text-gray-200">
-            Already have an account?{' '}
+            Already have an account?{" "}
             <Link
-              href="/signin"
+              href={`/signin?callbackUrl=${encodeURIComponent(callbackUrl)}`}
               className="font-medium text-purple-100 hover:text-purple-200 transition"
             >
               Sign in
             </Link>
           </p>
-
         </form>
       </Form>
     </motion.div>

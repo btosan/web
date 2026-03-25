@@ -1,16 +1,21 @@
-// app/profile/page.tsx
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useSession, signOut } from 'next-auth/react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import Link from 'next/link';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Separator } from '@/components/ui/separator';
-import { Button } from '@/components/ui/button';
+import { useEffect, useMemo, useState } from "react";
+import { useSession, signOut } from "next-auth/react";
+import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Button } from "@/components/ui/button";
 import {
   LogOut,
   Edit,
@@ -22,48 +27,52 @@ import {
   LayoutDashboard,
   AtSign,
   UserRound,
-} from 'lucide-react';
-import { toast } from 'react-hot-toast';
+  CheckCircle2,
+  Clock3,
+  UserCog,
+  Sparkles,
+} from "lucide-react";
+import { toast } from "react-hot-toast";
 
-export default function ProfilePage() {
+type AppRole = "USER" | "AUTHOR" | "ADMIN";
+
+export default function Profile() {
   const { data: session, status, update: updateSession } = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Local state — this is what we render from
-  const [userData, setUserData] = useState(session?.user || null);
+  const [userData, setUserData] = useState(session?.user ?? null);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   useEffect(() => {
-    if (status === 'unauthenticated') {
-      router.replace('/signin');
+    if (status === "unauthenticated") {
+      router.replace("/signin");
     }
   }, [status, router]);
 
-  // When coming back from edit (via ?updated=true) → force full refresh
   useEffect(() => {
-    if (searchParams.get('updated') === 'true') {
-      // Clean URL
-      router.replace('/profile', { scroll: false });
+    if (searchParams.get("updated") === "true") {
+      router.replace("/profile", { scroll: false });
 
       const forceRefresh = async () => {
         setIsRefreshing(true);
+
         try {
-          // 1. Tell NextAuth to re-fetch session
           await updateSession();
 
-          // 2. Manually fetch the absolute latest session data
-          const fresh = await fetch('/api/auth/session', { cache: 'no-store' }).then(r => r.json());
+          const fresh = await fetch("/api/auth/session", {
+            cache: "no-store",
+          }).then((r) => r.json());
 
           if (fresh?.user) {
             setUserData(fresh.user);
-            toast.success('Profile updated!', { duration: 4000 });
+            toast.success("Profile updated!", { duration: 4000 });
           } else {
-            toast.error('Failed to refresh profile data');
+            toast.error("Failed to refresh profile data");
           }
         } catch (err) {
-          console.error('Refresh failed:', err);
-          toast.error('Could not refresh profile');
+          console.error("Refresh failed:", err);
+          toast.error("Could not refresh profile");
         } finally {
           setIsRefreshing(false);
         }
@@ -73,57 +82,99 @@ export default function ProfilePage() {
     }
   }, [searchParams, updateSession, router]);
 
-  // Keep local state in sync if session changes for other reasons
   useEffect(() => {
-    if (session?.user && JSON.stringify(session.user) !== JSON.stringify(userData)) {
+    if (session?.user) {
       setUserData(session.user);
     }
-  }, [session, userData]);
+  }, [session]);
 
-  if (status === 'loading' || isRefreshing || !userData) {
+  const user = userData;
+  const role = ((user?.role as AppRole) || "USER") as AppRole;
+
+  const displayName =
+    user?.firstName && user?.lastName
+      ? `${user.firstName} ${user.lastName}`
+      : user?.name || "User";
+
+  const shortName = user?.firstName || user?.name || "User";
+
+  const initials = (
+    user?.firstName?.[0] ||
+    user?.name?.[0] ||
+    user?.email?.[0] ||
+    "U"
+  ).toUpperCase();
+
+  const memberSince = user?.createdAt
+    ? new Date(user.createdAt).toLocaleDateString("en-US", {
+        month: "long",
+        year: "numeric",
+      })
+    : null;
+
+  const emailVerifiedText = user && "emailVerified" in user && user.emailVerified
+    ? "Verified"
+    : "Not verified";
+
+  const roleConfig = useMemo(() => {
+    switch (role) {
+      case "ADMIN":
+        return {
+          hubHref: "/admin",
+          hubLabel: "Open Admin Panel",
+          hubIcon: LayoutDashboard,
+          description: "Manage users, roles, and platform activity.",
+        };
+      case "AUTHOR":
+        return {
+          hubHref: "/author",
+          hubLabel: "Open Author Panel",
+          hubIcon: Briefcase,
+          description: "Manage your writing, publishing, and author content.",
+        };
+      default:
+        return null;
+    }
+  }, [role]);
+
+  const RoleHubIcon = roleConfig?.hubIcon;
+
+  const handleSignOut = async () => {
+    try {
+      await signOut({ callbackUrl: "/signin" });
+    } catch {
+      toast.error("Sign out failed");
+    }
+  };
+
+  if (status === "loading" || isRefreshing || !user) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+      <div className="flex min-h-screen items-center justify-center bg-black">
+        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-t-2 border-purple-500" />
       </div>
     );
   }
 
-  const user = userData;
-
-  // Use firstName + lastName preferentially
-  const displayName =
-    user.firstName && user.lastName
-      ? `${user.firstName} ${user.lastName}`
-      : user.name || 'User';
-
-  const fName = user.firstName || user.name || 'User';
-
-  const role = (user.role || 'USER') as 'USER' | 'AUTHOR' | 'ADMIN';
-
-  const handleSignOut = async () => {
-    try {
-      await signOut({ callbackUrl: '/signin' });
-    } catch (err) {
-      toast.error('Sign out failed');
-    }
-  };
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="container max-w-4xl mx-auto py-12 md:py-16 px-4 sm:px-6"
+      transition={{ duration: 0.4 }}
+      className="mx-auto min-h-screen max-w-5xl px-4 py-12 sm:px-6 md:py-16"
     >
       <div className="mb-10 text-center">
-        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-gray-100">{fName}'s Profile</h1>
-        <p className="mt-3 text-gray-400">Manage how you appear on Ofashi</p>
+        <h1 className="text-3xl font-bold tracking-tight text-gray-100 md:text-4xl">
+          {shortName}&apos;s Profile
+        </h1>
+        <p className="mt-3 text-gray-400">
+          View your account details, role access, and personal information.
+        </p>
       </div>
 
-      <Card className="bg-gray-950 border border-gray-800 shadow-2xl">
-        <CardHeader className="text-center pb-6 border-b border-gray-800">
-          <div className="flex flex-col items-center gap-5">
-            <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-purple-600/40 shadow-xl shadow-purple-950/30">
+      <Card className="overflow-hidden border border-gray-800 bg-gray-950 shadow-2xl">
+        <CardHeader className="border-b border-gray-800 pb-8">
+          <div className="flex flex-col items-center gap-5 text-center">
+            <div className="relative h-32 w-32 overflow-hidden rounded-full border-4 border-purple-600/40 shadow-xl shadow-purple-950/30 md:h-40 md:w-40">
               {user.image ? (
                 <Image
                   src={user.image}
@@ -133,141 +184,326 @@ export default function ProfilePage() {
                   priority
                 />
               ) : (
-                <div className="w-full h-full bg-linear-to-br from-purple-900/70 to-gray-900 flex items-center justify-center text-purple-300 text-5xl font-bold">
-                  {(user.firstName?.[0] || user.name?.[0] || '?').toUpperCase()}
+                <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-purple-900/70 to-gray-900 text-5xl font-bold text-purple-300">
+                  {initials}
                 </div>
               )}
             </div>
 
-            <div className="space-y-2">
-              <CardTitle className="text-3xl md:text-4xl text-gray-100">{displayName}</CardTitle>
+            <div className="space-y-3">
+              <CardTitle className="text-3xl text-gray-100 md:text-4xl">
+                {displayName}
+              </CardTitle>
 
               {user.username && (
-                <p className="text-gray-400 flex items-center justify-center gap-0.5 text-base">
+                <p className="flex items-center justify-center gap-1 text-base text-gray-400">
                   <AtSign size={18} className="text-purple-400" />
                   {user.username}
                 </p>
               )}
 
-              <div className="flex items-center justify-center gap-3 mt-3">
-                <Badge
-                  variant="outline"
-                  className="px-5 py-2 text-base font-medium border-purple-600/50 text-purple-300 bg-purple-950/30"
-                >
-                  <ShieldCheck size={18} className="mr-2" />
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <Badge className="border border-purple-600/40 bg-purple-950/30 px-4 py-2 text-sm text-purple-300">
+                  <ShieldCheck size={16} className="mr-2" />
                   {role}
                 </Badge>
+
+                {"emailVerified" in user && (
+                  <Badge
+                    variant="outline"
+                    className={`px-4 py-2 text-sm ${
+                      user.emailVerified
+                        ? "border-emerald-600/40 bg-emerald-950/20 text-emerald-300"
+                        : "border-amber-600/40 bg-amber-950/20 text-amber-300"
+                    }`}
+                  >
+                    <CheckCircle2 size={16} className="mr-2" />
+                    {emailVerifiedText}
+                  </Badge>
+                )}
+
+                {"status" in user && user.status && (
+                  <Badge
+                    variant="outline"
+                    className={`px-4 py-2 text-sm ${
+                      user.status === "ACTIVE"
+                        ? "border-blue-600/40 bg-blue-950/20 text-blue-300"
+                        : "border-gray-600/40 bg-gray-900/40 text-gray-300"
+                    }`}
+                  >
+                    <UserCog size={16} className="mr-2" />
+                    {String(user.status)}
+                  </Badge>
+                )}
               </div>
 
-              <p className="text-sm text-gray-500 mt-4 flex items-center justify-center gap-2">
-                <Calendar size={16} className="text-purple-400" />
-                Member since{' '}
-                {new Date(user.createdAt || Date.now()).toLocaleDateString('en-US', {
-                  month: 'long',
-                  year: 'numeric',
-                })}
-              </p>
+              {memberSince && (
+                <p className="mt-2 flex items-center justify-center gap-2 text-sm text-gray-500">
+                  <Calendar size={16} className="text-purple-400" />
+                  Member since {memberSince}
+                </p>
+              )}
             </div>
           </div>
         </CardHeader>
 
-        <CardContent className="pt-10 space-y-10">
-          {/* Bio - now uses latest data */}
-          {user.bio && (
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-gray-200 flex items-center gap-3">
-                <UserRound size={22} className="text-purple-400" />
-                About
-              </h3>
-              <p className="text-gray-300 leading-relaxed whitespace-pre-line text-lg">
-                {user.bio}
-              </p>
-            </div>
-          )}
+        <CardContent className="space-y-10 p-6 md:p-8">
+          <div className="grid gap-4 md:grid-cols-2">
+            <Card className="border border-gray-800 bg-black/40">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-lg text-gray-100">
+                  <Mail size={18} className="text-purple-400" />
+                  Contact
+                </CardTitle>
+                <CardDescription className="text-gray-500">
+                  Your primary account information.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-gray-300">
+                <div>
+                  <p className="text-gray-500">Email</p>
+                  <p className="break-all">{user.email || "—"}</p>
+                </div>
 
-          {/* Email */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-gray-200 flex items-center gap-3">
-              <Mail size={22} className="text-purple-400" />
-              Email
-            </h3>
-            <p className="text-gray-300 text-lg">{user.email}</p>
+                {user.username && (
+                  <div>
+                    <p className="text-gray-500">Username</p>
+                    <p>@{user.username}</p>
+                  </div>
+                )}
+
+                {user.name && (
+                  <div>
+                    <p className="text-gray-500">Display Name</p>
+                    <p>{user.name}</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+
+            <Card className="border border-gray-800 bg-black/40">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-lg text-gray-100">
+                  <Clock3 size={18} className="text-purple-400" />
+                  Account Overview
+                </CardTitle>
+                <CardDescription className="text-gray-500">
+                  General details tied to your account.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-3 text-sm text-gray-300">
+                <div>
+                  <p className="text-gray-500">Role</p>
+                  <p>{role}</p>
+                </div>
+
+                {"status" in user && user.status && (
+                  <div>
+                    <p className="text-gray-500">Account Status</p>
+                    <p>{String(user.status)}</p>
+                  </div>
+                )}
+
+                {user.createdAt && (
+                  <div>
+                    <p className="text-gray-500">Joined</p>
+                    <p>{new Date(user.createdAt).toLocaleString()}</p>
+                  </div>
+                )}
+
+                {"updatedAt" in user && user.updatedAt && (
+                  <div>
+                    <p className="text-gray-500">Last Updated</p>
+                    <p>{new Date(user.updatedAt).toLocaleString()}</p>
+                  </div>
+                )}
+
+                {"lastSeenAt" in user && (
+                  <div>
+                    <p className="text-gray-500">Last Seen</p>
+                    <p>
+                      {user.lastSeenAt
+                        ? new Date(user.lastSeenAt).toLocaleString()
+                        : "—"}
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
           </div>
 
+          {(user.firstName || user.lastName || user.bio) && (
+            <Card className="border border-gray-800 bg-black/40">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-lg text-gray-100">
+                  <UserRound size={18} className="text-purple-400" />
+                  About You
+                </CardTitle>
+                <CardDescription className="text-gray-500">
+                  Public-facing and profile information.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4 text-gray-300">
+                {(user.firstName || user.lastName) && (
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div>
+                      <p className="text-sm text-gray-500">First Name</p>
+                      <p>{user.firstName || "—"}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Last Name</p>
+                      <p>{user.lastName || "—"}</p>
+                    </div>
+                  </div>
+                )}
 
-          {/* Role-specific sections */}
-          {role === 'ADMIN' && (
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold text-purple-300 flex items-center gap-3">
-                <LayoutDashboard size={24} />
-                Admin Controls
-              </h3>
-              <div className="grid gap-4 sm:grid-cols-2">
-                <Link href="/admin/dashboard">
-                  <Button
-                    variant="outline"
-                    className="w-full justify-start text-lg border-purple-600/40 hover:bg-purple-950/50 h-14"
+                {user.bio && (
+                  <div>
+                    <p className="mb-2 text-sm text-gray-500">Bio</p>
+                    <p className="whitespace-pre-line leading-relaxed">
+                      {user.bio}
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )}
+
+          {roleConfig && RoleHubIcon && (
+            <Card className="border border-purple-700/30 bg-purple-950/10">
+              <CardHeader className="pb-3">
+                <CardTitle className="flex items-center gap-2 text-lg text-purple-200">
+                  <Sparkles size={18} className="text-purple-400" />
+                  Role Access
+                </CardTitle>
+                <CardDescription className="text-purple-300/70">
+                  Tools available for your current account role.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-sm text-gray-300">{roleConfig.description}</p>
+
+                <Button
+                  asChild
+                  className="h-12 bg-purple-700 text-white hover:bg-purple-800"
+                >
+                  <Link href={roleConfig.hubHref}>
+                    <RoleHubIcon className="mr-2 h-5 w-5" />
+                    {roleConfig.hubLabel}
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          )}
+
+          {role === "AUTHOR" && (
+            <div className="grid gap-4 md:grid-cols-2">
+              <Card className="border border-gray-800 bg-black/40">
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center gap-2 text-lg text-gray-100">
+                    <BookOpen size={18} className="text-purple-400" />
+                    Writing & Publishing
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Link
+                    href="/learn/blog"
+                    className="text-sm text-purple-400 hover:text-purple-300 hover:underline"
                   >
-                    Admin Dashboard
-                  </Button>
-                </Link>
-              </div>
+                    View blog content
+                  </Link>
+                </CardContent>
+              </Card>
+
+              <Card className="border border-gray-800 bg-black/40">
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center gap-2 text-lg text-gray-100">
+                    <Briefcase size={18} className="text-purple-400" />
+                    Projects & Case Studies
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <Link
+                    href="/projects"
+                    className="text-sm text-purple-400 hover:text-purple-300 hover:underline"
+                  >
+                    View projects and case studies
+                  </Link>
+                </CardContent>
+              </Card>
             </div>
           )}
 
-          {['ADMIN', 'AUTHOR'].includes(role) && (
-            <>
-              <div className="space-y-8">
-                <h3 className="text-2xl font-bold text-purple-300 flex items-center gap-3">
-                  <Briefcase size={24} />
-                  Your Projects & Case Studies
-                </h3>
-                <div className="text-gray-300 text-lg">
-                  <p className="italic mb-4">
-                    You have contributed to several projects. View and manage them below.
-                  </p>
+          {role === "ADMIN" && (
+            <div className="grid gap-4 md:grid-cols-2">
+              <Card className="border border-gray-800 bg-black/40">
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center gap-2 text-lg text-gray-100">
+                    <LayoutDashboard size={18} className="text-purple-400" />
+                    Admin Workspace
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
                   <Link
-                    href="/projects"
-                    className="text-purple-400 hover:text-purple-300 hover:underline text-lg inline-flex items-center gap-2"
+                    href="/admin/users"
+                    className="text-sm text-purple-400 hover:text-purple-300 hover:underline"
                   >
-                    View all your projects →
+                    Manage users and account access
                   </Link>
-                </div>
-              </div>
+                </CardContent>
+              </Card>
 
-              <div className="space-y-8">
-                <h3 className="text-2xl font-bold text-purple-300 flex items-center gap-3">
-                  <BookOpen size={24} />
-                  Your Blog Posts
-                </h3>
-                <div className="text-gray-300 text-lg">
-                  <p className="italic mb-4">
-                    You have published articles and insights. Manage your content here.
-                  </p>
+              <Card className="border border-gray-800 bg-black/40">
+                <CardHeader className="pb-3">
+                  <CardTitle className="flex items-center gap-2 text-lg text-gray-100">
+                    <Briefcase size={18} className="text-purple-400" />
+                    Content & Operations
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
                   <Link
-                    href="/learn/blog"
-                    className="text-purple-400 hover:text-purple-300 hover:underline text-lg inline-flex items-center gap-2"
+                    href="/admin"
+                    className="text-sm text-purple-400 hover:text-purple-300 hover:underline"
                   >
-                    View your blog posts →
+                    Open admin area
                   </Link>
-                </div>
-              </div>
-            </>
+                </CardContent>
+              </Card>
+            </div>
           )}
 
-          <Separator className="border border-gray-800 my-12" />
+          {role === "USER" && (
+            <Card className="border border-gray-800 bg-black/40">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg text-gray-100">
+                  My Account
+                </CardTitle>
+                <CardDescription className="text-gray-500">
+                  General account actions and personal profile information.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-sm text-gray-300">
+                Keep your profile details up to date so your information stays
+                accurate across the platform.
+              </CardContent>
+            </Card>
+          )}
 
-          {/* Action buttons */}
-          <div className="flex flex-col sm:flex-row gap-5 justify-center">
-            <Link href="/profile/edit?updated=true" className="flex-1 max-w-sm">
-              <Button className="w-full bg-purple-700 hover:bg-purple-900 text-white text-lg h-14 hover:cursor-pointer border-0">
+          <Separator className="my-2 border border-gray-800" />
+
+          <div className="flex flex-col justify-center gap-4 sm:flex-row">
+            <Button
+              asChild
+              className="h-14 w-full border-0 bg-purple-700 text-lg text-white hover:bg-purple-900 sm:max-w-sm"
+            >
+              <Link href="/profile/edit">
                 <Edit className="mr-3 h-5 w-5" />
                 Edit Profile
-              </Button>
-            </Link>
+              </Link>
+            </Button>
 
             <Button
-              className="flex-1 max-w-sm text-gray-100 bg-black border border-gray-500 hover:border-gray-100 hover:text-gray-50 text-lg h-14 hover:cursor-pointer"
+              className="h-14 w-full border border-gray-500 bg-black text-lg text-gray-100 hover:border-gray-100 hover:text-gray-50 sm:max-w-sm"
               onClick={handleSignOut}
             >
               <LogOut className="mr-3 h-5 w-5" />

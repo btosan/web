@@ -36,6 +36,7 @@ git push
 # STEP 3:
 npx prisma migrate deploy
 
+npx prisma db push
 
 <!-- GENERATE NEXT_AUTH -->
 openssl rand -base64 32
