@@ -10,6 +10,17 @@ import { Prisma, Role } from "@prisma/client";
 // 🔐 AUTH GUARDS
 /////////////////////////////////////////////////
 
+async function requireAdmin() {
+  const session = await getServerSession(authOptions);
+
+  if (!session?.user) throw new Error("Not authenticated");
+  if (session.user.role !== Role.ADMIN) {
+    throw new Error("Not authorized");
+  }
+
+  return session.user;
+}
+
 async function requireAdminOrAuthor() {
   const session = await getServerSession(authOptions);
 
@@ -255,7 +266,8 @@ export async function updateCaseStudy(
   const categoryName =
     data.categoryName !== undefined ? cleanString(data.categoryName) : undefined;
 
-  const tagNames = data.tagNames !== undefined ? cleanStringArray(data.tagNames) : undefined;
+  const tagNames =
+    data.tagNames !== undefined ? cleanStringArray(data.tagNames) : undefined;
 
   if (data.projectId !== undefined && data.projectId) {
     const project = await db.project.findUnique({
@@ -378,10 +390,7 @@ export async function updateCaseStudy(
   revalidatePath(`/admin/case-studies/${id}`);
   revalidatePath("/case-studies");
 
-  if (
-    existingCaseStudy.slug &&
-    existingCaseStudy.slug !== caseStudy.slug
-  ) {
+  if (existingCaseStudy.slug && existingCaseStudy.slug !== caseStudy.slug) {
     revalidatePath(`/case-studies/${existingCaseStudy.slug}`);
   }
 
@@ -485,7 +494,7 @@ export async function getPublicCaseStudyBySlug(slug: string) {
 }
 
 /////////////////////////////////////////////////
-// 🔎 AUTHOR/ADMIN: GET CASE STUDY BY ID
+// 🔎 AUTHOR/ADMIN: GET CASE STUDY BY ID & SLUG
 /////////////////////////////////////////////////
 
 export async function getCaseStudyById(id: string) {
@@ -501,4 +510,31 @@ export async function getCaseStudyById(id: string) {
       project: true,
     },
   });
+}
+
+export async function getCaseStudyBySlug(slug: string) {
+  const user = await requireAdminOrAuthor();
+
+  const caseStudy = await db.caseStudy.findUnique({
+    where: { slug },
+    include: {
+      author: true,
+      category: true,
+      tags: true,
+      gallery: true,
+      project: true,
+    },
+  });
+
+  if (!caseStudy) return null;
+
+  if (user.role === Role.ADMIN) {
+    return caseStudy;
+  }
+
+  if (!user.email || caseStudy.authorEmail !== user.email) {
+    throw new Error("Not authorized");
+  }
+
+  return caseStudy;
 }

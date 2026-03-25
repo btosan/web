@@ -28,7 +28,7 @@ export default async function CaseStudyDetailPage({
           {caseStudy.excerpt}
         </p>
 
-        <div className="relative w-full h-[350px] rounded-xl overflow-hidden border border-gray-200">
+        <div className="relative w-full h-87.5 rounded-xl overflow-hidden border border-gray-200">
           <Image
             src={caseStudy.imageUrl || "/placeholder.png"}
             alt={caseStudy.title}
