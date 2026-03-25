@@ -10,6 +10,7 @@ import ProjectHighlightCarousel from "@/components/ProjectHighlightCarousel";
 import RichTextDisplay from "@/components/editorOld/RichTextDisplay";
 import { getPublicProjectBySlug } from "@/lib/actions/projects";
 import { getRelatedProjects } from "@/lib/actions/projects";
+// project.id
 
 function buildGallery(project: Awaited<ReturnType<typeof getPublicProjectBySlug>>) {
   if (!project) return [];
@@ -44,7 +45,7 @@ function buildFeatures(
   const tags = project.tags?.map((tag) => tag.tagName).filter(Boolean) || [];
 
   // If your action/schema later includes a dedicated technologies field/relation,
-  // add it here. For now this safely supports common shapes without breaking UI.
+  // add it here. For now this safely supports common shapes without breaking UI. relatedDb
   const technologies =
     Array.isArray((project as any).technologies)
       ? (project as any).technologies
@@ -143,7 +144,7 @@ export default async function ProjectDetailPage({
 
   const relatedDb = await getRelatedProjects(
     project.id,
-    project.categoryId
+    project.catName
   );
 
   const relatedProjects = relatedDb

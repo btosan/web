@@ -405,13 +405,13 @@ export async function getFeaturedPublicProjects() {
 
 export async function getRelatedProjects(
   projectId: string,
-  categoryId?: string | null
+  catName?: string | null
 ) {
   // First try: same category
   const related = await db.project.findMany({
     where: {
       id: { not: projectId },
-      ...(categoryId ? { categoryId } : {}),
+      ...(catName ? { catName } : {}),
     },
     take: 4,
     orderBy: {
