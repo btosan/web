@@ -34,7 +34,7 @@ import {
   CaseStudyFormValues,
 } from "@/lib/validators/caseStudy";
 
-// teamSize: values.teamSize?.trim() || undefined,
+// function parseKeyMetrics(value: string) {
 interface CaseStudyWithRelations extends CaseStudy {
   category?: CaseStudyCategory | null;
   tags?: CaseStudyTag[];
@@ -78,7 +78,7 @@ function parseKeyMetrics(value: string) {
     metrics[key.trim()] = rest.join(":").trim();
   }
 
-  return Object.keys(metrics).length ? metrics : null;
+  return Object.keys(metrics).length ? metrics : undefined;
 }
 
 function stringifyKeyMetrics(value: unknown) {
