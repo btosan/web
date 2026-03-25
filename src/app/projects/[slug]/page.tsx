@@ -11,7 +11,6 @@ import RichTextDisplay from "@/components/editorOld/RichTextDisplay";
 import { getPublicProjectBySlug } from "@/lib/actions/projects";
 import { getRelatedProjects } from "@/lib/actions/projects";
 
-
 function buildGallery(project: Awaited<ReturnType<typeof getPublicProjectBySlug>>) {
   if (!project) return [];
 
@@ -138,18 +137,18 @@ export default async function ProjectDetailPage({
     getServerSession(authOptions),
   ]);
 
+  if (!project || !project.slug) {
+    return notFound();
+  }
+
   const relatedDb = await getRelatedProjects(
     project.id,
     project.categoryId
   );
 
-const relatedProjects = relatedDb
-  .filter((p) => !!p.slug)
-  .map(toProjectCard);
-
-  if (!project || !project.slug) {
-    return notFound();
-  }
+  const relatedProjects = relatedDb
+    .filter((p) => !!p.slug)
+    .map(toProjectCard);
 
   const gallery = buildGallery(project);
   const highlights = buildHighlights(project);
@@ -203,9 +202,8 @@ const relatedProjects = relatedDb
                   >
                     <span className="text-xs text-gray-500">{spec.label}</span>
                     <span className="font-semibold text-black text-sm text-center">
-                      {spec.value} 
+                      {spec.value}
                     </span>
-                    
                   </div>
                 ))}
               </div>
