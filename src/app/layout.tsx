@@ -65,7 +65,7 @@ export default function RootLayout({
           <PresenceHeartbeat />
           <TooltipProvider>
             <Navbar />
-            <main className="pt-20">
+            <main className="pt-20 lg:pt-24">
               {children}
               <FloatingContact />
             </main>
