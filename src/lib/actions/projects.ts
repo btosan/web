@@ -447,15 +447,27 @@ export async function getRelatedProjects(
   return related;
 }
 
-export async function getProjects() {
-  await requireAdmin();
+/////////////////////////////////////////////////
+// PROJECTS FOR CASE STUDY FORM (used in create/edit)
+/////////////////////////////////////////////////
 
+export async function getProjects() {
+  // No admin check needed for form dropdown (anyone editing can see projects)
   return db.project.findMany({
-    orderBy: { createdAt: "desc" },
+    orderBy: { title: "asc" }, 
     select: {
       id: true,
       title: true,
       slug: true,
+      type: true,
+      createdAt: true,
+      updatedAt: true,
+      imageUrl: true,
+      imageCredit: true,
+      description: true,  
+      projectUrl: true,
+      // Add any other fields your CaseStudyForm dropdown or display needs
     },
   });
 }
+
