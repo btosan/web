@@ -21,6 +21,8 @@ npx prisma migrate dev --name add-monitoring-enhancements
 
 rm -rf package-lock.json .next
 
+npx prisma migrate dev --name add-user-status-and-last-seen
+npx prisma generate
 
 <!-- ORDER OF PRISMA PRODUCTION MIGRATION AFTER UPDATING SCHEMA.PRISMA -->
 # STEP 1:

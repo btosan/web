@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiSend, FiCheck } from "react-icons/fi";
-import TiptapEditor from "./editor/TiptapEditor";
+import TiptapEditor from "./editorOld/TiptapEditor";
 
 /* ================= GOOGLE FORM CONFIG ================= */
 

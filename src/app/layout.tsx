@@ -1,31 +1,28 @@
-// app/layout.tsx
 import "./globals.css";
-import { DM_Sans, Barlow } from "next/font/google"
-import { TooltipProvider } from "@/components/ui/tooltip"
+import { DM_Sans, Barlow } from "next/font/google";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import type { Metadata } from "next";
-import Script from "next/script"; // ← Add this import
+import Script from "next/script";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import NextAuthProviders from './NextAuthProviders';
+import NextAuthProviders from "./NextAuthProviders";
 import HolyLoader from "holy-loader";
 import FloatingContact from "@/components/FloatingContact";
+import PresenceHeartbeat from "@/components/presence/PresenceHeartbeat";
 
 const barlow = Barlow({
   variable: "--font-barlow",
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-})
+});
 
 export const metadata: Metadata = {
   title:
     "Ofashi | AI-Powered Web Development, Automation & Custom Apps in Nigeria",
-
   description:
     "Ofashi builds AI-powered full-stack applications and custom websites that drive real business growth. We combine modern web development, smart automation, and exceptional UI/UX to create fast, scalable, and conversion-focused digital solutions for businesses in Nigeria and beyond.",
-
   keywords:
     "AI web development Nigeria, custom web applications Nigeria, AI automation services, AI integration, website design Nigeria, business process automation, Next.js developers, React developers, Django developers, FastAPI developers, AI integration services, Ofashi",
-
   icons: {
     icon: "/favicon.ico",
   },
@@ -38,7 +35,6 @@ export const viewport = {
   colorScheme: "dark",
 };
 
-
 export default function RootLayout({
   children,
 }: {
@@ -47,7 +43,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* ← GOOGLE ANALYTICS / GTAG − START */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-LR0RNH5DR9"
           strategy="afterInteractive"
@@ -62,15 +57,15 @@ export default function RootLayout({
             });
           `}
         </Script>
-        {/* ← END GOOGLE ANALYTICS */}
       </head>
 
-      <body className=" bg-black text-gray-100 font-sans antialiased overflow-x-hidden">
+      <body className="bg-black text-gray-100 font-sans antialiased overflow-x-hidden">
         <HolyLoader color="#7F00FF" />
         <NextAuthProviders>
+          <PresenceHeartbeat />
           <TooltipProvider>
             <Navbar />
-            <main className="pt-20 ">
+            <main className="pt-20">
               {children}
               <FloatingContact />
             </main>

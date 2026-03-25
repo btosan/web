@@ -19,8 +19,6 @@ const typeColors: Record<Project["type"], string> = {
 export default function ProjectCard({ project }: Props) {
   return (
     <div className="group h-full flex flex-col rounded-lg overflow-hidden bg-gray-950 shadow-sm ring-1 ring-white/30 transition hover:-translate-y-1 hover:shadow-lg">
-
-      {/* Image */}
       <div className="relative h-44 w-full overflow-hidden">
         <Image
           src={project.image}
@@ -42,9 +40,7 @@ export default function ProjectCard({ project }: Props) {
         )}
       </div>
 
-      {/* Body */}
       <div className="p-5 flex flex-col gap-3 flex-1">
-
         <h3 className="text-lg font-semibold text-gray-100">
           {project.title}
         </h3>
@@ -53,21 +49,27 @@ export default function ProjectCard({ project }: Props) {
           {project.excerpt}
         </p>
 
-        {/* Buttons */}
         <div className="mt-2 flex gap-2 pointer-events-auto">
-          <a
-            href={project.liveUrl || "#"}
-            target="_blank"
-            className="flex-1 text-center text-sm font-medium py-2 rounded-xs bg-linear-to-br from-indigo-800 via-purple-800 to-purple-600 text-white transition hover:bg-gradient-to-tl"
-            onPointerDown={(e) => e.stopPropagation()} 
-          >
-            Live Demo
-          </a>
+          {project.liveUrl ? (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 text-center text-sm font-medium py-2 rounded-xs bg-linear-to-br from-indigo-800 via-purple-800 to-purple-600 text-white transition hover:bg-gradient-to-tl"
+              onPointerDown={(e) => e.stopPropagation()}
+            >
+              Live Demo
+            </a>
+          ) : (
+            <span className="flex-1 text-center text-sm font-medium py-2 rounded-xs bg-gray-800 text-gray-400 cursor-not-allowed">
+              Live Demo
+            </span>
+          )}
 
           <Link
             href={`/projects/${project.slug}`}
             className="flex-1 text-center text-sm text-gray-100 font-medium py-2 rounded-xs border border-purple-300/30 hover:border-white/5 hover:bg-purple-100 dark:hover:bg-white/5 hover:text-black transition"
-            onPointerDown={(e) => e.stopPropagation()} 
+            onPointerDown={(e) => e.stopPropagation()}
           >
             Details
           </Link>

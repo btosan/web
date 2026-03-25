@@ -9,7 +9,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-purple-950 text-white hover:bg-purple-900 shadow-lg hover:shadow-xl active:scale-[0.98]",
         destructive: "bg-gradient-to-r from-red-500 to-rose-600 text-white hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl",
-        outline: "border-2 border-purple-950 bg-transparent hover:bg-purple-950/10 text-black",
+        outline: "border border-purple-950 bg-transparent hover:bg-purple-950/10 text-black",
         secondary: "bg-purple-950 text-white hover:bg-purple-900 shadow-lg hover:shadow-xl active:scale-[0.98]",
         ghost: "bg-transparent hover:bg-accent/10 text-black",
         link: "bg-transparent underline-offset-4 hover:underline text-black p-0",

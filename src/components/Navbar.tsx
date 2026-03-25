@@ -305,7 +305,7 @@ export default function Navbar() {
               {/* Hover panel — styled close to Header.jsx but in purple theme */}
               <div
                 className="
-                  absolute right-0 top-full mt-3 w-64
+                  absolute -right-4 top-full mt-1 w-64
                   bg-gray-950 border border-purple-800/60 rounded-xl
                   shadow-2xl shadow-purple-950/50
                   opacity-0 invisible group-hover:opacity-100 group-hover:visible
