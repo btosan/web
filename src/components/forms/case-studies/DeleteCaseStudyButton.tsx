@@ -34,12 +34,12 @@ export default function DeleteCaseStudyButton({
           });
           router.refresh();   // Refresh the admin list
         } else {
-          toast({
-            variant: "destructive",
-            title: "Delete failed",
-            description: result?.error || "Something went wrong while deleting.",
-          });
-        }
+        toast({
+          variant: "destructive",
+          title: "Delete failed",
+          description: "Something went wrong while deleting.",
+        });
+      }
       } catch (error) {
         toast({
           variant: "destructive",
