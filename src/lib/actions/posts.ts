@@ -132,10 +132,7 @@ export async function createPost(data: {
     throw new Error("Author not found");
   }
 
-  if (
-    user.role !== Role.ADMIN &&
-    author.email !== user.email
-  ) {
+  if (user.role !== Role.ADMIN && author.email !== user.email) {
     throw new Error("Not authorized");
   }
 
@@ -152,7 +149,11 @@ export async function createPost(data: {
       content: data.content.trim(),
       published: data.published ?? false,
       featured: data.featured ?? false,
-      authorEmail,
+
+      author: {
+        connect: { email: authorEmail },
+      },
+
       category: categoryName
         ? {
             connectOrCreate: {
@@ -161,6 +162,7 @@ export async function createPost(data: {
             },
           }
         : undefined,
+
       tags: tagNames.length
         ? {
             connectOrCreate: tagNames.map((tagName) => ({
@@ -225,7 +227,8 @@ export async function updatePost(
   const categoryName =
     data.categoryName !== undefined ? cleanString(data.categoryName) : undefined;
 
-  const tagNames = data.tagNames !== undefined ? cleanStringArray(data.tagNames) : undefined;
+  const tagNames =
+    data.tagNames !== undefined ? cleanStringArray(data.tagNames) : undefined;
 
   let nextAuthorEmail: string | undefined;
 
@@ -275,10 +278,17 @@ export async function updatePost(
           data.tableOfContents !== undefined
             ? cleanString(data.tableOfContents)
             : undefined,
-        content: data.content?.trim(),
+        content: data.content !== undefined ? data.content.trim() : undefined,
         published: data.published,
         featured: data.featured,
-        authorEmail: nextAuthorEmail,
+
+        author:
+          data.authorEmail !== undefined
+            ? nextAuthorEmail
+              ? { connect: { email: nextAuthorEmail } }
+              : { disconnect: true }
+            : undefined,
+
         category:
           categoryName !== undefined
             ? categoryName
@@ -292,6 +302,7 @@ export async function updatePost(
                   disconnect: true,
                 }
             : undefined,
+
         tags:
           tagNames !== undefined
             ? {
