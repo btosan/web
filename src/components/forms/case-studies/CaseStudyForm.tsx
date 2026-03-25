@@ -106,32 +106,32 @@ export default function CaseStudyForm({
     stringifyKeyMetrics(caseStudy?.keyMetrics)
   );
 
-  const defaultValues = useMemo<CaseStudyFormValues>(
-    () => ({
-      title: caseStudy?.title || "",
-      slug: caseStudy?.slug || "",
-      excerpt: caseStudy?.excerpt || "",
-      content: caseStudy?.content || "",
-      challenge: caseStudy?.challenge || "",
-      solution: caseStudy?.solution || "",
-      results: caseStudy?.results || "",
-      clientName: caseStudy?.clientName || "",
-      industry: caseStudy?.industry || "",
-      projectTimeline: caseStudy?.projectTimeline || "",
-      teamSize: caseStudy?.teamSize || "",
-      testimonial: caseStudy?.testimonial || "",
-      testimonialAuthor: caseStudy?.testimonialAuthor || "",
-      imageUrl: caseStudy?.imageUrl || "",
-      imageCredit: caseStudy?.imageCredit || "",
-      published: caseStudy?.published ?? false,
-      featured: caseStudy?.featured ?? false,
-      categoryName: caseStudy?.category?.catName || caseStudy?.catName || "",
-      tagNames: caseStudy?.tags?.map((tag) => tag.tagName) || [],
-      projectId: caseStudy?.projectId || "",
-      keyMetrics: caseStudy?.keyMetrics ?? null,
-    }),
-    [caseStudy]
-  );
+const defaultValues = useMemo<CaseStudyFormValues>(
+  () => ({
+    title: caseStudy?.title || "",
+    slug: caseStudy?.slug || "",
+    excerpt: caseStudy?.excerpt || "",
+    content: caseStudy?.content || "",
+    challenge: caseStudy?.challenge || "",
+    solution: caseStudy?.solution || "",
+    results: caseStudy?.results || "",
+    clientName: caseStudy?.clientName || "",
+    industry: caseStudy?.industry || "",
+    projectTimeline: caseStudy?.projectTimeline || "",
+    teamSize: caseStudy?.teamSize != null ? String(caseStudy.teamSize) : "",
+    testimonial: caseStudy?.testimonial || "",
+    testimonialAuthor: caseStudy?.testimonialAuthor || "",
+    imageUrl: caseStudy?.imageUrl || "",
+    imageCredit: caseStudy?.imageCredit || "",
+    published: caseStudy?.published ?? false,
+    featured: caseStudy?.featured ?? false,
+    categoryName: caseStudy?.category?.catName || caseStudy?.catName || "",
+    tagNames: caseStudy?.tags?.map((tag) => tag.tagName) || [],
+    projectId: caseStudy?.projectId || "",
+    keyMetrics: caseStudy?.keyMetrics ?? null,
+  }),
+  [caseStudy]
+);
 
   const form = useForm<CaseStudyFormValues>({
     resolver: zodResolver(caseStudySchema),
@@ -162,7 +162,7 @@ export default function CaseStudyForm({
       clientName: caseStudy.clientName || "",
       industry: caseStudy.industry || "",
       projectTimeline: caseStudy.projectTimeline || "",
-      teamSize: caseStudy.teamSize || "",
+      teamSize: caseStudy.teamSize != null ? String(caseStudy.teamSize) : "",
       testimonial: caseStudy.testimonial || "",
       testimonialAuthor: caseStudy.testimonialAuthor || "",
       imageUrl: caseStudy.imageUrl || "",
