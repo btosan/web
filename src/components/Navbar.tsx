@@ -101,6 +101,9 @@ const insightsItems = [
   },
 ]
 
+const isExternalImageUrl = (src?: string | null) =>
+  typeof src === "string" && /^https?:\/\//i.test(src.trim());
+// user.image ?
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -285,21 +288,32 @@ export default function Navbar() {
           {isAuthenticated && user ? (
             <div className="relative group">
               <div className="flex items-center">
-                <div className="h-9 w-9 rounded-full overflow-hidden border-2 border-purple-600/50 shadow-md shadow-purple-950/30 cursor-pointer">
-                  {user.image ? (
-                      <CldImage
-                        src={user.image}
-                        alt={user.name || "User"}
-                        width={100}
-                        height={100}
-                        className="w-full h-full object-cover rounded-full"
-                      />
+              <div className="h-9 w-9 rounded-full overflow-hidden border-2 border-purple-600/50 shadow-md shadow-purple-950/30 cursor-pointer">
+                {user.image ? (
+                  isExternalImageUrl(user.image) ? (
+                    <Image
+                      src={user.image}
+                      alt={user.name || "User"}
+                      width={100}
+                      height={100}
+                      className="w-full h-full object-cover rounded-full"
+                      unoptimized
+                    />
                   ) : (
-                    <div className="w-full h-full bg-purple-900/70 flex items-center justify-center text-purple-200 font-semibold text-lg uppercase">
-                      {user.name?.[0] || "?"}
-                    </div>
-                  )}
-                </div>
+                    <CldImage
+                      src={user.image}
+                      alt={user.name || "User"}
+                      width={100}
+                      height={100}
+                      className="w-full h-full object-cover rounded-full"
+                    />
+                  )
+                ) : (
+                  <div className="w-full h-full bg-purple-900/70 flex items-center justify-center text-purple-200 font-semibold text-lg uppercase">
+                    {user.name?.[0] || "?"}
+                  </div>
+                )}
+              </div>
               </div>
 
               {/* Hover panel — styled close to Header.jsx but in purple theme */}
@@ -533,21 +547,32 @@ export default function Navbar() {
                     onClick={() => setShowProfilePanel(!showProfilePanel)}
                     className="flex items-center justify-center gap-4 w-full text-left hover:opacity-90 transition-opacity focus:outline-none"
                   >
-                    <div className="h-14 w-14 rounded-full overflow-hidden border-2 border-purple-600/60 shadow-lg shrink-0">
-                      {user.image ? (
-                        <CldImage
-                          src={user.image}
-                          alt={user.name || "User"}
-                          width={80}
-                          height={80}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="w-full h-full bg-purple-900/70 flex items-center justify-center text-purple-100 font-bold text-2xl uppercase">
-                          {user.name?.[0] || "?"}
-                        </div>
-                      )}
-                    </div>
+              <div className="h-14 w-14 rounded-full overflow-hidden border-2 border-purple-600/60 shadow-lg shrink-0">
+                {user.image ? (
+                  isExternalImageUrl(user.image) ? (
+                    <Image
+                      src={user.image}
+                      alt={user.name || "User"}
+                      width={80}
+                      height={80}
+                      className="w-full h-full object-cover"
+                      unoptimized
+                    />
+                  ) : (
+                    <CldImage
+                      src={user.image}
+                      alt={user.name || "User"}
+                      width={80}
+                      height={80}
+                      className="w-full h-full object-cover"
+                    />
+                  )
+                ) : (
+                  <div className="w-full h-full bg-purple-900/70 flex items-center justify-center text-purple-100 font-bold text-2xl uppercase">
+                    {user.name?.[0] || "?"}
+                  </div>
+                )}
+              </div>
 
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold text-purple-50 truncate">
