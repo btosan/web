@@ -18,7 +18,7 @@ export default async function CaseStudyDetailPage({
 
   return (
     <main className="min-h-screen bg-white">
-      {/* HERO */}
+      {/* HERO label="Team"*/}
       <section className="py-12 px-4 md:px-10 max-w-6xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold text-black mb-4">
           {caseStudy.title}
@@ -50,7 +50,7 @@ export default async function CaseStudyDetailPage({
           <Spec label="Timeline" value={caseStudy.projectTimeline} />
         )}
         {caseStudy.teamSize && (
-          <Spec label="Team" value={caseStudy.teamSize} />
+          <Spec label="Team" value={caseStudy.teamSize.toString()} />
         )}
       </section>
 
