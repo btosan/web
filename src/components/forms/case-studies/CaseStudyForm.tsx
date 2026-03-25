@@ -34,6 +34,7 @@ import {
   CaseStudyFormValues,
 } from "@/lib/validators/caseStudy";
 
+// resolver: zodResolver(caseStudySchema)
 interface CaseStudyWithRelations extends CaseStudy {
   category?: CaseStudyCategory | null;
   tags?: CaseStudyTag[];
@@ -134,7 +135,7 @@ const defaultValues = useMemo<CaseStudyFormValues>(
 );
 
   const form = useForm<CaseStudyFormValues>({
-    resolver: zodResolver(caseStudySchema),
+    resolver: zodResolver(caseStudySchema) as any,
     defaultValues,
   });
 
