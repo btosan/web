@@ -34,7 +34,7 @@ import {
   CaseStudyFormValues,
 } from "@/lib/validators/caseStudy";
 
-// resolver: zodResolver(caseStudySchema)
+// teamSize: values.teamSize?.trim() || undefined,
 interface CaseStudyWithRelations extends CaseStudy {
   category?: CaseStudyCategory | null;
   tags?: CaseStudyTag[];
@@ -195,7 +195,10 @@ const defaultValues = useMemo<CaseStudyFormValues>(
         clientName: values.clientName?.trim() || undefined,
         industry: values.industry?.trim() || undefined,
         projectTimeline: values.projectTimeline?.trim() || undefined,
-        teamSize: values.teamSize?.trim() || undefined,
+        teamSize:
+          values.teamSize?.trim() && !Number.isNaN(Number(values.teamSize.trim()))
+            ? Number(values.teamSize.trim())
+            : undefined,
         testimonial: values.testimonial?.trim() || undefined,
         testimonialAuthor: values.testimonialAuthor?.trim() || undefined,
         imageUrl: values.imageUrl?.trim() || undefined,
