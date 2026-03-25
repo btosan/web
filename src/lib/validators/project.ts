@@ -35,4 +35,4 @@ export const projectSchema = z.object({
   projectUrl: z.string().optional(),
 });
 
-export type ProjectFormValues = z.infer<typeof projectSchema>;
+export type ProjectFormValues = z.input<typeof projectSchema>;
