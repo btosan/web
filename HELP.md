@@ -1,15 +1,17 @@
 npm install @prisma/adapter-pg pg
 
+<!-- DEVELOPMENT -->
 
 npx prisma format
 
 npx prisma generate
 # or (better for development):
-npx prisma migrate dev --name init
+npx prisma migrate dev --name add_project_date_default
+npx prisma migrate dev --name init (for the first time)
 # or (quick prototyping / no migrations):
 npx prisma db push
 
-<!-- production -->
+<!-- PRODUCTION -->
 npx prisma migrate dev --name add_project_date_default
 npx prisma migrate dev --name baseline
 npx prisma migrate deploy

@@ -4,7 +4,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-
 }
 
 model Account {
@@ -35,15 +34,15 @@ model Session {
 }
 
 model User {
-  id              String      @id @default(cuid())
-  email           String      @unique
-  username        String?     @unique
+  id              String     @id @default(cuid())
+  email           String     @unique
+  username        String?    @unique
   emailVerified   DateTime?
-  emailVerifToken String?     @db.VarChar(255)
+  emailVerifToken String?    @db.VarChar(255)
   password        String?
   image           String?
-  role            Role        @default(USER)
-  status          UserStatus  @default(ACTIVE)
+  role            Role       @default(USER)
+  status          UserStatus @default(ACTIVE)
   lastSeenAt      DateTime?
   name            String?
   firstName       String?
@@ -182,7 +181,7 @@ model CaseStudy {
 
 model CaseStudyTag {
   id          String      @id @default(cuid())
-  tagName     String     @unique
+  tagName     String      @unique
   caseStudies CaseStudy[]
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
@@ -190,7 +189,7 @@ model CaseStudyTag {
 
 model CaseStudyCategory {
   id          String      @id @default(cuid())
-  catName     String     @unique
+  catName     String      @unique
   caseStudies CaseStudy[]
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
@@ -235,19 +234,19 @@ model Gallery {
 }
 
 model ProjectTag {
-  id        String   @id @default(cuid())
-  tagName   String   @unique
+  id        String    @id @default(cuid())
+  tagName   String    @unique
   projects  Project[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 model ProjectCategory {
-  id        String   @id @default(cuid())
-  catName   String   @unique
+  id        String    @id @default(cuid())
+  catName   String    @unique
   projects  Project[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 enum Role {
@@ -264,6 +263,8 @@ enum UserStatus {
 enum Type {
   BLOG
   CASE_STUDIES
+  RESOURCES
+  GUIDE
 }
 
 enum ProjectType {
