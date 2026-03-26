@@ -80,39 +80,38 @@ export default function RegisterAdminPage() {
     }
   };
 
-  const onSubmit = async (values: FormValues) => {
+const onSubmit = async (values: FormValues) => {
+  setIsLoading(true);
 
-    setIsLoading(true);
+  try {
+    const res = await fetch('/api/register-admin', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: values.email.trim(),
+        firstName: values.firstName.trim(),
+        lastName: values.lastName.trim(),
+        password: values.password,
+        image: values.image || null,
+      }),
+    });
 
-    try {
+    const data = await res.json();
 
-      const res = await fetch('/api/register-admin', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: values.email.trim(),
-          firstName: values.firstName.trim(),
-          lastName: values.lastName.trim(),
-          password: values.password,
-          image: values.image || null,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || 'Failed to create admin');
-      }
-
-      toast.success('Admin created successfully');
-      router.push('/signin');
-
-    } catch (error: any) {
-      toast.error(error.message);
-    } finally {
-      setIsLoading(false);
+    if (!res.ok) {
+      throw new Error(data.message || 'Failed to create admin');
     }
-  };
+
+    toast.success('Admin created successfully');
+    router.replace('/signin');
+    router.refresh();
+    return;
+  } catch (error: any) {
+    toast.error(error.message);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   if (isLoading) {
     return (

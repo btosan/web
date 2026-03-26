@@ -48,6 +48,7 @@ const formSchema = z
 
 type FormValues = z.infer<typeof formSchema>;
 
+// login
 const SignUpForm = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -94,21 +95,9 @@ const SignUpForm = () => {
       }
 
       // Auto sign-in after successful registration
-      const loginResult = await signIn("credentials", {
-        email: values.email,
-        password: values.password,
-        redirect: false,
-        callbackUrl,
-      });
-
-      if (loginResult?.error) {
-        throw new Error(loginResult.error);
-      }
-
-      toast.success("Account created successfully!");
-
-      router.push(loginResult?.url || callbackUrl);
-      router.refresh();
+    toast.success("Account created successfully!");
+    router.push(`/signin?callbackUrl=${encodeURIComponent(callbackUrl)}`);
+    router.refresh();
     } catch (error) {
       toast.error(
         error instanceof Error
