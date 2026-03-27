@@ -16,23 +16,30 @@ export default function CommentForm({ postSlug, parentId, onSuccess }: Props) {
   const [content, setContent] = useState("");
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
-  const router = useRouter(); // ✅ added
+  const router = useRouter();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (!content.trim()) {
+      toast({
+        title: "Comment cannot be empty",
+        description: "Please write something before posting.",
+        variant: "destructive",
+      });
+      return;
+    }
 
     startTransition(async () => {
       try {
         await createComment({
           postSlug,
           content,
-          parentId,
         });
 
         setContent("");
         onSuccess?.();
-
-        router.refresh(); // ✅ critical fix
+        router.refresh();
 
         toast({
           title: "Comment added",
