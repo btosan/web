@@ -16,7 +16,11 @@ async function requireUser() {
     throw new Error("You must be logged in.");
   }
 
-  return session.user;
+  // Explicit non-null assertion after the check
+  return {
+    ...session.user,
+    email: session.user.email!,   // TypeScript now knows it's string
+  };
 }
 
 /////////////////////////////////////////////////
@@ -54,7 +58,7 @@ export async function createComment({
         connect: { slug: postSlug },
       },
       user: {
-        connect: { email: user.email },
+        connect: { email: user.email },   // now safe
       },
     },
     include: {
