@@ -39,8 +39,8 @@ export default async function PostDetail({ slug }: { slug: string }) {
     notFound();
   }
 
-  // Guaranteed string
-  const resolvedSlug: string = post.slug?.trim() ? post.slug : slug;
+  // Strong guarantee for strict TS
+  const resolvedSlug = (post.slug && post.slug.trim().length > 0 ? post.slug : slug) as string;
 
   const [comments, relatedPosts, likeStatus] = await Promise.all([
     getCommentsByPostSlug(resolvedSlug),
@@ -50,19 +50,13 @@ export default async function PostDetail({ slug }: { slug: string }) {
 
   const readingTime = getReadingTime(post.content || "");
 
-  // Build URL based on type - simple and type-safe
-  const getUrlPath = (type: string, postSlug: string) => {
-    switch (type) {
-      case "GUIDE":
-        return `/guides/${postSlug}`;
-      case "RESOURCES":
-        return `/resources/${postSlug}`;
-      default:
-        return `/blog/${postSlug}`;
-    }
-  };
-
-  const urlPath = getUrlPath(post.type, resolvedSlug);
+  // Inline URL construction - no helper function
+  let urlPath = `/blog/${resolvedSlug}`;
+  if (post.type === "GUIDE") {
+    urlPath = `/guides/${resolvedSlug}`;
+  } else if (post.type === "RESOURCES") {
+    urlPath = `/resources/${resolvedSlug}`;
+  }
 
   return (
     <main className="min-h-screen bg-black px-6 py-14 md:px-12 lg:px-16 xl:px-20">
@@ -260,10 +254,13 @@ export default async function PostDetail({ slug }: { slug: string }) {
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
               {relatedPosts.map((related) => {
-                const relatedSlug = related.slug?.trim() ? related.slug : "";
-                const relatedUrl = relatedSlug 
-                  ? `/${related.type.toLowerCase() === "guide" ? "guides" : related.type.toLowerCase() === "resources" ? "resources" : "blog"}/${relatedSlug}`
-                  : "#";
+                const relatedSlug = related.slug && related.slug.trim().length > 0 
+                  ? related.slug 
+                  : "";
+
+                let relatedUrl = `/blog/${relatedSlug}`;
+                if (related.type === "GUIDE") relatedUrl = `/guides/${relatedSlug}`;
+                else if (related.type === "RESOURCES") relatedUrl = `/resources/${relatedSlug}`;
 
                 return (
                   <Link
