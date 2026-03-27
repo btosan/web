@@ -17,22 +17,23 @@ import ViewTracker from "@/components/posts/ViewTracker";
 import RichTextDisplay from "@/components/editorOld/RichTextDisplay";
 import PostDetailEnhancements from "@/components/posts/PostDetailEnhancements";
 
-function getPostHref(type: string, slug: string) {
+function getPostHref(type: string, slug: string | null | undefined): string {
+  const safeSlug = slug ?? "";
   switch (type) {
     case "GUIDE":
-      return `/guides/${slug}`;
+      return `/guides/${safeSlug}`;
     case "RESOURCES":
-      return `/resources/${slug}`;
+      return `/resources/${safeSlug}`;
     default:
-      return `/blog/${slug}`;
+      return `/blog/${safeSlug}`;
   }
 }
 
-function stripHtml(value: string) {
+function stripHtml(value: string): string {
   return value.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 }
 
-function getReadingTime(content: string) {
+function getReadingTime(content: string): string {
   const plainText = stripHtml(content);
   const wordCount = plainText ? plainText.split(" ").length : 0;
   const minutes = Math.max(1, Math.ceil(wordCount / 200));
@@ -54,10 +55,10 @@ export default async function PostDetail({ slug }: { slug: string }) {
     notFound();
   }
 
-  const resolvedSlug: string =
-    typeof post.slug === "string" && post.slug.trim().length > 0
-      ? post.slug
-      : slug;
+  // Guaranteed string
+  const resolvedSlug: string = post.slug && post.slug.trim().length > 0 
+    ? post.slug 
+    : slug;
 
   const [comments, relatedPosts, likeStatus] = await Promise.all([
     getCommentsByPostSlug(resolvedSlug),
@@ -65,7 +66,7 @@ export default async function PostDetail({ slug }: { slug: string }) {
     getLikeStatus(resolvedSlug),
   ]);
 
-  const postHref = getPostHref(post.type, resolvedSlug);
+  const postHref = getPostHref(post.type, post.slug);   // Now safe
   const readingTime = getReadingTime(post.content || "");
 
   return (
@@ -263,16 +264,15 @@ export default async function PostDetail({ slug }: { slug: string }) {
             </h2>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {relatedPosts
-                .filter(
-                  (related) =>
-                    typeof related.slug === "string" &&
-                    related.slug.trim().length > 0
-                )
-                .map((related) => (
+              {relatedPosts.map((related) => {
+                const relatedSlug = related.slug && related.slug.trim().length > 0 
+                  ? related.slug 
+                  : "";
+
+                return (
                   <Link
                     key={related.id}
-                    href={getPostHref(related.type, related.slug as string)}
+                    href={getPostHref(related.type, related.slug)}
                     className="group overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 transition hover:-translate-y-1 hover:border-purple-500"
                   >
                     <div className="relative h-48 overflow-hidden bg-gray-900">
@@ -312,7 +312,8 @@ export default async function PostDetail({ slug }: { slug: string }) {
                       </div>
                     </div>
                   </Link>
-                ))}
+                );
+              })}
             </div>
           </section>
         )}
