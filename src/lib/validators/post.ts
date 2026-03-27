@@ -18,4 +18,4 @@ export const postSchema = z.object({
   tagNames: z.array(z.string()).default([]),
 });
 
-export type PostFormValues = z.infer<typeof postSchema>;
+export type PostFormValues = z.input<typeof postSchema>;
