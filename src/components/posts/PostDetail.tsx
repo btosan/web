@@ -17,7 +17,6 @@ import ViewTracker from "@/components/posts/ViewTracker";
 import RichTextDisplay from "@/components/editorOld/RichTextDisplay";
 import PostDetailEnhancements from "@/components/posts/PostDetailEnhancements";
 
-// ✅ FIXED: Function now explicitly accepts string | null | undefined
 function getPostHref(type: string, slug: string | null | undefined): string {
   const safeSlug = slug ?? "";
   switch (type) {
@@ -30,12 +29,8 @@ function getPostHref(type: string, slug: string | null | undefined): string {
   }
 }
 
-function stripHtml(value: string): string {
-  return value.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-}
-
 function getReadingTime(content: string): string {
-  const plainText = stripHtml(content);
+  const plainText = content.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
   const wordCount = plainText ? plainText.split(" ").length : 0;
   const minutes = Math.max(1, Math.ceil(wordCount / 200));
   return `${minutes} min read`;
@@ -66,7 +61,6 @@ export default async function PostDetail({ slug }: { slug: string }) {
     getLikeStatus(resolvedSlug),
   ]);
 
-  // Now safe because function accepts null
   const postHref = getPostHref(post.type, post.slug);
 
   const readingTime = getReadingTime(post.content || "");
