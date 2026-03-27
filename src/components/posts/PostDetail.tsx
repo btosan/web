@@ -17,17 +17,6 @@ import ViewTracker from "@/components/posts/ViewTracker";
 import RichTextDisplay from "@/components/editorOld/RichTextDisplay";
 import PostDetailEnhancements from "@/components/posts/PostDetailEnhancements";
 
-function getPostHref(type: string, slug: string): string {
-  switch (type) {
-    case "GUIDE":
-      return `/guides/${slug}`;
-    case "RESOURCES":
-      return `/resources/${slug}`;
-    default:
-      return `/blog/${slug}`;
-  }
-}
-
 function getReadingTime(content: string): string {
   const plainText = content.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
   const wordCount = plainText ? plainText.split(" ").length : 0;
@@ -50,10 +39,8 @@ export default async function PostDetail({ slug }: { slug: string }) {
     notFound();
   }
 
-  // Strong type assertion to satisfy strict TS + Turbopack
-  const resolvedSlug = (post.slug && post.slug.trim().length > 0 
-    ? post.slug 
-    : slug) as string;
+  // Guaranteed string
+  const resolvedSlug: string = post.slug?.trim() ? post.slug : slug;
 
   const [comments, relatedPosts, likeStatus] = await Promise.all([
     getCommentsByPostSlug(resolvedSlug),
@@ -61,15 +48,27 @@ export default async function PostDetail({ slug }: { slug: string }) {
     getLikeStatus(resolvedSlug),
   ]);
 
-  const postHref = getPostHref(post.type, resolvedSlug);
-
   const readingTime = getReadingTime(post.content || "");
+
+  // Build URL based on type - simple and type-safe
+  const getUrlPath = (type: string, postSlug: string) => {
+    switch (type) {
+      case "GUIDE":
+        return `/guides/${postSlug}`;
+      case "RESOURCES":
+        return `/resources/${postSlug}`;
+      default:
+        return `/blog/${postSlug}`;
+    }
+  };
+
+  const urlPath = getUrlPath(post.type, resolvedSlug);
 
   return (
     <main className="min-h-screen bg-black px-6 py-14 md:px-12 lg:px-16 xl:px-20">
       <PostDetailEnhancements
         title={post.title}
-        urlPath={postHref}
+        urlPath={urlPath}
         tableOfContents={post.tableOfContents || ""}
       />
 
@@ -236,7 +235,7 @@ export default async function PostDetail({ slug }: { slug: string }) {
 
               <div className="space-y-3 text-sm text-gray-300">
                 <Link
-                  href={postHref}
+                  href={urlPath}
                   className="block rounded-xl border border-gray-800 bg-gray-900 px-4 py-3 transition hover:border-purple-500 hover:text-white"
                 >
                   Refresh article
@@ -261,14 +260,15 @@ export default async function PostDetail({ slug }: { slug: string }) {
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
               {relatedPosts.map((related) => {
-                const relatedSlug = (related.slug && related.slug.trim().length > 0 
-                  ? related.slug 
-                  : "") as string;
+                const relatedSlug = related.slug?.trim() ? related.slug : "";
+                const relatedUrl = relatedSlug 
+                  ? `/${related.type.toLowerCase() === "guide" ? "guides" : related.type.toLowerCase() === "resources" ? "resources" : "blog"}/${relatedSlug}`
+                  : "#";
 
                 return (
                   <Link
                     key={related.id}
-                    href={getPostHref(related.type, relatedSlug)}
+                    href={relatedUrl}
                     className="group overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 transition hover:-translate-y-1 hover:border-purple-500"
                   >
                     <div className="relative h-48 overflow-hidden bg-gray-900">
@@ -285,22 +285,22 @@ export default async function PostDetail({ slug }: { slug: string }) {
                           {related.type}
                         </span>
 
-                        {related.category?.catName ? (
+                        {related.category?.catName && (
                           <span className="text-gray-400">
                             {related.category.catName}
                           </span>
-                        ) : null}
+                        )}
                       </div>
 
                       <h3 className="line-clamp-2 text-lg font-semibold text-gray-50 group-hover:text-purple-100">
                         {related.title}
                       </h3>
 
-                      {related.openingParagraph ? (
+                      {related.openingParagraph && (
                         <p className="line-clamp-3 text-sm leading-6 text-gray-400">
                           {related.openingParagraph}
                         </p>
-                      ) : null}
+                      )}
 
                       <div className="flex items-center gap-4 pt-1 text-xs text-gray-500">
                         <span>{related._count.comments} comments</span>
