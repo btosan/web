@@ -50,9 +50,8 @@ export default async function PostDetail({ slug }: { slug: string }) {
     notFound();
   }
 
-  // resolvedSlug is ALWAYS a real string → satisfies strict mode
-  const resolvedSlug: string =
-    post.slug && post.slug.trim().length > 0 ? post.slug : slug;
+  // Explicit string guarantee for strict TypeScript
+  const resolvedSlug: string = post.slug?.trim() ? post.slug : slug;
 
   const [comments, relatedPosts, likeStatus] = await Promise.all([
     getCommentsByPostSlug(resolvedSlug),
@@ -60,7 +59,7 @@ export default async function PostDetail({ slug }: { slug: string }) {
     getLikeStatus(resolvedSlug),
   ]);
 
-  const postHref = getPostHref(post.type, resolvedSlug);   // ← this line now passes
+  const postHref = getPostHref(post.type, resolvedSlug);
 
   const readingTime = getReadingTime(post.content || "");
 
@@ -260,10 +259,9 @@ export default async function PostDetail({ slug }: { slug: string }) {
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
               {relatedPosts.map((related) => {
-                const relatedSlug: string =
-                  related.slug && related.slug.trim().length > 0
-                    ? related.slug
-                    : "";
+                const relatedSlug: string = related.slug && related.slug.trim().length > 0 
+                  ? related.slug 
+                  : "";
 
                 return (
                   <Link
