@@ -16,6 +16,7 @@ export const caseStudySchema = z.object({
   testimonialAuthor: z.string().optional(),
   imageUrl: z.string().optional(),
   imageCredit: z.string().optional(),
+  publicId: z.string().optional(),
   published: z.boolean().default(false),
   featured: z.boolean().default(false),
   categoryName: z.string().optional(),
