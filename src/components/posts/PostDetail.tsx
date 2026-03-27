@@ -17,8 +17,10 @@ import ViewTracker from "@/components/posts/ViewTracker";
 import RichTextDisplay from "@/components/editorOld/RichTextDisplay";
 import PostDetailEnhancements from "@/components/posts/PostDetailEnhancements";
 
-function getPostHref(type: string, slug: string | null | undefined): string {
-  const safeSlug = slug ?? "";
+function getPostHref(type: string, slugInput: string | null | undefined): string {
+  // Force safe string here - this satisfies strict TS checker
+  const safeSlug: string = slugInput ?? "";
+  
   switch (type) {
     case "GUIDE":
       return `/guides/${safeSlug}`;
@@ -63,8 +65,8 @@ export default async function PostDetail({ slug }: { slug: string }) {
     getLikeStatus(resolvedSlug),
   ]);
 
-  // FINAL FIX: Force the correct type that matches the function signature
-  const postHref = getPostHref(post.type, post.slug as string | null | undefined);
+  // Simple call - all safety is now inside getPostHref
+  const postHref = getPostHref(post.type, post.slug);
 
   const readingTime = getReadingTime(post.content || "");
 
