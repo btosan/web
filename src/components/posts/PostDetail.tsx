@@ -17,14 +17,16 @@ import ViewTracker from "@/components/posts/ViewTracker";
 import RichTextDisplay from "@/components/editorOld/RichTextDisplay";
 import PostDetailEnhancements from "@/components/posts/PostDetailEnhancements";
 
-function getPostHref(type: string, slug: string) {
+function getPostHref(type: string, slug: string | null | undefined) {
+  const safeSlug = slug ?? "";
+
   switch (type) {
     case "GUIDE":
-      return `/guides/${slug}`;
+      return `/guides/${safeSlug}`;
     case "RESOURCES":
-      return `/resources/${slug}`;
+      return `/resources/${safeSlug}`;
     default:
-      return `/blog/${slug}`;
+      return `/blog/${safeSlug}`;
   }
 }
 
@@ -42,7 +44,7 @@ function getReadingTime(content: string) {
 export default async function PostDetail({ slug }: { slug: string }) {
   let post = await getPublicPostBySlug(slug);
 
-  if (!post?.slug) {
+  if (!post) {
     notFound();
   }
 
@@ -50,23 +52,19 @@ export default async function PostDetail({ slug }: { slug: string }) {
 
   post = await getPublicPostBySlug(slug);
 
-  if (!post?.slug) {
+  if (!post) {
     notFound();
   }
 
-  const safeSlug = post.slug ?? "";
-
-  if (!safeSlug) {
-    notFound();
-  }
+  const resolvedSlug = post.slug ?? slug;
 
   const [comments, relatedPosts, likeStatus] = await Promise.all([
-    getCommentsByPostSlug(safeSlug),
+    getCommentsByPostSlug(resolvedSlug),
     getRelatedPostsByCategory(post.id, post.category?.catName, 3),
-    getLikeStatus(safeSlug),
+    getLikeStatus(resolvedSlug),
   ]);
 
-  const postHref = getPostHref(post.type, safeSlug);
+  const postHref = getPostHref(post.type, post.slug);
   const readingTime = getReadingTime(post.content || "");
 
   return (
@@ -78,7 +76,7 @@ export default async function PostDetail({ slug }: { slug: string }) {
       />
 
       <div className="mx-auto max-w-7xl">
-        <ViewTracker slug={safeSlug} />
+        <ViewTracker slug={resolvedSlug} />
 
         <header className="mb-10 max-w-4xl">
           <div className="flex flex-wrap items-center gap-3 text-sm">
@@ -167,7 +165,7 @@ export default async function PostDetail({ slug }: { slug: string }) {
 
             <section className="mt-10">
               <LikeButton
-                postSlug={safeSlug}
+                postSlug={resolvedSlug}
                 initialLiked={likeStatus.liked}
                 initialCount={post._count.likes}
               />
@@ -178,8 +176,8 @@ export default async function PostDetail({ slug }: { slug: string }) {
               className="mt-20 space-y-6 border-t border-gray-800 pt-10"
             >
               <h2 className="text-2xl font-semibold text-purple-50">Comments</h2>
-              <CommentForm postSlug={safeSlug} />
-              <CommentList comments={comments} postSlug={safeSlug} />
+              <CommentForm postSlug={resolvedSlug} />
+              <CommentList comments={comments} postSlug={resolvedSlug} />
             </section>
           </article>
 
@@ -264,52 +262,50 @@ export default async function PostDetail({ slug }: { slug: string }) {
             </h2>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {relatedPosts
-                .filter((related) => related.slug)
-                .map((related) => (
-                  <Link
-                    key={related.id}
-                    href={getPostHref(related.type, related.slug ?? "")}
-                    className="group overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 transition hover:-translate-y-1 hover:border-purple-500"
-                  >
-                    <div className="relative h-48 overflow-hidden bg-gray-900">
-                      <img
-                        src={related.imageUrl || "/placeholder.png"}
-                        alt={related.title}
-                        className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-                      />
-                    </div>
+              {relatedPosts.map((related) => (
+                <Link
+                  key={related.id}
+                  href={getPostHref(related.type, related.slug)}
+                  className="group overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 transition hover:-translate-y-1 hover:border-purple-500"
+                >
+                  <div className="relative h-48 overflow-hidden bg-gray-900">
+                    <img
+                      src={related.imageUrl || "/placeholder.png"}
+                      alt={related.title}
+                      className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                    />
+                  </div>
 
-                    <div className="space-y-3 p-5">
-                      <div className="flex flex-wrap items-center gap-3 text-xs">
-                        <span className="rounded-full border border-purple-800/40 bg-purple-950/30 px-3 py-1 text-purple-200">
-                          {related.type}
+                  <div className="space-y-3 p-5">
+                    <div className="flex flex-wrap items-center gap-3 text-xs">
+                      <span className="rounded-full border border-purple-800/40 bg-purple-950/30 px-3 py-1 text-purple-200">
+                        {related.type}
+                      </span>
+
+                      {related.category?.catName ? (
+                        <span className="text-gray-400">
+                          {related.category.catName}
                         </span>
-
-                        {related.category?.catName ? (
-                          <span className="text-gray-400">
-                            {related.category.catName}
-                          </span>
-                        ) : null}
-                      </div>
-
-                      <h3 className="line-clamp-2 text-lg font-semibold text-gray-50 group-hover:text-purple-100">
-                        {related.title}
-                      </h3>
-
-                      {related.openingParagraph ? (
-                        <p className="line-clamp-3 text-sm leading-6 text-gray-400">
-                          {related.openingParagraph}
-                        </p>
                       ) : null}
-
-                      <div className="flex items-center gap-4 pt-1 text-xs text-gray-500">
-                        <span>{related._count.comments} comments</span>
-                        <span>{related._count.likes} likes</span>
-                      </div>
                     </div>
-                  </Link>
-                ))}
+
+                    <h3 className="line-clamp-2 text-lg font-semibold text-gray-50 group-hover:text-purple-100">
+                      {related.title}
+                    </h3>
+
+                    {related.openingParagraph ? (
+                      <p className="line-clamp-3 text-sm leading-6 text-gray-400">
+                        {related.openingParagraph}
+                      </p>
+                    ) : null}
+
+                    <div className="flex items-center gap-4 pt-1 text-xs text-gray-500">
+                      <span>{related._count.comments} comments</span>
+                      <span>{related._count.likes} likes</span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
             </div>
           </section>
         )}
