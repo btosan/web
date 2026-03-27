@@ -183,7 +183,7 @@ export default function TestimonialsSection() {
 
           <button
             onClick={() => setOpen(true)}
-            className="inline-flex items-center justify-center px-10 py-4 bg-linear-to-bl from-indigo-800/5 via-purple-900/5 to-purple-600/5 hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black transition-all duration-300 text-purple-300 text-lg md:text-xl font-bold rounded-md shadow-xl hover:cursor-pointer"
+            className="inline-flex items-center justify-center px-8 py-4 bg-linear-to-bl from-indigo-800/5 via-purple-900/5 to-purple-600/5 hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black transition-all duration-300 text-purple-300 text-lg md:text-xl font-bold rounded-md shadow-xl hover:cursor-pointer"
           >
             Be Our Next Success Story
           </button>
