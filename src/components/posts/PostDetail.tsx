@@ -50,8 +50,10 @@ export default async function PostDetail({ slug }: { slug: string }) {
     notFound();
   }
 
-  // Explicit string guarantee for strict TypeScript
-  const resolvedSlug: string = post.slug?.trim() ? post.slug : slug;
+  // Strong type assertion to satisfy strict TS + Turbopack
+  const resolvedSlug = (post.slug && post.slug.trim().length > 0 
+    ? post.slug 
+    : slug) as string;
 
   const [comments, relatedPosts, likeStatus] = await Promise.all([
     getCommentsByPostSlug(resolvedSlug),
@@ -259,9 +261,9 @@ export default async function PostDetail({ slug }: { slug: string }) {
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
               {relatedPosts.map((related) => {
-                const relatedSlug: string = related.slug && related.slug.trim().length > 0 
+                const relatedSlug = (related.slug && related.slug.trim().length > 0 
                   ? related.slug 
-                  : "";
+                  : "") as string;
 
                 return (
                   <Link
