@@ -96,9 +96,9 @@ export default function PostDetailEnhancements({
       </div>
 
       {/* DESKTOP: LEFT FLOATING PANEL */}
-      <div className="pointer-events-none fixed left-6 top-24 z-40 hidden xl:flex xl:flex-col xl:gap-3">
-        <div className="pointer-events-auto w-56 rounded-2xl border border-gray-800 bg-gray-950/95 p-3 shadow-2xl backdrop-blur">
-          <div className="mb-2 text-xs font-medium text-gray-400">Share</div>
+      <div className="pointer-events-none fixed left-6 bottom-16 z-40 hidden xl:flex xl:flex-col xl:gap-3">
+        <div className="pointer-events-auto w-56 rounded-2xl border border-gray-800 bg-gray-950/60 p-3 shadow-2xl backdrop-blur">
+          <div className="mb-2 text-xs font-medium text-gray-300">Share</div>
 
           <div className="flex flex-col gap-2">
             <button
@@ -152,9 +152,10 @@ export default function PostDetailEnhancements({
           <button
             type="button"
             onClick={handleBackToTop}
-            className="pointer-events-auto rounded-full border border-gray-800 bg-gray-950/95 px-4 py-3 text-sm text-gray-200 shadow-2xl backdrop-blur transition hover:border-purple-500 hover:text-white"
+            className="flex items-center justify-center gap-2 hover:cursor-pointer pointer-events-auto rounded-full border border-purple-300 bg-gray-950/95 px-4 py-3 text-sm text-gray-200 shadow-2xl backdrop-blur transition hover:border-purple-500 hover:text-white"
           >
-            Back to top
+            <span>Back to top</span>
+            <ArrowUpIcon className="h-4 w-4" />
           </button>
         )}
       </div>

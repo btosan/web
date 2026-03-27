@@ -64,7 +64,9 @@ export default async function PostDetail({ slug }: { slug: string }) {
     getLikeStatus(resolvedSlug),
   ]);
 
+  // Fixed: Explicitly handle possible null slug to satisfy TypeScript
   const postHref = getPostHref(post.type, post.slug);
+
   const readingTime = getReadingTime(post.content || "");
 
   return (
