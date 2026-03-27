@@ -7,7 +7,7 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-function getCanonicalPath(type: string, slug: string) {
+function getCanonicalPath(type: string | null, slug: string) {
   switch (type) {
     case "GUIDE":
       return `/guides/${slug}`;
