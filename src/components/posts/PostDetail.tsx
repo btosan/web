@@ -17,7 +17,7 @@ import ViewTracker from "@/components/posts/ViewTracker";
 import RichTextDisplay from "@/components/editorOld/RichTextDisplay";
 import PostDetailEnhancements from "@/components/posts/PostDetailEnhancements";
 
-function getPostHref(type: string, slug: string | null | undefined) {
+function getPostHref(type: string, slug: string | null | undefined): string {
   const safeSlug = slug ?? "";
 
   switch (type) {
@@ -30,11 +30,11 @@ function getPostHref(type: string, slug: string | null | undefined) {
   }
 }
 
-function stripHtml(value: string) {
+function stripHtml(value: string): string {
   return value.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 }
 
-function getReadingTime(content: string) {
+function getReadingTime(content: string): string {
   const plainText = stripHtml(content);
   const wordCount = plainText ? plainText.split(" ").length : 0;
   const minutes = Math.max(1, Math.ceil(wordCount / 200));
@@ -64,8 +64,8 @@ export default async function PostDetail({ slug }: { slug: string }) {
     getLikeStatus(resolvedSlug),
   ]);
 
-  // Fixed: Explicitly handle possible null slug to satisfy TypeScript
-  const postHref = getPostHref(post.type, post.slug);
+  // FIXED: Explicitly handle null with nullish coalescing
+  const postHref = getPostHref(post.type, post.slug ?? undefined);
 
   const readingTime = getReadingTime(post.content || "");
 
