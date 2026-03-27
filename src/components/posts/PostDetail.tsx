@@ -52,13 +52,15 @@ export default async function PostDetail({ slug }: { slug: string }) {
     notFound();
   }
 
+  const safeSlug = post.slug;
+
   const [comments, relatedPosts, likeStatus] = await Promise.all([
-    getCommentsByPostSlug(slug),
+    getCommentsByPostSlug(safeSlug),
     getRelatedPostsByCategory(post.id, post.category?.catName, 3),
-    getLikeStatus(slug),
+    getLikeStatus(safeSlug),
   ]);
 
-  const postHref = getPostHref(post.type, post.slug);
+  const postHref = getPostHref(post.type, safeSlug);
   const readingTime = getReadingTime(post.content || "");
 
   return (
@@ -70,9 +72,8 @@ export default async function PostDetail({ slug }: { slug: string }) {
       />
 
       <div className="mx-auto max-w-7xl">
-        <ViewTracker slug={post.slug} />
+        <ViewTracker slug={safeSlug} />
 
-        {/* HEADER */}
         <header className="mb-10 max-w-4xl">
           <div className="flex flex-wrap items-center gap-3 text-sm">
             <span className="rounded-full border border-purple-800/40 bg-purple-950/30 px-3 py-1 text-purple-200">
@@ -109,9 +110,7 @@ export default async function PostDetail({ slug }: { slug: string }) {
           </div>
         </header>
 
-        {/* MAIN GRID */}
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-          {/* LEFT COLUMN */}
           <article className="lg:col-span-8">
             {post.imageUrl && (
               <div className="mb-10 overflow-hidden rounded-2xl border border-gray-800 bg-gray-950">
@@ -162,7 +161,7 @@ export default async function PostDetail({ slug }: { slug: string }) {
 
             <section className="mt-10">
               <LikeButton
-                postSlug={post.slug}
+                postSlug={safeSlug}
                 initialLiked={likeStatus.liked}
                 initialCount={post._count.likes}
               />
@@ -170,12 +169,11 @@ export default async function PostDetail({ slug }: { slug: string }) {
 
             <section className="mt-20 space-y-6 border-t border-gray-800 pt-10">
               <h2 className="text-2xl font-semibold text-purple-50">Comments</h2>
-              <CommentForm postSlug={post.slug} />
-              <CommentList comments={comments} postSlug={post.slug} />
+              <CommentForm postSlug={safeSlug} />
+              <CommentList comments={comments} postSlug={safeSlug} />
             </section>
           </article>
 
-          {/* RIGHT COLUMN */}
           <aside className="self-start space-y-6 lg:sticky lg:top-24 lg:col-span-4">
             <div className="rounded-2xl border border-gray-800 bg-gray-950 p-6">
               <h2 className="mb-4 text-lg font-semibold text-purple-100">
