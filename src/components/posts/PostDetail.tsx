@@ -17,25 +17,22 @@ import ViewTracker from "@/components/posts/ViewTracker";
 import RichTextDisplay from "@/components/editorOld/RichTextDisplay";
 import PostDetailEnhancements from "@/components/posts/PostDetailEnhancements";
 
-function getPostHref(type: string, slugInput: string | null | undefined): string {
-  // Force safe string here - this satisfies strict TS checker
-  const safeSlug: string = slugInput ?? "";
-  
+function getPostHref(type: string, slug: string) {
   switch (type) {
     case "GUIDE":
-      return `/guides/${safeSlug}`;
+      return `/guides/${slug}`;
     case "RESOURCES":
-      return `/resources/${safeSlug}`;
+      return `/resources/${slug}`;
     default:
-      return `/blog/${safeSlug}`;
+      return `/blog/${slug}`;
   }
 }
 
-function stripHtml(value: string): string {
+function stripHtml(value: string) {
   return value.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 }
 
-function getReadingTime(content: string): string {
+function getReadingTime(content: string) {
   const plainText = stripHtml(content);
   const wordCount = plainText ? plainText.split(" ").length : 0;
   const minutes = Math.max(1, Math.ceil(wordCount / 200));
@@ -57,7 +54,10 @@ export default async function PostDetail({ slug }: { slug: string }) {
     notFound();
   }
 
-  const resolvedSlug = post.slug ?? slug;
+  const resolvedSlug: string =
+    typeof post.slug === "string" && post.slug.trim().length > 0
+      ? post.slug
+      : slug;
 
   const [comments, relatedPosts, likeStatus] = await Promise.all([
     getCommentsByPostSlug(resolvedSlug),
@@ -65,9 +65,7 @@ export default async function PostDetail({ slug }: { slug: string }) {
     getLikeStatus(resolvedSlug),
   ]);
 
-  // Simple call - all safety is now inside getPostHref
-  const postHref = getPostHref(post.type, post.slug);
-
+  const postHref = getPostHref(post.type, resolvedSlug);
   const readingTime = getReadingTime(post.content || "");
 
   return (
@@ -265,50 +263,56 @@ export default async function PostDetail({ slug }: { slug: string }) {
             </h2>
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {relatedPosts.map((related) => (
-                <Link
-                  key={related.id}
-                  href={getPostHref(related.type, related.slug)}
-                  className="group overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 transition hover:-translate-y-1 hover:border-purple-500"
-                >
-                  <div className="relative h-48 overflow-hidden bg-gray-900">
-                    <img
-                      src={related.imageUrl || "/placeholder.png"}
-                      alt={related.title}
-                      className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-                    />
-                  </div>
+              {relatedPosts
+                .filter(
+                  (related) =>
+                    typeof related.slug === "string" &&
+                    related.slug.trim().length > 0
+                )
+                .map((related) => (
+                  <Link
+                    key={related.id}
+                    href={getPostHref(related.type, related.slug as string)}
+                    className="group overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 transition hover:-translate-y-1 hover:border-purple-500"
+                  >
+                    <div className="relative h-48 overflow-hidden bg-gray-900">
+                      <img
+                        src={related.imageUrl || "/placeholder.png"}
+                        alt={related.title}
+                        className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+                      />
+                    </div>
 
-                  <div className="space-y-3 p-5">
-                    <div className="flex flex-wrap items-center gap-3 text-xs">
-                      <span className="rounded-full border border-purple-800/40 bg-purple-950/30 px-3 py-1 text-purple-200">
-                        {related.type}
-                      </span>
-
-                      {related.category?.catName ? (
-                        <span className="text-gray-400">
-                          {related.category.catName}
+                    <div className="space-y-3 p-5">
+                      <div className="flex flex-wrap items-center gap-3 text-xs">
+                        <span className="rounded-full border border-purple-800/40 bg-purple-950/30 px-3 py-1 text-purple-200">
+                          {related.type}
                         </span>
+
+                        {related.category?.catName ? (
+                          <span className="text-gray-400">
+                            {related.category.catName}
+                          </span>
+                        ) : null}
+                      </div>
+
+                      <h3 className="line-clamp-2 text-lg font-semibold text-gray-50 group-hover:text-purple-100">
+                        {related.title}
+                      </h3>
+
+                      {related.openingParagraph ? (
+                        <p className="line-clamp-3 text-sm leading-6 text-gray-400">
+                          {related.openingParagraph}
+                        </p>
                       ) : null}
+
+                      <div className="flex items-center gap-4 pt-1 text-xs text-gray-500">
+                        <span>{related._count.comments} comments</span>
+                        <span>{related._count.likes} likes</span>
+                      </div>
                     </div>
-
-                    <h3 className="line-clamp-2 text-lg font-semibold text-gray-50 group-hover:text-purple-100">
-                      {related.title}
-                    </h3>
-
-                    {related.openingParagraph ? (
-                      <p className="line-clamp-3 text-sm leading-6 text-gray-400">
-                        {related.openingParagraph}
-                      </p>
-                    ) : null}
-
-                    <div className="flex items-center gap-4 pt-1 text-xs text-gray-500">
-                      <span>{related._count.comments} comments</span>
-                      <span>{related._count.likes} likes</span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                ))}
             </div>
           </section>
         )}
