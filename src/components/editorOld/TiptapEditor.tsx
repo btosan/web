@@ -298,7 +298,7 @@ const TiptapEditor: React.FC<TiptapEditorProps> = ({
     if (incoming === lastExternalContentRef.current) return
 
     if (incoming !== current) {
-      editor.commands.setContent(incoming, false)
+      editor.commands.setContent(incoming, { emitUpdate: false })
     }
 
     lastExternalContentRef.current = incoming
