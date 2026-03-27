@@ -152,7 +152,7 @@ export default function PostDetailEnhancements({
           <button
             type="button"
             onClick={handleBackToTop}
-            className="flex items-center justify-center gap-2 hover:cursor-pointer pointer-events-auto rounded-full border border-purple-300 bg-gray-950/95 px-4 py-3 text-sm text-gray-200 shadow-2xl backdrop-blur transition hover:border-purple-500 hover:text-white"
+            className="flex items-center justify-center gap-2 hover:cursor-pointer pointer-events-auto rounded-full border border-purple-300 bg-gray-950/80 px-4 py-3 text-sm text-gray-200 shadow-2xl backdrop-blur transition hover:border-purple-500 hover:text-white"
           >
             <span>Back to top</span>
             <ArrowUpIcon className="h-4 w-4" />

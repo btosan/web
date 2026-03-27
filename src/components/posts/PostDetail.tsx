@@ -64,8 +64,8 @@ export default async function PostDetail({ slug }: { slug: string }) {
     getLikeStatus(resolvedSlug),
   ]);
 
-  // FIXED: Explicitly handle null with nullish coalescing
-  const postHref = getPostHref(post.type, post.slug ?? undefined);
+  // This is the safe, explicit fix that satisfies strict TypeScript
+  const postHref = getPostHref(post.type, post.slug ?? null);
 
   const readingTime = getReadingTime(post.content || "");
 
