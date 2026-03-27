@@ -1,12 +1,12 @@
 import { z } from "zod";
 import { Type } from "@prisma/client";
 
+const postTypeSchema = z.enum([Type.BLOG, Type.RESOURCES, Type.GUIDE]);
+
 export const postSchema = z.object({
   title: z.string().min(1, "Title is required"),
   slug: z.string().optional().or(z.literal("")),
-  type: z.nativeEnum(Type).refine((value) => value !== Type.CASE_STUDIES, {
-    message: "Case studies should use the dedicated case study flow.",
-  }),
+  type: postTypeSchema,
   imageUrl: z.string().optional().or(z.literal("")),
   imageCredit: z.string().optional().or(z.literal("")),
   openingParagraph: z.string().optional().or(z.literal("")),
