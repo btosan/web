@@ -76,28 +76,28 @@ const insightsItems = [
     name: "Latest Articles & Trends",
     title: "Blog",
     description: "In-depth articles, industry trends, tech insights, and practical tips to help you grow your business in the digital age.",
-    href: "/learn/blog",
+    href: "/blog",
   },
   {
     icon: HelpCircle,
     name: "Quick Answers to Common Questions",
     title: "FAQs",
     description: "Clear, concise answers to the most frequently asked questions about our services, process, pricing, and timelines.",
-    href: "/learn/faqs",
+    href: "/faqs",
   },
   {
     icon: FileText,
     name: "Real Results & Success Stories",
     title: "Case Studies",
     description: "Detailed breakdowns of projects we’ve delivered — challenges, solutions, technologies used, and measurable outcomes.",
-    href: "/learn/case-studies",
+    href: "/case-studies",
   },
   {
     icon: Lightbulb,
     name: "Practical Tools & In-depth Guides",
     title: "Guides & Resources",
     description: "Step-by-step guides, checklists, templates, and free resources to help you make better decisions and move faster.",
-    href: "/learn/guides",
+    href: "/guides",
   },
 ]
 

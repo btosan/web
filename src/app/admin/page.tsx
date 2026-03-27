@@ -40,10 +40,22 @@ const adminSections = [
   },
   {
     title: "Posts",
-    description: "Create blog posts and manage published or draft content.",
+    description:
+      "Create and manage blog posts, guides, and resources from the admin area.",
     links: [
-      { label: "Create Post", href: "/posts/create" },
+      { label: "Create Blog Post", href: "/admin/blog/create" },
+      { label: "Create Guide", href: "/admin/guides/create" },
+      { label: "Create Resource", href: "/admin/resources/create" },
       { label: "Manage Posts", href: "/admin/posts" },
+    ],
+  },
+  {
+    title: "Post Categories",
+    description:
+      "Create and manage categories required for blog posts, guides, and resources.",
+    links: [
+      { label: "Create Category", href: "/admin/categories/create" },
+      { label: "Manage Categories", href: "/admin/categories" },
     ],
   },
   {
@@ -68,13 +80,13 @@ export default async function AdminPage() {
   }
 
   return (
-    <main className="min-h-screen bg-black px-4 py-8 md:px-8 lg:px-12">
+    <main className="min-h-screen bg-black px-4 py-8 md:py-16 md:px-8 lg:px-12">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10">
-          <h1 className="text-3xl md:text-4xl font-bold text-purple-100">
+          <h1 className="text-3xl font-bold text-purple-100 md:text-4xl">
             Admin Dashboard
           </h1>
-          <p className="mt-3 max-w-2xl text-sm md:text-base text-gray-400">
+          <p className="mt-3 max-w-2xl text-sm text-gray-400 md:text-base">
             Manage projects, case studies, posts, users, and category systems
             from one place.
           </p>
@@ -98,7 +110,7 @@ export default async function AdminPage() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="inline-flex items-center justify-center rounded-md border border-gray-700 px-4 py-2 text-sm font-medium text-gray-200 transition hover:border-purple-400 hover:text-white hover:bg-gray-900"
+                    className="inline-flex items-center justify-center rounded-md border border-gray-700 bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 transition hover:border-purple-400 hover:bg-black hover:text-white"
                   >
                     {link.label}
                   </Link>

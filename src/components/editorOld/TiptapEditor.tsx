@@ -1,28 +1,28 @@
-// next/web/src/components/editor/TiptapEditor.tsx show toolbox
 import './editor.css'
-import { useState, useEffect } from 'react'
+import './editor-content.css'
+import './prism-theme.css'
+
+import { useState, useEffect, useRef } from 'react'
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import Placeholder from '@tiptap/extension-placeholder'
 import Link from '@tiptap/extension-link'
 import TextAlign from '@tiptap/extension-text-align'
 import Image from '@tiptap/extension-image'
-import { Color } from "@tiptap/extension-color"
-import FontFamily from "@tiptap/extension-font-family"
-import { TextStyle } from "@tiptap/extension-text-style"
-import Underline from "@tiptap/extension-underline"
-import TaskList from "@tiptap/extension-task-list"
-import TaskItem from "@tiptap/extension-task-item"
-import { Table } from "@tiptap/extension-table"
-import TableCell from "@tiptap/extension-table-cell"
-import TableHeader from "@tiptap/extension-table-header"
-import TableRow from "@tiptap/extension-table-row"
-import ImageResize from "tiptap-extension-resize-image"
+import { Color } from '@tiptap/extension-color'
+import FontFamily from '@tiptap/extension-font-family'
+import { TextStyle } from '@tiptap/extension-text-style'
+import Underline from '@tiptap/extension-underline'
+import TaskList from '@tiptap/extension-task-list'
+import TaskItem from '@tiptap/extension-task-item'
+import { Table } from '@tiptap/extension-table'
+import TableCell from '@tiptap/extension-table-cell'
+import TableHeader from '@tiptap/extension-table-header'
+import TableRow from '@tiptap/extension-table-row'
+import ImageResize from 'tiptap-extension-resize-image'
 import { ColorResult, SketchPicker } from 'react-color'
 import { CodeBlockExtension } from './CodeBlockExtension'
 import { FontSize } from './font-size'
-import './editor-content.css'
-import './prism-theme.css'
 
 import Prism from 'prismjs'
 import 'prismjs/components/prism-typescript'
@@ -35,7 +35,7 @@ import 'prismjs/components/prism-css'
 import 'prismjs/components/prism-json'
 import 'prismjs/components/prism-yaml'
 import 'prismjs/components/prism-markdown'
-// copy
+
 interface TiptapEditorProps {
   content: string
   onChange: (content: string) => void
@@ -58,14 +58,28 @@ const availableFonts = [
   { name: 'Tahoma', value: 'Tahoma' },
   { name: 'Trebuchet MS', value: 'Trebuchet MS' },
   { name: 'Impact', value: 'Impact' },
-  { name: 'Comic Sans MS', value: 'Comic Sans MS' }
+  { name: 'Comic Sans MS', value: 'Comic Sans MS' },
 ]
 
-const TiptapEditor: React.FC<TiptapEditorProps> = ({ 
-  content, 
+const languages = [
+  'typescript',
+  'javascript',
+  'python',
+  'java',
+  'go',
+  'rust',
+  'css',
+  'json',
+  'yaml',
+  'markdown',
+  'plaintext',
+]
+
+const TiptapEditor: React.FC<TiptapEditorProps> = ({
+  content,
   onChange,
   editable = true,
-  placeholder = 'Write something...'
+  placeholder = 'Write something...',
 }) => {
   const [linkUrl, setLinkUrl] = useState<string>('')
   const [showLinkInput, setShowLinkInput] = useState<boolean>(false)
@@ -75,26 +89,24 @@ const TiptapEditor: React.FC<TiptapEditorProps> = ({
   const [showFontFamily, setShowFontFamily] = useState<boolean>(false)
   const [tableOptions, setTableOptions] = useState<TableOptionsProps>({
     isOpen: false,
-    position: { x: 0, y: 0 }
+    position: { x: 0, y: 0 },
   })
   const [isToolboxVisible, setIsToolboxVisible] = useState<boolean>(false)
 
+  const lastExternalContentRef = useRef(content ?? '')
+
   const preventFormSubmission = (event: KeyboardEvent) => {
-    if (event.key === 'Enter') {
-      const target = event.target as HTMLElement;
-      const isInEditor = target.closest('.ProseMirror') !== null;
-      const isButton = target.tagName === 'BUTTON';
-  
-      if (isInEditor) {
-        return;
-      }
-  
-      if (isButton) {
-        event.preventDefault();
-        // event.stopPropagation();
-      }
+    if (event.key !== 'Enter') return
+
+    const target = event.target as HTMLElement | null
+    if (!target) return
+
+    if (target.closest('.ProseMirror')) return
+
+    if (target.tagName === 'BUTTON') {
+      event.preventDefault()
     }
-  };
+  }
 
   const editor = useEditor({
     extensions: [
@@ -113,7 +125,7 @@ const TiptapEditor: React.FC<TiptapEditorProps> = ({
       }),
       FontSize,
       Placeholder.configure({
-        placeholder: placeholder || 'Write something...',
+        placeholder,
       }),
       Link.configure({
         openOnClick: true,
@@ -156,38 +168,57 @@ const TiptapEditor: React.FC<TiptapEditorProps> = ({
     ],
     content,
     editable,
-    onUpdate: ({ editor }) => {
-      onChange(editor.getHTML())
-    },
     immediatelyRender: false,
+    onUpdate: ({ editor }) => {
+      const html = editor.getHTML()
+      lastExternalContentRef.current = html
+      onChange(html)
+    },
     editorProps: {
       attributes: {
-        class: 'prose prose-lg dark:prose-invert max-w-none min-h-[150px] focus:outline-none text-gray-50',
+        class:
+          'prose prose-lg dark:prose-invert max-w-none min-h-[150px] focus:outline-none text-gray-50',
         spellcheck: 'false',
       },
-handleKeyDown: (view, event) => {
-  if (event.key === 'Enter' && !event.shiftKey) {
-    event.preventDefault(); // Block default Enter
+      transformPastedHTML: (html) => {
+        const doc = new window.DOMParser().parseFromString(html, 'text/html')
 
-    const { state, dispatch } = view;
-    const { selection } = state;
-    const { $from } = selection;
+        doc.querySelectorAll('*').forEach((el) => {
+          el.removeAttribute('color')
+          el.removeAttribute('bgcolor')
 
-    // Insert a hard break (<br>) at cursor position – this creates a single line break without new paragraph
-    dispatch(state.tr.insert($from.pos, state.schema.nodes.hardBreak.create()).scrollIntoView());
+          const style = el.getAttribute('style')
+          if (!style) return
 
-    // Optional: If you want to create a new paragraph only when needed (e.g., at end of line)
-    // dispatch(state.tr.split($from.pos).scrollIntoView());
+          const filtered = style
+            .split(';')
+            .map((rule) => rule.trim())
+            .filter(Boolean)
+            .filter((rule) => {
+              const key = rule.split(':')[0]?.trim().toLowerCase()
+              return ![
+                'color',
+                'background',
+                'background-color',
+                'font-family',
+                'font-size',
+              ].includes(key)
+            })
 
-    return true; // Mark as handled
-  }
-  return false;
-},
+          if (filtered.length > 0) {
+            el.setAttribute('style', filtered.join('; '))
+          } else {
+            el.removeAttribute('style')
+          }
+        })
+
+        return doc.body.innerHTML
+      },
       handleDOMEvents: {
-        keydown: (view, event) => {
+        keydown: (_view, event) => {
           if (event.ctrlKey || event.metaKey) {
-            switch(event.key) {
-              case 'b': 
+            switch (event.key.toLowerCase()) {
+              case 'b':
                 event.preventDefault()
                 editor?.chain().focus().toggleBold().run()
                 return true
@@ -215,134 +246,95 @@ handleKeyDown: (view, event) => {
                 event.preventDefault()
                 editor?.chain().focus().toggleHeading({ level: 3 }).run()
                 return true
+              default:
+                break
             }
           }
-    
-          if (event.key === 'Enter') {
-            event.stopPropagation()
-          }
+
           return false
         },
-        paste: (view, event) => {
-          const html = event.clipboardData?.getData('text/html');
-          const text = event.clipboardData?.getData('text/plain');
-          
-          const items = Array.from(event.clipboardData?.items || []);
-          const imageItem = items.find(item => item.type.startsWith('image'));
-
-          return false;
+        paste: (_view, _event) => {
+          return false
         },
-
-        drop: (view, event) => {
+        drop: (_view, event) => {
           const hasFiles = event.dataTransfer?.files.length
-          
+
           if (hasFiles) {
             event.preventDefault()
-            Array.from(event.dataTransfer.files).forEach(file => {
-              if (file.type.startsWith('image')) {
+
+            Array.from(event.dataTransfer.files).forEach((file) => {
+              if (file.type.startsWith('image/')) {
                 const reader = new FileReader()
                 reader.onload = (e) => {
-                  const imageUrl = e.target?.result as string
-                  editor?.chain().focus().setImage({ src: imageUrl }).run()
+                  const nextImageUrl = e.target?.result as string
+                  editor?.chain().focus().setImage({ src: nextImageUrl }).run()
                 }
                 reader.readAsDataURL(file)
               }
             })
+
             return true
           }
+
           return false
         },
-      }
-    }
+      },
+    },
   })
 
   useEffect(() => {
-    document.addEventListener('keydown', preventFormSubmission, true);
+    document.addEventListener('keydown', preventFormSubmission, true)
     return () => {
-      document.removeEventListener('keydown', preventFormSubmission, true);
-    };
+      document.removeEventListener('keydown', preventFormSubmission, true)
+    }
   }, [])
 
   useEffect(() => {
-    if (editor && content !== editor.getHTML()) {
-      editor.commands.setContent(content)
+    if (!editor) return
+
+    const incoming = content ?? ''
+    const current = editor.getHTML()
+
+    if (incoming === lastExternalContentRef.current) return
+
+    if (incoming !== current) {
+      editor.commands.setContent(incoming, false)
     }
+
+    lastExternalContentRef.current = incoming
   }, [content, editor])
 
   useEffect(() => {
-    if (editor) {
-      setTimeout(() => {
-        Prism.highlightAll()
-      }, 0)
-    }
-  }, [editor?.getHTML()])
+    if (!editor) return
+
+    const timer = window.setTimeout(() => {
+      Prism.highlightAll()
+    }, 0)
+
+    return () => window.clearTimeout(timer)
+  }, [editor, content])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (tableOptions.isOpen && !(event.target as Element).closest('.table-menu')) {
-        setTableOptions(prev => ({ ...prev, isOpen: false }));
+        setTableOptions((prev) => ({ ...prev, isOpen: false }))
       }
-    };
-  
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [tableOptions.isOpen]);
+    }
 
-  useEffect(() => {
-    const handleInput = (event: Event) => {
-      const target = event.target as HTMLElement;
-      if (target.closest('.ProseMirror')) {
-        console.log('Input event detected in editor');
-      }
-    };
-  
-    document.addEventListener('input', handleInput, true);
+    document.addEventListener('mousedown', handleClickOutside)
     return () => {
-      document.removeEventListener('input', handleInput, true);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleMobileEnter = (event: KeyboardEvent) => {
-      if (event.key === 'Enter') {
-        const target = event.target as HTMLElement;
-        if (target.closest('.ProseMirror')) {
-          editor?.commands.enter();
-        }
-      }
-    };
-  
-    document.addEventListener('keydown', handleMobileEnter, true);
-    return () => {
-      document.removeEventListener('keydown', handleMobileEnter, true);
-    };
-  }, [editor]);
-
-  const languages = [
-    'typescript',
-    'javascript',
-    'python',
-    'java',
-    'go',
-    'rust',
-    'css',
-    'json',
-    'yaml',
-    'markdown',
-    'plaintext',
-  ]
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [tableOptions.isOpen])
 
   if (!editor) {
     return (
-      <div className="min-h-37.5 flex items-center justify-center bg-gray-900 border border-gray-700 rounded-md text-gray-400">
+      <div className="min-h-37.5 flex items-center justify-center rounded-md border border-gray-700 bg-gray-900 text-gray-400">
         Loading editor...
       </div>
     )
   }
 
-  // Editor commands
   const toggleBold = () => editor.chain().focus().toggleBold().run()
   const toggleItalic = () => editor.chain().focus().toggleItalic().run()
   const toggleUnderline = () => editor.chain().focus().toggleUnderline().run()
@@ -353,15 +345,17 @@ handleKeyDown: (view, event) => {
   const toggleBulletList = () => editor.chain().focus().toggleBulletList().run()
   const toggleOrderedList = () => editor.chain().focus().toggleOrderedList().run()
   const toggleTaskList = () => editor.chain().focus().toggleTaskList().run()
-  const toggleHeading = (level: 1 | 2 | 3) => editor.chain().focus().toggleHeading({ level }).run()
+  const toggleHeading = (level: 1 | 2 | 3) =>
+    editor.chain().focus().toggleHeading({ level }).run()
   const setHorizontalRule = () => editor.chain().focus().setHorizontalRule().run()
   const undo = () => editor.chain().focus().undo().run()
   const redo = () => editor.chain().focus().redo().run()
   const clearFormatting = () => editor.chain().focus().clearNodes().unsetAllMarks().run()
-  const setCodeBlockLanguage = (language: string) => editor.chain().focus().updateAttributes('codeBlock', { language }).run()
-  
-  // Table commands
-  const insertTable = () => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()
+  const setCodeBlockLanguage = (language: string) =>
+    editor.chain().focus().updateAttributes('codeBlock', { language }).run()
+
+  const insertTable = () =>
+    editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()
   const addColumnBefore = () => editor.chain().focus().addColumnBefore().run()
   const addColumnAfter = () => editor.chain().focus().addColumnAfter().run()
   const deleteColumn = () => editor.chain().focus().deleteColumn().run()
@@ -383,8 +377,7 @@ handleKeyDown: (view, event) => {
   const setColor = (color: ColorResult) => {
     editor.chain().focus().setColor(color.hex).run()
   }
-  
-  // Link handling
+
   const setLink = () => {
     if (linkUrl) {
       editor.chain().focus().setLink({ href: linkUrl }).run()
@@ -392,18 +385,18 @@ handleKeyDown: (view, event) => {
       setShowLinkInput(false)
     }
   }
-  
+
   const unsetLink = () => editor.chain().focus().unsetLink().run()
-  
-  // Image handling
+
   const handleImageUpload = (file: File) => {
     const reader = new FileReader()
     reader.onload = (e) => {
-      const imageUrl = e.target?.result as string
-      editor.chain()
+      const nextImageUrl = e.target?.result as string
+      editor
+        .chain()
         .focus()
-        .setImage({ 
-          src: imageUrl,
+        .setImage({
+          src: nextImageUrl,
           alt: file.name,
           title: file.name,
         })
@@ -411,12 +404,13 @@ handleKeyDown: (view, event) => {
     }
     reader.readAsDataURL(file)
   }
-  
+
   const addImage = () => {
     if (imageUrl) {
-      editor.chain()
+      editor
+        .chain()
         .focus()
-        .setImage({ 
+        .setImage({
           src: imageUrl,
           alt: 'Uploaded image',
           title: 'Uploaded image',
@@ -441,38 +435,41 @@ handleKeyDown: (view, event) => {
   }
 
   return (
-    <div className="tiptap-editor-container border border-gray-800 rounded-md bg-gray-900">
+    <div className="tiptap-editor-container rounded-md border border-gray-800 bg-gray-900">
       {editable && (
         <>
           <button
             type="button"
             onClick={() => setIsToolboxVisible(!isToolboxVisible)}
-            className="p-2 bg-linear-to-l from-gray-800 via-purple-900 to-gray-800 hover:bg-linear-to-r mb-2 text-xs text-gray-200 hover:text-white hover:cursor-pointer w-full rounded-t-md"
+            className="mb-2 w-full rounded-t-md bg-linear-to-l from-gray-800 via-purple-900 to-gray-800 p-2 text-xs text-gray-200 hover:cursor-pointer hover:bg-linear-to-r hover:text-white"
           >
             {isToolboxVisible ? 'Hide Toolbox' : 'Show Toolbox'}
           </button>
 
           {isToolboxVisible && (
-            <div className="editor-toolbar p-2 border-b border-gray-700 flex flex-wrap gap-1 items-center bg-gray-950">
-              {/* Font Family Selector */}
+            <div className="editor-toolbar flex flex-wrap items-center gap-1 border-b border-gray-700 bg-gray-950 p-2">
               <div className="relative">
                 <button
                   type="button"
                   onClick={() => setShowFontFamily(!showFontFamily)}
-                  className="editor-toolbar-btn p-1 px-2 rounded hover:bg-gray-800 text-gray-200 hover:text-white text-xs flex items-center gap-1"
+                  className="editor-toolbar-btn flex items-center gap-1 rounded p-1 px-2 text-xs text-gray-200 hover:bg-gray-800 hover:text-white"
                 >
-                  <span className="text-sm truncate" style={{ 
-                    fontFamily: editor.getAttributes('textStyle').fontFamily || 'Arial' 
-                  }}>
+                  <span
+                    className="truncate text-sm"
+                    style={{
+                      fontFamily: editor.getAttributes('textStyle').fontFamily || 'Arial',
+                    }}
+                  >
                     {editor.getAttributes('textStyle').fontFamily || 'Arial'}
                   </span>
                   <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M7 10l5 5 5-5z"/>
+                    <path d="M7 10l5 5 5-5z" />
                   </svg>
                 </button>
+
                 {showFontFamily && (
-                  <div className="absolute top-full left-0 mt-1 bg-gray-800 border border-gray-700 rounded-md shadow-lg z-50 max-h-48 overflow-y-auto">
-                    {availableFonts.map(font => (
+                  <div className="absolute left-0 top-full z-50 mt-1 max-h-48 overflow-y-auto rounded-md border border-gray-700 bg-gray-800 shadow-lg">
+                    {availableFonts.map((font) => (
                       <button
                         key={font.value}
                         type="button"
@@ -480,7 +477,7 @@ handleKeyDown: (view, event) => {
                           setFontFamily(font.value)
                           setShowFontFamily(false)
                         }}
-                        className="w-full px-4 py-2 text-left hover:bg-gray-700 text-gray-200 hover:text-white text-xs"
+                        className="w-full px-4 py-2 text-left text-xs text-gray-200 hover:bg-gray-700 hover:text-white"
                         style={{ fontFamily: font.value }}
                       >
                         {font.name}
@@ -490,24 +487,23 @@ handleKeyDown: (view, event) => {
                 )}
               </div>
 
-              <span className="w-px h-6 bg-gray-700 mx-1" />
+              <span className="mx-1 h-6 w-px bg-gray-700" />
 
-              {/* Color Picker */}
               <div className="relative">
                 <button
                   type="button"
                   onClick={() => setShowColorPicker(!showColorPicker)}
-                  className="editor-toolbar-btn p-1 rounded bg-purple-900 hover:bg-purple-800 flex items-center"
+                  className="editor-toolbar-btn flex items-center rounded bg-purple-900 p-1 hover:bg-purple-800"
                   style={{
-                    color: editor.getAttributes('textStyle').color || '#60a5fa'
+                    color: editor.getAttributes('textStyle').color || '#60a5fa',
                   }}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z"/>
+                    <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z" />
                   </svg>
                 </button>
                 {showColorPicker && (
-                  <div className="absolute top-full left-0 mt-1 z-50">
+                  <div className="absolute left-0 top-full z-50 mt-1">
                     <SketchPicker
                       color={editor.getAttributes('textStyle').color || '#000000'}
                       onChange={setColor}
@@ -516,13 +512,12 @@ handleKeyDown: (view, event) => {
                 )}
               </div>
 
-              <span className="w-px h-6 bg-gray-700 mx-1" />
+              <span className="mx-1 h-6 w-px bg-gray-700" />
 
-              {/* Basic Formatting */}
               <button
                 type="button"
                 onClick={toggleBold}
-                className={`editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white ${editor.isActive('bold') ? 'bg-gray-800' : ''}`}
+                className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('bold') ? 'bg-gray-800' : ''}`}
                 title="Bold (Ctrl+B)"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -534,7 +529,7 @@ handleKeyDown: (view, event) => {
               <button
                 type="button"
                 onClick={toggleItalic}
-                className={`editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white ${editor.isActive('italic') ? 'bg-gray-800' : ''}`}
+                className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('italic') ? 'bg-gray-800' : ''}`}
                 title="Italic (Ctrl+I)"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -547,7 +542,7 @@ handleKeyDown: (view, event) => {
               <button
                 type="button"
                 onClick={toggleUnderline}
-                className={`editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white ${editor.isActive('underline') ? 'bg-gray-800' : ''}`}
+                className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('underline') ? 'bg-gray-800' : ''}`}
                 title="Underline (Ctrl+U)"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -559,7 +554,7 @@ handleKeyDown: (view, event) => {
               <button
                 type="button"
                 onClick={toggleStrike}
-                className={`editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white ${editor.isActive('strike') ? 'bg-gray-800' : ''}`}
+                className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('strike') ? 'bg-gray-800' : ''}`}
                 title="Strikethrough"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -569,13 +564,12 @@ handleKeyDown: (view, event) => {
                 </svg>
               </button>
 
-              <span className="w-px h-6 bg-gray-700 mx-1" />
+              <span className="mx-1 h-6 w-px bg-gray-700" />
 
-              {/* Headings */}
               <button
                 type="button"
                 onClick={() => toggleHeading(1)}
-                className={`editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white ${editor.isActive('heading', { level: 1 }) ? 'bg-gray-800' : ''}`}
+                className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('heading', { level: 1 }) ? 'bg-gray-800' : ''}`}
                 title="Heading 1"
               >
                 <span className="font-bold">H1</span>
@@ -584,7 +578,7 @@ handleKeyDown: (view, event) => {
               <button
                 type="button"
                 onClick={() => toggleHeading(2)}
-                className={`editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white ${editor.isActive('heading', { level: 2 }) ? 'bg-gray-800' : ''}`}
+                className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('heading', { level: 2 }) ? 'bg-gray-800' : ''}`}
                 title="Heading 2"
               >
                 <span className="font-bold">H2</span>
@@ -593,25 +587,21 @@ handleKeyDown: (view, event) => {
               <button
                 type="button"
                 onClick={() => toggleHeading(3)}
-                className={`editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white ${editor.isActive('heading', { level: 3 }) ? 'bg-gray-800' : ''}`}
+                className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('heading', { level: 3 }) ? 'bg-gray-800' : ''}`}
                 title="Heading 3"
               >
                 <span className="font-bold">H3</span>
               </button>
 
-              <span className="w-px h-6 bg-gray-700 mx-1"></span>
+              <span className="mx-1 h-6 w-px bg-gray-700"></span>
 
-              {/* Font Size Control */}
               <div className="relative">
                 <select
                   value={editor.getAttributes('textStyle').fontSize || '16px'}
                   onChange={(e) => editor.chain().focus().setFontSize(e.target.value).run()}
-                  className="editor-toolbar-btn p-1 px-2 rounded hover:bg-gray-800 text-gray-200 hover:text-white text-xs bg-gray-900 border border-gray-700"
+                  className="editor-toolbar-btn rounded border border-gray-700 bg-gray-900 p-1 px-2 text-xs text-gray-200 hover:bg-gray-800 hover:text-white"
                 >
-                  {[
-                    '12px', '14px', '16px', '18px', '20px', 
-                    '24px', '30px', '36px', '48px', '60px'
-                  ].map(size => (
+                  {['12px', '14px', '16px', '18px', '20px', '24px', '30px', '36px', '48px', '60px'].map((size) => (
                     <option key={size} value={size} className="bg-gray-900 text-gray-200">
                       {size}
                     </option>
@@ -619,13 +609,12 @@ handleKeyDown: (view, event) => {
                 </select>
               </div>
 
-              <span className="w-px h-6 bg-gray-700 mx-1" />
+              <span className="mx-1 h-6 w-px bg-gray-700" />
 
-              {/* Lists */}
               <button
                 type="button"
                 onClick={toggleBulletList}
-                className={`editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white ${editor.isActive('bulletList') ? 'bg-gray-800' : ''}`}
+                className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('bulletList') ? 'bg-gray-800' : ''}`}
                 title="Bullet List"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -641,7 +630,7 @@ handleKeyDown: (view, event) => {
               <button
                 type="button"
                 onClick={toggleOrderedList}
-                className={`editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white ${editor.isActive('orderedList') ? 'bg-gray-800' : ''}`}
+                className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('orderedList') ? 'bg-gray-800' : ''}`}
                 title="Ordered List"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -657,7 +646,7 @@ handleKeyDown: (view, event) => {
               <button
                 type="button"
                 onClick={toggleTaskList}
-                className={`editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white ${editor.isActive('taskList') ? 'bg-gray-800' : ''}`}
+                className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('taskList') ? 'bg-gray-800' : ''}`}
                 title="Task List"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -666,12 +655,12 @@ handleKeyDown: (view, event) => {
                 </svg>
               </button>
 
-              <span className="w-px h-6 bg-gray-700 mx-1" />
+              <span className="mx-1 h-6 w-px bg-gray-700" />
 
               <button
                 type="button"
                 onClick={insertTable}
-                className="editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white"
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
                 title="Insert Table"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -683,7 +672,6 @@ handleKeyDown: (view, event) => {
                 </svg>
               </button>
 
-              {/* Link handling */}
               {showLinkInput ? (
                 <div className="flex items-center">
                   <input
@@ -691,13 +679,13 @@ handleKeyDown: (view, event) => {
                     value={linkUrl}
                     onChange={(e) => setLinkUrl(e.target.value)}
                     placeholder="Enter URL"
-                    className="border border-gray-700 rounded p-1 text-sm w-40 bg-gray-900 text-gray-200"
+                    className="w-40 rounded border border-gray-700 bg-gray-900 p-1 text-sm text-gray-200"
                     onKeyDown={(e) => e.key === 'Enter' && setLink()}
                   />
                   <button
                     type="button"
                     onClick={setLink}
-                    className="p-1 ml-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white"
+                    className="ml-1 rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
                     title="Apply Link"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -707,7 +695,7 @@ handleKeyDown: (view, event) => {
                   <button
                     type="button"
                     onClick={() => setShowLinkInput(false)}
-                    className="p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white"
+                    className="rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
                     title="Cancel"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -720,11 +708,11 @@ handleKeyDown: (view, event) => {
                 <button
                   type="button"
                   onClick={() => {
-                    const url = editor.getAttributes('link').href;
-                    setLinkUrl(url || '');
-                    setShowLinkInput(true);
+                    const url = editor.getAttributes('link').href
+                    setLinkUrl(url || '')
+                    setShowLinkInput(true)
                   }}
-                  className={`editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white ${editor.isActive('link') ? 'bg-gray-800' : ''}`}
+                  className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('link') ? 'bg-gray-800' : ''}`}
                   title="Insert Link"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -738,7 +726,7 @@ handleKeyDown: (view, event) => {
                 <button
                   type="button"
                   onClick={unsetLink}
-                  className="p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white"
+                  className="rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
                   title="Remove Link"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -749,15 +737,14 @@ handleKeyDown: (view, event) => {
                 </button>
               )}
 
-              <span className="w-px h-6 bg-gray-700 mx-1"></span>
+              <span className="mx-1 h-6 w-px bg-gray-700"></span>
 
-              {/* Text Alignment */}
               {['left', 'center', 'right', 'justify'].map((align) => (
                 <button
                   key={align}
                   type="button"
                   onClick={() => setTextAlign(align as 'left' | 'center' | 'right' | 'justify')}
-                  className={`editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white ${
+                  className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${
                     editor.isActive({ textAlign: align }) ? 'bg-gray-800' : ''
                   }`}
                   title={`Align ${align}`}
@@ -799,13 +786,12 @@ handleKeyDown: (view, event) => {
                 </button>
               ))}
 
-              <span className="w-px h-6 bg-gray-700 mx-1" />
+              <span className="mx-1 h-6 w-px bg-gray-700" />
 
-              {/* Image Upload */}
               <button
                 type="button"
                 onClick={handleImageInput}
-                className="editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white"
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
                 title="Upload Image"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -815,11 +801,60 @@ handleKeyDown: (view, event) => {
                 </svg>
               </button>
 
-              {/* Code Block */}
+              {showImageInput && (
+                <div className="flex items-center">
+                  <input
+                    type="text"
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                    placeholder="Paste image URL"
+                    className="w-40 rounded border border-gray-700 bg-gray-900 p-1 text-sm text-gray-200"
+                    onKeyDown={(e) => e.key === 'Enter' && addImage()}
+                  />
+                  <button
+                    type="button"
+                    onClick={addImage}
+                    className="ml-1 rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                    title="Insert Image URL"
+                  >
+                    Add
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowImageInput(false)
+                      setImageUrl('')
+                    }}
+                    className="rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                    title="Cancel"
+                  >
+                    ✕
+                  </button>
+                </div>
+              )}
+
+              <button
+                type="button"
+                onClick={() => setShowImageInput((prev) => !prev)}
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                title="Paste Image URL"
+              >
+                URL
+              </button>
+
+              <button
+                type="button"
+                onClick={toggleCode}
+                className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('code') ? 'bg-gray-800' : ''}`}
+                title="Inline Code"
+              >
+                <span>{'</>'}</span>
+              </button>
+
               <button
                 type="button"
                 onClick={toggleCodeBlock}
-                className={`editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white ${editor.isActive('codeBlock') ? 'bg-gray-800' : ''}`}
+                className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('codeBlock') ? 'bg-gray-800' : ''}`}
                 title="Code Block"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -832,21 +867,124 @@ handleKeyDown: (view, event) => {
                 <select
                   value={editor.getAttributes('codeBlock').language || 'plaintext'}
                   onChange={(e) => setCodeBlockLanguage(e.target.value)}
-                  className="ml-2 text-sm rounded p-1 bg-gray-900 border border-gray-700 text-gray-200 outline-none"
+                  className="ml-2 rounded border border-gray-700 bg-gray-900 p-1 text-sm text-gray-200 outline-none"
                 >
-                  {languages.map(lang => (
-                    <option key={lang} value={lang}>{lang}</option>
+                  {languages.map((lang) => (
+                    <option key={lang} value={lang}>
+                      {lang}
+                    </option>
                   ))}
                 </select>
               )}
 
-              <span className="w-px h-6 bg-gray-700 mx-1" />
+              <button
+                type="button"
+                onClick={toggleBlockquote}
+                className={`editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white ${editor.isActive('blockquote') ? 'bg-gray-800' : ''}`}
+                title="Blockquote"
+              >
+                “ ”
+              </button>
 
-              {/* Undo/Redo */}
+              <button
+                type="button"
+                onClick={setHorizontalRule}
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                title="Horizontal Rule"
+              >
+                ―
+              </button>
+
+              <button
+                type="button"
+                onClick={clearFormatting}
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                title="Clear Formatting"
+              >
+                Clear
+              </button>
+
+              <span className="mx-1 h-6 w-px bg-gray-700" />
+
+              <button
+                type="button"
+                onClick={addColumnBefore}
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                title="Add Column Before"
+              >
+                Col+
+              </button>
+              <button
+                type="button"
+                onClick={addColumnAfter}
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                title="Add Column After"
+              >
+                +Col
+              </button>
+              <button
+                type="button"
+                onClick={deleteColumn}
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                title="Delete Column"
+              >
+                Del Col
+              </button>
+              <button
+                type="button"
+                onClick={addRowBefore}
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                title="Add Row Before"
+              >
+                Row+
+              </button>
+              <button
+                type="button"
+                onClick={addRowAfter}
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                title="Add Row After"
+              >
+                +Row
+              </button>
+              <button
+                type="button"
+                onClick={deleteRow}
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                title="Delete Row"
+              >
+                Del Row
+              </button>
+              <button
+                type="button"
+                onClick={mergeCells}
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                title="Merge Cells"
+              >
+                Merge
+              </button>
+              <button
+                type="button"
+                onClick={splitCell}
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                title="Split Cell"
+              >
+                Split
+              </button>
+              <button
+                type="button"
+                onClick={deleteTable}
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
+                title="Delete Table"
+              >
+                Del Table
+              </button>
+
+              <span className="mx-1 h-6 w-px bg-gray-700" />
+
               <button
                 type="button"
                 onClick={undo}
-                className="editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white"
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
                 title="Undo"
                 disabled={!editor.can().undo()}
               >
@@ -859,7 +997,7 @@ handleKeyDown: (view, event) => {
               <button
                 type="button"
                 onClick={redo}
-                className="editor-toolbar-btn p-1 rounded hover:bg-gray-800 text-gray-200 hover:text-white"
+                className="editor-toolbar-btn rounded p-1 text-gray-200 hover:bg-gray-800 hover:text-white"
                 title="Redo"
                 disabled={!editor.can().redo()}
               >
@@ -872,10 +1010,11 @@ handleKeyDown: (view, event) => {
           )}
         </>
       )}
+
       <div className="editor-content-container" style={{ maxHeight: '400px', overflowY: 'auto' }}>
-        <EditorContent 
-          editor={editor} 
-          className="editor-content prose prose-invert max-w-none text-gray-50" 
+        <EditorContent
+          editor={editor}
+          className="editor-content prose prose-invert max-w-none text-gray-50"
         />
       </div>
     </div>
@@ -883,5 +1022,3 @@ handleKeyDown: (view, event) => {
 }
 
 export default TiptapEditor
-
-// handlekeydown

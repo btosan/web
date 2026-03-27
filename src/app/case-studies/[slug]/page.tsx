@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { CldImage } from "next-cloudinary";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -28,14 +29,25 @@ export default async function CaseStudyDetailPage({
           {caseStudy.excerpt}
         </p>
 
-        <div className="relative w-full h-87.5 rounded-xl overflow-hidden border border-gray-200">
-          <Image
-            src={caseStudy.imageUrl || "/placeholder.png"}
+      <div className="relative w-full h-87.5 rounded-xl overflow-hidden border border-gray-200">
+        {caseStudy.publicId ? (
+          <CldImage
+            src={caseStudy.publicId}
             alt={caseStudy.title}
             fill
+            crop="fill"
+            gravity="auto"
+            sizes="100vw"
             className="object-cover"
           />
-        </div>
+        ) : (
+          <img
+            src={caseStudy.imageUrl || "/placeholder.png"}
+            alt={caseStudy.title}
+            className="w-full h-full object-cover"
+          />
+        )}
+      </div>
       </section>
 
       {/* META */}
@@ -55,7 +67,7 @@ export default async function CaseStudyDetailPage({
       </section>
 
       {/* CONTENT */}
-      <section className="max-w-4xl mx-auto px-4 md:px-10 py-10 space-y-10">
+      <section className="max-w-4xl mx-auto px-4 md:px-10 py-10 space-y-10 text-gray-900">
         {caseStudy.challenge && (
           <Section title="Challenge" content={caseStudy.challenge} />
         )}

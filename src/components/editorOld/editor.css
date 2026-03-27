@@ -1,289 +1,220 @@
-/* Base editor container */
 .tiptap-editor-container {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  background-color: #111827; /* gray-900 */
-  border: 1px solid #4a5568; /* gray-700 */
+  width: 100%;
   border-radius: 0.5rem;
   overflow: hidden;
+  background: #111827;
+  border: 1px solid #374151;
 }
 
-/* Dark mode (your app is dark-first, so this is the main theme) */
-.dark .tiptap-editor-container {
-  background-color: #000000;
-  border-color: #1D0751; /* deep purple accent */
-}
-
-/* Editor content container */
-.editor-content-container {
-  flex: 1;
-  overflow-y: auto;
-  padding: 1rem;
-  background-color: #111827; /* gray-900 */
-}
-
-/* Editor content area */
-.editor-content {
-  min-height: 150px;
-  outline: none;
-  color: #EAF5FA; /* soft off-white text */
-}
-
-/* Toolbar */
 .editor-toolbar {
-  border-bottom: 1px solid #4a5568; /* gray-700 */
-  padding: 0.75rem;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.25rem;
-  background-color: #000328; /* deep dark purple/black */
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
+  padding: 0.5rem;
+  background: #030712;
+  border-bottom: 1px solid #374151;
 }
 
-.dark .editor-toolbar {
-  background-color: #000328;
-  border-bottom-color: #4a5568;
-}
-
-/* Toolbar button */
 .editor-toolbar-btn {
-  padding: 0.375rem;
-  border-radius: 0.375rem;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #EAF5FA; /* light text */
-  transition: background-color 0.2s, color 0.2s;
-  font-size: 0.75rem;
+  min-width: 2rem;
+  min-height: 2rem;
+  border: none;
+  background: transparent;
+  color: #e5e7eb;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .editor-toolbar-btn:hover {
-  background-color: #2d3748; /* gray-700 hover */
+  background: #1f2937;
   color: #ffffff;
 }
 
-.editor-toolbar-btn.is-active {
-  background-color: #2d3748;
-  color: #ffffff;
+.editor-toolbar-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-/* ProseMirror (the editable area) */
+.editor-content-container {
+  position: relative;
+  background: #111827;
+}
+
+.editor-content {
+  width: 100%;
+}
+
 .ProseMirror {
-  -webkit-user-modify: read-write-plaintext-only;
+  padding: 1rem;
+  min-height: 200px;
+  outline: none;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+  color: #eaf5fa;
   -webkit-user-select: text;
   user-select: text;
-  padding: 1rem;
-  white-space: pre-wrap;
-  color: #EAF5FA !important; /* soft off-white */
+}
+
+.ProseMirror:focus {
+  outline: none;
+}
+
+.ProseMirror > *:first-child {
+  margin-top: 0;
+}
+
+.ProseMirror > *:last-child {
+  margin-bottom: 0;
+}
+
+.ProseMirror p {
+  margin: 0.5rem 0;
   line-height: 1.6;
 }
 
-.dark .ProseMirror {
-  color: #EAF5FA !important;
-}
-
-/* Typography */
-.ProseMirror > * + * {
-  margin-top: 0.75em;
-}
-
-/* Headings */
 .ProseMirror h1,
 .ProseMirror h2,
-.ProseMirror h3 {
-  color: #EAF5FA;
-  font-weight: bold;
-  margin: 1em 0 0.5em;
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6 {
+  margin: 1rem 0 0.5rem;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #f9fafb;
 }
 
-.ProseMirror h1 { font-size: 2em; }
-.ProseMirror h2 { font-size: 1.5em; }
-.ProseMirror h3 { font-size: 1.25em; }
+.ProseMirror h1 {
+  font-size: 2rem;
+}
 
-/* Lists */
+.ProseMirror h2 {
+  font-size: 1.5rem;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25rem;
+}
+
 .ProseMirror ul,
 .ProseMirror ol {
-  padding-left: 1.5em;
-  margin: 1em 0;
-  color: #EAF5FA;
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
 }
 
-.ProseMirror ul { list-style-type: disc; }
-.ProseMirror ol { list-style-type: decimal; }
-
-/* Code blocks */
-.ProseMirror pre {
-  background-color: #1e1e1e;
-  color: #d4d4d4;
-  padding: 0.75em 1em;
-  border-radius: 0.375rem;
-  overflow-x: auto;
-  margin: 1em 0;
+.ProseMirror li {
+  margin: 0.25rem 0;
 }
 
-.ProseMirror pre code {
-  color: inherit;
-  padding: 0;
-  background: none;
-  font-size: 0.875rem;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-}
-
-/* Inline code */
-.ProseMirror code {
-  background: rgba(255, 255, 255, 0.1);
-  color: #EAF5FA;
-  padding: 0.2em 0.4em;
-  border-radius: 0.25rem;
-  font-size: 0.875em;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-}
-
-/* Blockquotes */
 .ProseMirror blockquote {
-  padding-left: 1em;
-  border-left: 3px solid #4a5568;
-  margin: 1em 0;
-  color: #EAF5FA;
+  margin: 1rem 0;
+  padding-left: 1rem;
+  border-left: 4px solid #4b5563;
+  color: #d1d5db;
 }
 
-/* Links */
+.ProseMirror hr {
+  border: none;
+  border-top: 1px solid #4b5563;
+  margin: 1rem 0;
+}
+
 .ProseMirror a {
   color: #60a5fa;
   text-decoration: underline;
 }
 
-/* Task list */
-ul[data-type="taskList"] {
-  list-style: none;
+.ProseMirror code {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f3f4f6;
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+.ProseMirror pre {
+  background: #0b1220;
+  color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.ProseMirror pre code {
+  background: transparent;
   padding: 0;
+  border-radius: 0;
+  color: inherit;
 }
 
-ul[data-type="taskList"] li {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 0.5em;
+.ProseMirror img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
 }
 
-ul[data-type="taskList"] input[type="checkbox"] {
-  margin-right: 0.5em;
-  cursor: pointer;
-}
-
-/* Table */
 .ProseMirror table {
   border-collapse: collapse;
   table-layout: fixed;
   width: 100%;
-  margin: 1em 0;
-  border: 1px solid #4a5568;
+  margin: 1rem 0;
+  overflow: hidden;
 }
 
-.ProseMirror td,
-.ProseMirror th {
-  border: 1px solid #4a5568;
-  padding: 0.5em;
+.ProseMirror th,
+.ProseMirror td {
+  border: 1px solid #4b5563;
+  padding: 0.75rem;
   vertical-align: top;
-  color: #EAF5FA;
-  background-color: #111827;
 }
 
 .ProseMirror th {
-  font-weight: bold;
-  background-color: #1f2937; /* gray-800 */
+  background: #1f2937;
+  font-weight: 600;
 }
 
-/* Image */
-.ProseMirror img {
-  margin: 1em auto;
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
-}
-
-/* Placeholder */
-.ProseMirror p.is-editor-empty:first-child::before {
+.ProseMirror .is-editor-empty:first-child::before {
   content: attr(data-placeholder);
   float: left;
-  color: #9ca3af; /* gray-400 */
+  color: #6b7280;
   pointer-events: none;
+  height: 0;
 }
 
-
-
-/* Force single-line spacing */
-.ProseMirror p {
-  margin: 0.3em 0 !important; /* Very minimal vertical space */
-  padding: 0 !important;
-  line-height: 1.5;
-  min-height: 1.25em;
+.code-block-wrapper {
+  position: relative;
+  margin: 1rem 0;
 }
 
-.ProseMirror p + p {
-  margin-top: 0.5em !important; /* Only between paragraphs */
+.copy-code-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
 }
 
-
-/* Target empty paragraphs directly */
-.ProseMirror p:empty,
-.ProseMirror p:empty::before,
-.ProseMirror p:empty::after {
-  margin: 0 !important;
-  padding: 0 !important;
-  height: 1.2em;          /* or even 1em */
-  min-height: unset !important;
-  line-height: 1.2;       /* reduce if needed */
+.code-block-wrapper:hover .copy-code-button {
+  opacity: 1;
 }
 
-/* Also target paragraphs that only contain <br> */
-.ProseMirror p:has(br:only-child) {
-  margin: 0.3em 0 !important;
-  line-height: 1.2;
-}
-
-/* General paragraph spacing – keep it modest */
-.ProseMirror p {
-  margin: 0.4em 0 !important;
-  line-height: 1.5;
-}
-
-/* Prevent <br> from adding extra space */
-.ProseMirror br {
-  line-height: 0;
-  margin: 0;
-  padding: 0;
-}
-/* General paragraph spacing – keep it modest */
-.ProseMirror p {
-  margin: 0.4em 0 !important;
-  line-height: 1.5;
-}
-
-/* Prevent <br> from adding extra space */
-.ProseMirror br {
-  line-height: 0;
-  margin: 0;
-  padding: 0;
-}
-
-.ProseMirror br {
-  display: block;
-  content: "";
-  margin: 0 !important;
-  padding: 0 !important;
-  line-height: 0 !important;
-}
-
-.ProseMirror p {
-  margin: 0.4em 0 !important; /* Single line feel */
-  line-height: 1.4 !important;
-}
-
-.ProseMirror p:empty,
-.ProseMirror p:has(br:only-child) {
-  margin: 0 !important;
-  height: 1.2em !important;
+.copy-code-button:hover {
+  background: rgba(255, 255, 255, 0.2);
 }

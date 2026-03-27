@@ -129,9 +129,6 @@ model Like {
   postSlug String?
   post     Post?   @relation(fields: [postSlug], references: [slug])
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
   userEmail String?
   user      User?   @relation(fields: [userEmail], references: [email])
 }

@@ -17,6 +17,7 @@ const barlow = Barlow({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.ofashi.com"),
   title:
     "Ofashi | AI-Powered Web Development, Automation & Custom Apps in Nigeria",
   description:
@@ -60,7 +61,7 @@ export default function RootLayout({
       </head>
 
       <body className="bg-black text-gray-100 font-sans antialiased overflow-x-hidden">
-        <HolyLoader color="#7F00FF" />
+        <HolyLoader color="#c084fc" />
         <NextAuthProviders>
           <PresenceHeartbeat />
           <TooltipProvider>

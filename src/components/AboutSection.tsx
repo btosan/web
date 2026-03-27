@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { ChevronRightIcon } from "lucide-react";
 
 export default function AboutSection() {
   return (
@@ -45,7 +46,7 @@ export default function AboutSection() {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-tight mb-6">
               10+ Years of App Development.
               <br />
-              <span className="text-purple-100 font-bold">Now Leading with AI.</span>
+              <span className="text-purple-300 font-bold">Now Leading with AI.</span>
             </h2>
 
             <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-6">
@@ -65,10 +66,12 @@ export default function AboutSection() {
 
             <Link
               href="/about"
-              className="w-full mx-auto py-4 px-0 hover:px-8 uppercase bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700/5 via-purple-800/5 to-purple-500/5 text-purple-200  transition-colors"
+              className="w-full flex items-center mx-auto py-4 px-0 hover:px-8 uppercase bg-linear-to-bl hover:from-purple-200 hover:via-purple-100 hover:to-purple-50 hover:text-black font-medium hover:cursor-pointer from-indigo-700/5 via-purple-800/5 to-purple-500/5 text-purple-300  transition-colors"
             >
-              Learn more about us
-              <span className="ml-2 text-2xl ">→</span>
+              <span className="tex-xl md:text-2xl ">
+                Learn more about us
+              </span>
+              <ChevronRightIcon className="h-5 w-5 md:h-7 md:w-7" />
             </Link>
           </motion.div>
 

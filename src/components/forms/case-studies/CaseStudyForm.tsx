@@ -200,6 +200,7 @@ const payload = {
   testimonialAuthor: values.testimonialAuthor?.trim() || undefined,
   imageUrl: values.imageUrl?.trim() || undefined,
   imageCredit: values.imageCredit?.trim() || undefined,
+  publicId: values.publicId?.trim() || undefined,
   published: values.published,
   featured: values.featured,
   categoryName: values.categoryName?.trim() || undefined,
@@ -739,12 +740,18 @@ const payload = {
             ) : null}
 
             <CldUploadWidget
-              uploadPreset="tosanxprofiles"
+              uploadPreset="ofashiprofiles"
               onSuccess={(result: any) => {
                 const url = result?.info?.secure_url;
-                if (!url) return;
+                const publicId = result?.info?.public_id;
+                if (!url || !publicId) return;
 
                 form.setValue("imageUrl", url, {
+                  shouldDirty: true,
+                  shouldValidate: true,
+                });
+
+                form.setValue("publicId", publicId, {
                   shouldDirty: true,
                   shouldValidate: true,
                 });

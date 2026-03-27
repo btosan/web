@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CldImage } from "next-cloudinary";
 import { getPublicCaseStudies } from "@/lib/actions/caseStudies";
 
 export default async function CaseStudiesPage() {
@@ -29,11 +30,23 @@ export default async function CaseStudiesPage() {
                 className="group rounded-xl overflow-hidden border border-gray-800 bg-gray-950 hover:border-purple-500 transition"
               >
                 <div className="relative h-52 w-full overflow-hidden">
-                  <img
-                    src={cs.imageUrl || "/placeholder.png"}
-                    alt={cs.title}
-                    className="object-cover w-full h-full group-hover:scale-105 transition"
-                  />
+                  {cs.publicId ? (
+                    <CldImage
+                      src={cs.publicId}
+                      alt={cs.title}
+                      fill
+                      crop="fill"
+                      gravity="auto"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                      className="object-cover w-full h-full group-hover:scale-105 transition"
+                    />
+                  ) : (
+                    <img
+                      src={cs.imageUrl || "/placeholder.png"}
+                      alt={cs.title}
+                      className="object-cover w-full h-full group-hover:scale-105 transition"
+                    />
+                  )}
                 </div>
 
                 <div className="p-5 space-y-3">

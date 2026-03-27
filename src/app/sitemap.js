@@ -89,19 +89,19 @@ export default function sitemap() {
 
     // ── Insights subpages (exact slugs from your insightsItems) ──
     {
-      url: `${baseUrl}/learn/blog`,
+      url: `${baseUrl}/blog`,
       lastModified: now,
       changeFrequency: 'daily',     // assuming you post articles regularly
       priority: 0.75,
     },
     {
-      url: `${baseUrl}/learn/faqs`,
+      url: `${baseUrl}/faqs`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/learn/case-studies`,
+      url: `${baseUrl}/case-studies`,
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.75,

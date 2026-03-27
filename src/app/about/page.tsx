@@ -1,12 +1,12 @@
 import AboutPage from '@/components/About'
-// import WhyChooseUsSection from '@/components/WhyChooseUs'
+import WhyChooseUsSection from '@/components/WhyChooseUs'
 import React from 'react'
 
 function page() {
   return (
     <div>
         <AboutPage />
-        {/* <WhyChooseUsSection /> */}
+        <WhyChooseUsSection />
     </div>
   )
 }

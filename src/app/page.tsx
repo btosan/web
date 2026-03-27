@@ -6,15 +6,13 @@ import TestimonialsSection from "@/components/Testimonials";
 // import FeaturedPackages from "@/components/FeaturedPackages";
 // import PortfolioSection from "@/components/PortfolioSection";
 import WhyChooseUsSection from "@/components/WhyChooseUs";
-// import PricingSection from "@/components/PricingSection";
-// import DomainHostingNote from "@/components/DomainHostingNote";
-// import FinalCTASection from "@/components/FinalCTA";
-// import EnquiryForm from "@/components/Enquiry";
 import BannerSection from "@/components/BannerSection";
 import EnquirySection from "@/components/EnquirySection";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
 import ProjectsSection from "@/components/projects/ProjectsSection";
+import PostGridSection from "@/components/posts/PostGridSection";
+import { getFeaturedPosts, getLatestPosts } from "@/lib/actions/posts";
 
 export const metadata: Metadata = {
   title:
@@ -32,22 +30,39 @@ export const metadata: Metadata = {
 };
 
 
-export default function page() {
+export default async function page() {
+  const [featuredPosts, latestPosts] = await Promise.all([
+    getFeaturedPosts(3),
+    getLatestPosts(3),
+  ]);
+
   return (
-    <div className="bg-gray-950">
+    <div className="bg-black">
       <HeroSection />  
       <BannerSection />
       <ServicesSection />
       <ProjectsSection />
-      {/* <PortfolioSection /> */}
       <AboutSection />
-      <WhyChooseUsSection /> 
+
+      {/* 🔥 BLOG SECTION (NEW) */}
+      <section className="px-6 py-20 md:px-12 lg:px-16 xl:px-20">
+        <div className="mx-auto max-w-7xl space-y-16">
+          <PostGridSection
+            title="Insights & Articles"
+            description="Explore ideas, guides, and practical strategies to grow your business with modern technology."
+            href="/blog"
+            linkLabel="View all posts"
+            posts={featuredPosts}
+          />
+
+          <PostGridSection
+            title="Latest from our blog"
+            posts={latestPosts}
+          />
+        </div>
+      </section>
+
       <TestimonialsSection />
-      {/* <FeaturedPackages />
-      <PricingSection /> */}
-      {/* <WhyWebPresenceSection />  */}
-      {/* <FinalCTASection />  */}
-      {/* <DomainHostingNote />                          */}
       <EnquirySection />                   
     </div>
   );
