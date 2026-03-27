@@ -67,6 +67,10 @@ function getSafePostType(
   return fallback;
 }
 
+function isString(value: string | null): value is string {
+  return value !== null;
+}
+
 export default function PostForm({
   mode,
   post,
@@ -80,7 +84,7 @@ export default function PostForm({
   const [isLoading, setIsLoading] = useState(false);
   const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
   const [tagsInput, setTagsInput] = useState(
-    post?.tags?.map((tag) => tag.tagName).join(", ") || ""
+    post?.tags?.map((tag) => tag.tagName).filter(isString).join(", ") || ""
   );
 
   const defaultValues = useMemo<PostFormValues>(
@@ -96,7 +100,7 @@ export default function PostForm({
       published: post?.published ?? false,
       featured: post?.featured ?? false,
       categoryName: post?.category?.catName || "",
-      tagNames: post?.tags?.map((tag) => tag.tagName).filter(Boolean) || [],
+      tagNames: post?.tags?.map((tag) => tag.tagName).filter(isString) || [],
     }),
     [post, initialType]
   );
@@ -121,10 +125,10 @@ export default function PostForm({
       published: post.published ?? false,
       featured: post.featured ?? false,
       categoryName: post.category?.catName || "",
-      tagNames: post.tags?.map((tag) => tag.tagName).filter(Boolean) || [],
+      tagNames: post.tags?.map((tag) => tag.tagName).filter(isString) || [],
     });
 
-    setTagsInput(post.tags?.map((tag) => tag.tagName).join(", ") || "");
+    setTagsInput(post.tags?.map((tag) => tag.tagName).filter(isString).join(", ") || "");
   }, [post, form, initialType]);
 
   const titleValue = form.watch("title");
