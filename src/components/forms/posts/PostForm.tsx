@@ -7,6 +7,7 @@ import { Post, Category, Tag, Type } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { CldUploadWidget } from "next-cloudinary";
+import Image from "next/image";
 
 import { createPost, updatePost } from "@/lib/actions/posts";
 import { postSchema, PostFormValues } from "@/lib/validators/post";
@@ -30,11 +31,13 @@ interface PostWithRelations extends Post {
   tags?: Tag[];
 }
 
+type PostEditorType = PostFormValues["type"];
+
 interface Props {
   mode: "create" | "edit";
   post?: PostWithRelations;
   categories?: Category[];
-  initialType?: Type;
+  initialType?: PostEditorType;
 }
 
 function generateSlug(value: string) {
@@ -53,6 +56,17 @@ function parseTags(value: string) {
     .filter(Boolean);
 }
 
+function getSafePostType(
+  value: Type | null | undefined,
+  fallback: PostEditorType
+): PostEditorType {
+  if (value === Type.BLOG || value === Type.GUIDE || value === Type.RESOURCES) {
+    return value;
+  }
+
+  return fallback;
+}
+
 export default function PostForm({
   mode,
   post,
@@ -68,15 +82,12 @@ export default function PostForm({
   const [tagsInput, setTagsInput] = useState(
     post?.tags?.map((tag) => tag.tagName).join(", ") || ""
   );
-// type: post?.type
+
   const defaultValues = useMemo<PostFormValues>(
     () => ({
       title: post?.title || "",
       slug: post?.slug || "",
-      type:
-        post?.type && post.type !== Type.CASE_STUDIES
-          ? post.type
-          : initialType,
+      type: getSafePostType(post?.type, initialType),
       imageUrl: post?.imageUrl || "",
       imageCredit: post?.imageCredit || "",
       openingParagraph: post?.openingParagraph || "",
@@ -87,7 +98,7 @@ export default function PostForm({
       categoryName: post?.category?.catName || "",
       tagNames: post?.tags?.map((tag) => tag.tagName).filter(Boolean) || [],
     }),
-    [post]
+    [post, initialType]
   );
 
   const form = useForm<PostFormValues>({
@@ -101,10 +112,7 @@ export default function PostForm({
     form.reset({
       title: post.title || "",
       slug: post.slug || "",
-      type:
-        post.type && post.type !== Type.CASE_STUDIES
-          ? post.type
-          : initialType,
+      type: getSafePostType(post.type, initialType),
       imageUrl: post.imageUrl || "",
       imageCredit: post.imageCredit || "",
       openingParagraph: post.openingParagraph || "",
@@ -470,11 +478,14 @@ export default function PostForm({
             />
 
             {form.watch("imageUrl") ? (
-              <img
-                src={form.watch("imageUrl")}
-                alt="Post cover"
-                className="w-40 h-40 object-cover rounded-xl border border-gray-800"
-              />
+              <div className="relative w-40 h-40">
+                <Image
+                  src={form.watch("imageUrl")}
+                  alt="Post cover"
+                  fill
+                  className="object-cover rounded-xl border border-gray-800"
+                />
+              </div>
             ) : null}
 
             <CldUploadWidget
