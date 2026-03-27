@@ -128,10 +128,13 @@ export default function PostForm({
       tagNames: post.tags?.map((tag) => tag.tagName).filter(isString) || [],
     });
 
-    setTagsInput(post.tags?.map((tag) => tag.tagName).filter(isString).join(", ") || "");
+    setTagsInput(
+      post.tags?.map((tag) => tag.tagName).filter(isString).join(", ") || ""
+    );
   }, [post, form, initialType]);
 
   const titleValue = form.watch("title");
+  const imageUrl = form.watch("imageUrl");
 
   useEffect(() => {
     if (!slugManuallyEdited) {
@@ -220,7 +223,9 @@ export default function PostForm({
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm text-purple-100">Title</FormLabel>
+                    <FormLabel className="text-sm text-purple-100">
+                      Title
+                    </FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -238,7 +243,9 @@ export default function PostForm({
                 name="slug"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm text-purple-100">Slug</FormLabel>
+                    <FormLabel className="text-sm text-purple-100">
+                      Slug
+                    </FormLabel>
                     <FormControl>
                       <Input
                         {...field}
@@ -262,7 +269,9 @@ export default function PostForm({
                 name="categoryName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm text-purple-100">Category</FormLabel>
+                    <FormLabel className="text-sm text-purple-100">
+                      Category
+                    </FormLabel>
                     <FormControl>
                       <div>
                         <Input
@@ -289,7 +298,9 @@ export default function PostForm({
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-sm text-purple-100">Post type</FormLabel>
+                    <FormLabel className="text-sm text-purple-100">
+                      Post type
+                    </FormLabel>
                     <FormControl>
                       <select
                         value={field.value}
@@ -481,13 +492,13 @@ export default function PostForm({
               )}
             />
 
-            {form.watch("imageUrl") ? (
-              <div className="relative w-40 h-40">
+            {imageUrl ? (
+              <div className="relative h-40 w-40">
                 <Image
-                  src={form.watch("imageUrl")}
+                  src={imageUrl}
                   alt="Post cover"
                   fill
-                  className="object-cover rounded-xl border border-gray-800"
+                  className="rounded-xl border border-gray-800 object-cover"
                 />
               </div>
             ) : null}
