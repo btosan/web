@@ -55,7 +55,6 @@ export default async function PostDetail({ slug }: { slug: string }) {
     notFound();
   }
 
-  // Guaranteed string
   const resolvedSlug: string = post.slug && post.slug.trim().length > 0 
     ? post.slug 
     : slug;
@@ -66,7 +65,9 @@ export default async function PostDetail({ slug }: { slug: string }) {
     getLikeStatus(resolvedSlug),
   ]);
 
-  const postHref = getPostHref(post.type, post.slug);   // Now safe
+  // Safe call with non-null assertion (safe after notFound checks)
+  const postHref = getPostHref(post.type, post.slug!);
+
   const readingTime = getReadingTime(post.content || "");
 
   return (
@@ -265,14 +266,11 @@ export default async function PostDetail({ slug }: { slug: string }) {
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
               {relatedPosts.map((related) => {
-                const relatedSlug = related.slug && related.slug.trim().length > 0 
-                  ? related.slug 
-                  : "";
-
+                const relatedHref = getPostHref(related.type, related.slug);
                 return (
                   <Link
                     key={related.id}
-                    href={getPostHref(related.type, related.slug)}
+                    href={relatedHref}
                     className="group overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 transition hover:-translate-y-1 hover:border-purple-500"
                   >
                     <div className="relative h-48 overflow-hidden bg-gray-900">
