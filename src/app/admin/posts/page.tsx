@@ -14,7 +14,7 @@ function getTypeHref(type: string) {
   }
 }
 
-function getPostHref(type: Type, slug: string) {
+function getPostHref(type: Type | null, slug: string) {
   switch (type) {
     case Type.GUIDE:
       return `/guides/${slug}`;
