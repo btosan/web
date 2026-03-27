@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Type } from "@prisma/client";
 
 type PostCardProps = {
@@ -6,7 +7,7 @@ type PostCardProps = {
     id: string;
     title: string;
     slug: string | null;
-    type: Type;
+    type: Type | null;
     imageUrl: string | null;
     openingParagraph: string | null;
     createdAt: Date;
@@ -20,7 +21,7 @@ type PostCardProps = {
   };
 };
 
-function getPostHref(type: Type, slug: string) {
+function getPostHref(type: Type | null, slug: string) {
   switch (type) {
     case Type.GUIDE:
       return `/guides/${slug}`;
@@ -40,10 +41,11 @@ export default function PostCard({ post }: PostCardProps) {
       className="group overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 transition hover:border-purple-400"
     >
       <div className="relative h-56 w-full overflow-hidden bg-gray-900">
-        <img
+        <Image
           src={post.imageUrl || "/placeholder.png"}
           alt={post.title}
-          className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+          fill
+          className="object-cover transition duration-300 group-hover:scale-105"
         />
       </div>
 
