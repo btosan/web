@@ -66,7 +66,7 @@ export default function HeroSection() {
               transition={{ duration: 0.6 }}
               className="text-sm md:text-base uppercase tracking-[0.28em] text-gray-300/70 mb-5"
             >
-              Ofashi Digital Studio
+              Ofashi Technology
             </motion.p>
 
             <motion.h1
@@ -114,8 +114,8 @@ export default function HeroSection() {
                 Let’s Work Together
               </button>
 
-              <div className="text-xs md:text-sm text-gray-400/70 leading-relaxed max-w-sm">
-                Trusted for custom websites, web applications, and AI-powered
+              <div className="text-xs md:text-sm text-gray-400/60 leading-relaxed max-w-sm">
+                Trusted for custom websites, web apps, mobile apps, and AI-powered
                 business automation.
               </div>
             </motion.div>
