@@ -66,6 +66,9 @@ export default function TestimonialsSection() {
 
   return (
     <section className="relative bg-black pt-24 pb-16 md:py-20 lg:py-24 border-t border-gray-700/20 lg:border-gray-600/20 overflow-hidden">
+      <div className="absolute lg:top-0 top-2 left-[-10%] z-2 h-30 w-30 lg:h-72 lg:w-72 rounded-full bg-indigo-600/80 lg:bg-indigo-700/60 blur-3xl" />
+      <div className="absolute bottom-0 right-[-8%] z-2 lg:h-70 h-30 w-30 lg:w-70 rounded-full bg-purple-600/30 lg:bg-purple-700/40 blur-2xl lg:blur-3xl " />
+
       <div className="max-w-7xl mx-auto px-6 relative">
         
         {/* Header */}
@@ -126,7 +129,7 @@ export default function TestimonialsSection() {
                 className="group relative h-full flex flex-col justify-between rounded-3xl bg-gray-950/60 border border-gray-800 p-8 md:p-10 transition-all duration-500 hover:border-purple-100/40 hover:bg-gray-950/80"
               >
                 {/* Hover Glow */}
-                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition bg-gradient-to-br from-purple-500/5 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition bg-linear-to-br from-purple-500/5 via-transparent to-transparent pointer-events-none" />
 
                 {/* Stars */}
                 <div className="flex mb-5">
@@ -177,13 +180,13 @@ export default function TestimonialsSection() {
           viewport={{ once: true }}
           className="text-center mt-16 md:mt-20"
         >
-          <p className="text-gray-400 mb-6 text-lg">
+          <p className="text-gray-400 mb-2 lg:mb-6 text-lg">
             Ready to build something exceptional?
           </p>
 
           <button
             onClick={() => setOpen(true)}
-            className="inline-flex items-center justify-center px-8 py-4 bg-linear-to-bl from-indigo-800/5 via-purple-900/5 to-purple-600/5 hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black transition-all duration-300 text-purple-300 text-lg md:text-xl font-bold rounded-md shadow-xl hover:cursor-pointer"
+            className="inline-flex items-center justify-center px-8 py-4 bg-linear-to-bl from-indigo-800/5 via-purple-900/5 to-purple-600/5 hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black transition-all duration-300 text-purple-50 text-lg md:text-xl font-bold rounded-md shadow-xl hover:cursor-pointer"
           >
             Be Our Next Success Story
           </button>

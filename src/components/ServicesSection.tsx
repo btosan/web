@@ -104,7 +104,11 @@ export default function ServicesSection() {
       ref={sectionRef}
       className="relative bg-black text-gray-100 py-24 md:py-28 lg:py-32 border-t border-gray-700/20 overflow-hidden"
     >
+      <div className="absolute lg:top-0 top-2 left-[-10%] z-2 h-36 w-36 lg:h-72 lg:w-72 rounded-full bg-purple-600/30 lg:bg-purple-700/40 blur-2xl lg:blur-3xl " />
+      <div className="absolute bottom-0 right-[-8%] z-2 lg:h-70 h-36 w-36 lg:w-70 rounded-full bg-indigo-600/80 lg:bg-indigo-700/60 blur-3xl" />
+
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+
         {/* ===== HEADER ===== */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
           <p className="text-sm uppercase tracking-[0.25em] text-gray-500 mb-4">
