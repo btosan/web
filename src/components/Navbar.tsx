@@ -431,7 +431,7 @@ export default function Navbar() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="fixed inset-0 bg-linear-to-b from-black via-gray-900 to-gray-800 bg-opacity-95 flex flex-col justify-start items-center space-y-8 z-40 h-full overflow-y-auto"
+            className="fixed inset-0 bg-linear-to-b from-black via-gray-900 to-gray-800 bg-opacity-95 flex flex-col justify-start items-center space-y-6 z-40 h-full overflow-y-auto"
           >
             {/* Logo + close */}
             <div className="w-full flex items-center justify-between px-6 pt-2 relative">
@@ -459,7 +459,7 @@ export default function Navbar() {
             </div>
 
             {/* Links with accordions — original logic */}
-            <ul className="flex flex-col items-center justify-center text-gray-100 text-lg space-y-8 mx-auto w-full px-6">
+            <ul className="flex flex-col items-center justify-center text-gray-100 text-lg space-y-5 mx-auto w-full px-6">
               <li className="w-full">
                 <button
                   className="w-full mx-auto flex items-center justify-center gap-1 hover:text-purple-100 transition"
@@ -546,7 +546,7 @@ export default function Navbar() {
             </ul>
 
             {/* Buttons + Auth in mobile */}
-            <div className="flex flex-col items-center space-y-6 mt-8 w-4/5 sm:w-3/5 md:w-2/5 lg:w-1/4 uppercase">
+            <div className="flex flex-col items-center space-y-6 mt-5 w-4/5 sm:w-3/5 md:w-2/5 lg:w-1/4 uppercase">
               <Link
                 href="/contact"
                 onClick={handleCloseMenu}
@@ -693,7 +693,7 @@ export default function Navbar() {
                 <Link
                   href="/signin"
                   onClick={handleCloseMenu}
-                  className="w-full uppercase px-6 py-3.5 bg-purple-900/50 hover:bg-purple-800/70 text-purple-200 hover:text-purple-100 font-medium transition flex items-center justify-center gap-3 border border-purple-700/50 mt-4"
+                  className="w-full uppercase px-6 py-3.5 bg-purple-900/50 hover:bg-purple-800/70 text-purple-200 hover:text-purple-100 font-medium transition flex items-center justify-center gap-3 border border-purple-700/50 mt-2"
                 >
                   <CircleUser size={24} />
                   Login / Register

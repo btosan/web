@@ -95,7 +95,7 @@ export default function AboutPage() {
                 company headquartered in Nigeria, delivering bespoke web
                 platforms, intelligent systems, and full-stack applications for
                 businesses and organizations across local and international
-                markets. Established seven years ago with a core focus on
+                markets. Established eleven years ago with a core focus on
                 crafting high-quality websites, the company has evolved into a
                 comprehensive application development agency—engineering robust,
                 scalable solutions that seamlessly extend across web and

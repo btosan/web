@@ -7,7 +7,7 @@ import { ChevronRightIcon } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section className="bg-black py-20 md:py-28">
+    <section className="bg-black pt-20 pb-10 md:py-28">
       <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
