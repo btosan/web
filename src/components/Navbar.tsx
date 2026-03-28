@@ -159,7 +159,6 @@ export default function Navbar() {
               SERVICES
               <ChevronDown className={`w-6 h-6 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
             </div>
-
             <AnimatePresence>
               {servicesOpen && (
                 <motion.div
@@ -167,27 +166,36 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.25 }}
-                  className="absolute left-1/2 -translate-x-1/2 top-full mt-4 w-screen max-w-none"
+                  className="fixed top-22 left-1/2 z-50 mt-0 w-screen -translate-x-1/2"
                 >
-                  <div className="bg-gray-950 border-b-2 border-t-2 border-gray-700/80 shadow-xl shadow-gray-800">
-                    <div className="max-w-6xl mx-auto py-12 px-8 xl:px-12 md:pl-32">
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pl-32">
+                  <div className="border-y-2 border-gray-700/80 bg-gray-950 shadow-xl shadow-gray-800">
+                    <div className="mx-auto flex min-h-[85vh] w-full max-w-400 items-center px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20">
+                      <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 xl:gap-6">
                         {solutions.map((solution, idx) => (
                           <Link
                             key={idx}
                             href={solution.href}
                             onClick={handleCloseMenu}
-                            className="group flex flex-col px-8 py-6 rounded-xl border border-purple-900/50 bg-purple-900/5 hover:bg-purple-950/50 hover:border-purple-500/40 transition-all duration-300"
+                            className="group relative flex min-h-50 flex-col justify-between overflow-hidden rounded-2xl border border-purple-900/50 bg-purple-900/5 p-6 transition-all duration-300 hover:border-purple-500/40 hover:bg-purple-950/50"
                           >
-                            <div className="flex items-center gap-4 mb-4">
-                              <div className="w-9 h-9 rounded-lg bg-purple-900/60 flex items-center justify-center text-purple-200 group-hover:text-purple-100 transition-colors">
-                                {React.createElement(solution.icon, { size: 24 })}
+                            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-purple-300/30 to-transparent opacity-70" />
+
+                            <div className="flex items-start gap-4">
+                              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-purple-900/60 text-purple-200 transition-colors group-hover:text-purple-100">
+                                {React.createElement(solution.icon, { size: 22 })}
                               </div>
-                              <h3 className="text-lg md:text-xl font-semibold text-white group-hover:text-purple-200 transition-colors">
-                                {solution.title}
-                              </h3>
+
+                              <div className="min-w-0">
+                                <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.18em] text-purple-200/80">
+                                  {solution.name}
+                                </p>
+                                <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-purple-200 xl:text-xl">
+                                  {solution.title}
+                                </h3>
+                              </div>
                             </div>
-                            <p className="text-gray-300 text-sm lg:text-base leading-relaxed line-clamp-3">
+
+                            <p className="mt-5 text-sm leading-7 text-gray-300 xl:text-[15px]">
                               {solution.description}
                             </p>
                           </Link>
@@ -234,7 +242,6 @@ export default function Navbar() {
               LEARN
               <ChevronDown className={`w-6 h-6 transition-transform ${insightsOpen ? 'rotate-180' : ''}`} />
             </div>
-
             <AnimatePresence>
               {insightsOpen && (
                 <motion.div
@@ -242,27 +249,36 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                   transition={{ duration: 0.25 }}
-                  className="absolute left-0 right-0 -translate-x-1/2 top-full mt-4 w-screen"
+                  className="fixed top-16 left-1/2 z-50 mt-0 w-screen -translate-x-1/2"
                 >
-                  <div className="bg-gray-950 border-b-2 border-t-2 border-gray-700/80 shadow-xl shadow-gray-800">
-                    <div className="2xl:max-w-6xl md:max-w-7xl mx-auto py-12 px-8 2xl:px-32 md:pr-56">
-                      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-8 place-items-center">
+                  <div className="border-y-2 border-gray-700/80 bg-gray-950 shadow-xl shadow-gray-800">
+                    <div className="mx-auto flex min-h-[70vh] w-full max-w-400 items-center px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20">
+                      <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4 xl:gap-6">
                         {insightsItems.map((item, idx) => (
                           <Link
                             key={idx}
                             href={item.href}
                             onClick={handleCloseMenu}
-                            className="group flex flex-col px-8 py-6 rounded-xl border border-purple-900/50 bg-purple-900/5 hover:bg-purple-950/50 hover:border-purple-500/40 transition-all duration-300"
+                            className="group relative flex min-h-55 flex-col justify-between overflow-hidden rounded-2xl border border-purple-900/50 bg-purple-900/5 p-6 transition-all duration-300 hover:border-purple-500/40 hover:bg-purple-950/50"
                           >
-                            <div className="flex items-center gap-4 mb-4">
-                              <div className="w-9 h-9 rounded-lg bg-purple-900/60 flex items-center justify-center text-purple-200 group-hover:text-purple-100 transition-colors">
-                                {React.createElement(item.icon, { size: 24 })}
+                            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-purple-300/30 to-transparent opacity-70" />
+
+                            <div className="flex items-start gap-4">
+                              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-purple-900/60 text-purple-200 transition-colors group-hover:text-purple-100">
+                                {React.createElement(item.icon, { size: 22 })}
                               </div>
-                              <h3 className="text-lg md:text-xl font-semibold text-white group-hover:text-purple-200 transition-colors">
-                                {item.title}
-                              </h3>
+
+                              <div className="min-w-0">
+                                <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.18em] text-purple-200/80">
+                                  {item.name}
+                                </p>
+                                <h3 className="text-lg font-semibold text-white transition-colors group-hover:text-purple-200 xl:text-xl">
+                                  {item.title}
+                                </h3>
+                              </div>
                             </div>
-                            <p className="text-gray-300 text-sm lg:text-base leading-relaxed line-clamp-3">
+
+                            <p className="mt-5 text-sm leading-7 text-gray-300 xl:text-[15px]">
                               {item.description}
                             </p>
                           </Link>

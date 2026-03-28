@@ -55,7 +55,7 @@ export default function HeroSection() {
 
       {/* Decorative glow */}
       <div className="absolute lg:top-1/4 top-2 left-[-10%] z-2 h-36 w-36 lg:h-72 lg:w-72 rounded-full bg-purple-600/30 lg:bg-purple-700/40 blur-2xl lg:blur-3xl " />
-      <div className="absolute bottom-0 right-[-8%] z-2 h-80 w-40 lg:w-80 rounded-full bg-indigo-600 lg:bg-indigo-700/60 blur-2xl lg:blur-3xl" />
+      <div className="absolute bottom-0 right-[-8%] z-2 lg:h-70 h-36 w-36 lg:w-70 rounded-full bg-indigo-600/80 lg:bg-indigo-700/60 blur-3xl" />
 
       <div className="relative z-10 w-full">
         <div className="mx-auto max-w-7xl w-full px-6 md:px-12 lg:px-12 xl:px-16 2xl:px-20">
