@@ -24,7 +24,7 @@ export default function EnquirySection() {
   return (
     <section
       id="enquiry"
-      className="relative bg-black text-gray-100 py-24 md:py-28 lg:py-32 px-6 md:px-16 lg:px-24 border-t border-gray-700/20 overflow-hidden"
+      className="relative bg-black text-gray-100 pt-8 pb-24 md:py-20 lg:py-24 px-6 md:px-16 lg:px-24 border-t border-gray-700/20 overflow-hidden"
     >
       <div className="max-w-5xl mx-auto">
         <div className="text-center">
@@ -43,7 +43,7 @@ export default function EnquirySection() {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-2xl md:text-4xl lg:text-5xl font-semibold mb-6 text-purple-300 leading-tight"
+            className="text-2xl md:text-4xl lg:text-5xl font-semibold mb-6 text-purple-200/70 leading-tight"
           >
             Ready to Launch Your Custom App?
           </motion.h2>

@@ -12,6 +12,8 @@ import {
   LucideIcon,
 } from "lucide-react";
 
+
+
 /* ---------------- TYPES ---------------- */
 type Solution = {
   icon: LucideIcon;

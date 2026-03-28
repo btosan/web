@@ -65,7 +65,7 @@ export default function TestimonialsSection() {
   ];
 
   return (
-    <section className="relative bg-black py-24 md:py-32 border-t border-gray-700/20 lg:border-gray-600/20 overflow-hidden">
+    <section className="relative bg-black pt-24 pb-16 md:py-20 lg:py-24 border-t border-gray-700/20 lg:border-gray-600/20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative">
         
         {/* Header */}
@@ -80,7 +80,7 @@ export default function TestimonialsSection() {
             Client Success
           </p>
 
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-purple-300 mb-6 leading-tight">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold text-purple-50/70 mb-6 leading-tight">
             What Our Clients Say
           </h2>
 
