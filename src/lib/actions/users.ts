@@ -309,9 +309,7 @@ export async function getUserById(userId: string) {
       comments: {
         orderBy: { createdAt: "desc" },
       },
-      likes: {
-        orderBy: { createdAt: "desc" },
-      },
+      likes: true,
       accounts: true,
       sessions: true,
     },
