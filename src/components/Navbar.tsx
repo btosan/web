@@ -103,7 +103,7 @@ const insightsItems = [
 
 const isExternalImageUrl = (src?: string | null) =>
   typeof src === "string" && /^https?:\/\//i.test(src.trim());
-// user.image ?
+// pricing
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -218,10 +218,10 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              href="/pricing"
+              href="/packages"
               className="uppercase hover:text-purple-200 transition tracking-wider hover:underline hover:underline-offset-12 decoration-2 decoration-purple-300"
             >
-              Pricing
+              Packages
             </Link>
           </li>
 
@@ -489,8 +489,8 @@ export default function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" onClick={handleCloseMenu} className="hover:text-purple-100 transition uppercase">
-                  Pricing
+                <Link href="/packages" onClick={handleCloseMenu} className="hover:text-purple-100 transition uppercase">
+                  Packages
                 </Link>
               </li>
 

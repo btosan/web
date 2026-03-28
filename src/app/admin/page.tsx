@@ -23,6 +23,23 @@ const adminSections = [
     ],
   },
   {
+    title: "Packages",
+    description:
+      "Create service packages and manage package pricing, features, add-ons, and visibility.",
+    links: [
+      { label: "Create Package", href: "/admin/packages/new" },
+      { label: "Manage Packages", href: "/admin/packages" },
+    ],
+  },
+  {
+    title: "Package Categories",
+    description: "Create and manage categories used in the package form.",
+    links: [
+      { label: "Create Category", href: "/admin/package-categories/create" },
+      { label: "Manage Categories", href: "/admin/package-categories" },
+    ],
+  },
+  {
     title: "Case Studies",
     description: "Create new case studies and manage existing ones.",
     links: [
@@ -80,15 +97,15 @@ export default async function AdminPage() {
   }
 
   return (
-    <main className="min-h-screen bg-black px-4 py-8 md:py-16 md:px-8 lg:px-12">
+    <main className="min-h-screen bg-black px-4 py-8 md:px-8 md:py-16 lg:px-12">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10">
           <h1 className="text-3xl font-bold text-purple-100 md:text-4xl">
             Admin Dashboard
           </h1>
           <p className="mt-3 max-w-2xl text-sm text-gray-400 md:text-base">
-            Manage projects, case studies, posts, users, and category systems
-            from one place.
+            Manage projects, packages, case studies, posts, users, and category
+            systems from one place.
           </p>
         </div>
 
