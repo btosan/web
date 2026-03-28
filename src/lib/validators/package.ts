@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const packageFeatureSchema = z.object({
   label: z.string().min(1, "Feature label is required"),
-  details: z.string().optional().nullable(),
+  details: z.string().nullable().optional(),
   included: z.boolean().default(true),
   highlight: z.boolean().default(false),
   sortOrder: z.number().int().default(0),
@@ -10,9 +10,9 @@ export const packageFeatureSchema = z.object({
 
 export const packageAddonSchema = z.object({
   name: z.string().min(1, "Addon name is required"),
-  description: z.string().optional().nullable(),
-  price: z.coerce.number().min(0).optional().nullable(),
-  priceLabel: z.string().optional().nullable(),
+  description: z.string().nullable().optional(),
+  price: z.coerce.number().min(0).nullable().optional(),
+  priceLabel: z.string().nullable().optional(),
   sortOrder: z.number().int().default(0),
 });
 
@@ -20,17 +20,17 @@ export const servicePackageSchema = z.object({
   name: z.string().min(2, "Package name is required"),
   slug: z.string().min(2, "Slug is required"),
 
-  shortDescription: z.string().max(300).optional().nullable(),
+  shortDescription: z.string().max(300).nullable().optional(),
   description: z.string().min(20, "Description is required"),
-  longDescription: z.string().optional().nullable(),
+  longDescription: z.string().nullable().optional(),
 
-  startingPrice: z.coerce.number().min(0).optional().nullable(),
+  startingPrice: z.coerce.number().min(0).nullable().optional(),
   currency: z.string().default("NGN"),
-  priceLabel: z.string().optional().nullable(),
-  priceSuffix: z.string().optional().nullable(),
+  priceLabel: z.string().nullable().optional(),
+  priceSuffix: z.string().nullable().optional(),
 
-  timeline: z.string().optional().nullable(),
-  deliveryModel: z.string().optional().nullable(),
+  timeline: z.string().nullable().optional(),
+  deliveryModel: z.string().nullable().optional(),
 
   popular: z.boolean().default(false),
   featured: z.boolean().default(false),
@@ -39,16 +39,17 @@ export const servicePackageSchema = z.object({
 
   sortOrder: z.coerce.number().int().default(0),
 
-  ctaText: z.string().optional().nullable(),
-  ctaHref: z.string().optional().nullable(),
+  ctaText: z.string().nullable().optional(),
+  ctaHref: z.string().nullable().optional(),
 
-  seoTitle: z.string().optional().nullable(),
-  seoDescription: z.string().max(160).optional().nullable(),
+  seoTitle: z.string().nullable().optional(),
+  seoDescription: z.string().max(160).nullable().optional(),
 
-  categoryName: z.string().optional().nullable(),
+  categoryName: z.string().nullable().optional(),
 
   features: z.array(packageFeatureSchema).default([]),
   addons: z.array(packageAddonSchema).default([]),
 });
 
-export type ServicePackageFormValues = z.infer<typeof servicePackageSchema>;
+export type ServicePackageFormInput = z.input<typeof servicePackageSchema>;
+export type ServicePackageFormValues = z.output<typeof servicePackageSchema>;

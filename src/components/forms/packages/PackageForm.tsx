@@ -17,6 +17,7 @@ import {
 import { createPackage, updatePackage } from "@/lib/actions/packages";
 import {
   servicePackageSchema,
+  ServicePackageFormInput,
   ServicePackageFormValues,
 } from "@/lib/validators/package";
 import { useToast } from "@/hooks/use-toast";
@@ -67,7 +68,7 @@ export default function PackageForm({
   const [isLoading, setIsLoading] = useState(false);
   const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
 
-  const defaultValues = useMemo<ServicePackageFormValues>(
+  const defaultValues = useMemo<ServicePackageFormInput>(
     () => ({
       name: packageItem?.name || "",
       slug: packageItem?.slug || "",
@@ -121,7 +122,7 @@ export default function PackageForm({
     [packageItem]
   );
 
-  const form = useForm<ServicePackageFormValues>({
+  const form = useForm<ServicePackageFormInput, any, ServicePackageFormValues>({
     resolver: zodResolver(servicePackageSchema),
     defaultValues,
   });
