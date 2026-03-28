@@ -10,7 +10,7 @@ import ProjectHighlightCarousel from "@/components/ProjectHighlightCarousel";
 import RichTextDisplay from "@/components/editorOld/RichTextDisplay";
 import { getPublicProjectBySlug } from "@/lib/actions/projects";
 import { getRelatedProjects } from "@/lib/actions/projects";
-// project.id
+
 
 function buildGallery(project: Awaited<ReturnType<typeof getPublicProjectBySlug>>) {
   if (!project) return [];
