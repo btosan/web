@@ -353,9 +353,11 @@ export default function PackageForm({
                     </FormLabel>
                     <FormControl>
                       <Input
-                        {...field}
+                        name={field.name}
+                        ref={field.ref}
                         type="number"
-                        value={field.value ?? 0}
+                        value={typeof field.value === "number" ? field.value : 0}
+                        onBlur={field.onBlur}
                         onChange={(e) => field.onChange(Number(e.target.value))}
                         className="h-11 border-gray-800 bg-gray-950 text-white placeholder:text-gray-500 focus:border-gray-700 focus:ring-gray-700/30"
                       />
@@ -386,9 +388,12 @@ export default function PackageForm({
                     </FormLabel>
                     <FormControl>
                       <Input
+                        name={field.name}
+                        ref={field.ref}
                         type="number"
                         placeholder="450000"
-                        value={field.value ?? ""}
+                        value={typeof field.value === "number" ? field.value : ""}
+                        onBlur={field.onBlur}
                         onChange={(e) =>
                           field.onChange(
                             e.target.value ? Number(e.target.value) : null
@@ -633,9 +638,9 @@ export default function PackageForm({
             </div>
 
             <div className="space-y-4">
-              {featureFields.map((field, index) => (
+              {featureFields.map((fieldItem, index) => (
                 <div
-                  key={field.id}
+                  key={fieldItem.id}
                   className="space-y-4 rounded-xl border border-gray-800 bg-gray-950 p-4"
                 >
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -669,8 +674,15 @@ export default function PackageForm({
                           </FormLabel>
                           <FormControl>
                             <Input
+                              name={field.name}
+                              ref={field.ref}
                               type="number"
-                              value={field.value ?? index}
+                              value={
+                                typeof field.value === "number"
+                                  ? field.value
+                                  : index
+                              }
+                              onBlur={field.onBlur}
                               onChange={(e) =>
                                 field.onChange(Number(e.target.value))
                               }
@@ -784,9 +796,9 @@ export default function PackageForm({
             </div>
 
             <div className="space-y-4">
-              {addonFields.map((field, index) => (
+              {addonFields.map((fieldItem, index) => (
                 <div
-                  key={field.id}
+                  key={fieldItem.id}
                   className="space-y-4 rounded-xl border border-gray-800 bg-gray-950 p-4"
                 >
                   <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -820,8 +832,15 @@ export default function PackageForm({
                           </FormLabel>
                           <FormControl>
                             <Input
+                              name={field.name}
+                              ref={field.ref}
                               type="number"
-                              value={field.value ?? ""}
+                              value={
+                                typeof field.value === "number"
+                                  ? field.value
+                                  : ""
+                              }
+                              onBlur={field.onBlur}
                               onChange={(e) =>
                                 field.onChange(
                                   e.target.value ? Number(e.target.value) : null
@@ -891,8 +910,15 @@ export default function PackageForm({
                           </FormLabel>
                           <FormControl>
                             <Input
+                              name={field.name}
+                              ref={field.ref}
                               type="number"
-                              value={field.value ?? index}
+                              value={
+                                typeof field.value === "number"
+                                  ? field.value
+                                  : index
+                              }
+                              onBlur={field.onBlur}
                               onChange={(e) =>
                                 field.onChange(Number(e.target.value))
                               }
