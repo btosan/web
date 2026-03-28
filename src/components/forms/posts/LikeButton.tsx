@@ -21,22 +21,19 @@ export default function LikeButton({
   const [liked, setLiked] = useState(initialLiked);
   const [count, setCount] = useState(initialCount);
   const { toast } = useToast();
-  const router = useRouter(); // ✅ added
+  const router = useRouter();
 
   function handleLike() {
     const nextLiked = !liked;
 
-    // optimistic UI
     setLiked(nextLiked);
     setCount((prev) => (nextLiked ? prev + 1 : prev - 1));
 
     startTransition(async () => {
       try {
         await toggleLike(postSlug);
-
-        router.refresh(); // ✅ critical fix
+        router.refresh();
       } catch (error) {
-        // rollback on error
         setLiked(liked);
         setCount(initialCount);
 

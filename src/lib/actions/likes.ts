@@ -5,14 +5,15 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 
-async function requireUser() {
+async function requireUserEmail(): Promise<string> {
   const session = await getServerSession(authOptions);
+  const email = session?.user?.email;
 
-  if (!session?.user?.email) {
+  if (!email) {
     throw new Error("You must be logged in.");
   }
 
-  return session.user;
+  return email;
 }
 
 /////////////////////////////////////////////////
@@ -20,13 +21,12 @@ async function requireUser() {
 /////////////////////////////////////////////////
 
 export async function toggleLike(postSlug: string) {
-  const user = await requireUser();
+  const userEmail = await requireUserEmail();
 
-  // ✅ find existing like using postSlug (NOT postId)
   const existing = await db.like.findFirst({
     where: {
-      userEmail: user.email,
-      postSlug: postSlug,
+      userEmail,
+      postSlug,
     },
     select: { id: true },
   });
@@ -36,16 +36,16 @@ export async function toggleLike(postSlug: string) {
       where: { id: existing.id },
     });
   } else {
-await db.like.create({
-  data: {
-    post: {
-      connect: { slug: postSlug },
-    },
-    user: {
-      connect: { email: user.email },
-    },
-  },
-});
+    await db.like.create({
+      data: {
+        post: {
+          connect: { slug: postSlug },
+        },
+        user: {
+          connect: { email: userEmail },
+        },
+      },
+    });
   }
 
   revalidatePath(`/blog/${postSlug}`);
@@ -60,15 +60,16 @@ await db.like.create({
 
 export async function getLikeStatus(postSlug: string) {
   const session = await getServerSession(authOptions);
+  const userEmail = session?.user?.email;
 
-  if (!session?.user?.email) {
+  if (!userEmail) {
     return { liked: false };
   }
 
   const like = await db.like.findFirst({
     where: {
-      userEmail: session.user.email,
-      postSlug: postSlug, // ✅ CORRECT FIELD
+      userEmail,
+      postSlug,
     },
     select: { id: true },
   });
