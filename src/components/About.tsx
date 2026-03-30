@@ -281,14 +281,14 @@ export default function AboutPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/packages"
-              className="bg-purple-500/80 text-white px-10 py-4 font-bold uppercase tracking-widest hover:bg-purple-500 transition-all inline-block"
+              className="bg-purple-800/80 text-white px-10 py-4 font-bold uppercase tracking-widest hover:bg-purple-500 transition-all inline-block"
             >
               View Our Packages
             </Link>
 
             <Link
               href="/projects"
-              className="bg-transparent border-2 border-purple-300/80 text-purple-100 px-10 py-4 font-bold uppercase tracking-widest hover:bg-purple-500/80 hover:text-white transition-all inline-block"
+              className="bg-transparent border border-purple-300/90 text-purple-100 px-10 py-4 font-bold uppercase tracking-widest hover:bg-purple-800/80 hover:border-purple-400 hover:text-white transition-all inline-block"
             >
               See Our Work
             </Link>

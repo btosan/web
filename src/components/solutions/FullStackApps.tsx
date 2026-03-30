@@ -82,37 +82,37 @@ const carouselData: CarouselCard[] = [
     title: "Next.js Full-Stack Applications",
     content:
       "End-to-end Next.js apps combining frontends, APIs, and server-side rendering to deliver high-performance, scalable web platforms.",
-    image: "/assets/apps/fullstack1.jpg",
+    image: "/assets/services-type/next.png",
   },
   {
     title: "Robust APIs for Web & Mobile",
     content:
       "Secure, scalable REST or GraphQL APIs designed to serve both web and mobile applications with real-time data flows.",
-    image: "/assets/apps/fullstack2.jpg",
+    image: "/assets/services-type/api.png",
   },
   {
     title: "Database-Driven Backends",
     content:
       "PostgreSQL or MongoDB backends managed with Prisma ORM for efficient queries, migrations, and structured data management.",
-    image: "/assets/apps/fullstack3.jpg",
+    image: "/assets/services-type/db.png",
   },
   {
     title: "Microservices & Serverless Architecture",
     content:
       "Modern cloud-ready architectures for apps that scale effortlessly, using microservices or serverless functions for flexibility and reliability.",
-    image: "/assets/apps/fullstack4.jpg",
+    image: "/assets/services-type/microservices.jpg",
   },
   {
     title: "SaaS Platforms & Dashboards",
     content:
       "Complete platforms including authentication, admin dashboards, subscription management, and real-time features for professional SaaS products.",
-    image: "/assets/apps/fullstack5.jpg",
+    image: "/assets/services-type/saas.png",
   },
   {
     title: "Mobile & Web Ready",
     content:
       "Full-stack apps designed to support responsive web, progressive web apps, and mobile apps seamlessly with a single backend.",
-    image: "/assets/apps/fullstack6.jpg",
+    image: "/assets/services-type/app-ready.png",
   },
 ];
 
@@ -146,13 +146,13 @@ export default function FullStackAppsSection() {
       {/* HERO */}
       <div className="relative isolate">
         <Image
-          src="/assets/apps/app-hero.jpg"
+          src="/assets/services/full-stack.jpg"
           alt=""
           fill
           priority
           className="object-cover -z-10"
         />
-        <div className="absolute inset-0 bg-black/90 -z-10" />
+        <div className="absolute inset-0 bg-black/80 -z-10" />
 
         <div className="relative z-10 mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20 py-24 grid md:grid-cols-2 gap-16 items-center-safe ">
           <div>
@@ -248,7 +248,7 @@ export default function FullStackAppsSection() {
                 onClick={prev}
                 className="flex items-center gap-3 hover:text-gray-300 hover:cursor-pointer text-purple-100 transition"
               >
-                <ArrowLeft size={40} strokeWidth={1.5} />
+                <ArrowLeft className="w-5 h-5 md:h-7 md:w-7" strokeWidth={1.5} />
                 <span className="text-lg tracking-wide"></span>
               </button>
 
@@ -257,7 +257,7 @@ export default function FullStackAppsSection() {
                 className="flex items-center gap-3 text-purple-200 hover:text-white hover:cursor-pointer transition"
               >
                 <span className="text-lg tracking-wide"></span>
-                <ArrowRight size={40} strokeWidth={1.5} />
+                <ArrowRight className="w-5 h-5 md:h-7 md:w-7" strokeWidth={1.5} />
               </button>
             </div>
 

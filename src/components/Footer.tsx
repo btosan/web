@@ -35,7 +35,7 @@ export default function Footer() {
           <ul className="space-y-2">
             <li>
               <Link href="/about" className="hover:text-purple-50 transition-all">
-                About the Agency
+                About
               </Link>
             </li>
             <li>
@@ -44,8 +44,18 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/#pricing" className="hover:text-purple-50 transition-all">
-                Pricing
+              <Link href="/work" className="hover:text-purple-50 transition-all">
+                Work
+              </Link>
+            </li>
+            <li>
+              <Link href="/packages" className="hover:text-purple-50 transition-all">
+                Packages
+              </Link>
+            </li>
+            <li>
+              <Link href="/learn/blog" className="hover:text-purple-50 transition-all">
+                Blog
               </Link>
             </li>
             <li>
@@ -115,7 +125,7 @@ export default function Footer() {
 
       {/* === COPYRIGHT === */}
       <div className="text-center text-xs text-white/70 mt-10">
-        © {new Date().getFullYear()} Ofashi — Web Development, Automation & AI Integration.
+        © {new Date().getFullYear()} Ofashi — App Development, Automation & AI Integration.
       </div>
     </footer>
   );

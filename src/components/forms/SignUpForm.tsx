@@ -283,11 +283,11 @@ const SignUpForm = () => {
 
           <GoogleSignInButton>Sign up with Google</GoogleSignInButton>
 
-          <p className="text-center text-sm xl:text-lg text-gray-200">
+          <p className="text-center text-sm xl:text-lg text-gray-400">
             Already have an account?{" "}
             <Link
               href={`/signin?callbackUrl=${encodeURIComponent(callbackUrl)}`}
-              className="font-medium text-purple-100 hover:text-purple-200 transition"
+              className="font-semibold text-purple-300 hover:text-purple-200 transition"
             >
               Sign in
             </Link>

@@ -1,7 +1,6 @@
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { Role } from "@prisma/client";
-
 import { authOptions } from "@/lib/auth";
 import { getProjectCategories } from "@/lib/actions/projectCategories";
 import ProjectForm from "@/components/forms/projects/ProjectForm";

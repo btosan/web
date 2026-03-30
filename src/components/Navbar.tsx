@@ -100,10 +100,10 @@ const insightsItems = [
     href: "/guides",
   },
 ]
-
+// role
 const isExternalImageUrl = (src?: string | null) =>
   typeof src === "string" && /^https?:\/\//i.test(src.trim());
-// pricing
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -542,6 +542,13 @@ export default function Navbar() {
                     </motion.ul>
                   )}
                 </AnimatePresence>
+              </li>
+              <li>
+                {user?.role === "ADMIN" && (
+                  <Link href="/admin" onClick={handleCloseMenu} className="hover:text-purple-300 text-purple-400 transition uppercase">
+                    Admin
+                  </Link>
+                )}
               </li>
             </ul>
 

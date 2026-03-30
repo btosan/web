@@ -1,8 +1,24 @@
+
+import Link from 'next/link';
+import { ChevronLeftIcon } from 'lucide-react';
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { Role } from "@prisma/client";
+import { authOptions } from "@/lib/auth";
+
 import { getPublicProjects } from "@/lib/actions/projects";
 import { toProjectCard } from "@/components/projects/projects";
 import ProjectCard from "@/components/projects/ProjectCard";
 
 export default async function ProjectsPage() {
+  const session = await getServerSession(authOptions);
+      if (!session?.user) {
+        redirect("/api/auth/signin?callbackUrl=/projects/create");
+      }
+      if (session.user.role !== Role.ADMIN) {
+        redirect("/");
+      }
+
   const dbProjects = await getPublicProjects();
 
   const projects = dbProjects
@@ -12,6 +28,11 @@ export default async function ProjectsPage() {
   return (
     <main className="min-h-screen bg-black">
       <section className="px-6 py-14 md:px-12 lg:px-16 xl:px-20">
+        <Link href='/admin' className='flex items-center justify-start text-xs lg:text-sm text-gray-400 py-3'>
+          <ChevronLeftIcon className="w-4 h-4 lg:w-5 lg:h-5"/>
+          <span>Back To Admin Dashboard</span>
+        </Link>
+
         <div className="mx-auto max-w-7xl">
           <div className="mb-10 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-purple-100 leading-tight">

@@ -236,7 +236,7 @@ export default function SignInForm() {
             Don't have an account?{' '}
             <Link
               href="/register"
-              className="font-medium text-purple-300 hover:text-purple-200 transition"
+              className="font-semibold text-purple-300 hover:text-purple-200 transition"
             >
               Sign up
             </Link>

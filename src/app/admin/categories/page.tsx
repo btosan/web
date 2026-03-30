@@ -1,13 +1,32 @@
 import Link from "next/link";
+import { ChevronLeftIcon } from 'lucide-react';
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { Role } from "@prisma/client";
+import { authOptions } from "@/lib/auth";
 import { getAllCategoriesForAdmin } from "@/lib/actions/categories";
 import { AppButton } from "@/components/ui/AppButton";
 
 export default async function AdminCategoriesPage() {
+  const session = await getServerSession(authOptions);
+  
+    if (!session?.user) {
+      redirect("/api/auth/signin?callbackUrl=/admin/package-categories");
+    }
+  
+    if (session.user.role !== Role.ADMIN) {
+      redirect("/");
+    }
+
   const categories = await getAllCategoriesForAdmin();
 
   return (
     <main className="min-h-screen bg-black px-6 py-10 md:px-10 lg:px-14">
       <div className="mx-auto max-w-6xl space-y-8">
+        <Link href='/admin' className='flex items-center justify-start text-xs lg:text-sm text-gray-400 py-3'>
+          <ChevronLeftIcon className="w-4 h-4 lg:w-5 lg:h-5"/>
+          <span>Back To Admin Dashboard</span>
+        </Link>
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h1 className="text-3xl font-semibold text-purple-50">

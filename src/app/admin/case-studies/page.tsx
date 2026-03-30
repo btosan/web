@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ChevronLeftIcon } from 'lucide-react';
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { Role } from "@prisma/client";
@@ -23,6 +24,10 @@ export default async function CaseStudiesAdminPage() {
   return (
     <section className="min-h-screen bg-black px-4 py-8 md:px-8 lg:px-12">
       <div className="mx-auto max-w-6xl">
+        <Link href='/admin' className='flex items-center justify-start text-xs lg:text-sm text-gray-400 py-3'>
+          <ChevronLeftIcon className="w-4 h-4 lg:w-5 lg:h-5"/>
+          <span>Back To Admin Dashboard</span>
+        </Link>
         {/* Header */}
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
