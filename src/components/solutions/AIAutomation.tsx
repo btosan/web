@@ -155,7 +155,7 @@ export default function AIAutomationSection() {
           className="object-cover -z-10"
         />
         <div className="absolute inset-0 bg-black/90 -z-10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/55 to-black -z-10" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/55 to-black -z-10" />
 
         <div className="relative z-10 mx-auto grid w-full items-center gap-12 px-6 py-24 md:grid-cols-2 md:px-16 lg:gap-16 lg:px-12 xl:px-16 2xl:px-20 2xl:py-28">
           <div className="max-w-2xl">
@@ -186,7 +186,7 @@ export default function AIAutomationSection() {
 
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.22em] text-purple-100/80">
-                  Start Your Project
+                  Start Your Automation Project
                 </p>
                 <h2 className="mt-4 text-3xl font-bold md:text-4xl">
                   Let’s build a smarter system

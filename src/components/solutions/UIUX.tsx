@@ -81,37 +81,37 @@ const carouselData: CarouselCard[] = [
     title: "Intuitive User Flows",
     content:
       "Design workflows that make complex processes simple and guide users naturally to conversion points.",
-    image: "/assets/uiux/uiux1.jpg",
+    image: "/assets/services-type/ui-ux.png",
   },
   {
     title: "Engaging Interfaces",
     content:
       "Polished visual designs that build trust, reinforce brand identity, and encourage interaction.",
-    image: "/assets/uiux/uiux2.jpg",
+    image: "/assets/services-type/ui-ux2.jpg",
   },
   {
     title: "Conversion-Focused Layouts",
     content:
       "Layouts optimized for action, strategically placing elements to drive clicks, sign-ups, and purchases.",
-    image: "/assets/uiux/uiux3.jpg",
+    image: "/assets/services-type/ui-ux3.png",
   },
   {
     title: "Mobile & Desktop Ready",
     content:
       "Responsive designs that adapt seamlessly across devices while maintaining usability and aesthetics.",
-    image: "/assets/uiux/uiux4.jpg",
+    image: "/assets/services-type/uiux4.png",
   },
   {
     title: "Rapid Prototyping",
     content:
       "Test ideas quickly with interactive prototypes to validate concepts and reduce design iteration cycles.",
-    image: "/assets/uiux/uiux5.jpg",
+    image: "/assets/services-type/uiux5.jpg",
   },
   {
     title: "Data-Driven Design Decisions",
     content:
       "Use analytics and user testing insights to continuously improve UI/UX and drive measurable results.",
-    image: "/assets/uiux/uiux6.jpg",
+    image: "/assets/services-type/uiux6.png",
   },
 ];
 
@@ -148,7 +148,7 @@ export default function UIUXSection() {
       {/* HERO */}
       <div className="relative isolate overflow-hidden">
         <Image
-          src="/assets/uiux/uiux-hero.jpg"
+          src="/assets/services-type/ui-ux.png"
           alt=""
           fill
           priority

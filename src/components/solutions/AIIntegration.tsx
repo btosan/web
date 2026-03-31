@@ -186,7 +186,7 @@ export default function AIIntegrationSection() {
 
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.22em] text-purple-100/80">
-                  Start Your Project
+                  Start Your AI Project
                 </p>
                 <h2 className="mt-4 text-3xl font-bold md:text-4xl">
                   Let’s build something intelligent
@@ -198,7 +198,7 @@ export default function AIIntegrationSection() {
               </div>
 
               <div className="mt-10 inline-flex items-center gap-3 self-start rounded-xl bg-white px-4 py-3 font-semibold text-purple-900 transition-transform duration-300 group-hover:translate-x-1 md:px-6">
-                Let’s Build Your AI Project
+                Let’s Build Your Project
                 <ChevronRight size={20} />
               </div>
             </div>

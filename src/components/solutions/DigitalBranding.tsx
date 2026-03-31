@@ -81,37 +81,37 @@ const carouselData: CarouselCard[] = [
     title: "Strategic Branding & Positioning",
     content:
       "Develop strong brand identity and messaging that resonates with your audience and differentiates you in the market.",
-    image: "/assets/services-type/branding1.jpg",
+    image: "/assets/services-type/digital.png",
   },
   {
     title: "Performance-Driven Marketing",
     content:
       "Run effective Google and social media ad campaigns that reach the right audience and drive measurable results.",
-    image: "/assets/services-type/ads1.jpg",
+    image: "/assets/services-type/digital2.png",
   },
   {
     title: "Content & Social Engagement",
     content:
       "Build authority with content marketing and social media strategies that engage and grow your audience.",
-    image: "/assets/services-type/social1.jpg",
+    image: "/assets/services-type/digital3.png",
   },
   {
     title: "SEO & Digital Visibility",
     content:
       "Optimize your online presence to increase search engine rankings, website traffic, and brand awareness.",
-    image: "/assets/services-type/seo1.jpg",
+    image: "/assets/services-type/digital4.png",
   },
   {
     title: "Analytics & Growth Insights",
     content:
       "Track and analyze campaign performance, measure KPIs, and refine strategies to maximize ROI and business growth.",
-    image: "/assets/services-type/analytics1.jpg",
+    image: "/assets/services-type/digital5.png",
   },
   {
     title: "Conversion-Focused Campaigns",
     content:
       "Optimize user journeys and digital experiences to drive conversions, leads, and long-term customer growth.",
-    image: "/assets/services-type/conversions1.jpg",
+    image: "/assets/services-type/digital6.png",
   },
 ];
 
@@ -148,7 +148,7 @@ export default function DigitalBrandingSection() {
       {/* HERO */}
       <div className="relative isolate overflow-hidden">
         <Image
-          src="/assets/services-type/marketing-hero.jpg"
+          src="/assets/services-type/digital.png"
           alt=""
           fill
           priority
