@@ -357,7 +357,7 @@ Email: ${formData.email || "Not provided"}`;
             </div>
 
             {/* Google Form Card */}
-            <div className="bg-gray-950/70 p-8 md:p-10 rounded-3xl shadow-xl border border-gray-700">
+            <div className="bg-gray-950/70 py-8 md:py-0 md:p-10 rounded-3xl shadow-xl border border-gray-700">
               <div className="mb-6">
                 <p className="text-sm uppercase tracking-[0.2em] text-gray-500 mb-3">
                   Detailed Enquiry
