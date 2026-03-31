@@ -198,7 +198,7 @@ export default function UIUXSection() {
               </div>
 
               <div className="mt-10 inline-flex items-center gap-3 self-start rounded-xl bg-white px-4 py-3 font-semibold text-purple-900 transition-transform duration-300 group-hover:translate-x-1 md:px-6">
-                Let’s Design Your Experience
+                Design Your Experience
                 <ChevronRight size={20} />
               </div>
             </div>

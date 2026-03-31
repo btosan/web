@@ -186,7 +186,7 @@ export default function AIIntegrationSection() {
 
               <div>
                 <p className="text-xs font-medium uppercase tracking-[0.22em] text-purple-100/80">
-                  Start Your AI Project
+                  Start Your Project
                 </p>
                 <h2 className="mt-4 text-3xl font-bold md:text-4xl">
                   Let’s build something intelligent
