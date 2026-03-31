@@ -1,8 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Code, Globe, ShoppingCart, Bot, Zap, Smartphone, Lock, Rocket } from "lucide-react";
+import {
+  Globe,
+  Smartphone,
+  Cpu,
+  Sparkles,
+  ShieldCheck,
+  TrendingUp,
+  ArrowRight,
+  ChevronRight
+} from "lucide-react";
 
 export default function ServicesPage() {
   const [open, setOpen] = useState(false);
@@ -18,152 +28,200 @@ export default function ServicesPage() {
 
   const services = [
     {
-      icon: <Code className="w-12 h-12 text-purple-100" />,
-      title: "Custom Web Development",
+      icon: Globe,
+      eyebrow: "Performance, Visibility & Conversion",
+      title: "Custom Websites",
       description:
-        "Custom web applications built from scratch using modern technologies, delivering scalable, reliable, and fast solutions for your business.",
+        "Fast-loading, high-performance custom websites built to strengthen credibility, improve visibility, and turn visitors into qualified leads.",
+      href: "/services/custom-websites",
     },
     {
-      icon: <Globe className="w-12 h-12 text-purple-100" />,
-      title: "Professional Website Design",
+      icon: Smartphone,
+      eyebrow: "Platforms, APIs & Scalable Systems",
+      title: "Full-Stack Apps",
       description:
-        "Responsive, branded websites designed to impress and convert, optimized for desktop and mobile.",
-    },
-
-    // E-Commerce & AI
-    {
-      icon: <ShoppingCart className="w-12 h-12 text-purple-100" />,
-      title: "E-Commerce Solutions",
-      description:
-        "High-performance online stores with smooth checkout, inventory management, and integrated payment solutions.",
+        "Robust full-stack applications designed for modern businesses — from customer portals and dashboards to complete digital platforms.",
+      href: "/services/full-stack-apps",
     },
     {
-      icon: <Bot className="w-12 h-12 text-purple-100" />,
-      title: "AI Automation & Integration",
+      icon: Sparkles,
+      eyebrow: "Automation, Efficiency & Workflows",
+      title: "AI Automation",
       description:
-        "Intelligent features such as chatbots, predictive analytics, content generators, and custom AI workflows.",
-    },
-
-    // Performance & Security
-    {
-      icon: <Zap className="w-12 h-12 text-purple-100" />,
-      title: "Lightning-Fast Performance",
-      description:
-        "Optimized backends and server-side rendering for instant load times and superior user experience.",
+        "Intelligent systems that automate communication, lead handling, internal workflows, scheduling, and repetitive operational tasks.",
+      href: "/services/ai-automation",
     },
     {
-      icon: <Lock className="w-12 h-12 text-purple-100" />,
-      title: "Secure & Scalable Architecture",
+      icon: Cpu,
+      eyebrow: "Smart Features & Product Intelligence",
+      title: "AI Integration",
       description:
-        "Built with best practices in security, authentication, and cloud-ready infrastructure to scale with your business.",
-    },
-
-    // Delivery & Support
-    {
-      icon: <Smartphone className="w-12 h-12 text-purple-100" />,
-      title: "Mobile-First & PWA",
-      description:
-        "Fully responsive designs that feel native on any device, including offline-capable Progressive Web Apps.",
+        "AI-powered product features such as chatbots, recommendations, predictive insights, and intelligent user experiences.",
+      href: "/services/ai-integration",
     },
     {
-      icon: <Rocket className="w-12 h-12 text-purple-100" />,
-      title: "Fast Delivery & Ongoing Support",
+      icon: ShieldCheck,
+      eyebrow: "Usability, Trust & Experience Design",
+      title: "UI/UX Design",
       description:
-        "Projects delivered in days or weeks with continuous support, updates, and long-term partnership.",
+        "Conversion-focused interfaces and user experiences that improve usability, build trust, and create smoother customer journeys.",
+      href: "/services/ui-ux-design",
+    },
+    {
+      icon: TrendingUp,
+      eyebrow: "Brand Positioning & Growth Systems",
+      title: "Digital Branding & Marketing",
+      description:
+        "Strategy-driven branding, digital presence, and marketing systems designed to attract the right audience and drive measurable growth.",
+      href: "/services/digital-branding-marketing",
     },
   ];
 
   return (
-    <section className="relative bg-black py-20 md:py-28 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
+    <section className="relative overflow-hidden bg-black py-20 text-white md:py-28">
+      <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20">
+        {/* Hero */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="mx-auto max-w-4xl text-center"
         >
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-purple-100 uppercase mb-6 tracking-wide">
-            Our Services & Solutions
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            From stunning websites to AI-powered web apps, we deliver the tools and solutions your business needs to grow and succeed online.
+          <div className="mb-5 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm">
+            <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-purple-100 md:text-xs">
+              Services & Solutions
+            </span>
+          </div>
+
+          <h1 className="text-4xl font-bold tracking-tight text-purple-100 text-3xl md:text-4xl lg:text-5xl xl:text-6xl">
+            Digital solutions built for growth
+          </h1>
+
+          <p className="mx-auto mt-6 max-w-3xl text-sm leading-8 text-gray-300 sm:text-base md:text-lg lg:text-xl">
+            We help businesses build modern websites, scalable applications,
+            intelligent AI systems, polished user experiences, and growth-driven
+            digital brands.
           </p>
         </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="relative p-8 rounded-2xl bg-gray-800/70 border border-gray-700/80 lg:border-gray-700 hover:border-purple-100/50 transition-all duration-500 shadow-xl shadow-purple-500/20 hover:shadow-purple-500/40 group"
-            >
-              <div className="mb-6 flex justify-center">
-                <div className="p-4 bg-gray-900/80 rounded-2xl group-hover:bg-purple-100/10 transition">
-                  {service.icon}
-                </div>
-              </div>
-              <h3 className="lg:text-2xl md:text-xl text-lg font-bold text-white mb-4 text-center">{service.title}</h3>
-              <p className="text-gray-400 text-left leading-relaxed">{service.description}</p>
-            </motion.div>
-          ))}
+        {/* Services grid */}
+        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+
+            return (
+              <motion.div
+                key={service.title}
+                initial={{ opacity: 0, y: 36 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.06, duration: 0.55 }}
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                <Link
+                  href={service.href}
+                  className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-gray-700/70 bg-linear-to-tl from-gray-900/20 via-gray-950 to-black p-8 shadow-sm shadow-gray-900/40 transition-all duration-300 hover:border-purple-300/30 hover:bg-purple-950/20 hover:shadow-lg hover:shadow-purple-950/30 md:p-9"
+                >
+                  <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+                  <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-purple-700/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
+
+                  <div className="relative z-10 flex h-full flex-col">
+                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-purple-950/40">
+                      <Icon className="h-7 w-7 text-purple-100" />
+                    </div>
+
+                    <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-purple-200/75">
+                      {service.eyebrow}
+                    </p>
+
+                    <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white">
+                      {service.title}
+                    </h2>
+
+                    <p className="mt-4 flex-1 leading-8 text-gray-400">
+                      {service.description}
+                    </p>
+
+                    <div className="mt-8 inline-flex items-center gap-2 uppercase text-gray-300 transition group-hover:text-purple-200">
+                      <span>Explore service</span>
+                      <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* CTA — now opens the modal */}
+        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="text-center mt-20"
+          className="mt-20"
         >
-          <button
-            onClick={() => setOpen(true)}
-            className="inline-flex items-center justify-center lg:px-12 md:px-10 px-8 lg:py-5 md:py-4 py-3 bg-linear-to-r from-purple-200 via-purple-100 to-purple-50 text-black hover:from-indigo-900 hover:via-indigo-700 hover:to-purple-600 transition-all duration-300 hover:text-white lg:text-2xl md:text-xl text-lg font-bold rounded-full shadow-2xl"
-          >
-            Start Your Project Today
-          </button>
+          <div className="relative overflow-hidden rounded-3xl border border-gray-700/70 bg-linear-to-tl from-gray-800/40 via-gray-900/40 to-gray-950/40 p-8 text-center shadow-sm shadow-gray-900/40 md:p-10 lg:p-12">
+            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+            <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-purple-700/10 blur-3xl" />
+
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-purple-100/80">
+              Start Your Project
+            </p>
+
+            <h3 className="mt-4 text-3xl font-bold text-white md:text-4xl">
+              Let’s build the right solution for your business
+            </h3>
+
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-purple-100 md:text-lg">
+              Tell us what you need and we’ll help you choose the right path —
+              whether it is a custom website, full-stack platform, AI solution,
+              or growth-focused digital system.
+            </p>
+
+            <button
+              onClick={() => setOpen(true)}
+              className="mt-8 inline-flex items-center justify-center rounded-xl bg-white px-8 py-3 text-base font-semibold text-purple-900 transition-all duration-300 hover:translate-y-[-1px]"
+            >
+              Start Your Project
+            </button>
+          </div>
         </motion.div>
       </div>
 
-      {/* Modal — identical to previous implementations */}
+      {/* Modal */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm px-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm"
             onClick={() => setOpen(false)}
           >
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
+              initial={{ scale: 0.96, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
+              exit={{ scale: 0.96, opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="bg-gray-900 rounded-2xl p-6 w-full max-w-2xl border border-gray-700 max-h-[90vh] overflow-y-auto relative"
+              className="relative max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl border border-gray-700 bg-gray-900 p-6"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setOpen(false)}
-                className="absolute top-4 right-4 text-gray-400 hover:text-white transition"
+                className="absolute right-4 top-4 text-gray-400 transition hover:text-white"
               >
                 ✕
               </button>
 
-              <h3 className="text-2xl font-bold text-purple-100 mb-6">
+              <h3 className="mb-6 text-2xl font-bold text-purple-100">
                 How would you like to continue?
               </h3>
 
               <div className="flex flex-col gap-4">
                 <button
                   onClick={handleWhatsApp}
-                  className="bg-green-500 hover:bg-green-400 text-black font-semibold py-4 rounded-xl transition-all"
+                  className="rounded-xl bg-green-500 py-4 font-semibold text-black transition-all hover:bg-green-400"
                 >
                   Continue on WhatsApp
                 </button>
@@ -171,27 +229,26 @@ export default function ServicesPage() {
                 <a
                   href="/contact-form"
                   onClick={() => setOpen(false)}
-                  className="border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold py-4 rounded-xl transition-all text-center block"
+                  className="block rounded-xl border border-purple-100 py-4 text-center font-semibold text-purple-100 transition-all hover:bg-purple-100 hover:text-black"
                 >
                   Use Email Form
                 </a>
 
                 <a
                   href="tel:+2349123631219"
-                  className="relative border border-purple-100 text-purple-100 hover:bg-purple-100 hover:text-black font-semibold py-4 rounded-xl transition-all text-center block overflow-hidden group"
+                  className="group relative block overflow-hidden rounded-xl border border-purple-100 py-4 text-center font-semibold text-purple-100 transition-all hover:bg-purple-100 hover:text-black"
                 >
                   <span className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:-translate-y-full">
                     Call Us
                   </span>
-
-                  <span className="absolute inset-0 flex items-center justify-center translate-y-full transition-transform duration-300 group-hover:translate-y-0">
+                  <span className="absolute inset-0 flex translate-y-full items-center justify-center transition-transform duration-300 group-hover:translate-y-0">
                     +234 912 363 1219
                   </span>
                 </a>
 
                 <button
                   onClick={() => setOpen(false)}
-                  className="text-gray-400 text-sm mt-2 hover:text-gray-200"
+                  className="mt-2 text-sm text-gray-400 hover:text-gray-200"
                 >
                   Cancel
                 </button>
@@ -200,6 +257,21 @@ export default function ServicesPage() {
           </motion.div>
         )}
       </AnimatePresence>
+          <Link
+              href="/packages"
+              className="group relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gray-700/10 py-6 text-base uppercase text-purple-100 transition-all duration-300 hover:border-purple-300/30 hover:text-purple-300 md:py-8 md:text-lg lg:py-12 lg:text-xl"
+            >
+              {/* subtle top highlight */}
+              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+      
+              {/* glow effect */}
+              <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-purple-700/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
+      
+              <span className="relative z-10 flex items-center gap-2">
+                See Our Packages
+                <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 md:h-6 md:w-6 lg:h-7 lg:w-7" />
+              </span>
+            </Link>
     </section>
   );
 }

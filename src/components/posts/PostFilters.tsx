@@ -85,7 +85,7 @@ export default function PostFilters({ categories }: Props) {
         <AppButton
           type="button"
           onClick={applyFilters}
-          className="hover:cursor-pointer bg-purple-600"
+          className="hover:cursor-pointer bg-purple-600/50"
         >
           Apply filters
         </AppButton>

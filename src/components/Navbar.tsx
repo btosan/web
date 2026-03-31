@@ -253,7 +253,7 @@ export default function Navbar() {
                 >
                   <div className="border-y-2 border-gray-700/80 bg-gray-950 shadow-xl shadow-gray-800">
                     <div className="mx-auto flex min-h-[70vh] w-full max-w-400 items-center px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20">
-                      <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4 xl:gap-6">
+                      <div className="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-2 xl:gap-6">
                         {insightsItems.map((item, idx) => (
                           <Link
                             key={idx}

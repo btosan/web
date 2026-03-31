@@ -38,7 +38,7 @@ export default function PostCard({ post }: PostCardProps) {
   return (
     <Link
       href={getPostHref(post.type, post.slug)}
-      className="group overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 transition hover:border-purple-400"
+      className="group overflow-hidden rounded-2xl border border-gray-800 bg-gray-950 transition hover:border-purple-300/60"
     >
       <div className="relative h-56 w-full overflow-hidden bg-gray-900">
         <Image
@@ -51,7 +51,7 @@ export default function PostCard({ post }: PostCardProps) {
 
       <div className="space-y-4 p-5">
         <div className="flex flex-wrap items-center gap-3 text-xs">
-          <span className="rounded-full border border-purple-400 bg-purple-950/30 px-3 py-1 text-purple-100">
+          <span className="rounded-full border border-purple-300/30 bg-purple-950/30 px-3 py-1 text-purple-100">
             {post.type}
           </span>
 

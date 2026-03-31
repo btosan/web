@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from 'next/link';
+import { ChevronRight } from "lucide-react";
 import PostDetail from "@/components/posts/PostDetail";
 import { getPublicPostBySlug } from "@/lib/actions/posts";
 import { notFound } from "next/navigation";

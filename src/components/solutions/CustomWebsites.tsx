@@ -1,11 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-// import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import {
   ArrowRight,
-  ArrowBigLeftDash,
   ChevronLeft,
   ChevronRight,
   Briefcase,
@@ -28,7 +26,6 @@ type ServiceCard = {
   icon: React.ReactNode;
 };
 
-
 type CarouselCard = {
   title: string;
   content: string;
@@ -41,46 +38,44 @@ const services: ServiceCard[] = [
     description:
       "Professional, modern websites crafted to build instant credibility, clearly communicate your value, guide visitors through strategic content flows, strengthen trust signals, and consistently convert interested visitors into qualified leads and long-term paying customers.",
     href: "/contact",
-    icon: <Briefcase size={42} className="text-purple-400" />,
+    icon: <Briefcase size={38} className="text-purple-400" />,
   },
   {
     title: "Corporate Websites",
     description:
       "Structured, scalable corporate websites designed for organizations that need strong authority, clear communication of complex services, intuitive navigation systems, stakeholder trust, professional presentation, and flexible architecture that supports long-term growth and expansion.",
     href: "/contact",
-    icon: <Building2 size={42} className="text-purple-400" />,
+    icon: <Building2 size={38} className="text-purple-400" />,
   },
   {
     title: "E-Commerce Websites",
     description:
       "High-converting online stores built with seamless shopping experiences, optimized product pages, persuasive product storytelling, secure payment integrations, mobile-first performance, and conversion-focused user journeys that increase sales, average order value, and repeat purchases.",
     href: "/contact",
-    icon: <ShoppingCart size={42} className="text-purple-400" />,
+    icon: <ShoppingCart size={38} className="text-purple-400" />,
   },
   {
     title: "Real Estate Websites",
     description:
       "Powerful property platforms featuring searchable listings, advanced filtering systems, high-quality visual galleries, interactive maps, detailed property pages, and integrated lead capture tools designed to connect agents with serious buyers and motivated sellers efficiently.",
     href: "/contact",
-    icon: <Home size={42} className="text-purple-400" />,
+    icon: <Home size={38} className="text-purple-400" />,
   },
   {
     title: "Landing Pages & Funnels",
     description:
       "High-impact landing pages and structured sales funnels optimized for marketing campaigns, paid ads, product launches, lead generation, and promotions, built to remove distractions, clarify messaging, strengthen persuasion, and maximize measurable conversion rates.",
     href: "/contact",
-    icon: <Rocket size={42} className="text-purple-400" />,
+    icon: <Rocket size={38} className="text-purple-400" />,
   },
   {
     title: "Portfolio / Personal Websites",
     description:
       "Modern personal and portfolio websites designed to showcase your work, highlight achievements, communicate your story, build authority in your field, attract premium opportunities, and position your personal brand as credible, polished, and professional.",
     href: "/contact",
-    icon: <User size={42} className="text-purple-400" />,
+    icon: <User size={38} className="text-purple-400" />,
   },
 ];
-
-
 
 const carouselData: CarouselCard[] = [
   {
@@ -121,14 +116,10 @@ const carouselData: CarouselCard[] = [
   },
 ];
 
-
 export default function CustomWebsitesSection() {
-
   const [showForm, setShowForm] = useState(false);
-
   const [index, setIndex] = useState(0);
 
-  // ✅ TOUCH STATE
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const minSwipeDistance = 50;
@@ -138,7 +129,6 @@ export default function CustomWebsitesSection() {
   const next = () =>
     setIndex((i) => (i === carouselData.length - 1 ? 0 : i + 1));
 
-  // ✅ SWIPE HANDLERS
   const onTouchStart = (e: React.TouchEvent) => {
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
@@ -158,196 +148,226 @@ export default function CustomWebsitesSection() {
 
   return (
     <section className="relative overflow-hidden bg-black text-white">
-        
-    {/* ================= HERO ================= */}
-<div className="relative isolate">
-  {/* Background Image */}
-  <Image
-    src="/assets/web/software2.jpg"
-    alt=""
-    fill
-    priority
-    className="object-cover -z-10"
-  />
+      {/* HERO */}
+      <div className="relative isolate overflow-hidden">
+        <Image
+          src="/assets/web/software2.jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover -z-10"
+        />
+        <div className="absolute inset-0 bg-black/80 -z-10" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/50 to-black -z-10" />
 
-  {/* Dark Overlay */}
-  <div className="absolute inset-0 lg:bg-black/80 bg-black/80 -z-10" />
-
-  {/* Content */}
-  <div className="relative z-10 mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20 py-24 grid md:grid-cols-2 gap-16 items-center-safe ">
-    <div>
-      <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-        Fast-Loading Custom Websites That Drive Real Business Results
-      </h1>
-      <p className="mt-6 text-gray-200 text-lg xl:text-xl">
-        We design and develop high-performance custom websites built for
-        speed, visibility, and conversion — transforming your site into a
-        powerful growth engine.
-      </p>
-    </div>
-      {!showForm ? (
-      <div
-        onClick={() => setShowForm(true)}
-        className="
-          bg-linear-to-tl from-gray-800/40 via-gray-900/40 to-gray-950/40
-          p-8 md:p-9 lg:p-10 rounded-3xl md:shadow-lg md:border-2 border border-gray-600/90
-          cursor-pointer transition-all duration-300 shadow-sm shadow-gray-700/50
-          hover:scale-[1.02] hover:shadow-gray-500/50
-          text-center text-white flex flex-col justify-center
-          min-h-105
-        "
-      >
-        <h2 className="text-3xl md:text-4xl font-bold">
-          Start Your Project
-        </h2>
-
-        <p className="mt-4 text-purple-100 text-lg max-w-md mx-auto">
-          Tell us about your idea and get a professional estimate within 24 hours.
-        </p>
-
-        <div className="mt-8 inline-flex items-center gap-3 text-sm md:text-base bg-white text-purple-900 px-4 md:px-6 py-3 rounded-xl font-semibold mx-auto">
-          Let’s Build Your Project <ChevronRight size={20} />
-        </div>
-      </div>
-    ) : (
-      <div className="relative animate-fadeIn">
-        {/* Close button */}
-        <button
-          onClick={() => setShowForm(false)}
-          className="absolute -top-4 -right-4 bg-white text-red-500 font-bold hover:cursor-pointer w-9 h-9 rounded-full shadow-md flex items-center justify-center hover:scale-110 transition"
-        >
-          ✕
-        </button>
-
-        <GoogleEnquiryLight />
-      </div>
-    )}
-
-    </div>
-  </div>
-
-
-      {/* ================= SERVICES GRID ================= */}
-      <div className="bg-black text-purple-50 py-24 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold ">
-            Our Custom Website Development Services
-          </h2>
-          <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
-            Tailored websites built around your industry, audience, and growth
-            goals.
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 mt-16">
-            {services.map((service) => (
-                        <div
-            key={service.title}
-           className="group relative bg-linear-to-tl from-gray-900/10 via-gray-950 to-black p-8 md:p-10 rounded-2xl border border-gray-600 hover:border-gray-500 transition-all duration-300 shadow-sm shadow-gray-400/90 overflow-hidden"
-            >
-            {/* glow effect */}
-            <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-700/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition" />
-
-            <div className="mb-6">{service.icon}</div>
-
-            <h3 className="text-2xl font-semibold">{service.title}</h3>
-
-            <p className="text-gray-400 mt-4 leading-relaxed">
-                {service.description}
-            </p>
-
-            <Link
-                href={service.href}
-                className="inline-flex items-center gap-2 mt-6 uppercase text-gray-300 group-hover:text-purple-200 transition"
-            >
-                Get started <ArrowRight size={18} />
-            </Link>
+        <div className="relative z-10 mx-auto grid w-full items-center gap-12 px-6 py-24 md:grid-cols-2 md:px-16 lg:gap-16 lg:px-12 xl:px-16 2xl:px-20 2xl:py-28">
+          <div className="max-w-2xl">
+            <div className="mb-5 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm">
+              <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-purple-100 md:text-xs">
+                Custom Website Development
+              </span>
             </div>
 
+            <h1 className="text-3xl font-bold leading-tight md:text-4xl lg:text-5xl xl:text-6xl">
+              Fast-Loading Custom Websites That Drive Real Business Results
+            </h1>
+
+            <p className="mt-6 max-w-xl text-base leading-8 text-gray-200 md:text-lg xl:text-xl">
+              We design and develop high-performance custom websites built for
+              speed, visibility, and conversion — transforming your site into a
+              powerful growth engine.
+            </p>
+          </div>
+
+          {!showForm ? (
+            <div
+              onClick={() => setShowForm(true)}
+              className="group relative flex min-h-90 cursor-pointer flex-col justify-between overflow-hidden rounded-3xl border border-gray-600/80 bg-linear-to-tl from-gray-800/40 via-gray-900/40 to-gray-950/40 p-8 text-white shadow-sm shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg hover:shadow-gray-500/40 md:p-9 lg:p-10"
+            >
+              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+              <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-purple-700/10 blur-3xl transition-opacity duration-300 group-hover:opacity-100" />
+
+              <div>
+                <p className="text-xs font-medium uppercase tracking-[0.22em] text-purple-100/80">
+                  Start Your Project
+                </p>
+                <h2 className="mt-4 text-3xl font-bold md:text-4xl">
+                  Let’s build a website that performs
+                </h2>
+                <p className="mt-5 max-w-md text-base leading-8 text-purple-100 md:text-lg">
+                  Tell us about your idea and get a professional estimate within
+                  24 hours.
+                </p>
+              </div>
+
+              <div className="mt-10 inline-flex items-center gap-3 self-start rounded-xl bg-white px-4 py-3 font-semibold text-purple-900 transition-transform duration-300 group-hover:translate-x-1 md:px-6">
+                Let’s Build Your Project
+                <ChevronRight size={20} />
+              </div>
+            </div>
+          ) : (
+            <div className="relative animate-fadeIn rounded-3xl border border-gray-700/70 bg-gray-950/80 p-2 shadow-xl shadow-black/30 backdrop-blur-sm">
+              <button
+                onClick={() => setShowForm(false)}
+                className="absolute -right-3 -top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white font-bold text-red-500 shadow-md transition hover:scale-110"
+              >
+                ✕
+              </button>
+              <GoogleEnquiryLight />
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* SERVICES GRID */}
+      <div className="bg-black px-6 py-24 text-purple-50">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-bold md:text-4xl">
+              Our Custom Website Development Services
+            </h2>
+            <p className="mt-4 text-gray-300">
+              Tailored websites built around your industry, audience, and
+              growth goals.
+            </p>
+          </div>
+
+          <div className="mt-16 grid gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
+            {services.map((service) => (
+              <div
+                key={service.title}
+                className="group relative overflow-hidden rounded-3xl border border-gray-600/80 bg-linear-to-tl from-gray-900/20 via-gray-950 to-black p-8 shadow-sm shadow-gray-400/40 transition-all duration-300 hover:border-gray-500 hover:shadow-md hover:shadow-gray-500/30 md:p-10"
+              >
+                <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-purple-700/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
+
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-purple-950/40">
+                  {service.icon}
+                </div>
+
+                <h3 className="text-2xl font-semibold tracking-tight">
+                  {service.title}
+                </h3>
+
+                <p className="mt-4 max-w-xl leading-8 text-gray-400">
+                  {service.description}
+                </p>
+
+                <Link
+                  href={service.href}
+                  className="mt-7 inline-flex items-center gap-2 uppercase text-gray-300 transition group-hover:text-purple-200"
+                >
+                  Get started
+                  <ArrowRight size={18} />
+                </Link>
+              </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* ================= CAROUSEL ================= */}
-      <div className="py-20 px-4 md:px-6 bg-gray-950">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl lg:tracking-wider font-bold">
-            Types of Websites We Build
-          </h2>
-          <p className="mt-4 text-gray-200">
-            From growth-focused business sites to advanced digital platforms.
-          </p>
+      {/* CAROUSEL */}
+      <div className="bg-gray-950 px-4 py-20 md:px-6">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-bold md:text-4xl lg:tracking-wide">
+              Types of Websites We Build
+            </h2>
+            <p className="mt-4 text-gray-200">
+              From growth-focused business sites to advanced digital platforms.
+            </p>
+          </div>
 
           <div className="relative mt-16">
-            <div className="hidden lg:flex justify-center items-center gap-16 lg:gap-20 xl:gap-24 mt-16 mb-4">
-                <button
-                    onClick={prev}
-                    className="flex items-center gap-3 hover:text-gray-300 hover:cursor-pointer text-purple-100 transition"
-                >
-                    <ArrowLeft size={40} strokeWidth={1.5} />
-                    <span className="text-lg tracking-wide"></span>
-                </button>
+            <div className="mb-6 hidden items-center justify-center gap-16 lg:flex xl:gap-24">
+              <button
+                onClick={prev}
+                className="flex items-center gap-3 text-purple-100 transition hover:cursor-pointer hover:text-gray-300"
+              >
+                <ArrowLeft className="h-5 w-5 md:h-7 md:w-7" strokeWidth={1.5} />
+              </button>
 
-                <button
-                    onClick={next}
-                    className="flex items-center gap-3 text-purple-200 hover:text-white hover:cursor-pointer transition"
-                >
-                    <span className="text-lg tracking-wide"></span>
-                    <ArrowRight size={40} strokeWidth={1.5} />
-                </button>
-              </div>
+              <button
+                onClick={next}
+                className="flex items-center gap-3 text-purple-200 transition hover:cursor-pointer hover:text-white"
+              >
+                <ArrowRight className="h-5 w-5 md:h-7 md:w-7" strokeWidth={1.5} />
+              </button>
+            </div>
 
-            <div 
-              className="grid md:grid-cols-2 gap-10 items-center shadow-sm shadow-gray-500 bg-linear-to-br from-gray-950 via-indigo-950 to-purple-950 rounded-sm md:p-8 p-0"
+            <div
+              className="grid items-stretch gap-0 overflow-hidden rounded-3xl border border-gray-700/70 bg-linear-to-br from-gray-950 via-indigo-950 to-purple-950 shadow-lg shadow-gray-900/40 md:grid-cols-2"
               onTouchStart={onTouchStart}
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEnd}
             >
-              <Image
-                src={carouselData[index].image}
-                alt="websites"
-                className="rounded-t-xl object-cover w-full h-56 md:h-96"
-                width={100}
-                height={100}
-              />
-              <div className="text-left px-6 md:px-0">
-                <h3 className="md:text-2xl lg:text-3xl text-xl font-semibold">
+              <div className="relative min-h-70 md:min-h-115">
+                <Image
+                  src={carouselData[index].image}
+                  alt="websites"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="flex flex-col justify-center px-6 py-8 md:px-10 lg:px-12">
+                <p className="mb-3 text-xs font-medium uppercase tracking-[0.22em] text-purple-100/80">
+                  Website Type
+                </p>
+                <h3 className="text-xl font-semibold md:text-2xl lg:text-3xl">
                   {carouselData[index].title}
                 </h3>
-                <p className="text-gray-300 text-base md:text-lg lg:text-xl mt-4 ">
+                <p className="mt-5 text-base leading-8 text-gray-300 md:text-lg lg:text-xl">
                   {carouselData[index].content}
                 </p>
-                <div className="py-4 md:mb-0 my-4">
-                  <Link href='/contact' className="flex items-center gap-1 uppercase hover:text-purple-200 ">
-                  <span>Get Started </span>
-                    <ArrowRight className="h-5 w-5"/>
+                <div className="mt-8">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 uppercase transition hover:text-purple-200"
+                  >
+                    <span>Get Started</span>
+                    <ArrowRight className="h-5 w-5" />
                   </Link>
                 </div>
               </div>
             </div>
 
-            <div className="lg:hidden flex justify-center items-center gap-4 my-4">
-                <button
-                    onClick={prev}
-                    className="flex items-center gap-3 text-gray-300 hover:cursor-pointer hover:text-purple-300 transition"
-                >
-                    <ChevronLeft className="w-6 h-6"/>
-                    <span className="text-lg tracking-wide"></span>
-                </button>
-                <span className="text-xs">swipe</span>
-                <button
-                    onClick={next}
-                    className="flex items-center gap-3 text-purple-300 hover:text-white hover:cursor-pointer transition"
-                >
-                    <span className="text-lg tracking-wide"></span>
-                    <ChevronRight className="w-6 h-6" />
-                </button>
-              </div>
+            <div className="my-5 flex items-center justify-center gap-4 lg:hidden">
+              <button
+                onClick={prev}
+                className="flex items-center gap-3 text-gray-300 transition hover:cursor-pointer hover:text-purple-300"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+              <span className="text-xs text-gray-400">swipe</span>
+              <button
+                onClick={next}
+                className="flex items-center gap-3 text-purple-300 transition hover:text-white"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
+
       <OurProcess />
       <TechStack />
+      <Link
+        href="/services"
+        className="group relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gray-700/10 py-6 text-base uppercase text-purple-100 transition-all duration-300 hover:border-purple-300/30 hover:text-purple-300 md:py-8 md:text-lg lg:py-12 lg:text-xl"
+      >
+        {/* subtle top highlight */}
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+
+        {/* glow effect */}
+        <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-purple-700/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
+
+        <span className="relative z-10 flex items-center gap-2">
+          All Services & Solutions
+          <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 md:h-6 md:w-6 lg:h-7 lg:w-7" />
+        </span>
+      </Link>
     </section>
   );
 }

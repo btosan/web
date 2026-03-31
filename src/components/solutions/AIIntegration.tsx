@@ -37,42 +37,42 @@ const services: ServiceCard[] = [
     description:
       "AI-powered conversational agents for customer support, lead generation, and interactive user experiences across web and mobile platforms.",
     href: "/contact",
-    icon: <User size={42} className="text-purple-400" />,
+    icon: <User size={38} className="text-purple-400" />,
   },
   {
     title: "Recommendation Systems",
     description:
       "Deliver personalized suggestions and content to users using AI algorithms, boosting engagement, retention, and conversions.",
     href: "/contact",
-    icon: <Rocket size={42} className="text-purple-400" />,
+    icon: <Rocket size={38} className="text-purple-400" />,
   },
   {
     title: "Predictive Analytics & Insights",
     description:
       "Leverage AI models to analyze data, forecast trends, and provide actionable insights for smarter business decisions.",
     href: "/contact",
-    icon: <Briefcase size={42} className="text-purple-400" />,
+    icon: <Briefcase size={38} className="text-purple-400" />,
   },
   {
     title: "AI-Driven Insights",
     description:
       "Analyze user behavior, product data, and trends with AI models to provide actionable insights and smarter decision-making.",
     href: "/contact",
-    icon: <Building2 size={42} className="text-purple-400" />,
+    icon: <Building2 size={38} className="text-purple-400" />,
   },
   {
     title: "Computer Vision & Image Recognition",
     description:
       "Integrate AI for visual data understanding, object detection, image classification, and augmented user experiences.",
     href: "/contact",
-    icon: <Home size={42} className="text-purple-400" />,
+    icon: <Home size={38} className="text-purple-400" />,
   },
   {
     title: "AI-Enhanced SaaS Platforms",
     description:
       "Embed AI into your products for smarter dashboards, adaptive UIs, predictive features, and intelligent recommendations.",
     href: "/contact",
-    icon: <User size={42} className="text-purple-400" />,
+    icon: <User size={38} className="text-purple-400" />,
   },
 ];
 
@@ -81,37 +81,37 @@ const carouselData: CarouselCard[] = [
     title: "AI-Powered Chatbots",
     content:
       "Intelligent chatbots for web and mobile platforms, improving engagement, lead capture, and support.",
-    image: "/assets/ai/ai1.jpg",
+    image: "/assets/services-type/chatbot.png",
   },
   {
     title: "Personalized Recommendations",
     content:
       "AI algorithms delivering tailored content and product suggestions to your users.",
-    image: "/assets/ai/ai2.jpg",
+    image: "/assets/services-type/notification.png",
   },
   {
     title: "Predictive Insights",
     content:
       "Leverage AI to forecast trends, identify patterns, and provide actionable business insights.",
-    image: "/assets/ai/ai3.jpg",
+    image: "/assets/services-type/data-processing.png",
   },
   {
     title: "Automation & Intelligent Workflows",
     content:
       "Streamline operations and reduce manual tasks using AI-driven automation across platforms.",
-    image: "/assets/ai/ai4.jpg",
+    image: "/assets/services-type/automation.png",
   },
   {
     title: "Computer Vision & Imaging",
     content:
       "Integrate AI for image recognition, object detection, and advanced visual analytics.",
-    image: "/assets/ai/ai5.jpg",
+    image: "/assets/services-type/computer-vision.png",
   },
   {
     title: "AI-Enhanced SaaS Solutions",
     content:
       "Build smarter SaaS platforms with adaptive dashboards, predictive features, and intelligent user experiences.",
-    image: "/assets/ai/ai6.jpg",
+    image: "/assets/services-type/dashboard.png",
   },
 ];
 
@@ -132,8 +132,10 @@ export default function AIIntegrationSection() {
     setTouchEnd(null);
     setTouchStart(e.targetTouches[0].clientX);
   };
+
   const onTouchMove = (e: React.TouchEvent) =>
     setTouchEnd(e.targetTouches[0].clientX);
+
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
@@ -143,55 +145,68 @@ export default function AIIntegrationSection() {
 
   return (
     <section className="relative overflow-hidden bg-black text-white">
-      {/* ================= HERO ================= */}
-      <div className="relative isolate">
+      {/* HERO */}
+      <div className="relative isolate overflow-hidden">
         <Image
-          src="/assets/ai/ai-hero.jpg"
+          src="/assets/services-type/workflow.png"
           alt=""
           fill
           priority
           className="object-cover -z-10"
         />
-
-        {/* Overlay matched to CustomWebsitesSection */}
         <div className="absolute inset-0 bg-black/90 -z-10" />
+        <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/55 to-black -z-10" />
 
-        <div className="relative z-10 mx-auto w-full px-6 md:px-16 lg:px-12 xl:px-16 2xl:px-20 py-24 grid md:grid-cols-2 gap-16 items-center-safe ">
-          <div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+        <div className="relative z-10 mx-auto grid w-full items-center gap-12 px-6 py-24 md:grid-cols-2 md:px-16 lg:gap-16 lg:px-12 xl:px-16 2xl:px-20 2xl:py-28">
+          <div className="max-w-2xl">
+            <div className="mb-5 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm">
+              <span className="text-[11px] font-medium uppercase tracking-[0.22em] text-purple-100 md:text-xs">
+                AI Integration
+              </span>
+            </div>
+
+            <h1 className="text-3xl font-bold leading-tight md:text-4xl lg:text-5xl xl:text-6xl">
               Smart Features & AI Integration
             </h1>
-            <p className="mt-6 text-gray-200 text-lg xl:text-xl">
-              We embed AI into your products and platforms — chatbots, recommendation
-              systems, data insights, and intelligent user experiences.
+
+            <p className="mt-6 max-w-xl text-base leading-8 text-gray-200 md:text-lg xl:text-xl">
+              We embed AI into your products and platforms — chatbots,
+              recommendation systems, data insights, and intelligent user
+              experiences.
             </p>
           </div>
 
           {!showForm ? (
             <div
               onClick={() => setShowForm(true)}
-              className="
-                bg-linear-to-tl from-gray-800/40 via-gray-900/40 to-gray-950/40
-                p-8 md:p-9 lg:p-10 rounded-3xl md:shadow-lg md:border-2 border border-gray-600/90
-                cursor-pointer transition-all duration-300 shadow-sm shadow-gray-700/50
-                hover:scale-[1.02] hover:shadow-gray-500/50
-                text-center text-white flex flex-col justify-center
-                min-h-105
-              "
+              className="group relative flex min-h-90 cursor-pointer flex-col justify-between overflow-hidden rounded-3xl border border-gray-600/80 bg-linear-to-tl from-gray-800/40 via-gray-900/40 to-gray-950/40 p-8 text-white shadow-sm shadow-gray-700/50 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg hover:shadow-gray-500/40 md:p-9 lg:p-10"
             >
-              <h2 className="text-3xl md:text-4xl font-bold">Start Your AI Project</h2>
-              <p className="mt-4 text-purple-100 text-lg max-w-md mx-auto">
-                Tell us about your idea and get a professional estimate within 24 hours.
-              </p>
-              <div className="mt-8 inline-flex items-center gap-3 text-sm md:text-base bg-white text-purple-900 px-4 md:px-6 py-3 rounded-xl font-semibold mx-auto">
-                Let’s Build Your AI Project <ChevronRight size={20} />
+              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+              <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-purple-700/10 blur-3xl transition-opacity duration-300 group-hover:opacity-100" />
+
+              <div>
+                <p className="text-xs font-medium uppercase tracking-[0.22em] text-purple-100/80">
+                  Start Your AI Project
+                </p>
+                <h2 className="mt-4 text-3xl font-bold md:text-4xl">
+                  Let’s build something intelligent
+                </h2>
+                <p className="mt-5 max-w-md text-base leading-8 text-purple-100 md:text-lg">
+                  Tell us about your idea and get a professional estimate within
+                  24 hours.
+                </p>
+              </div>
+
+              <div className="mt-10 inline-flex items-center gap-3 self-start rounded-xl bg-white px-4 py-3 font-semibold text-purple-900 transition-transform duration-300 group-hover:translate-x-1 md:px-6">
+                Let’s Build Your AI Project
+                <ChevronRight size={20} />
               </div>
             </div>
           ) : (
-            <div className="relative animate-fadeIn">
+            <div className="relative animate-fadeIn rounded-3xl border border-gray-700/70 bg-gray-950/80 p-2 shadow-xl shadow-black/30 backdrop-blur-sm">
               <button
                 onClick={() => setShowForm(false)}
-                className="absolute -top-4 -right-4 bg-white text-red-500 font-bold hover:cursor-pointer w-9 h-9 rounded-full shadow-md flex items-center justify-center hover:scale-110 transition"
+                className="absolute -right-3 -top-3 flex h-9 w-9 items-center justify-center rounded-full bg-white font-bold text-red-500 shadow-md transition hover:scale-110"
               >
                 ✕
               </button>
@@ -201,31 +216,46 @@ export default function AIIntegrationSection() {
         </div>
       </div>
 
-      {/* ================= SERVICES GRID ================= */}
-      <div className="bg-black text-purple-50 py-24 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold ">
-            Our AI Integration Services
-          </h2>
-          <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
-            Intelligent features and AI solutions built around your product and users.
-          </p>
+      {/* SERVICES GRID */}
+      <div className="bg-black px-6 py-24 text-purple-50">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-bold md:text-4xl">
+              Our AI Integration Services
+            </h2>
+            <p className="mt-4 text-gray-300">
+              Intelligent features and AI solutions built around your product,
+              workflows, and users.
+            </p>
+          </div>
 
-          <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 mt-16">
+          <div className="mt-16 grid gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
             {services.map((service) => (
               <div
                 key={service.title}
-                className="group relative bg-linear-to-tl from-gray-900/10 via-gray-950 to-black p-8 md:p-10 rounded-2xl border border-gray-600 hover:border-gray-500 transition-all duration-300 shadow-sm shadow-gray-400/90 overflow-hidden"
+                className="group relative overflow-hidden rounded-3xl border border-gray-600/80 bg-linear-to-tl from-gray-900/20 via-gray-950 to-black p-8 shadow-sm shadow-gray-400/40 transition-all duration-300 hover:border-gray-500 hover:shadow-md hover:shadow-gray-500/30 md:p-10"
               >
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-700/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition" />
-                <div className="mb-6">{service.icon}</div>
-                <h3 className="text-2xl font-semibold">{service.title}</h3>
-                <p className="text-gray-400 mt-4 leading-relaxed">{service.description}</p>
+                <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-purple-700/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
+
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-purple-950/40">
+                  {service.icon}
+                </div>
+
+                <h3 className="text-2xl font-semibold tracking-tight">
+                  {service.title}
+                </h3>
+
+                <p className="mt-4 max-w-xl leading-8 text-gray-400">
+                  {service.description}
+                </p>
+
                 <Link
                   href={service.href}
-                  className="inline-flex items-center gap-2 mt-6 uppercase text-gray-300 group-hover:text-purple-200 transition"
+                  className="mt-7 inline-flex items-center gap-2 uppercase text-gray-300 transition group-hover:text-purple-200"
                 >
-                  Get started <ArrowRight size={18} />
+                  Get started
+                  <ArrowRight size={18} />
                 </Link>
               </div>
             ))}
@@ -233,79 +263,86 @@ export default function AIIntegrationSection() {
         </div>
       </div>
 
-      {/* ================= CAROUSEL ================= */}
-      <div className="py-20 px-4 md:px-6 bg-gray-950">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl lg:tracking-wider font-bold">
-            Types of AI Features We Build
-          </h2>
-          <p className="mt-4 text-gray-200">
-            From smart assistants to predictive analytics and intelligent SaaS features.
-          </p>
+      {/* CAROUSEL */}
+      <div className="bg-gray-950 px-4 py-20 md:px-6">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-3xl font-bold md:text-4xl lg:tracking-wide">
+              Types of AI Features We Build
+            </h2>
+            <p className="mt-4 text-gray-200">
+              From smart assistants to predictive analytics and intelligent SaaS
+              features.
+            </p>
+          </div>
 
           <div className="relative mt-16">
-            <div className="hidden lg:flex justify-center items-center gap-16 lg:gap-20 xl:gap-24 mt-16 mb-4">
+            <div className="mb-6 hidden items-center justify-center gap-16 lg:flex xl:gap-24">
               <button
                 onClick={prev}
-                className="flex items-center gap-3 hover:text-gray-300 hover:cursor-pointer text-purple-100 transition"
+                className="flex items-center gap-3 text-purple-100 transition hover:cursor-pointer hover:text-gray-300"
               >
-                <ArrowLeft size={40} strokeWidth={1.5} />
-                <span className="text-lg tracking-wide"></span>
+                <ArrowLeft className="h-5 w-5 md:h-7 md:w-7" strokeWidth={1.5} />
               </button>
 
               <button
                 onClick={next}
-                className="flex items-center gap-3 text-purple-200 hover:text-white hover:cursor-pointer transition"
+                className="flex items-center gap-3 text-purple-200 transition hover:cursor-pointer hover:text-white"
               >
-                <span className="text-lg tracking-wide"></span>
-                <ArrowRight size={40} strokeWidth={1.5} />
+                <ArrowRight className="h-5 w-5 md:h-7 md:w-7" strokeWidth={1.5} />
               </button>
             </div>
 
             <div
-              className="grid md:grid-cols-2 gap-10 items-center shadow-sm shadow-gray-500 bg-linear-to-br from-gray-950 via-indigo-950 to-purple-950 rounded-sm md:p-8 p-0"
+              className="grid items-stretch gap-0 overflow-hidden rounded-3xl border border-gray-700/70 bg-linear-to-br from-gray-950 via-indigo-950 to-purple-950 shadow-lg shadow-gray-900/40 md:grid-cols-2"
               onTouchStart={onTouchStart}
               onTouchMove={onTouchMove}
               onTouchEnd={onTouchEnd}
             >
-              <Image
-                src={carouselData[index].image}
-                alt="AI features"
-                className="rounded-t-xl object-cover w-full h-56 md:h-96"
-                width={100}
-                height={100}
-              />
-              <div className="text-left px-6 md:px-0 ">
-                <h3 className="md:text-2xl lg:text-3xl text-xl font-semibold">
+              <div className="relative min-h-70 md:min-h-115">
+                <Image
+                  src={carouselData[index].image}
+                  alt="AI features"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="flex flex-col justify-center px-6 py-8 md:px-10 lg:px-12">
+                <p className="mb-3 text-xs font-medium uppercase tracking-[0.22em] text-purple-100/80">
+                  AI Feature Type
+                </p>
+                <h3 className="text-xl font-semibold md:text-2xl lg:text-3xl">
                   {carouselData[index].title}
                 </h3>
-                <p className="text-gray-300 text-base md:text-lg lg:text-xl mt-4 ">
+                <p className="mt-5 text-base leading-8 text-gray-300 md:text-lg lg:text-xl">
                   {carouselData[index].content}
                 </p>
-                <div className="py-4 md:mb-0 my-4">
-                  <Link href="/contact" className="flex items-center gap-1 uppercase hover:text-purple-200 ">
-                    <span>Get Started </span>
-                    <ArrowRight className="h-5 w-5"/>
+                <div className="mt-8">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 uppercase transition hover:text-purple-200"
+                  >
+                    <span>Get Started</span>
+                    <ArrowRight className="h-5 w-5" />
                   </Link>
                 </div>
               </div>
             </div>
 
-            <div className="lg:hidden flex justify-center items-center gap-4 my-4">
+            <div className="my-5 flex items-center justify-center gap-4 lg:hidden">
               <button
                 onClick={prev}
-                className="flex items-center gap-3 text-gray-300 hover:cursor-pointer hover:text-purple-300 transition"
+                className="flex items-center gap-3 text-gray-300 transition hover:cursor-pointer hover:text-purple-300"
               >
-                <ChevronLeft className="w-6 h-6"/>
-                <span className="text-lg tracking-wide"></span>
+                <ChevronLeft className="h-6 w-6" />
               </button>
-              <span className="text-xs">swipe</span>
+              <span className="text-xs text-gray-400">swipe</span>
               <button
                 onClick={next}
-                className="flex items-center gap-3 text-purple-300 hover:text-white hover:cursor-pointer transition"
+                className="flex items-center gap-3 text-purple-300 transition hover:text-white"
               >
-                <span className="text-lg tracking-wide"></span>
-                <ChevronRight className="w-6 h-6" />
+                <ChevronRight className="h-6 w-6" />
               </button>
             </div>
           </div>
@@ -314,6 +351,21 @@ export default function AIIntegrationSection() {
 
       <OurProcess />
       <TechStack />
+      <Link
+        href="/services"
+        className="group relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gray-700/10 py-6 text-base uppercase text-purple-100 transition-all duration-300 hover:border-purple-300/30 hover:text-purple-300 md:py-8 md:text-lg lg:py-12 lg:text-xl"
+      >
+        {/* subtle top highlight */}
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+
+        {/* glow effect */}
+        <div className="absolute -right-10 -top-10 h-24 w-24 rounded-full bg-purple-700/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
+
+        <span className="relative z-10 flex items-center gap-2">
+          All Services & Solutions
+          <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 md:h-6 md:w-6 lg:h-7 lg:w-7" />
+        </span>
+      </Link>
     </section>
   );
 }

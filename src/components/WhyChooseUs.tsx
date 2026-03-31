@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Link from 'next/link';
 import { motion, AnimatePresence } from "framer-motion";
-import { Code2, Bot, Zap, Shield, Palette, Rocket } from "lucide-react";
+import { Code2, Bot, Zap, Shield, Palette, Rocket, ChevronRight } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
@@ -177,11 +178,11 @@ export default function WhyChooseUsSection() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="text-center"
+          className="flex items-center justify-center mx-auto w-full text-center mb-4"
         >
           <button
             onClick={() => setOpen(true)}
-            className="inline-flex items-center justify-center lg:px-12 md:px-10 px-8 lg:py-5 md:py-4 py-3 bg-linear-to-bl hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black hover:bg-linear-to-r from-indigo-800/5 via-purple-800/5 to-purple-600/5 transition-all duration-300 text-purple-200 lg:text-2xl md:text-xl text-lg font-medium rounded-xs shadow-2xl cursor-pointer"
+            className=" lg:px-12 md:px-10 px-8 lg:py-6 md:py-5 py-4 uppercase bg-linear-to-bl hover:from-blue-100 hover:via-purple-100 hover:to-purple-200 hover:text-black hover:bg-linear-to-r from-indigo-800/5 via-purple-800/5 to-purple-600/5 transition-all duration-300 text-purple-200 lg:text-xl md:text-lg text-base rounded-xs shadow-2xl cursor-pointer"
           >
             Start Your Project Today
           </button>
@@ -244,6 +245,21 @@ export default function WhyChooseUsSection() {
           </motion.div>
         )}
       </AnimatePresence>
+      <Link
+        href="/services"
+        className="group relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gray-700/10 py-6 text-base uppercase text-purple-100 transition-all duration-300 hover:border-purple-300/30 hover:text-purple-300 md:py-8 md:text-lg lg:py-12 lg:text-xl"
+      >
+        {/* subtle top highlight */}
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+
+        {/* glow effect */}
+        <div className="absolute right-10 -top-10 h-24 w-24 rounded-full bg-purple-700/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
+
+        <span className="relative z-10 flex items-center gap-2">
+          See Services & Solutions
+          <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 md:h-6 md:w-6 lg:h-7 lg:w-7" />
+        </span>
+      </Link>
 
       <style jsx>{`
         :global(.swiper-pagination) {
@@ -266,6 +282,7 @@ export default function WhyChooseUsSection() {
           transform: scale(1.25);
         }
       `}</style>
+
     </section>
   );
 }
