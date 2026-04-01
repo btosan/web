@@ -66,7 +66,7 @@ export default function PackageCard({ pkg }: PackageCardProps) {
         <div className="pt-4">
           <Link
             href={`/packages/${pkg.slug}`}
-            className="inline-flex h-11 w-full items-center justify-center rounded-xl bg-purple-600 px-4 text-sm font-medium text-white transition hover:bg-purple-500"
+            className="inline-flex h-11 w-full items-center justify-center rounded-xl bg-purple-600/60 px-4 text-sm font-medium text-white transition hover:bg-purple-500/50"
           >
             View Package
           </Link>
