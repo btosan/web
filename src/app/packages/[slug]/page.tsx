@@ -53,7 +53,7 @@ export default async function PackageDetailPage({ params }: Props) {
                 <h2 className="text-lg font-semibold text-white">Overview</h2>
 
                 <div className="prose prose-invert mt-4 max-w-none prose-p:text-gray-300">
-                  <RichTextDisplay content={pkg.content} />
+                  <RichTextDisplay content={pkg.description} />
                 </div>
               </div>
 
@@ -64,7 +64,7 @@ export default async function PackageDetailPage({ params }: Props) {
                   </h2>
 
                   <div className="prose prose-invert mt-4 max-w-none prose-p:text-gray-300">
-                    <RichTextDisplay content={pkg.content} />
+                    <RichTextDisplay content={pkg.longDescription} />
                   </div>
                 </div>
               ) : null}
