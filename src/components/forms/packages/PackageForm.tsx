@@ -613,7 +613,7 @@ export default function PackageForm({
           <section className="space-y-5">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-lg font-semibold text-purple-400">Features</h2>
+                <h2 className="text-lg font-semibold text-purple-100">Features</h2>
                 <p className="text-sm text-gray-400">
                   Add package features shown on cards and detail pages.
                 </p>
@@ -771,7 +771,7 @@ export default function PackageForm({
           <section className="space-y-5">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-lg font-semibold text-purple-400">Add-ons</h2>
+                <h2 className="text-lg font-semibold text-purple-100">Add-ons</h2>
                 <p className="text-sm text-gray-400">
                   Add optional extras for this package.
                 </p>
