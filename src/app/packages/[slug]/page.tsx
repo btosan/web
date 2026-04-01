@@ -4,6 +4,7 @@ import { CheckCircle2, ChevronRight } from "lucide-react";
 
 import { getPublicPackageBySlug } from "@/lib/actions/packages";
 import { formatPackagePrice } from "@/components/packages/packages";
+import RichTextDisplay from "@/components/editorOld/RichTextDisplay";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -52,23 +53,20 @@ export default async function PackageDetailPage({ params }: Props) {
                 <h2 className="text-lg font-semibold text-white">Overview</h2>
 
                 <div className="prose prose-invert mt-4 max-w-none prose-p:text-gray-300">
-                  <div dangerouslySetInnerHTML={{ __html: pkg.description }} />
+                  <RichTextDisplay content={pkg.content} />
                 </div>
               </div>
 
               {pkg.longDescription ? (
                 <div className="mt-6 rounded-2xl border border-white/10 bg-zinc-950 p-6">
                   <h2 className="text-lg font-semibold text-white">
-                    What’s included
+                    Package description
                   </h2>
 
                   <div className="prose prose-invert mt-4 max-w-none prose-p:text-gray-300">
-                    <div
-                      dangerouslySetInnerHTML={{ __html: pkg.longDescription }}
-                    />
-                  </div>
+                    <RichTextDisplay content={pkg.content} />
                 </div>
-              ) : null}
+                ) : null}
             </div>
 
             <aside className="h-fit rounded-2xl border border-white/10 bg-zinc-950 p-6">
