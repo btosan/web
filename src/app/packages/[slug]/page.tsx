@@ -60,11 +60,11 @@ export default async function PackageDetailPage({ params }: Props) {
               {pkg.longDescription ? (
                 <div className="mt-6 rounded-2xl border border-white/10 bg-zinc-950 p-6">
                   <h2 className="text-lg font-semibold text-white">
-                    Package description
+                    What’s included
                   </h2>
 
                   <div className="prose prose-invert mt-4 max-w-none prose-p:text-gray-300">
-                    <RichTextDisplay content={pkg.longDescription} />
+                    <RichTextDisplay content={pkg.content} />
                   </div>
                 </div>
               ) : null}
@@ -153,47 +153,54 @@ export default async function PackageDetailPage({ params }: Props) {
               </Link>
             </aside>
           </div>
+        </div>
+        <div className="mt-8 md:mt-16 lg:mt-24">
+          <Link
+            href="/packages"
+            className="group relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gray-700/10 py-6 text-base uppercase text-purple-100 transition-all duration-300 hover:border-purple-300/30 hover:text-purple-300 md:py-8 md:text-lg lg:py-12 lg:text-xl"
+          >
+            {/* subtle top highlight */}
+            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+  
+            {/* glow effect */}
+            <div className="absolute right-10 -top-10 h-24 w-24 rounded-full bg-purple-700/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
+  
+            <span className="relative z-10 flex items-center gap-2">
+              See All Packages
+              <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 md:h-6 md:w-6 lg:h-7 lg:w-7" />
+            </span>
+          </Link> 
+          <Link
+            href="/services"
+            className="group relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gray-700/10 py-6 text-base uppercase text-purple-100 transition-all duration-300 hover:border-purple-300/30 hover:text-purple-300 md:py-8 md:text-lg lg:py-12 lg:text-xl"
+          >
+            {/* subtle top highlight */}
+            <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+  
+            {/* glow effect */}
+            <div className="absolute right-10 -top-10 h-24 w-24 rounded-full bg-purple-700/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
+  
+            <span className="relative z-10 flex items-center gap-2">
+              See Services & Solutions
+              <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 md:h-6 md:w-6 lg:h-7 lg:w-7" />
+            </span>
+          </Link>
 
-          <div className="mt-8 md:mt-16 lg:mt-24 space-y-4">
-            <Link
-              href="/packages"
-              className="group relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gray-700/10 py-6 text-base uppercase text-purple-100 transition-all duration-300 hover:border-purple-300/30 hover:text-purple-300 md:py-8 md:text-lg lg:py-12 lg:text-xl"
-            >
-              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
-              <div className="absolute right-10 -top-10 h-24 w-24 rounded-full bg-purple-700/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
-
-              <span className="relative z-10 flex items-center gap-2">
-                See All Packages
-                <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 md:h-6 md:w-6 lg:h-7 lg:w-7" />
-              </span>
-            </Link>
-
-            <Link
-              href="/services"
-              className="group relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gray-700/10 py-6 text-base uppercase text-purple-100 transition-all duration-300 hover:border-purple-300/30 hover:text-purple-300 md:py-8 md:text-lg lg:py-12 lg:text-xl"
-            >
-              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
-              <div className="absolute right-10 -top-10 h-24 w-24 rounded-full bg-purple-700/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
-
-              <span className="relative z-10 flex items-center gap-2">
-                See Services & Solutions
-                <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 md:h-6 md:w-6 lg:h-7 lg:w-7" />
-              </span>
-            </Link>
-
-            <Link
-              href="/contact"
-              className="group relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gray-700/10 py-6 text-base uppercase text-purple-100 transition-all duration-300 hover:border-purple-300/30 hover:text-purple-300 md:py-8 md:text-lg lg:py-12 lg:text-xl"
-            >
-              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
-              <div className="absolute right-10 -top-10 h-24 w-24 rounded-full bg-purple-700/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
-
-              <span className="relative z-10 flex items-center gap-2">
-                Contact Us
-                <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 md:h-6 md:w-6 lg:h-7 lg:w-7" />
-              </span>
-            </Link>
-          </div>
+        <Link
+          href="/contact"
+          className="group relative mx-auto flex w-full items-center justify-center overflow-hidden rounded-2xl border border-white/10 bg-gray-700/10 py-6 text-base uppercase text-purple-100 transition-all duration-300 hover:border-purple-300/30 hover:text-purple-300 md:py-8 md:text-lg lg:py-12 lg:text-xl"
+        >
+          {/* subtle top highlight */}
+          <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/20 to-transparent" />
+  
+          {/* glow effect */}
+          <div className="absolute right-10 -top-10 h-24 w-24 rounded-full bg-purple-700/10 blur-3xl opacity-0 transition duration-300 group-hover:opacity-100" />
+  
+          <span className="relative z-10 flex items-center gap-2">
+            Contact Us
+            <ChevronRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1 md:h-6 md:w-6 lg:h-7 lg:w-7" />
+          </span>
+        </Link>
         </div>
       </section>
     </main>
