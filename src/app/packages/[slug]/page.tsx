@@ -32,7 +32,6 @@ export default async function PackageDetailPage({ params }: Props) {
               ← Back to packages
             </Link>
           </div>
-
           <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr]">
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-purple-300/80">
