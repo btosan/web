@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Check, Sparkles } from "lucide-react";
-// prefix
+
 interface PackageCardProps {
   pkg: {
     id: string;
@@ -45,7 +45,7 @@ export default function PackageCard({ pkg }: PackageCardProps) {
         </div>
 
         <div className="border-t border-white/10 pt-4">
-          <p className="text-2xl font-semibold text-purple-300">{pkg.price}</p>
+          <p className="text-2xl font-semibold text-purple-50">{pkg.price}</p>
           {pkg.timeline ? (
             <p className="mt-1 text-sm text-gray-500">Timeline: {pkg.timeline}</p>
           ) : null}
