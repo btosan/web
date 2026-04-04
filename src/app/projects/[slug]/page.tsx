@@ -11,7 +11,6 @@ import RichTextDisplay from "@/components/editorOld/RichTextDisplay";
 import { getPublicProjectBySlug } from "@/lib/actions/projects";
 import { getRelatedProjects } from "@/lib/actions/projects";
 
-
 function buildGallery(project: Awaited<ReturnType<typeof getPublicProjectBySlug>>) {
   if (!project) return [];
 
@@ -44,8 +43,6 @@ function buildFeatures(
 
   const tags = project.tags?.map((tag) => tag.tagName).filter(Boolean) || [];
 
-  // If your action/schema later includes a dedicated technologies field/relation,
-  // add it here. For now this safely supports common shapes without breaking UI. relatedDb
   const technologies =
     Array.isArray((project as any).technologies)
       ? (project as any).technologies
@@ -67,7 +64,6 @@ function buildSpecs(project: Awaited<ReturnType<typeof getPublicProjectBySlug>>)
 
   const specs = [];
 
-  // 1. Category
   if (project.category?.catName) {
     specs.push({
       label: "Category",
@@ -75,7 +71,6 @@ function buildSpecs(project: Awaited<ReturnType<typeof getPublicProjectBySlug>>)
     });
   }
 
-  // 2. Type
   if (project.type) {
     specs.push({
       label: "Type",
@@ -83,7 +78,6 @@ function buildSpecs(project: Awaited<ReturnType<typeof getPublicProjectBySlug>>)
     });
   }
 
-  // 3. Tags count
   const features = buildFeatures(project);
   if (features.length) {
     specs.push({
@@ -92,7 +86,6 @@ function buildSpecs(project: Awaited<ReturnType<typeof getPublicProjectBySlug>>)
     });
   }
 
-  // 4. Date (always safe)
   if (project.createdAt) {
     specs.push({
       label: "Year",
@@ -100,7 +93,6 @@ function buildSpecs(project: Awaited<ReturnType<typeof getPublicProjectBySlug>>)
     });
   }
 
-  // 5. Fallback: has live project
   if (specs.length < 4 && project.projectUrl) {
     specs.push({
       label: "Live",
@@ -108,7 +100,6 @@ function buildSpecs(project: Awaited<ReturnType<typeof getPublicProjectBySlug>>)
     });
   }
 
-  // 6. Fallback: images count
   if (specs.length < 4 && project.imageUrls?.length) {
     specs.push({
       label: "Gallery",
@@ -116,7 +107,6 @@ function buildSpecs(project: Awaited<ReturnType<typeof getPublicProjectBySlug>>)
     });
   }
 
-  // 7. Final fallback (guarantee 4)
   while (specs.length < 4) {
     specs.push({
       label: "Status",
@@ -165,15 +155,27 @@ export default async function ProjectDetailPage({
   const isAdmin = session?.user?.role === Role.ADMIN;
 
   return (
-    <main className="min-h-screen bg-white flex flex-col">
-      <section className="relative w-full bg-linear-to-tr from-gray-100 via-white to-gray-50 shadow-xl">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center py-10 md:py-20 px-4 md:px-10 gap-12 md:gap-16">
-          <div className="flex-1 flex flex-col items-center justify-center lg:-mt-12">
-            <h1 className="text-xl md:text-2xl lg:text-4xl uppercase font-bold text-black mb-6 pt-6 text-center">
+    <main className="min-h-screen bg-black text-white flex flex-col">
+      <section className="relative w-full overflow-hidden border-b border-gray-800 bg-linear-to-br from-gray-950 via-black to-gray-950">
+        <div className="absolute inset-0 bg-linear-to-b from-black/20 via-black/50 to-black pointer-events-none" />
+        <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-purple-700/10 blur-3xl pointer-events-none" />
+        <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-indigo-700/10 blur-3xl pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent pointer-events-none" />
+
+        <div className="relative max-w-7xl mx-auto flex flex-col md:flex-row items-center py-12 md:py-20 px-4 md:px-10 gap-12 md:gap-16">
+          <div className="flex-1 flex flex-col items-center justify-center lg:-mt-8">
+            <div className="mb-4 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm">
+              <span className="text-[11px] md:text-xs font-medium uppercase tracking-[0.22em] text-purple-100/80">
+                {tagline}
+              </span>
+            </div>
+
+            <h1 className="text-2xl md:text-3xl lg:text-4xl uppercase font-bold text-white mb-6 pt-2 text-center tracking-tight">
               {project.title}
             </h1>
 
-            <div className="relative w-85 h-50 md:w-120 md:h-75 lg:w-140 lg:h-90 rounded-2xl overflow-hidden shadow-xl bg-white border border-gray-200">
+            <div className="relative w-85 h-50 md:w-120 md:h-75 lg:w-140 lg:h-90 rounded-3xl overflow-hidden border border-gray-700/60 bg-gray-900/40 shadow-2xl shadow-black/40 backdrop-blur-sm">
+              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/15 to-transparent z-10" />
               <Image
                 src={heroImage}
                 alt={project.title}
@@ -186,23 +188,27 @@ export default async function ProjectDetailPage({
           </div>
 
           <div className="flex-1 flex flex-col gap-6 justify-center lg:pt-8">
-            <span className="inline-block uppercase tracking-wider text-sm font-bold text-gray-500 mb-1">
+            <span className="inline-block uppercase tracking-[0.22em] text-xs md:text-sm font-bold text-purple-200/70 mb-1">
               Overview
             </span>
 
-            <p className="text-gray-700 text-lg md:text-xl mb-4 max-w-xl">
-              {project.shortDescription || "A modern digital product built for performance and scale."}
+            <p className="text-gray-300 text-lg md:text-xl leading-8 mb-2 max-w-xl">
+              {project.shortDescription ||
+                "A modern digital product built for performance and scale."}
             </p>
 
             {specs.length > 0 && (
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6 max-w-lg">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4 max-w-2xl">
                 {specs.map((spec) => (
                   <div
                     key={spec.label}
-                    className="rounded-lg bg-gray-50 border border-gray-200 px-4 py-2 flex flex-col items-center"
+                    className="group relative rounded-2xl border border-gray-700/60 bg-gray-900/40 px-4 py-4 flex flex-col items-center backdrop-blur-sm shadow-lg shadow-black/20"
                   >
-                    <span className="text-xs text-gray-500">{spec.label}</span>
-                    <span className="font-semibold text-black text-sm text-center">
+                    <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+                    <span className="text-[11px] uppercase tracking-[0.18em] text-gray-400 text-center">
+                      {spec.label}
+                    </span>
+                    <span className="mt-2 font-semibold text-white text-sm md:text-base text-center">
                       {spec.value}
                     </span>
                   </div>
@@ -213,7 +219,7 @@ export default async function ProjectDetailPage({
             <div className="w-full mx-auto flex flex-col items-center justify-center sm:flex-row gap-4 flex-wrap">
               <Link
                 href={`/?type=project&slug=${project.slug}#enquiry`}
-                className="inline-block px-8 py-3 font-bold hover:text-white text-black bg-transparent border-2 border-gray-800/70 hover:bg-black hover:border-black transition-all text-lg uppercase tracking-wide"
+                className="inline-block px-8 py-3 font-bold text-white bg-transparent border-2 border-gray-600 hover:bg-white hover:text-black hover:border-white transition-all text-lg uppercase tracking-wide"
               >
                 Enquire Now
               </Link>
@@ -223,7 +229,7 @@ export default async function ProjectDetailPage({
                   href={project.projectUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-8 py-3 font-bold text-white  bg-purple-800 hover:bg-purple-700 border-2 border-purple-800 hover:border-purple-700  transition-all text-lg uppercase tracking-wide"
+                  className="inline-block px-8 py-3 font-bold text-white bg-purple-800 hover:bg-purple-700 border-2 border-purple-800 hover:border-purple-700 transition-all text-lg uppercase tracking-wide shadow-lg shadow-purple-900/20"
                 >
                   Visit Project
                 </a>
@@ -256,23 +262,27 @@ export default async function ProjectDetailPage({
       )}
 
       {project.description && (
-        <section className="w-full bg-white py-10">
+        <section className="w-full bg-black py-12 md:py-16">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-bold text-black mb-6 text-center">
-              Description
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-8 text-center">
+              Project Description
             </h2>
 
-            <div className="rounded-xl border border-gray-200 bg-white p-4 md:p-6 shadow-sm">
-              <RichTextDisplay content={project.description} />
+            <div className="relative rounded-3xl border border-gray-700/60 bg-gray-950/70 p-5 md:p-8 shadow-2xl shadow-black/30 backdrop-blur-sm">
+              <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+              <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-purple-700/10 blur-3xl pointer-events-none" />
+              <div className="relative text-gray-300 [&_h1]:text-white [&_h2]:text-white [&_h3]:text-white [&_h4]:text-white [&_h5]:text-white [&_h6]:text-white [&_p]:text-gray-300 [&_li]:text-gray-300 [&_strong]:text-white [&_a]:text-purple-300 [&_blockquote]:border-l-purple-700 [&_blockquote]:text-gray-300">
+                <RichTextDisplay content={project.description} />
+              </div>
             </div>
           </div>
         </section>
       )}
 
       {gallery.length > 1 && (
-        <section className="w-full bg-gray-50 py-10">
+        <section className="w-full bg-gray-950 py-12 md:py-16">
           <div className="max-w-5xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl lg:text-4xl uppercase font-bold text-black mb-6 text-center">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl uppercase font-bold text-white mb-8 text-center">
               Gallery
             </h2>
 
@@ -280,8 +290,9 @@ export default async function ProjectDetailPage({
               {gallery.map((img, i) => (
                 <div
                   key={`${img}-${i}`}
-                  className="relative aspect-video rounded-xl overflow-hidden border border-gray-200 bg-white shadow-sm"
+                  className="group relative aspect-video rounded-2xl overflow-hidden border border-gray-700/60 bg-gray-900/40 shadow-lg shadow-black/30"
                 >
+                  <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent z-10" />
                   <Image
                     src={img}
                     alt={`${project.title} photo ${i + 1}`}
@@ -297,9 +308,9 @@ export default async function ProjectDetailPage({
       )}
 
       {features.length > 0 && (
-        <section className="w-full bg-white py-10">
+        <section className="w-full bg-black py-12 md:py-16">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-2xl md:text-3xl font-bold text-black mb-6 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
               Tags
             </h2>
 
@@ -307,10 +318,11 @@ export default async function ProjectDetailPage({
               {features.map((feat, i) => (
                 <li
                   key={`${feat}-${i}`}
-                  className="flex items-start gap-3 bg-gray-50 rounded-lg border border-gray-200 p-4"
+                  className="relative flex items-start gap-3 rounded-2xl border border-gray-700/60 bg-gray-900/40 p-4 shadow-lg shadow-black/20 backdrop-blur-sm"
                 >
-                  <span className="inline-block mt-1 h-3 w-3 rounded-full bg-purple-600 shrink-0"></span>
-                  <span className="text-gray-800 text-base">{feat}</span>
+                  <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+                  <span className="inline-block mt-1 h-3 w-3 rounded-full bg-purple-700 shrink-0"></span>
+                  <span className="text-gray-300 text-base">{feat}</span>
                 </li>
               ))}
             </ul>
@@ -334,15 +346,18 @@ export default async function ProjectDetailPage({
         </section>
       )}
 
-      <section className="py-12 sm:py-16 bg-black border-t border-b border-gray-700">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16 text-center">
+      <section className="relative py-12 sm:py-16 bg-gray-950 border-t border-b border-gray-800 overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-white/10 to-transparent" />
+        <div className="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700/10 blur-3xl pointer-events-none" />
+
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16 text-center relative">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">
             Start Your Project
           </h2>
           <div>
             <Link
               href={`/?type=project&slug=${project.slug}#enquiry`}
-              className="inline-block px-6 sm:px-8 py-3 font-bold text-white bg-purple-600 hover:bg-purple-500 border-2 border-purple-600 hover:border-purple-500 transition-all text-base sm:text-lg uppercase tracking-wide"
+              className="inline-block px-6 sm:px-8 py-3 font-bold text-white bg-purple-800 hover:bg-purple-700 border-2 border-purple-800 hover:border-purple-700 transition-all text-base sm:text-lg uppercase tracking-wide shadow-lg shadow-purple-900/20"
             >
               Enquire Now
             </Link>
