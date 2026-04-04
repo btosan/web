@@ -5,9 +5,7 @@ import { toProjectCard } from "./projects";
 
 export default async function ProjectsSection() {
   const dbProjects = await getFeaturedPublicProjects();
-  const projects = dbProjects
-    .filter((project) => !!project.slug)
-    .map(toProjectCard);
+  const projects = dbProjects.map(toProjectCard);
 
   if (!projects.length) {
     return null;

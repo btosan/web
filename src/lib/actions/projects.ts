@@ -392,6 +392,9 @@ export async function getFeaturedPublicProjects() {
   return db.project.findMany({
     where: {
       featured: true,
+      slug: {
+        not: null,
+      },
     },
     orderBy: [{ createdAt: "desc" }],
     include: {

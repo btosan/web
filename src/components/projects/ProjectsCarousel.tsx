@@ -18,7 +18,7 @@ export default function ProjectsCarousel({ projects = [] }: Props) {
 
   const itemWidth = 320;
   const gap = 24;
-  const safeProjects = projects.filter((project) => !!project.slug);
+  const safeProjects = projects;
   const baseWidth = safeProjects.length * (itemWidth + gap) - gap;
 
   const isPaused = userStopped || isHovered;
@@ -135,7 +135,7 @@ export default function ProjectsCarousel({ projects = [] }: Props) {
       isDraggingRef.current = false;
       activePointerId.current = null;
     },
-    [TAP_MAX_MS, isDraggingRef]
+    [isDraggingRef]
   );
 
   const onPointerCancel = useCallback(() => {
@@ -147,7 +147,10 @@ export default function ProjectsCarousel({ projects = [] }: Props) {
     return null;
   }
 
-  const displayed = [...safeProjects, ...safeProjects, ...safeProjects];
+  const displayed =
+    safeProjects.length > 1
+      ? [...safeProjects, ...safeProjects, ...safeProjects]
+      : safeProjects;
 
   return (
     <div
