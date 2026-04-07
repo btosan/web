@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 
 const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',           // Change to your titisoft domain in production for better security, e.g. 'https://ttsoft.tosanx.com'
+  'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
 };
@@ -31,12 +31,15 @@ export async function GET(request: Request) {
       take: limit || undefined,
     });
 
-return NextResponse.json(packages, { headers: corsHeaders });
+    return NextResponse.json(packages, { headers: corsHeaders });
   } catch (error) {
     console.error('Error fetching public packages:', error);
-    return NextResponse.json({ error: 'Failed to fetch packages' }, { 
-      status: 500,
-      headers: corsHeaders 
-    });
+    return NextResponse.json(
+      { error: 'Failed to fetch packages' },
+      { 
+        status: 500,
+        headers: corsHeaders 
+      }
+    );
   }
 }
