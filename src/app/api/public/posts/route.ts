@@ -2,6 +2,17 @@ import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 import { Type } from '@prisma/client';
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',           // Change to your titisoft domain in production for better security, e.g. 'https://ttsoft.tosanx.com'
+  'Access-Control-Allow-Methods': 'GET, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
+export async function OPTIONS() {
+  return NextResponse.json({}, { headers: corsHeaders });
+}
+
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -37,9 +48,12 @@ export async function GET(request: Request) {
       },
     });
 
-    return NextResponse.json(posts);
+return NextResponse.json(posts, { headers: corsHeaders });
   } catch (error) {
     console.error('Error fetching public posts:', error);
-    return NextResponse.json({ error: 'Failed to fetch posts' }, { status: 500 });
+    return NextResponse.json({ error: 'Failed to fetch posts' }, { 
+      status: 500,
+      headers: corsHeaders 
+    });
   }
 }

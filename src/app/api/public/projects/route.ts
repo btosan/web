@@ -1,5 +1,15 @@
 import { NextResponse } from 'next/server';
-import { db } from '@/lib/db';   
+import { db } from '@/lib/db';
+
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',           // Change to your titisoft domain in production for better security, e.g. 'https://ttsoft.tosanx.com'
+  'Access-Control-Allow-Methods': 'GET, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
+
+export async function OPTIONS() {
+  return NextResponse.json({}, { headers: corsHeaders });
+}
 
 export async function GET(request: Request) {
   try {
@@ -37,12 +47,13 @@ export async function GET(request: Request) {
       });
     }
 
-    return NextResponse.json(projects);
+    return NextResponse.json(projects, { headers: corsHeaders });
   } catch (error) {
     console.error('Error fetching public projects:', error);
     return NextResponse.json(
       { error: 'Failed to fetch projects' },
-      { status: 500 }
+      status: 500,
+      headers: corsHeaders
     );
   }
 }
