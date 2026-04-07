@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { Prisma, Role } from "@prisma/client";
@@ -187,6 +187,7 @@ export async function createPackage(data: {
 
   revalidatePath("/admin/packages");
   revalidatePath("/packages");
+  revalidateTag('public-packages');
 
   if (created.slug) {
     revalidatePath(`/packages/${created.slug}`);
@@ -391,6 +392,7 @@ export async function updatePackage(
   revalidatePath("/admin/packages");
   revalidatePath(`/admin/packages/${id}`);
   revalidatePath("/packages");
+  revalidateTag('public-packages');
 
   if (existingPackage.slug && existingPackage.slug !== updated.slug) {
     revalidatePath(`/packages/${existingPackage.slug}`);
@@ -425,6 +427,7 @@ export async function deletePackage(id: string) {
 
   revalidatePath("/admin/packages");
   revalidatePath("/packages");
+  revalidateTag('public-packages');
 
   if (existingPackage.slug) {
     revalidatePath(`/packages/${existingPackage.slug}`);

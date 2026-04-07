@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/lib/db";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { ProjectType, Role } from "@prisma/client";
@@ -122,6 +122,7 @@ export async function createProject(data: {
 
   revalidatePath("/admin/projects");
   revalidatePath("/projects");
+  revalidateTag('public-projects');
 
   if (project.slug) {
     revalidatePath(`/projects/${project.slug}`);
@@ -240,6 +241,7 @@ export async function updateProject(
   revalidatePath("/admin/projects");
   revalidatePath(`/admin/projects/${id}`);
   revalidatePath("/projects");
+  revalidateTag('public-projects');
 
   if (existingProject.slug && existingProject.slug !== project.slug) {
     revalidatePath(`/projects/${existingProject.slug}`);
@@ -274,6 +276,7 @@ export async function deleteProject(id: string) {
 
   revalidatePath("/admin/projects");
   revalidatePath("/projects");
+  revalidateTag('public-projects');
 
   if (project.slug) {
     revalidatePath(`/projects/${project.slug}`);
