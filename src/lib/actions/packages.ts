@@ -187,7 +187,7 @@ export async function createPackage(data: {
 
   revalidatePath("/admin/packages");
   revalidatePath("/packages");
-  revalidateTag('public-packages');
+  revalidateTag('public-packages', 'max');
 
   if (created.slug) {
     revalidatePath(`/packages/${created.slug}`);
@@ -392,7 +392,7 @@ export async function updatePackage(
   revalidatePath("/admin/packages");
   revalidatePath(`/admin/packages/${id}`);
   revalidatePath("/packages");
-  revalidateTag('public-packages');
+  revalidateTag('public-packages', 'max');
 
   if (existingPackage.slug && existingPackage.slug !== updated.slug) {
     revalidatePath(`/packages/${existingPackage.slug}`);
@@ -427,7 +427,7 @@ export async function deletePackage(id: string) {
 
   revalidatePath("/admin/packages");
   revalidatePath("/packages");
-  revalidateTag('public-packages');
+  revalidateTag('public-packages', 'max');
 
   if (existingPackage.slug) {
     revalidatePath(`/packages/${existingPackage.slug}`);

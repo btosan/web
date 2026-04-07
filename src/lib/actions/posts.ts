@@ -229,14 +229,14 @@ function revalidatePostPaths(slug?: string | null) {
   revalidatePath("/blog");
   revalidatePath("/guides");
   revalidatePath("/resources");
-  revalidateTag('public-posts');
+  revalidateTag('public-posts', 'max');
 
   if (slug) {
     revalidatePath(`/posts/${slug}`);
     revalidatePath(`/blog/${slug}`);
     revalidatePath(`/guides/${slug}`);
     revalidatePath(`/resources/${slug}`);
-    revalidateTag('public-posts');
+    revalidateTag('public-posts', 'max');
   }
 }
 
@@ -308,7 +308,7 @@ export async function createPost(data: CreatePostInput) {
   });
 
   revalidatePostPaths(post.slug);
-  revalidateTag('public-posts');
+  revalidateTag('public-posts', 'max');
 
   return post;
 }
@@ -472,7 +472,7 @@ export async function updatePost(id: string, data: UpdatePostInput) {
   revalidatePostPaths(post.slug);
   revalidatePath(`/admin/posts/${id}`);
   revalidatePath(`/admin/posts/${id}/edit`);
-  revalidateTag('public-posts');
+  revalidateTag('public-posts', 'max');
 
   return post;
 }
@@ -491,7 +491,7 @@ export async function deletePost(id: string) {
   revalidatePostPaths(post.slug);
   revalidatePath(`/admin/posts/${id}`);
   revalidatePath(`/admin/posts/${id}/edit`);
-  revalidateTag('public-posts');
+  revalidateTag('public-posts', 'max');
 
   return { success: true };
 }
