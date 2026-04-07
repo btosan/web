@@ -184,7 +184,27 @@ export default function RichTextDisplay({ content }: RichTextDisplayProps) {
   }, [sanitizedContent])
 
   return (
-    <div className="rich-text-content" ref={contentRef}>
+    <div
+      className="
+        rich-text-content
+        text-primary2 dark:text-secondary
+        [&_.editor-paragraph]:mb-5
+        [&_.editor-paragraph]:leading-7
+        [&_p]:mb-5
+        [&_p]:leading-7
+        [&_h1]:mb-4 [&_h1]:mt-6
+        [&_h2]:mb-4 [&_h2]:mt-6
+        [&_h3]:mb-3 [&_h3]:mt-5
+        [&_ul]:mb-5 [&_ul]:pl-6
+        [&_ol]:mb-5 [&_ol]:pl-6
+        [&_li]:mb-2
+        [&_blockquote]:my-5 [&_blockquote]:pl-4
+        [&_img]:my-6
+        [&_pre]:my-5
+        [&_table]:my-6
+      "
+      ref={contentRef}
+    >
       <div
         dangerouslySetInnerHTML={{ __html: sanitizedContent }}
         suppressHydrationWarning
