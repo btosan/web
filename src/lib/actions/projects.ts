@@ -122,6 +122,7 @@ export async function createProject(data: {
 
   revalidatePath("/admin/projects");
   revalidatePath("/projects");
+  revalidatePath("/");
   revalidateTag('public-projects', 'max');
 
   if (project.slug) {
@@ -241,6 +242,7 @@ export async function updateProject(
   revalidatePath("/admin/projects");
   revalidatePath(`/admin/projects/${id}`);
   revalidatePath("/projects");
+  revalidatePath("/");
   revalidateTag('public-projects', 'max');
 
   if (existingProject.slug && existingProject.slug !== project.slug) {
@@ -276,6 +278,7 @@ export async function deleteProject(id: string) {
 
   revalidatePath("/admin/projects");
   revalidatePath("/projects");
+  revalidatePath("/");
   revalidateTag('public-projects', 'max');
 
   if (project.slug) {
