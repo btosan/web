@@ -5,12 +5,28 @@ import {
   ProjectType,
 } from "@prisma/client";
 
+// UI-friendly display types (what your ProjectCard expects)
 export type ProjectCardType =
   | "full-stack"
   | "frontend"
   | "ai"
-  | "website"
-  | "automation";
+  | "automation"
+  | "backend"
+  | "mobile"
+  | "web3"
+  | "website";
+
+// Mapping from Prisma enum → nice display string for the card
+const projectTypeMap: Record<ProjectType, ProjectCardType> = {
+  FULLSTACK: "full-stack",
+  FRONTEND: "frontend",
+  AI: "ai",
+  AUTOMATION: "automation",
+  BACKEND: "backend",
+  MOBILE: "mobile",
+  WEB3: "web3",
+  OTHER: "website",
+};
 
 export type Project = {
   id: string;
@@ -20,7 +36,7 @@ export type Project = {
   excerpt: string;
   liveUrl?: string;
   isNew?: boolean;
-  type: ProjectCardType;
+  type: ProjectCardType;           // This stays the same for your components
   category?: string;
   tags?: string[];
 };
@@ -30,23 +46,10 @@ export type ProjectWithRelations = DbProject & {
   tags?: ProjectTag[];
 };
 
+// Clean & safe mapping (handles undefined, null, and any future enum values)
 export function mapProjectType(type?: ProjectType | null): ProjectCardType {
-  switch (type) {
-    case "FRONTEND":
-      return "frontend";
-    case "AI":
-      return "ai";
-    case "AUTOMATION":
-      return "automation";
-    case "FULLSTACK":
-      return "full-stack";
-    case "BACKEND":
-    case "MOBILE":
-    case "WEB3":
-    case "OTHER":
-    default:
-      return "website";
-  }
+  if (!type) return "website";
+  return projectTypeMap[type] ?? "website";
 }
 
 export function toProjectCard(project: ProjectWithRelations): Project {

@@ -12,8 +12,11 @@ const typeColors: Record<Project["type"], string> = {
   "full-stack": "bg-purple-50 text-black dark:bg-purple-900/40 dark:text-purple-300",
   frontend: "bg-indigo-50 text-black dark:bg-indigo-900/40 dark:text-indigo-300",
   ai: "bg-pink-50 text-black dark:bg-pink-900/40 dark:text-pink-300",
-  website: "bg-green-50 text-black dark:bg-green-900/40 dark:text-green-300",
   automation: "bg-orange-50 text-black dark:bg-orange-900/40 dark:text-orange-300",
+  backend: "bg-blue-50 text-black dark:bg-blue-900/40 dark:text-blue-300",
+  mobile: "bg-emerald-50 text-black dark:bg-emerald-900/40 dark:text-emerald-300",
+  web3: "bg-amber-50 text-black dark:bg-amber-900/40 dark:text-amber-300",
+  website: "bg-green-50 text-black dark:bg-green-900/40 dark:text-green-300",
 };
 
 export default function ProjectCard({ project }: Props) {
