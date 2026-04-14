@@ -6,7 +6,7 @@ interface HeroProps {
 
 export default function Hero({ onOpenModal }: HeroProps) {
   return (
-    <section className="min-h-screen pt-16 lg:pt-36 pb-20 px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative overflow-hidden">
+    <section className="min-h-screen pt-36 pb-20 px-[6vw] grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative overflow-hidden">
       {/* Background glows */}
       <div className="absolute top-[-20%] right-[-10%] w-150 h-150 rounded-full bg-[radial-gradient(circle,rgba(232,93,47,0.12)_0%,transparent_70%)] pointer-events-none" />
       <div className="absolute bottom-[-10%] left-[-5%] w-100 h-100 rounded-full bg-[radial-gradient(circle,rgba(26,122,74,0.1)_0%,transparent_70%)] pointer-events-none" />
