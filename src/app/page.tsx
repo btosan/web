@@ -18,7 +18,7 @@ import { getFeaturedPosts, getLatestPosts } from "@/lib/actions/posts";
 
 export const metadata: Metadata = {
   title:
-    "Ofashi | AI-Powered Web Development, Automation & Custom Apps in Nigeria",
+    "Ofashi | AI-Powered Web Development, Custom Apps, AI Automation & Integrations",
 
   description:
     "Ofashi builds AI-powered full-stack applications and custom websites that drive real business growth. We combine modern web development, smart automation, and exceptional UI/UX to create fast, scalable, and conversion-focused digital solutions for businesses in Nigeria and beyond.",

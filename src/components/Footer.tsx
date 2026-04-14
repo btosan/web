@@ -34,6 +34,11 @@ export default function Footer() {
           <h3 className="text-purple-100 font-semibold mb-3">Explore</h3>
           <ul className="space-y-2">
             <li>
+              <Link href="/" className="hover:text-purple-50 transition-all">
+                Home
+              </Link>
+            </li>
+            <li>
               <Link href="/about" className="hover:text-purple-50 transition-all">
                 About
               </Link>
@@ -44,7 +49,7 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/work" className="hover:text-purple-50 transition-all">
+              <Link href="/projects" className="hover:text-purple-50 transition-all">
                 Work
               </Link>
             </li>
@@ -54,13 +59,18 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link href="/learn/blog" className="hover:text-purple-50 transition-all">
+              <Link href="/blog" className="hover:text-purple-50 transition-all">
                 Blog
               </Link>
             </li>
             <li>
               <Link href="/contact" className="hover:text-purple-50 transition-all">
                 Contact
+              </Link>
+            </li>
+            <li>
+              <Link href="/web-development" className="hover:text-purple-50 transition-all">
+                Web Development 
               </Link>
             </li>
           </ul>

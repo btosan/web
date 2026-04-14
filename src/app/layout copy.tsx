@@ -9,7 +9,6 @@ import NextAuthProviders from "./NextAuthProviders";
 import HolyLoader from "holy-loader";
 import FloatingContact from "@/components/FloatingContact";
 import PresenceHeartbeat from "@/components/presence/PresenceHeartbeat";
-import { headers } from "next/headers";
 
 const barlow = Barlow({
   variable: "--font-barlow",
@@ -20,7 +19,7 @@ const barlow = Barlow({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.ofashi.com"),
   title:
-    "Ofashi | AI-Powered Web Development, Custom Apps, AI Automation & Integrations",
+    "Ofashi | AI-Powered Web Development, Automation & Custom Apps in Nigeria",
   description:
     "Ofashi builds AI-powered full-stack applications and custom websites that drive real business growth. We combine modern web development, smart automation, and exceptional UI/UX to create fast, scalable, and conversion-focused digital solutions for businesses in Nigeria and beyond.",
   keywords:
@@ -37,15 +36,11 @@ export const viewport = {
   colorScheme: "dark",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const headersList = await headers();
-  const pathname = headersList.get("x-pathname") ?? "";
-  const isLanding = pathname.startsWith("/web-development");
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -65,21 +60,17 @@ export default async function RootLayout({
         </Script>
       </head>
 
-      <body
-        className={`${
-          isLanding ? "bg-[#f7f4ef]" : "bg-black"
-        } text-gray-100 font-sans antialiased overflow-x-hidden`}
-      >
+      <body className="bg-black text-gray-100 font-sans antialiased overflow-x-hidden">
         <HolyLoader color="#c084fc" />
         <NextAuthProviders>
           <PresenceHeartbeat />
           <TooltipProvider>
-            {!isLanding && <Navbar />}
-            <main className={!isLanding ? "pt-18 lg:pt-24" : ""}>
+            <Navbar />
+            <main className="pt-20 lg:pt-24">
               {children}
-              {!isLanding && <FloatingContact />}
+              <FloatingContact />
             </main>
-            {!isLanding && <Footer />}
+            <Footer />
           </TooltipProvider>
         </NextAuthProviders>
       </body>

@@ -435,7 +435,7 @@ const TiptapEditor: React.FC<TiptapEditorProps> = ({
   }
 
   return (
-    <div className="tiptap-editor-container rounded-md border border-gray-800 bg-gray-900">
+    <div className="tiptap-editor-container rounded-md border border-gray-800 bg-gray-00">
       {editable && (
         <>
           <button
