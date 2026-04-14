@@ -79,7 +79,7 @@ export default async function RootLayout({
               {children}
               <FloatingContact />
             </main>
-            {!isLanding && <Footer />}
+            <Footer />
           </TooltipProvider>
         </NextAuthProviders>
       </body>

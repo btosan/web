@@ -9,9 +9,7 @@ export default function WhyOfashi() {
         <div>
           <SectionLabel text="Why Ofashi" />
           <h2 className="font-display text-[clamp(2rem,3.5vw,3rem)] font-extrabold tracking-tight leading-[1.1] mb-4 text-[#f7f4ef]">
-            We Understand the
-            <br />
-            African Market
+            We Understand the African Market
           </h2>
           <p className="text-[#f7f4ef]/50 font-light leading-relaxed max-w-lg mb-10">
             Building for Nigeria isn&apos;t the same as building for Europe. We

@@ -21,7 +21,7 @@ export default function Portfolio() {
             }`}
           >
             <div
-              className={`flex items-center justify-center bg-gradient-to-br ${item.bg} ${
+              className={`flex items-center justify-center bg-linear-to-br ${item.bg} ${
                 item.featured ? "h-56 lg:h-80" : "h-44"
               } text-5xl`}
             >

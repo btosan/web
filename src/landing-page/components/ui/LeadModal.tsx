@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import TiptapEditor from "@/components/editorOld/TiptapEditor";
+import TiptapEditorLight from "@/components/editorOld/TiptapEditorLight";
 
 interface LeadModalProps {
   isOpen: boolean;
@@ -263,7 +263,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
                 </label>
 
                 <div className="rounded-xl border border-[#0d0d0d]/10 bg-white overflow-hidden">
-                  <TiptapEditor
+                  <TiptapEditorLight
                     content={details}
                     onChange={(value) => {
                       setDetails(value);

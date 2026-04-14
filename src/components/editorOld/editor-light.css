@@ -1,0 +1,191 @@
+/* editor-light.css */
+
+.tiptap-editor-container-light {
+  width: 100%;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: #f7f4ef;
+  border: 1px solid #e5e0d8;
+}
+
+/* Toolbar */
+.tiptap-editor-container-light .editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  background: #f0ebe5;
+  border-bottom: 1px solid #e5e0d8;
+}
+
+.tiptap-editor-container-light .editor-toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  min-height: 2rem;
+  border: none;
+  background: transparent;
+  color: #374151;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.tiptap-editor-container-light .editor-toolbar-btn:hover {
+  background: #e7e2db;
+  color: #111827;
+}
+
+.tiptap-editor-container-light .editor-toolbar-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Content container */
+.tiptap-editor-container-light .editor-content-container {
+  position: relative;
+  background: #f7f4ef;
+}
+
+.tiptap-editor-container-light .ProseMirror {
+  padding: 1rem;
+  min-height: 200px;
+  outline: none;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+  color: #1f2937;
+}
+
+/* Headings */
+.tiptap-editor-container-light .ProseMirror h1,
+.tiptap-editor-container-light .ProseMirror h2,
+.tiptap-editor-container-light .ProseMirror h3,
+.tiptap-editor-container-light .ProseMirror h4,
+.tiptap-editor-container-light .ProseMirror h5,
+.tiptap-editor-container-light .ProseMirror h6 {
+  margin: 1rem 0 0.5rem;
+  line-height: 1.25;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Paragraph */
+.tiptap-editor-container-light .ProseMirror p {
+  margin: 0.5rem 0;
+}
+
+/* Lists */
+.tiptap-editor-container-light .ProseMirror ul,
+.tiptap-editor-container-light .ProseMirror ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+
+/* Blockquote */
+.tiptap-editor-container-light .ProseMirror blockquote {
+  margin: 1rem 0;
+  padding-left: 1rem;
+  border-left: 4px solid #d6d3d1;
+  color: #52525b;
+}
+
+/* HR */
+.tiptap-editor-container-light .ProseMirror hr {
+  border: none;
+  border-top: 1px solid #d6d3d1;
+  margin: 1rem 0;
+}
+
+/* Links */
+.tiptap-editor-container-light .ProseMirror a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* Inline code */
+.tiptap-editor-container-light .ProseMirror code {
+  background: #ece7e1;
+  color: #111827;
+  padding: 0.15rem 0.35rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+/* Code block */
+.tiptap-editor-container-light .ProseMirror pre {
+  background: #1e293b;
+  color: #f8fafc;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.tiptap-editor-container-light .ProseMirror pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+/* Images */
+.tiptap-editor-container-light .ProseMirror img {
+  display: block;
+  max-width: 100%;
+  margin: 1rem auto;
+  border-radius: 0.5rem;
+}
+
+/* Tables */
+.tiptap-editor-container-light .ProseMirror table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.tiptap-editor-container-light .ProseMirror th,
+.tiptap-editor-container-light .ProseMirror td {
+  border: 1px solid #e5e0d8;
+  padding: 0.75rem;
+}
+
+.tiptap-editor-container-light .ProseMirror th {
+  background: #f0ebe5;
+  font-weight: 600;
+}
+
+/* Placeholder */
+.tiptap-editor-container-light .ProseMirror .is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #a1a1aa;
+  pointer-events: none;
+  height: 0;
+}
+
+/* Copy button */
+.tiptap-editor-container-light .copy-code-button {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+  background: rgba(0, 0, 0, 0.08);
+  color: #111827;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.tiptap-editor-container-light .code-block-wrapper:hover .copy-code-button {
+  opacity: 1;
+}
+
+.tiptap-editor-container-light .copy-code-button:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
