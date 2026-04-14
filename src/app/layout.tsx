@@ -77,7 +77,7 @@ export default async function RootLayout({
             {!isLanding && <Navbar />}
             <main className={!isLanding ? "pt-18 lg:pt-24" : ""}>
               {children}
-              {!isLanding && <FloatingContact />}
+              <FloatingContact />
             </main>
             {!isLanding && <Footer />}
           </TooltipProvider>
