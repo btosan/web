@@ -78,7 +78,7 @@ export default function HeroSection() {
               <span className="tracking-[0.18em] text-white block uppercase">
                 AI-Powered
               </span>
-              <span className="tracking-wide inline-block mt-2">
+              <span className="tracking-[0.08em] inline-block mt-2">
                 Digital Solutions
               </span>
             </motion.h1>
