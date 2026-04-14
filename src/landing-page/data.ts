@@ -114,67 +114,79 @@ export const processSteps = [
 
 export const portfolioItems = [
   {
-    emoji: "🏢",
+    image: "/assets/lp/of-byd4.png",
+    tag: "Landing Page · Automotive",
+    title: "BYD EV Landing Page",
+    description:
+      "High-converting, SEO-optimized landing page for BYD electric vehicles in Nigeria.",
+    liveUrl: "https://byd.evehicles.com.ng",
+  },
+{
+  image: "/assets/lp/of-cs.png",
+  tag: "Energy · Solar",
+  title: "Contained Solar Platform",
+  description:
+    "Modern solar solutions platform showcasing products, services, and clean energy adoption for homes and businesses.",
+  liveUrl: "https://containedsolar.com",
+},
+  {
+    image: "/assets/lp/of-coin6.png",
+    tag: "Web3 · Fintech",
+    title: "Coinplacid Investment Platform",
+    description:
+      "Crypto investment and lending platform with real-time data and asset management features.",
+    liveUrl: "https://coinplacid.ofashi.com",
+  },
+  {
+    image: "/assets/lp/of-ev.png",
+    tag: "Marketplace",
+    title: "eVehicles NG Web App",
+    description:
+      "Electric vehicle marketplace with inventory management and seamless browsing experience.",
+    liveUrl: "https://evehicles.com.ng",
+  },
+
+  {
+    image: "/assets/lp/of-ng.png",
     tag: "SaaS · Directory",
     title: "NGPage — Nigerian Business Directory",
     description:
-      "Multi-tenant business directory and website builder for Nigerian SMEs. Built on Django Tenants + Next.js with subdomain architecture.",
-    featured: true,
-    bg: "from-[#0d0d0d] to-[#1a1a2e]",
+      "Multi-tenant business directory and website builder for Nigerian SMEs.",
+    liveUrl: "https://www.ngpage.com",
   },
   {
-    emoji: "🛍️",
+    image: "/assets/lp/of-bk.png",
     tag: "E-Commerce",
-    title: "Lagos Fashion Store",
+    title: "TX Bookstore Platform",
     description:
-      "Full-stack shop with Paystack integration and inventory management.",
-    featured: false,
-    bg: "from-orange-100 to-orange-50",
-  },
-  {
-    emoji: "📊",
-    tag: "SaaS Dashboard",
-    title: "SME Analytics Platform",
-    description:
-      "FastAPI + React dashboard for tracking business KPIs in real-time.",
-    featured: false,
-    bg: "from-green-100 to-green-50",
-  },
-  {
-    emoji: "🔌",
-    tag: "API",
-    title: "Fintech Payment API",
-    description:
-      "DRF-powered payment orchestration API with Flutterwave and mobile money.",
-    featured: false,
-    bg: "from-blue-100 to-purple-50",
+      "Full-stack online bookstore with payments and admin dashboard.",
+    liveUrl: "https://bookstore.ofashi.com",
   },
 ];
-
 export const testimonials = [
   {
     quote:
-      "Ofashi understood our Nigerian market context from day one. The product launched on time, within budget, and our customers love it. Best team I've worked with.",
-    name: "Adaeze Chioma",
-    role: "Founder, StyleLagos",
-    initials: "AC",
-    color: "bg-[#e85d2f]",
-  },
-  {
-    quote:
-      "The MVP in a Week service is real. We had a working product in 6 days. The code quality was exceptional — not throwaway prototype code. Genuinely impressed.",
-    name: "Babatunde Olatunji",
-    role: "CTO, TechStartNG",
-    initials: "BT",
-    color: "bg-[#1a7a4a]",
-  },
-  {
-    quote:
-      "What sets Ofashi apart is communication. Weekly demos, direct developer access, and total transparency. Felt like having an in-house team without the overhead.",
-    name: "Kemi Okonkwo",
-    role: "CEO, AgroConnect Africa",
+      "Ofashi delivered a clean, scalable platform that perfectly showcases our electric vehicle offerings. The experience was smooth from start to finish, and the final product exceeded expectations.",
+    name: "Kingsley Ogwu",
+    role: "CEO, eVehicles NG",
     initials: "KO",
-    color: "bg-blue-600",
+    color: "bg-[#0ea5e9]",
+  },
+  {
+    quote:
+      "Working with Ofashi gave us a strong digital foundation for our solar business. They understood our vision and translated it into a modern, high-performing platform that truly represents our brand.",
+    name: "Ochonogor Emi",
+    role: "Founder, Contained Solar",
+    initials: "OE",
+    color: "bg-[#f59e0b]",
+  },
+  {
+    quote:
+      "The Coinplacid platform was built with precision and scalability in mind. Ofashi handled everything from product design to development seamlessly. Highly reliable team.",
+    name: "Emmanuel Edem",
+    role: "Founder, Coinplacid",
+    initials: "EE",
+    color: "bg-[#10b981]",
   },
 ];
 
@@ -246,6 +258,23 @@ export const pricingPlans: PricingPlan[] = [
     ],
   },
   {
+    tier: "E-Commerce Systems",
+    category: "Web Development",
+    price: "₦700,000",
+    per: "/ project",
+    timeline: "4 – 6 weeks",
+    desc: "Custom-built e-commerce platforms designed for performance, scalability, and seamless buying experiences.",
+    featured: false,
+    href: "https://www.ofashi.com/packages/e-commerce-solutions",
+    features: [
+      "Custom e-commerce platform (no Shopify/WooCommerce)",
+      "Product & inventory management system",
+      "Payment integration (Paystack / Flutterwave / Stripe)",
+      "User accounts & order tracking",
+      "Admin dashboard",
+    ],
+  },
+  {
     tier: "Custom Platform",
     category: "Web Development",
     price: "₦1,000,000",
@@ -279,7 +308,42 @@ export const pricingPlans: PricingPlan[] = [
       "Infrastructure (AWS / VPS / Docker)",
     ],
   },
+
   // ── Web Design ───────────────────────────────────
+  {
+    tier: "One Page Website",
+    category: "Web Design",
+    price: "₦50,000",
+    per: "/ project",
+    timeline: "1 – 3 days",
+    desc: "Custom-designed one-page website for businesses that need a fast, polished online presence.",
+    featured: false,
+    href: "https://www.ofashi.com/packages/one-page-website",
+    features: [
+      "1 year hosting + .com.ng domain name",
+      "WhatsApp button integration",
+      "Custom design",
+      "No WordPress or templates",
+      "No admin dashboard or contact form",
+    ],
+  },
+  {
+    tier: "Website Redesign",
+    category: "Web Design",
+    price: "₦120,000",
+    per: "/ project",
+    timeline: "1 – 3 weeks",
+    desc: "Strategic website redesigns that modernize your brand, improve usability, and increase conversions.",
+    featured: false,
+    href: "https://www.ofashi.com/packages/website-redesign",
+    features: [
+      "Full website visual refresh",
+      "Improved UX and page structure",
+      "Modern responsive layouts",
+      "Brand-aligned interface updates",
+      "Conversion-focused redesign",
+    ],
+  },
   {
     tier: "UI/UX Design",
     category: "Web Design",

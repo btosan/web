@@ -75,7 +75,7 @@ export default function HeroSection() {
               transition={{ duration: 0.75, delay: 0.08 }}
               className="text-4xl md:text-6xl lg:text-7xl 2xl:text-8xl font-semibold text-purple-200 mb-8 leading-[0.95]"
             >
-              <span className="tracking-[0.18em] text-white block uppercase">
+              <span className="tracking-wide text-white block uppercase">
                 AI-Powered
               </span>
               <span className="tracking-normal inline-block mt-2">
