@@ -27,7 +27,7 @@ export default function Hero({ onOpenModal }: HeroProps) {
           style={{ animation: "fadeUp 0.7s 0.1s ease both" }}
         >
           We Build Digital Products That{" "}
-          <span className="text-purple-800 underline underline-offset-8">Grow</span>
+          <span className="text-purple-800 underline underline-offset-4 md:underline-offset-8">Grow</span>
           <br />
           Your Business
         </h1>
